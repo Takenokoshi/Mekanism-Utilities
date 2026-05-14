@@ -1,0 +1,13 @@
+{
+  "itemGroup.mekanism_utilities": "Example Mod Tab",
+  "block.mekanism_utilities.example_block": "Example Block",
+  "item.mekanism_utilities.example_item": "Example Item",
+
+  "mekanism_utilities.configuration.title": "Mekanism:Utilities Configs",
+  "mekanism_utilities.configuration.section.mekanism_utilities.common.toml": "Mekanism:Utilities Configs",
+  "mekanism_utilities.configuration.section.mekanism_utilities.common.toml.title": "Mekanism:Utilities Configs",
+  "mekanism_utilities.configuration.items": "Item List",
+  "mekanism_utilities.configuration.logDirtBlock": "Log Dirt Block",
+  "mekanism_utilities.configuration.magicNumberIntroduction": "Magic Number Text",
+  "mekanism_utilities.configuration.magicNumber": "Magic Number"
+}
