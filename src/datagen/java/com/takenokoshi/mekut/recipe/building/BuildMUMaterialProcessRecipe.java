@@ -1,10 +1,11 @@
-package com.takenokoshi.mekut.recipe;
+package com.takenokoshi.mekut.recipe.building;
 
 import java.util.function.Function;
 
 import com.takenokoshi.mekut.core.MekUtConstants;
 import com.takenokoshi.mekut.enums.MUMaterial;
 import com.takenokoshi.mekut.enums.MUMaterialDatagen;
+import com.takenokoshi.mekut.recipe.data.OreAndRawData;
 import com.takenokoshi.mekut.registries.MekUtBlocks;
 import com.takenokoshi.mekut.registries.MekUtChemicals;
 import com.takenokoshi.mekut.registries.MekUtItems;
@@ -26,28 +27,31 @@ import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.material.Fluids;
+import net.pedroksl.advanced_ae.recipes.ReactionChamberRecipeBuilder;
 
-public class MUMaterialProcessRecipe {
+public class BuildMUMaterialProcessRecipe {
     public static void build(RecipeOutput output,
             Function<ItemLike, Criterion<InventoryChangeTrigger.TriggerInstance>> has) {
         IItemStackIngredientCreator creatorI = IngredientCreatorAccess.item();
         IFluidStackIngredientCreator creatorF = IngredientCreatorAccess.fluid();
         IChemicalStackIngredientCreator creatorC = IngredientCreatorAccess.chemicalStack();
         for (MUMaterial material : MUMaterial.values()) {
-
             ShapelessRecipeBuilder
                     .shapeless(RecipeCategory.BUILDING_BLOCKS, MekUtBlocks.RAW_MU_MATERIALS_BLOCK.get(material))
                     .requires(Ingredient.of(MekUtItemTags.RAW_MU_MATERIALS.get(material)), 9)
                     .unlockedBy("has", has.apply(MekUtItems.RAW_MU_MATERIALS.get(material)))
-                    .save(output, MekUtConstants.rl("processing/" + material.name + "/raw_block"));
+                    .save(output, MekUtConstants.rl("processing/" + material.name + "/crafting/raw_block"));
             ShapelessRecipeBuilder
                     .shapeless(RecipeCategory.BUILDING_BLOCKS, MekUtItems.RAW_MU_MATERIALS.get(material).asStack(9))
                     .requires(Ingredient.of(MekUtItemTags.RAW_MU_MATERIALS_BLOCK.get(material)), 1)
                     .unlockedBy("has", has.apply(MekUtBlocks.RAW_MU_MATERIALS_BLOCK.get(material)))
-                    .save(output, MekUtConstants.rl("processing/" + material.name + "/raw_from_block"));
+                    .save(output, MekUtConstants.rl("processing/" + material.name + "/crafting/raw_from_block"));
 
             ChemicalDissolutionRecipeBuilder
                     .dissolution(
@@ -154,7 +158,7 @@ public class MUMaterialProcessRecipe {
                             Ingredient.of(MekUtItemTags.RAW_MU_MATERIALS.get(material)),
                             RecipeCategory.MISC,
                             MUMaterialDatagen.FINAL_ITEMS_MAP.get(material),
-                            0.75f, 200)
+                            0.6f, 200)
                     .save(output, MekUtConstants.rl("processing/" + material.name + "/final/from_raw_smelting"));
             SimpleCookingRecipeBuilder
                     .blasting(
@@ -164,5 +168,25 @@ public class MUMaterialProcessRecipe {
                             0.8f, 100)
                     .save(output, MekUtConstants.rl("processing/" + material.name + "/final/from_raw_blasting"));
         }
+
+        for (OreAndRawData rawData : OreAndRawData.LIST) {
+            ItemStackChemicalToItemStackRecipeBuilder
+                    .metallurgicInfusing(
+                            creatorI.from(
+                                    ItemTags.create(
+                                            ResourceLocation.fromNamespaceAndPath("c", "ores/" + rawData.name())),
+                                    rawData.oreAmount()),
+                            creatorC.from(MekUtChemicals.XP.get(), 100),
+                            rawData.raw(),
+                            false)
+                    .build(output, MekUtConstants.rl("processing/" + rawData.name() + "/raw_from_ore"));
+        }
+
+        ReactionChamberRecipeBuilder
+                .react(MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.NETHERITE), 1)
+                .input(Items.ANCIENT_DEBRIS, 4)
+                .input(Items.RAW_GOLD, 4)
+                .fluid(Fluids.LAVA, 100)
+                .save(output, MekUtConstants.rl("processing/netherite/raw_from_ancient_debris"));
     }
 }

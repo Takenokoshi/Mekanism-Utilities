@@ -18,6 +18,10 @@ public class MekUtBlocks {
 
     public static final BlockRegistryObject<?, ?> AMETHYST_ORE = BLOCKS
             .register("amethyst_ore", () -> new Block(Block.Properties.of().mapColor(MapColor.COLOR_GRAY)));
+    public static final BlockRegistryObject<?, ?> CERTUS_QUARTZ_ORE = BLOCKS
+            .register("certus_quartz_ore", () -> new Block(Block.Properties.of().mapColor(MapColor.COLOR_GRAY)));
+    public static final BlockRegistryObject<?, ?> NETHERITE_ORE = BLOCKS
+            .register("netherite_ore", () -> new Block(Block.Properties.of().mapColor(MapColor.COLOR_GRAY)));
 
     public static final Map<MUMaterial, BlockRegistryObject<?, ?>> RAW_MU_MATERIALS_BLOCK = registerMaterials(
             m -> "raw_" + m.name + "_block",

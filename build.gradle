@@ -12,6 +12,18 @@ tasks.named('wrapper', Wrapper).configure {
 version = mod_version
 group = mod_group_id
 
+sourceSets {
+    datagen {
+        java.srcDir 'src/datagen/java'
+
+
+        compileClasspath += sourceSets.main.compileClasspath
+        runtimeClasspath += sourceSets.main.runtimeClasspath
+        compileClasspath += sourceSets.main.output
+
+        runtimeClasspath += sourceSets.main.output
+    }
+}
 sourceSets.main.resources {
     srcDir('src/generated/resources')
 
@@ -20,14 +32,6 @@ sourceSets.main.resources {
     exclude("src/generated/**/.cache") // datagen cache files
 }
 
-sourceSets {
-    datagen {
-        java.srcDir 'src/datagen/java'
-
-        compileClasspath += sourceSets.main.compileClasspath
-        runtimeClasspath += sourceSets.main.runtimeClasspath
-    }
-}
 
 repositories {
     mavenLocal()
@@ -72,6 +76,7 @@ neoForge {
         }
 
         data {
+
             data()
             sourceSet = sourceSets.datagen
             programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
@@ -100,6 +105,8 @@ neoForge {
 // "optional", meaning it will not be pulled by dependents of this mod.
 configurations {
     runtimeClasspath.extendsFrom localRuntime
+
+    datagenImplementation.extendsFrom implementation
 }
 
 dependencies {
@@ -125,6 +132,10 @@ dependencies {
     //JEI
     implementation "curse.maven:jei-238222:7391682"
     implementation "curse.maven:ae2-jei-integration-1074338:7727898"
+
+    implementation "curse.maven:guideme-1173950:7127444"
+    implementation "curse.maven:geckolib-388172:7707149"
+    implementation "curse.maven:glodium-957920:5821676"
 
 }
 

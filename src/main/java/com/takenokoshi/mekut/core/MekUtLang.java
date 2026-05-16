@@ -7,11 +7,11 @@ public class MekUtLang implements ILangEntry {
 
     private final String key;
 
-    public MekUtLang(String key) {
+    private MekUtLang(String key) {
         this.key = key;
     }
 
-    public MekUtLang(String type, String path) {
+    private MekUtLang(String type, String path) {
         this(Util.makeDescriptionId(type, MekUtConstants.rl(path)));
     }
 
@@ -19,4 +19,6 @@ public class MekUtLang implements ILangEntry {
     public String getTranslationKey() {
         return key;
     }
+
+    public static final MekUtLang MOD_NAME = new MekUtLang("mod_name.mekanism_utilities");
 }

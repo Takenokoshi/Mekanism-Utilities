@@ -1,0 +1,66 @@
+package com.takenokoshi.mekut.recipe.building;
+
+import com.takenokoshi.mekut.core.MekUtConstants;
+import com.takenokoshi.mekut.registries.MekUtChemicals;
+import com.takenokoshi.mekut.registries.MekUtItems;
+
+import mekanism.api.datagen.recipe.builder.ItemStackChemicalToItemStackRecipeBuilder;
+import mekanism.api.recipes.ingredients.creator.IChemicalStackIngredientCreator;
+import mekanism.api.recipes.ingredients.creator.IItemStackIngredientCreator;
+import mekanism.api.recipes.ingredients.creator.IngredientCreatorAccess;
+import mekanism.common.registries.MekanismChemicals;
+import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+
+public class BuildMetallurgicInfusingRecipe {
+
+    public static void build(RecipeOutput output) {
+        IItemStackIngredientCreator creatorI = IngredientCreatorAccess.item();
+        IChemicalStackIngredientCreator creatorC = IngredientCreatorAccess.chemicalStack();
+        ItemStackChemicalToItemStackRecipeBuilder
+                .metallurgicInfusing(
+                        creatorI.from(Items.LAPIS_LAZULI),
+                        creatorC.from(MekanismChemicals.REDSTONE.asStack(20)),
+                        MekUtItems.ACTIVATED_LAPIS_LAZULI.asStack(1),
+                        false)
+                .build(output, MekUtConstants.rl("metallurgic_infusing/activated_lapis_lazuli"));
+        ItemStackChemicalToItemStackRecipeBuilder
+                .metallurgicInfusing(
+                        creatorI.from(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "ingots/tin"))),
+                        creatorC.from(MekUtChemicals.ACTIVATED_LAPIS_LAZULI.asStack(10)),
+                        MekUtItems.ELASTIC_ALLOY.asStack(1),
+                        false)
+                .build(output, MekUtConstants.rl("metallurgic_infusing/elastic_alloy"));
+        ItemStackChemicalToItemStackRecipeBuilder
+                .metallurgicInfusing(
+                        creatorI.from(MekUtItems.ELASTIC_ALLOY),
+                        creatorC.from(MekUtChemicals.SINGULARITY.asStack(20)),
+                        MekUtItems.CONVERGENT_ALLOY.asStack(1),
+                        false)
+                .build(output, MekUtConstants.rl("metallurgic_infusing/convergent_alloy"));
+        ItemStackChemicalToItemStackRecipeBuilder
+                .metallurgicInfusing(
+                        creatorI.from(MekUtItems.CONVERGENT_ALLOY),
+                        creatorC.from(MekUtChemicals.XP.asStack(2000000)),
+                        MekUtItems.XP_ALLOY.asStack(1),
+                        false)
+                .build(output, MekUtConstants.rl("metallurgic_infusing/xp_alloy"));
+        ItemStackChemicalToItemStackRecipeBuilder
+                .metallurgicInfusing(
+                        creatorI.from(Items.REDSTONE),
+                        creatorC.from(MekanismChemicals.GOLD.asStack(40)),
+                        MekUtItems.GOLDEN_REDSTONE.asStack(1),
+                        false)
+                .build(output, MekUtConstants.rl("metallurgic_infusing/golden_redstone"));
+        ItemStackChemicalToItemStackRecipeBuilder
+                .metallurgicInfusing(
+                        creatorI.from(MekUtItems.GOLDEN_REDSTONE),
+                        creatorC.from(MekUtChemicals.XP.asStack(10000)),
+                        new ItemStack(Items.GLOWSTONE_DUST),
+                        false)
+                .build(output, MekUtConstants.rl("metallurgic_infusing/glowstone_dust"));
+    }
+}

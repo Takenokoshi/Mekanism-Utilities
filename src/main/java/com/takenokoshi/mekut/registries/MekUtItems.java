@@ -8,6 +8,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import com.takenokoshi.mekut.core.MekUtConstants;
 import com.takenokoshi.mekut.enums.MUMaterial;
+import com.takenokoshi.mekut.item.XpCrystalItem;
 
 import mekanism.common.registration.impl.ItemDeferredRegister;
 import mekanism.common.registration.impl.ItemRegistryObject;
@@ -15,6 +16,24 @@ import net.minecraft.world.item.Item;
 
 public class MekUtItems {
     public static final ItemDeferredRegister ITEMS = new ItemDeferredRegister(MekUtConstants.MODID);
+
+    public static final ItemRegistryObject<Item> ELASTIC_ALLOY = ITEMS.register("elastic_alloy");
+    public static final ItemRegistryObject<Item> CONVERGENT_ALLOY = ITEMS.register("convergent_alloy");
+    public static final ItemRegistryObject<Item> XP_ALLOY = ITEMS.register("xp_alloy");
+
+    public static final ItemRegistryObject<Item> DIGITAL_CONTROL_CIRCUIT = ITEMS.register("digital_control_circuit");
+    public static final ItemRegistryObject<Item> STANDARD_CONTROL_CIRCUIT = ITEMS.register("standard_control_circuit");
+    public static final ItemRegistryObject<Item> KNOWLEDGE_CONTROL_CIRCUIT = ITEMS
+            .register("knowladge_control_circuit");
+
+    public static final ItemRegistryObject<Item> ENRICHED_LAPIS_LAZULI = ITEMS.register("enriched_lapis_lazuli");
+    public static final ItemRegistryObject<Item> ENRICHED_SINGULARITY = ITEMS.register("enriched_singularity");
+
+    public static final ItemRegistryObject<Item> GOLDEN_REDSTONE = ITEMS.register("golden_redstone");
+    public static final ItemRegistryObject<Item> AMETHYST_DUST = ITEMS.register("amethyst_dust");
+    public static final ItemRegistryObject<XpCrystalItem> XP_CRYSTAL = ITEMS.registerItem("xp_crystal",
+            XpCrystalItem::new);
+    public static final ItemRegistryObject<Item> ACTIVATED_LAPIS_LAZULI = ITEMS.register("activated_lapis_lazuli");
 
     public static final Map<MUMaterial, ItemRegistryObject<?>> RAW_MU_MATERIALS = registerMaterials(
             m -> true,

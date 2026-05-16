@@ -2,6 +2,8 @@ package com.takenokoshi.mekut.recipe;
 
 import java.util.concurrent.CompletableFuture;
 
+import com.takenokoshi.mekut.recipe.building.*;
+
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeOutput;
@@ -15,7 +17,13 @@ public class MekUtRecipeProvider extends RecipeProvider {
 
     @Override
     protected void buildRecipes(RecipeOutput output) {
-        MUMaterialProcessRecipe.build(output, RecipeProvider::has);
+        BuildChemicalConvertionRecipe.build(output);
+        BuildCraftingRecipe.build(output, RecipeProvider::has);
+        BuildCrystallizingRecipe.build(output);
+        BuildEnrichingRecipe.build(output);
+        BuildInjectingRecipe.build(output);
+        BuildMetallurgicInfusingRecipe.build(output);
+        BuildMUMaterialProcessRecipe.build(output, RecipeProvider::has);
     }
-    
+
 }

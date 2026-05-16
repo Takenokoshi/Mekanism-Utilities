@@ -1,0 +1,21 @@
+package com.takenokoshi.mekut.recipe.building;
+
+import com.takenokoshi.mekut.core.MekUtConstants;
+import com.takenokoshi.mekut.registries.MekUtChemicals;
+import com.takenokoshi.mekut.registries.MekUtItems;
+
+import mekanism.api.datagen.recipe.builder.ChemicalCrystallizerRecipeBuilder;
+import mekanism.api.recipes.ingredients.creator.IChemicalStackIngredientCreator;
+import mekanism.api.recipes.ingredients.creator.IngredientCreatorAccess;
+import net.minecraft.data.recipes.RecipeOutput;
+
+public class BuildCrystallizingRecipe {
+    public static void build(RecipeOutput output) {
+        IChemicalStackIngredientCreator creatorC = IngredientCreatorAccess.chemicalStack();
+        ChemicalCrystallizerRecipeBuilder
+                .crystallizing(
+                        creatorC.from(MekUtChemicals.XP.asStack(100000)),
+                        MekUtItems.XP_CRYSTAL.asStack(1))
+                .build(output, MekUtConstants.rl("crystallizing/xp_crystal"));
+    }
+}
