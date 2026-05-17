@@ -4,6 +4,8 @@ import java.util.concurrent.CompletableFuture;
 
 import com.takenokoshi.mekut.core.MekUtConstants;
 import com.takenokoshi.mekut.lang.MekUtEnglishLangProvider;
+import com.takenokoshi.mekut.model.MekUtBlockModelProvider;
+import com.takenokoshi.mekut.model.MekUtItemModelProvider;
 import com.takenokoshi.mekut.recipe.MekUtRecipeProvider;
 import com.takenokoshi.mekut.tag.MekUtBlockTagProvider;
 import com.takenokoshi.mekut.tag.MekUtItemTagProvider;
@@ -39,5 +41,7 @@ public class MekUtDatagen {
         generator.addProvider(true, new MekUtRecipeProvider(output, lookupProvider));
 
         generator.addProvider(true, new MekUtEnglishLangProvider(output));
+        generator.addProvider(true, new MekUtBlockModelProvider(output, event.getExistingFileHelper()));
+        generator.addProvider(true, new MekUtItemModelProvider(output, event.getExistingFileHelper()));
     }
 }

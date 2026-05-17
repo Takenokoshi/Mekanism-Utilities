@@ -159,6 +159,7 @@ public class BuildMUMaterialProcessRecipe {
                             RecipeCategory.MISC,
                             MUMaterialDatagen.FINAL_ITEMS_MAP.get(material),
                             0.6f, 200)
+                    .unlockedBy("unlock", has.apply(MekUtItems.RAW_MU_MATERIALS.get(material)))
                     .save(output, MekUtConstants.rl("processing/" + material.name + "/final/from_raw_smelting"));
             SimpleCookingRecipeBuilder
                     .blasting(
@@ -166,6 +167,7 @@ public class BuildMUMaterialProcessRecipe {
                             RecipeCategory.MISC,
                             MUMaterialDatagen.FINAL_ITEMS_MAP.get(material),
                             0.8f, 100)
+                    .unlockedBy("unlock", has.apply(MekUtItems.RAW_MU_MATERIALS.get(material)))
                     .save(output, MekUtConstants.rl("processing/" + material.name + "/final/from_raw_blasting"));
         }
 
@@ -188,5 +190,11 @@ public class BuildMUMaterialProcessRecipe {
                 .input(Items.RAW_GOLD, 4)
                 .fluid(Fluids.LAVA, 100)
                 .save(output, MekUtConstants.rl("processing/netherite/raw_from_ancient_debris"));
+
+        ItemStackToItemStackRecipeBuilder
+                .crushing(
+                        creatorI.from(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "gems/amethyst"))),
+                        MekUtItems.AMETHYST_DUST.asStack())
+                .build(output, MekUtConstants.rl("processing/amethyst/dust"));
     }
 }

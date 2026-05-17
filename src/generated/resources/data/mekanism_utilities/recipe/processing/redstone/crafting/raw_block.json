@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "tag": "c:raw_materials/redstone"
+    },
+    {
+      "tag": "c:raw_materials/redstone"
+    },
+    {
+      "tag": "c:raw_materials/redstone"
+    },
+    {
+      "tag": "c:raw_materials/redstone"
+    },
+    {
+      "tag": "c:raw_materials/redstone"
+    },
+    {
+      "tag": "c:raw_materials/redstone"
+    },
+    {
+      "tag": "c:raw_materials/redstone"
+    },
+    {
+      "tag": "c:raw_materials/redstone"
+    },
+    {
+      "tag": "c:raw_materials/redstone"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "mekanism_utilities:raw_redstone_block"
+  }
+}

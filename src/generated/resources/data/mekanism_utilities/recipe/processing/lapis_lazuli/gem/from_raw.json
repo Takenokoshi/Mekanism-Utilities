@@ -1,0 +1,11 @@
+{
+  "type": "mekanism:enriching",
+  "input": {
+    "count": 3,
+    "tag": "c:raw_materials/lapis_lazuli"
+  },
+  "output": {
+    "count": 4,
+    "id": "minecraft:lapis_lazuli"
+  }
+}

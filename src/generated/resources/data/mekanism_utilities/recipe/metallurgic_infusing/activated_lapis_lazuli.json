@@ -1,0 +1,16 @@
+{
+  "type": "mekanism:metallurgic_infusing",
+  "chemical_input": {
+    "amount": 20,
+    "chemical": "mekanism:redstone"
+  },
+  "item_input": {
+    "count": 1,
+    "item": "minecraft:lapis_lazuli"
+  },
+  "output": {
+    "count": 1,
+    "id": "mekanism_utilities:activated_lapis_lazuli"
+  },
+  "per_tick_usage": false
+}

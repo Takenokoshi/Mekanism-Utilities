@@ -1,0 +1,16 @@
+{
+  "type": "mekanism:metallurgic_infusing",
+  "chemical_input": {
+    "amount": 2000000,
+    "chemical": "mekanism_utilities:xp"
+  },
+  "item_input": {
+    "count": 1,
+    "item": "mekanism_utilities:convergent_alloy"
+  },
+  "output": {
+    "count": 1,
+    "id": "mekanism_utilities:xp_alloy"
+  },
+  "per_tick_usage": false
+}

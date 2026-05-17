@@ -1,0 +1,16 @@
+{
+  "type": "mekanism:dissolution",
+  "chemical_input": {
+    "amount": 2,
+    "chemical": "mekanism:sulfuric_acid"
+  },
+  "item_input": {
+    "count": 1,
+    "tag": "c:storage_blocks/raw_certus_quartz"
+  },
+  "output": {
+    "amount": 6000,
+    "id": "mekanism_utilities:dirty_certus_quartz_slurry"
+  },
+  "per_tick_usage": true
+}

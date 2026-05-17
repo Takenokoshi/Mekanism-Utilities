@@ -1,4 +1,6 @@
-package com.takenokoshi.mekut.core;
+package com.takenokoshi.mekut.lang;
+
+import com.takenokoshi.mekut.core.MekUtConstants;
 
 import mekanism.api.text.ILangEntry;
 import net.minecraft.Util;
@@ -11,7 +13,7 @@ public class MekUtLang implements ILangEntry {
         this.key = key;
     }
 
-    private MekUtLang(String type, String path) {
+    protected MekUtLang(String type, String path) {
         this(Util.makeDescriptionId(type, MekUtConstants.rl(path)));
     }
 

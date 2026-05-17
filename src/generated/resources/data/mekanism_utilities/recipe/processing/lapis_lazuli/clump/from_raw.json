@@ -1,0 +1,16 @@
+{
+  "type": "mekanism:purifying",
+  "chemical_input": {
+    "amount": 1,
+    "chemical": "mekanism:oxygen"
+  },
+  "item_input": {
+    "count": 1,
+    "tag": "c:raw_materials/lapis_lazuli"
+  },
+  "output": {
+    "count": 2,
+    "id": "mekanism_utilities:lapis_lazuli_clump"
+  },
+  "per_tick_usage": true
+}

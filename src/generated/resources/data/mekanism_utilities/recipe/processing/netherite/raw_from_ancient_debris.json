@@ -1,0 +1,29 @@
+{
+  "type": "advanced_ae:reaction",
+  "input_energy": 1,
+  "input_fluid": {
+    "amount": 100,
+    "ingredient": {
+      "fluid": "minecraft:lava"
+    }
+  },
+  "input_items": [
+    {
+      "amount": 4,
+      "ingredient": {
+        "item": "minecraft:ancient_debris"
+      }
+    },
+    {
+      "amount": 4,
+      "ingredient": {
+        "item": "minecraft:raw_gold"
+      }
+    }
+  ],
+  "output": {
+    "#": 1,
+    "#t": "ae2:i",
+    "id": "mekanism_utilities:raw_netherite"
+  }
+}

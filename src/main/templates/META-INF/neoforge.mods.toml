@@ -88,8 +88,39 @@ config="${mod_id}.mixins.json"
     ordering="NONE"
     side="BOTH"
 
+[[dependencies.${mod_id}]]
+    modId="mekanism"
+    mandatory=true
+    versionRange="[10.7.19,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.${mod_id}]]
+    modId="mekanismgenerators"
+    mandatory=true
+    versionRange="[10.7.19,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.${mod_id}]]
+    modId="mekanismtools"
+    mandatory=true
+    versionRange="[10.7.19,)"
+    ordering="NONE"
+    side="BOTH"
+
+
+[[dependencies.${mod_id}]]
+    modId="ae2"
+    mandatory=true
+    versionRange="[19.2.17,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.${mod_id}]]
+    modId="appmek"
+    mandatory=true
+    versionRange="[1.6.3,)"
+    ordering="NONE"
+    side="BOTH"
+
 # Features are specific properties of the game environment, that you may want to declare you require. This example declares
 # that your mod requires GL version 3.2 or higher. Other features will be added. They are side aware so declaring this won't
 # stop your mod loading on the server for example.
-#[features.${mod_id}]
-#openGLVersion="[3.2,)"

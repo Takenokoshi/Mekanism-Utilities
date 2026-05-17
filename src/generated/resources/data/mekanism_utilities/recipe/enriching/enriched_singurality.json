@@ -1,0 +1,11 @@
+{
+  "type": "mekanism:enriching",
+  "input": {
+    "count": 1,
+    "item": "ae2:singularity"
+  },
+  "output": {
+    "count": 1,
+    "id": "mekanism_utilities:enriched_singularity"
+  }
+}

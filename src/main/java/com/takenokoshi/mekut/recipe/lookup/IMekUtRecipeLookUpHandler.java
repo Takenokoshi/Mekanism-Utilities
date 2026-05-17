@@ -1,0 +1,46 @@
+package com.takenokoshi.mekut.recipe.lookup;
+
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import com.takenokoshi.mekut.recipe.IMekUtRecipeTypeProvider;
+import com.takenokoshi.mekut.recipe.cached.AbstractCachedRecipe;
+
+import mekanism.api.IContentsListener;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
+
+public interface IMekUtRecipeLookUpHandler<RECIPE extends Recipe<?>> extends IContentsListener {
+
+    @Nullable
+    default Level getHandlerWorld() {
+        if (this instanceof BlockEntity tile) {
+            return tile.getLevel();
+        } else if (this instanceof Entity entity) {
+            return entity.level();
+        }
+        return null;
+    }
+
+    default int getSavedOperatingTicks(int cacheIndex) {
+        return 0;
+    }
+
+    @Nullable
+    RECIPE getRecipe(int cacheIndex);
+
+    @NotNull
+    AbstractCachedRecipe<RECIPE> createNewCachedRecipe(@NotNull RECIPE recipe, int cacheIndex);
+
+    default void onCachedRecipeChanged(@Nullable AbstractCachedRecipe<RECIPE> cachedRecipe, int cacheIndex) {
+        clearRecipeErrors(cacheIndex);
+    }
+
+    default void clearRecipeErrors(int cacheIndex) {
+    }
+
+    @NotNull
+    IMekUtRecipeTypeProvider<?, RECIPE, ?> getRecipeType();
+}

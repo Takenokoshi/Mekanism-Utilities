@@ -7,7 +7,8 @@ import java.util.function.UnaryOperator;
 import mekanism.api.text.ILangEntry;
 import mekanism.common.block.prefab.BlockTile.BlockTileModel;
 import mekanism.common.content.blocktype.BlockTypeTile;
-import mekanism.common.content.blocktype.BlockTypeTile.BlockTileBuilder;
+import mekanism.common.content.blocktype.Machine;
+import mekanism.common.content.blocktype.Machine.MachineBuilder;
 import mekanism.common.inventory.container.tile.MekanismTileContainer;
 import mekanism.common.registration.impl.BlockDeferredRegister;
 import mekanism.common.registration.impl.BlockRegistryObject;
@@ -19,27 +20,27 @@ import mekanism.common.tile.base.TileEntityMekanism;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 
-public class MachineRegistryObject<BE extends TileEntityMekanism, BLOCK extends BlockTileModel<BE, BlockTypeTile<BE>>, CONTAINER extends MekanismTileContainer<BE>, ITEM extends BlockItem> {
+public class MachineRegistryObject<BE extends TileEntityMekanism, BLOCK extends BlockTileModel<BE, Machine<BE>>, CONTAINER extends MekanismTileContainer<BE>, ITEM extends BlockItem> {
 
     private final BlockRegistryObject<BLOCK, ITEM> blockRegistryObject;
     private final TileEntityTypeRegistryObject<BE> tileRegistryObject;
     private final ContainerTypeRegistryObject<CONTAINER> containerRegistryObject;
-    private final BlockTypeTile<BE> blockType;
+    private final Machine<BE> blockType;
 
     public MachineRegistryObject(
             String name,
             BlockDeferredRegister blockRegister,
             TileEntityTypeDeferredRegister tileRegister,
             ContainerTypeDeferredRegister containerRegister,
-            Function<BlockTypeTile<BE>, BLOCK> blockCreator,
+            Function<Machine<BE>, BLOCK> blockCreator,
             BiFunction<BLOCK, Item.Properties, ITEM> itemCreator,
-            BlockEntityConstructor<BE, BlockTypeTile<BE>, BLOCK> beConstructor,
+            BlockEntityConstructor<BE, Machine<BE>, BLOCK> beConstructor,
             Class<BE> beClass,
             ContainerConstructor<BE, CONTAINER> contConstructor,
             ILangEntry entry,
-            UnaryOperator<BlockTileBuilder<BlockTypeTile<BE>, BE, ?>> operator) {
+            UnaryOperator<MachineBuilder<Machine<BE>, BE, ?>> operator) {
 
-        blockType = operator.apply(BlockTileBuilder.createBlock(this::getTile, entry))
+        blockType = operator.apply(MachineBuilder.createMachine(this::getTile, entry))
                 .withGui(this::getContainer)
                 .build();
         blockRegistryObject = blockRegister.register(name, () -> blockCreator.apply(blockType), itemCreator);

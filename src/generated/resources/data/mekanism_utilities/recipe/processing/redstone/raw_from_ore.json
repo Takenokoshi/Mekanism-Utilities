@@ -1,0 +1,16 @@
+{
+  "type": "mekanism:metallurgic_infusing",
+  "chemical_input": {
+    "amount": 100,
+    "chemical": "mekanism_utilities:xp"
+  },
+  "item_input": {
+    "count": 1,
+    "tag": "c:ores/redstone"
+  },
+  "output": {
+    "count": 18,
+    "id": "mekanism_utilities:raw_redstone"
+  },
+  "per_tick_usage": false
+}

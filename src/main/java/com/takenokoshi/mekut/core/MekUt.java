@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
 import com.takenokoshi.mekut.registries.*;
 
+import mekanism.api.Upgrade;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -31,5 +32,9 @@ public class MekUt {
 
     private void commonSetup(FMLCommonSetupEvent event) {
         LOGGER.info("HELLO FROM MekUt SETUP");
+
+        for (Upgrade upgrade : Upgrade.values()) {
+            LOGGER.info(upgrade.name());
+        }
     }
 }

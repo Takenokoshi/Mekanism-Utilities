@@ -1,0 +1,16 @@
+{
+  "type": "mekanism:metallurgic_infusing",
+  "chemical_input": {
+    "amount": 100,
+    "chemical": "mekanism_utilities:xp"
+  },
+  "item_input": {
+    "count": 2,
+    "tag": "c:ores/copper"
+  },
+  "output": {
+    "count": 21,
+    "id": "minecraft:raw_copper"
+  },
+  "per_tick_usage": false
+}

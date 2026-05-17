@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "tag": "c:raw_materials/emerald"
+    },
+    {
+      "tag": "c:raw_materials/emerald"
+    },
+    {
+      "tag": "c:raw_materials/emerald"
+    },
+    {
+      "tag": "c:raw_materials/emerald"
+    },
+    {
+      "tag": "c:raw_materials/emerald"
+    },
+    {
+      "tag": "c:raw_materials/emerald"
+    },
+    {
+      "tag": "c:raw_materials/emerald"
+    },
+    {
+      "tag": "c:raw_materials/emerald"
+    },
+    {
+      "tag": "c:raw_materials/emerald"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "mekanism_utilities:raw_emerald_block"
+  }
+}

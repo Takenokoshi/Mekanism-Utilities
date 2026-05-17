@@ -1,0 +1,11 @@
+{
+  "type": "mekanism:chemical_conversion",
+  "input": {
+    "count": 1,
+    "item": "mekanism_utilities:xp_crystal"
+  },
+  "output": {
+    "amount": 100000,
+    "id": "mekanism_utilities:xp"
+  }
+}

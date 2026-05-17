@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "tag": "c:raw_materials/coal"
+    },
+    {
+      "tag": "c:raw_materials/coal"
+    },
+    {
+      "tag": "c:raw_materials/coal"
+    },
+    {
+      "tag": "c:raw_materials/coal"
+    },
+    {
+      "tag": "c:raw_materials/coal"
+    },
+    {
+      "tag": "c:raw_materials/coal"
+    },
+    {
+      "tag": "c:raw_materials/coal"
+    },
+    {
+      "tag": "c:raw_materials/coal"
+    },
+    {
+      "tag": "c:raw_materials/coal"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "mekanism_utilities:raw_coal_block"
+  }
+}

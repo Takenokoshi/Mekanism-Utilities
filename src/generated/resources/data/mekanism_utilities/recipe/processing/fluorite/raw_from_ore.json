@@ -1,0 +1,16 @@
+{
+  "type": "mekanism:metallurgic_infusing",
+  "chemical_input": {
+    "amount": 100,
+    "chemical": "mekanism_utilities:xp"
+  },
+  "item_input": {
+    "count": 2,
+    "tag": "c:ores/fluorite"
+  },
+  "output": {
+    "count": 9,
+    "id": "mekanism_utilities:raw_fluorite"
+  },
+  "per_tick_usage": false
+}

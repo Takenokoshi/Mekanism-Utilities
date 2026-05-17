@@ -1,0 +1,11 @@
+{
+  "type": "mekanism:chemical_conversion",
+  "input": {
+    "count": 1,
+    "item": "ae2:singularity"
+  },
+  "output": {
+    "amount": 10,
+    "id": "mekanism_utilities:singularity"
+  }
+}

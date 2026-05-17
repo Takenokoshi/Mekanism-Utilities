@@ -12,6 +12,8 @@ import com.takenokoshi.mekut.registries.MekUtItems;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -43,6 +45,18 @@ public class MekUtItemTagProvider extends ItemTagsProvider {
                         .add(MekUtItems.MU_MATERIALS_DIRTY_DUST.get(material).asItem());
             }
         }
+        tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "ores/amethyst")))
+                .add(MekUtBlocks.AMETHYST_ORE.asItem());
+        tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "ores/certus_quartz")))
+                .add(MekUtBlocks.CERTUS_QUARTZ_ORE.asItem());
+        tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "ores/netherite")))
+                .add(MekUtBlocks.NETHERITE_ORE.asItem());
+
+        tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "dusts/amethyst")))
+                .add(MekUtItems.AMETHYST_DUST.asItem());
+
+        tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "ores/lapis_lazuli")))
+                .addTag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "ores/lapis")));
     }
 
 }

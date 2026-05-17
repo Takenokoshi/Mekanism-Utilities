@@ -9,8 +9,8 @@ import java.util.function.UnaryOperator;
 
 import mekanism.api.text.ILangEntry;
 import mekanism.common.block.prefab.BlockTile.BlockTileModel;
-import mekanism.common.content.blocktype.BlockTypeTile;
-import mekanism.common.content.blocktype.BlockTypeTile.BlockTileBuilder;
+import mekanism.common.content.blocktype.Machine;
+import mekanism.common.content.blocktype.Machine.MachineBuilder;
 import mekanism.common.inventory.container.tile.MekanismTileContainer;
 import mekanism.common.registration.impl.BlockDeferredRegister;
 import mekanism.common.registration.impl.ContainerTypeDeferredRegister;
@@ -18,6 +18,8 @@ import mekanism.common.registration.impl.TileEntityTypeDeferredRegister;
 import mekanism.common.tile.base.TileEntityMekanism;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
 
 public class MachineDeferredRegister {
@@ -46,12 +48,12 @@ public class MachineDeferredRegister {
         return Collections.unmodifiableList(machines);
     }
 
-    public <BE extends TileEntityMekanism, BLOCK extends BlockTileModel<BE, BlockTypeTile<BE>>, CONTAINER extends MekanismTileContainer<BE>, ITEM extends BlockItem> MachineRegistryObject<BE, BLOCK, CONTAINER, ITEM> registerFull(
-            String name, Function<BlockTypeTile<BE>, BLOCK> blockCreator,
+    public <BE extends TileEntityMekanism, BLOCK extends BlockTileModel<BE, Machine<BE>>, CONTAINER extends MekanismTileContainer<BE>, ITEM extends BlockItem> MachineRegistryObject<BE, BLOCK, CONTAINER, ITEM> registerFull(
+            String name, Function<Machine<BE>, BLOCK> blockCreator,
             BiFunction<BLOCK, Item.Properties, ITEM> itemCreator,
-            BlockEntityConstructor<BE, BlockTypeTile<BE>, BLOCK> beConstructor, Class<BE> beClass,
+            BlockEntityConstructor<BE, Machine<BE>, BLOCK> beConstructor, Class<BE> beClass,
             ContainerConstructor<BE, CONTAINER> contConstructor, ILangEntry entry,
-            UnaryOperator<BlockTileBuilder<BlockTypeTile<BE>, BE, ?>> operator) {
+            UnaryOperator<MachineBuilder<Machine<BE>, BE, ?>> operator) {
         MachineRegistryObject<BE, BLOCK, CONTAINER, ITEM> result = new MachineRegistryObject<>(name, blockRegister,
                 tileRegister, containerRegister, blockCreator,
                 itemCreator, beConstructor, beClass, contConstructor, entry, operator);
@@ -60,12 +62,13 @@ public class MachineDeferredRegister {
     }
 
     public <BE extends TileEntityMekanism> SimpleMachineRegistryObject<BE> registerSimple(String name,
-            Function<BlockTypeTile<BE>, BlockTileModel<BE, BlockTypeTile<BE>>> blockCreator,
-            BlockEntityConstructor<BE, BlockTypeTile<BE>, BlockTileModel<BE, BlockTypeTile<BE>>> beConstructor,
+            BlockEntityConstructor<BE, Machine<BE>, BlockTileModel<BE, Machine<BE>>> beConstructor,
             Class<BE> beClass, ILangEntry entry,
-            UnaryOperator<BlockTileBuilder<BlockTypeTile<BE>, BE, ?>> operator) {
+            UnaryOperator<MachineBuilder<Machine<BE>, BE, ?>> operator) {
         SimpleMachineRegistryObject<BE> result = new SimpleMachineRegistryObject<>(name, blockRegister, tileRegister,
-                containerRegister, blockCreator,
+                containerRegister,
+                bt -> new BlockTileModel<>(bt, p -> p.strength(1.5f, 6.0f)
+                        .sound(SoundType.STONE).mapColor(MapColor.STONE)),
                 beConstructor, beClass, entry, operator);
         machines.add(result);
         return result;

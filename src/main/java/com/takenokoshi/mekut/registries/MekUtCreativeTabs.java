@@ -1,9 +1,21 @@
 package com.takenokoshi.mekut.registries;
 
 import com.takenokoshi.mekut.core.MekUtConstants;
+import com.takenokoshi.mekut.lang.MekUtLang;
 
+import mekanism.common.registration.MekanismDeferredHolder;
 import mekanism.common.registration.impl.CreativeTabDeferredRegister;
+import net.minecraft.world.item.CreativeModeTab;
 
 public class MekUtCreativeTabs {
-    public static final CreativeTabDeferredRegister CREATIVE_TABS = new CreativeTabDeferredRegister(MekUtConstants.MODID);
+    public static final CreativeTabDeferredRegister CREATIVE_TABS = new CreativeTabDeferredRegister(
+            MekUtConstants.MODID);
+
+    public static final MekanismDeferredHolder<CreativeModeTab, CreativeModeTab> MAIN_TAB = CREATIVE_TABS
+            .register("creative_tab", MekUtLang.MOD_NAME, MekUtItems.XP_ALLOY, builder -> builder.displayItems(
+                    (displayParameters, output) -> {
+                        CreativeTabDeferredRegister.addToDisplay(MekUtItems.ITEMS, output);
+                        CreativeTabDeferredRegister.addToDisplay(MekUtBlocks.BLOCKS, output);
+                        CreativeTabDeferredRegister.addToDisplay(MekUtMachines.MACHINES.blockRegister, output);
+                    }));
 }

@@ -1,0 +1,16 @@
+{
+  "type": "mekanism:metallurgic_infusing",
+  "chemical_input": {
+    "amount": 20,
+    "chemical": "mekanism_utilities:singularity"
+  },
+  "item_input": {
+    "count": 1,
+    "item": "mekanism_utilities:elastic_alloy"
+  },
+  "output": {
+    "count": 1,
+    "id": "mekanism_utilities:convergent_alloy"
+  },
+  "per_tick_usage": false
+}
