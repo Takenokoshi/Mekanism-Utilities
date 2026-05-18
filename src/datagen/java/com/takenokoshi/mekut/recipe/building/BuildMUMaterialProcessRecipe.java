@@ -185,7 +185,7 @@ public class BuildMUMaterialProcessRecipe {
         }
 
         ReactionChamberRecipeBuilder
-                .react(MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.NETHERITE), 1)
+                .react(MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.NETHERITE), 1000)
                 .input(Items.ANCIENT_DEBRIS, 4)
                 .input(Items.RAW_GOLD, 4)
                 .fluid(Fluids.LAVA, 100)

@@ -1,6 +1,7 @@
 package com.takenokoshi.mekut.registration;
 
 import java.util.function.BiFunction;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.UnaryOperator;
 
@@ -14,6 +15,7 @@ import mekanism.common.registration.impl.BlockDeferredRegister;
 import mekanism.common.registration.impl.BlockRegistryObject;
 import mekanism.common.registration.impl.ContainerTypeDeferredRegister;
 import mekanism.common.registration.impl.ContainerTypeRegistryObject;
+import mekanism.common.registration.impl.ItemRegistryObject;
 import mekanism.common.registration.impl.TileEntityTypeDeferredRegister;
 import mekanism.common.registration.impl.TileEntityTypeRegistryObject;
 import mekanism.common.tile.base.TileEntityMekanism;
@@ -34,6 +36,7 @@ public class MachineRegistryObject<BE extends TileEntityMekanism, BLOCK extends 
             ContainerTypeDeferredRegister containerRegister,
             Function<Machine<BE>, BLOCK> blockCreator,
             BiFunction<BLOCK, Item.Properties, ITEM> itemCreator,
+            Consumer<ItemRegistryObject<ITEM>> holder,
             BlockEntityConstructor<BE, Machine<BE>, BLOCK> beConstructor,
             Class<BE> beClass,
             ContainerConstructor<BE, CONTAINER> contConstructor,
@@ -43,7 +46,8 @@ public class MachineRegistryObject<BE extends TileEntityMekanism, BLOCK extends 
         blockType = operator.apply(MachineBuilder.createMachine(this::getTile, entry))
                 .withGui(this::getContainer)
                 .build();
-        blockRegistryObject = blockRegister.register(name, () -> blockCreator.apply(blockType), itemCreator);
+        blockRegistryObject = blockRegister.register(name, () -> blockCreator.apply(blockType), itemCreator)
+                .forItemHolder(holder);
         tileRegistryObject = tileRegister.mekBuilder(blockRegistryObject,
                 (p, s) -> beConstructor.create(blockRegistryObject, p, s))
                 .clientTicker(BE::tickClient)
@@ -51,6 +55,23 @@ public class MachineRegistryObject<BE extends TileEntityMekanism, BLOCK extends 
                 .build();
         containerRegistryObject = containerRegister.register(name, beClass,
                 (id, inv, be) -> contConstructor.create(getContainer(), id, inv, be));
+
+    }
+
+    public MachineRegistryObject(
+            String name,
+            BlockDeferredRegister blockRegister,
+            TileEntityTypeDeferredRegister tileRegister,
+            ContainerTypeDeferredRegister containerRegister,
+            Function<Machine<BE>, BLOCK> blockCreator,
+            BiFunction<BLOCK, Item.Properties, ITEM> itemCreator,
+            BlockEntityConstructor<BE, Machine<BE>, BLOCK> beConstructor,
+            Class<BE> beClass,
+            ContainerConstructor<BE, CONTAINER> contConstructor,
+            ILangEntry entry,
+            UnaryOperator<MachineBuilder<Machine<BE>, BE, ?>> operator) {
+        this(name, blockRegister, tileRegister, containerRegister, blockCreator, itemCreator, item -> {
+        }, beConstructor, beClass, contConstructor, entry, operator);
 
     }
 

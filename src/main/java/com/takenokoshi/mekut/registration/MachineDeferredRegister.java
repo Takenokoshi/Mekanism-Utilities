@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.BiFunction;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.UnaryOperator;
 
@@ -12,8 +13,10 @@ import mekanism.common.block.prefab.BlockTile.BlockTileModel;
 import mekanism.common.content.blocktype.Machine;
 import mekanism.common.content.blocktype.Machine.MachineBuilder;
 import mekanism.common.inventory.container.tile.MekanismTileContainer;
+import mekanism.common.item.block.ItemBlockTooltip;
 import mekanism.common.registration.impl.BlockDeferredRegister;
 import mekanism.common.registration.impl.ContainerTypeDeferredRegister;
+import mekanism.common.registration.impl.ItemRegistryObject;
 import mekanism.common.registration.impl.TileEntityTypeDeferredRegister;
 import mekanism.common.tile.base.TileEntityMekanism;
 import net.minecraft.world.item.BlockItem;
@@ -69,6 +72,21 @@ public class MachineDeferredRegister {
                 containerRegister,
                 bt -> new BlockTileModel<>(bt, p -> p.strength(1.5f, 6.0f)
                         .sound(SoundType.STONE).mapColor(MapColor.STONE)),
+                beConstructor, beClass, entry, operator);
+        machines.add(result);
+        return result;
+    }
+
+    public <BE extends TileEntityMekanism> SimpleMachineRegistryObject<BE> registerSimple(String name,
+            Consumer<ItemRegistryObject<ItemBlockTooltip<BlockTileModel<BE, Machine<BE>>>>> holder,
+            BlockEntityConstructor<BE, Machine<BE>, BlockTileModel<BE, Machine<BE>>> beConstructor,
+            Class<BE> beClass, ILangEntry entry,
+            UnaryOperator<MachineBuilder<Machine<BE>, BE, ?>> operator) {
+        SimpleMachineRegistryObject<BE> result = new SimpleMachineRegistryObject<>(name, blockRegister, tileRegister,
+                containerRegister,
+                bt -> new BlockTileModel<>(bt, p -> p.strength(1.5f, 6.0f)
+                        .sound(SoundType.STONE).mapColor(MapColor.STONE)),
+                holder,
                 beConstructor, beClass, entry, operator);
         machines.add(result);
         return result;

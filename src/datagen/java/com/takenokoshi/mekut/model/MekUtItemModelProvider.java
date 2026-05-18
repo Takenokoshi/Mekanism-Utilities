@@ -51,6 +51,13 @@ public class MekUtItemModelProvider extends ItemModelProvider {
                 MekUtConstants.rl("item/control_circuit/standard"));
         simpleItem(MekUtItems.KNOWLEDGE_CONTROL_CIRCUIT.get()).texture("layer0",
                 MekUtConstants.rl("item/control_circuit/knowledge"));
+
+        simpleItem(MekUtItems.ACTIVATED_LAPIS_LAZULI.get()).texture("layer0", mcLoc("item/lapis_lazuli"));
+
+        simpleItem(MekUtItems.ENRICHED_LAPIS_LAZULI.get()).texture("layer0",
+                MekUtConstants.rl("item/enriched/lapis_lazuli"));
+        simpleItem(MekUtItems.ENRICHED_SINGULARITY.get()).texture("layer0",
+                MekUtConstants.rl("item/enriched/singularity"));
     }
 
     public ItemModelBuilder simpleItem(Item item) {

@@ -49,6 +49,9 @@ public class MekUtEnglishLangProvider extends LanguageProvider {
                 "Ore that might exist on a planet somewhere in the distant universe.\\nNot found in nature.");
         addLang(MekUtDescription.NETHERITE_ORE,
                 "Ore that was likely mined by the former Piglin civilization.\\nNot found in nature.");
+
+        addLang(MekUtDescription.TWEAKED_ENERGIZED_SMELTER,
+                "This is an energized smelter machine that allows you to gain xp through smelting.");
     }
 
     private String format(String name) {

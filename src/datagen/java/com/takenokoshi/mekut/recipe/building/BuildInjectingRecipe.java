@@ -24,5 +24,12 @@ public class BuildInjectingRecipe {
                         MekanismItems.STEEL_INGOT.asStack(1),
                         true)
                 .build(output, MekUtConstants.rl("injecting/steel_ingot"));
+        ItemStackChemicalToItemStackRecipeBuilder
+                .injecting(
+                        creatorI.from(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "dusts/iron"))),
+                        creatorC.from(MekanismChemicals.OXYGEN.asStack(1)),
+                        MekanismItems.STEEL_DUST.asStack(1),
+                        true)
+                .build(output, MekUtConstants.rl("injecting/steel_dust"));
     }
 }

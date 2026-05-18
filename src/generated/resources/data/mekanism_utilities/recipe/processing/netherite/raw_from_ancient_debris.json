@@ -1,6 +1,6 @@
 {
   "type": "advanced_ae:reaction",
-  "input_energy": 1,
+  "input_energy": 1000,
   "input_fluid": {
     "amount": 100,
     "ingredient": {

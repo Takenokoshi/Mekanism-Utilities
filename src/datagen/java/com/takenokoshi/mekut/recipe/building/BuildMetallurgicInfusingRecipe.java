@@ -50,16 +50,16 @@ public class BuildMetallurgicInfusingRecipe {
                 .build(output, MekUtConstants.rl("metallurgic_infusing/xp_alloy"));
         ItemStackChemicalToItemStackRecipeBuilder
                 .metallurgicInfusing(
-                        creatorI.from(Items.REDSTONE),
-                        creatorC.from(MekanismChemicals.GOLD.asStack(40)),
-                        MekUtItems.GOLDEN_REDSTONE.asStack(1),
+                        creatorI.from(Items.REDSTONE, 20),
+                        creatorC.from(MekanismChemicals.GOLD.asStack(800)),
+                        MekUtItems.GOLDEN_REDSTONE.asStack(20),
                         false)
                 .build(output, MekUtConstants.rl("metallurgic_infusing/golden_redstone"));
         ItemStackChemicalToItemStackRecipeBuilder
                 .metallurgicInfusing(
-                        creatorI.from(MekUtItems.GOLDEN_REDSTONE),
-                        creatorC.from(MekUtChemicals.XP.asStack(10000)),
-                        new ItemStack(Items.GLOWSTONE_DUST),
+                        creatorI.from(MekUtItems.GOLDEN_REDSTONE, 20),
+                        creatorC.from(MekUtChemicals.XP.asStack(200000)),
+                        new ItemStack(Items.GLOWSTONE_DUST, 20),
                         false)
                 .build(output, MekUtConstants.rl("metallurgic_infusing/glowstone_dust"));
     }

@@ -13,6 +13,7 @@ import com.takenokoshi.mekut.item.XpCrystalItem;
 import mekanism.common.registration.impl.ItemDeferredRegister;
 import mekanism.common.registration.impl.ItemRegistryObject;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 
 public class MekUtItems {
     public static final ItemDeferredRegister ITEMS = new ItemDeferredRegister(MekUtConstants.MODID);
@@ -33,7 +34,13 @@ public class MekUtItems {
     public static final ItemRegistryObject<Item> AMETHYST_DUST = ITEMS.register("amethyst_dust");
     public static final ItemRegistryObject<XpCrystalItem> XP_CRYSTAL = ITEMS.registerItem("xp_crystal",
             XpCrystalItem::new);
-    public static final ItemRegistryObject<Item> ACTIVATED_LAPIS_LAZULI = ITEMS.register("activated_lapis_lazuli");
+    public static final ItemRegistryObject<Item> ACTIVATED_LAPIS_LAZULI = ITEMS.registerItem("activated_lapis_lazuli",
+            p -> new Item(p) {
+                @Override
+                public boolean isFoil(ItemStack stack) {
+                    return true;
+                }
+            });
 
     public static final Map<MUMaterial, ItemRegistryObject<?>> RAW_MU_MATERIALS = registerMaterials(
             m -> true,

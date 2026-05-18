@@ -1,0 +1,18 @@
+{
+  "values": [
+    "mekanism_utilities:tweaked_energized_smelter",
+    "mekanism_utilities:raw_redstone_block",
+    "mekanism_utilities:raw_diamond_block",
+    "mekanism_utilities:raw_emerald_block",
+    "mekanism_utilities:raw_lapis_lazuli_block",
+    "mekanism_utilities:raw_quartz_block",
+    "mekanism_utilities:raw_amethyst_block",
+    "mekanism_utilities:raw_certus_quartz_block",
+    "mekanism_utilities:raw_fluorite_block",
+    "mekanism_utilities:raw_coal_block",
+    "mekanism_utilities:raw_netherite_block",
+    "mekanism_utilities:amethyst_ore",
+    "mekanism_utilities:certus_quartz_ore",
+    "mekanism_utilities:netherite_ore"
+  ]
+}

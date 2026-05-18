@@ -40,6 +40,7 @@
   "description.mekanism_utilities.amethyst_ore": "Unrecorded ore that should only form in places outside the laws of this world.\\nNot found in nature.",
   "description.mekanism_utilities.certus_quartz_ore": "Ore that might exist on a planet somewhere in the distant universe.\\nNot found in nature.",
   "description.mekanism_utilities.netherite_ore": "Ore that was likely mined by the former Piglin civilization.\\nNot found in nature.",
+  "description.mekanism_utilities.tweaked_energized_smelter": "This is an energized smelter machine that allows you to gain xp through smelting.",
   "item.mekanism_utilities.activated_lapis_lazuli": "Activated Lapis Lazuli",
   "item.mekanism_utilities.amethyst_clump": "Amethyst Clump",
   "item.mekanism_utilities.amethyst_crystal": "Amethyst Crystal",

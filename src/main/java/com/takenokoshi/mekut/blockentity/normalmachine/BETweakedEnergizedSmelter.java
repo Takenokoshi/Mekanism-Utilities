@@ -60,6 +60,7 @@ public class BETweakedEnergizedSmelter extends BEMultiScaledRecipeMachine<Smelti
         this.xpHandler = new ChemicalOutputHandler(xpTank, RecipeError.NOT_ENOUGH_OUTPUT_SPACE);
     }
 
+    @Override
     protected IChemicalTankHolder getInitialChemicalTanks(IContentsListener listener,
             IContentsListener recipeCacheListener, IContentsListener recipeCacheUnpauseListener) {
         ChemicalTankHelper builder = ChemicalTankHelper.forSideWithConfig(this);
@@ -67,6 +68,7 @@ public class BETweakedEnergizedSmelter extends BEMultiScaledRecipeMachine<Smelti
         return builder.build();
     }
 
+    @Override
     protected IEnergyContainerHolder getInitialEnergyContainers(IContentsListener listener,
             IContentsListener recipeCacheListener, IContentsListener recipeCacheUnpauseListener) {
         EnergyContainerHelper builder = EnergyContainerHelper.forSideWithConfig(this);
@@ -74,6 +76,7 @@ public class BETweakedEnergizedSmelter extends BEMultiScaledRecipeMachine<Smelti
         return builder.build();
     }
 
+    @Override
     protected IInventorySlotHolder getInitialInventory(IContentsListener listener,
             IContentsListener recipeCacheListener, IContentsListener recipeCacheUnpauseListener) {
         InventorySlotHelper builder = InventorySlotHelper.forSideWithConfig(this);
