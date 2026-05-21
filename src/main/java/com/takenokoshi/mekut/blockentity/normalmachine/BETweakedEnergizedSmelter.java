@@ -4,7 +4,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.takenokoshi.mekut.blockentity.base.BEMultiScaledRecipeMachine;
-import com.takenokoshi.mekut.blockentity.interfaces.IMekUtEnergizedSmelter;
+import com.takenokoshi.mekut.blockentity.interfaces.ITweakedEnergizedSmelter;
 import com.takenokoshi.mekut.recipe.cached.AbstractCachedRecipe;
 import com.takenokoshi.mekut.recipe.cached.TweakedSmeltingCachedRecipe;
 import com.takenokoshi.mekut.recipe.input.IngredientInputHandler;
@@ -36,7 +36,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class BETweakedEnergizedSmelter extends BEMultiScaledRecipeMachine<SmeltingRecipe>
-        implements IMekUtEnergizedSmelter {
+        implements ITweakedEnergizedSmelter {
 
     private InputInventorySlot inputSlot;
     private OutputInventorySlot outputSlot;
@@ -123,7 +123,7 @@ public class BETweakedEnergizedSmelter extends BEMultiScaledRecipeMachine<Smelti
     protected boolean onUpdateServer() {
         boolean v = super.onUpdateServer();
         energySlot.fillContainerOrConvert();
-        recipeCacheLookupMonitor.updateAndProcess(energyContainer);
+        clientEnergyUsed = recipeCacheLookupMonitor.updateAndProcess(energyContainer);
         return v;
     }
 

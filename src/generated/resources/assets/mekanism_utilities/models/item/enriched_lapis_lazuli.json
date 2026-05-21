@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:item/generated",
+  "parent": "mekanism:item/enriched_redstone",
   "textures": {
-    "layer0": "mekanism_utilities:item/enriched/lapis_lazuli"
+    "layer1": "mekanism_utilities:item/enriched/lapis_lazuli"
   }
 }

@@ -17,13 +17,17 @@ public class MekUtRecipeProvider extends RecipeProvider {
 
     @Override
     protected void buildRecipes(RecipeOutput output) {
+        BuildAAEReactionRecipe.build(output);
         BuildChemicalConvertionRecipe.build(output);
+        BuildCompressingRecipe.build(output);
         BuildCraftingRecipe.build(output, RecipeProvider::has);
         BuildCrystallizingRecipe.build(output);
         BuildEnrichingRecipe.build(output);
         BuildInjectingRecipe.build(output);
         BuildMetallurgicInfusingRecipe.build(output);
         BuildMUMaterialProcessRecipe.build(output, RecipeProvider::has);
+        BuildPaintingRecipe.build(output);
+        BuildPigmentExtractingRecipe.build(output);
     }
 
 }

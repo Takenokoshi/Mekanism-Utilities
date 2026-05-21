@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "mekanism_utilities:block/machine_base/down",
+    "east": "mekanism_utilities:block/machine_base/side",
+    "north": "mekanism_utilities:block/normal_machine/submaterial_converter_front_active",
+    "south": "mekanism_utilities:block/machine_base/back",
+    "up": "mekanism_utilities:block/machine_base/up",
+    "west": "mekanism_utilities:block/machine_base/side"
+  }
+}

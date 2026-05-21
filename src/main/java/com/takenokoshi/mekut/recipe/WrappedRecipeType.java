@@ -46,7 +46,7 @@ public class WrappedRecipeType<VANILLA_INPUT extends RecipeInput, RECIPE extends
             type -> new SingleIngredientRecipeCache<>(type, recipe -> recipe.getIngredients().get(0)),
             RecipeType.SMELTING);
 
-    public static final WrappedRecipeType<?, ChargerRecipe, SingleIngredientRecipeCache<ChargerRecipe>> AE2_CHARGER = new WrappedRecipeType<>(
+    public static final WrappedRecipeType<RecipeInput, ChargerRecipe, SingleIngredientRecipeCache<ChargerRecipe>> AE2_CHARGER = new WrappedRecipeType<>(
             AppEng.makeId("charger"),
             type -> new SingleIngredientRecipeCache<>(type, ChargerRecipe::getIngredient),
             AERecipeTypes.CHARGER);

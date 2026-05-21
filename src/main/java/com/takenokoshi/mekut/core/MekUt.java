@@ -3,9 +3,11 @@ package com.takenokoshi.mekut.core;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
+import com.takenokoshi.mekut.config.MekUtConfig;
+import com.takenokoshi.mekut.item.cell.rainbow.InfinityRainbowCellHandler;
 import com.takenokoshi.mekut.registries.*;
 
-import mekanism.api.Upgrade;
+import appeng.api.storage.StorageCells;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -17,9 +19,11 @@ public class MekUt {
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public MekUt(IEventBus modEventBus, ModContainer modContainer) {
+        MekUtConfig.registerConfigs(modContainer);
         modEventBus.addListener(this::commonSetup);
+        modEventBus.addListener(MekUtConfig::onConfigLoad);
         addRegistrationListeners(modEventBus);
-
+        modEventBus.addListener(this::registerCellHandler);
     }
 
     private void addRegistrationListeners(IEventBus modEventBus) {
@@ -32,9 +36,9 @@ public class MekUt {
 
     private void commonSetup(FMLCommonSetupEvent event) {
         LOGGER.info("HELLO FROM MekUt SETUP");
+    }
 
-        for (Upgrade upgrade : Upgrade.values()) {
-            LOGGER.info(upgrade.name());
-        }
+    private void registerCellHandler(final FMLCommonSetupEvent event){
+        StorageCells.addCellHandler(new InfinityRainbowCellHandler());
     }
 }

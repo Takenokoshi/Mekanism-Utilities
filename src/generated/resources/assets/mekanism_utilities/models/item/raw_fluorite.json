@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:item/generated",
+  "parent": "mekanism:item/fluorite_gem",
   "textures": {
-    "layer0": "mekanism_utilities:item/raw/fluorite"
+    "layer1": "mekanism_utilities:item/raw/stone_layer"
   }
 }

@@ -1,0 +1,16 @@
+{
+  "type": "mekanism:compressing",
+  "chemical_input": {
+    "amount": 200,
+    "chemical": "mekanism:osmium"
+  },
+  "item_input": {
+    "count": 1,
+    "tag": "c:dusts/amethyst"
+  },
+  "output": {
+    "count": 1,
+    "id": "mekanism_utilities:refined_amethyst_ingot"
+  },
+  "per_tick_usage": false
+}

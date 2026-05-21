@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:item/generated",
+  "parent": "ae2:item/certus_quartz_crystal",
   "textures": {
-    "layer0": "mekanism_utilities:item/raw/certus_quartz"
+    "layer1": "mekanism_utilities:item/raw/stone_layer"
   }
 }

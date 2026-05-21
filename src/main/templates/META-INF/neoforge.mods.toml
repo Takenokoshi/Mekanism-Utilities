@@ -106,6 +106,24 @@ config="${mod_id}.mixins.json"
     versionRange="[10.7.19,)"
     ordering="NONE"
     side="BOTH"
+[[dependencies.${mod_id}]]
+    modId="mekanismadditions"
+    mandatory=true
+    versionRange="[10.7.19,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.${mod_id}]]
+    modId="mekanismelements"
+    mandatory=true
+    versionRange="[2.3,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.${mod_id}]]
+    modId="mekanism_empowered"
+    mandatory=true
+    versionRange="[21.1-1.2.2,)"
+    ordering="NONE"
+    side="BOTH"
 
 
 [[dependencies.${mod_id}]]
@@ -118,6 +136,24 @@ config="${mod_id}.mixins.json"
     modId="appmek"
     mandatory=true
     versionRange="[1.6.3,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.${mod_id}]]
+    modId="advanced_ae"
+    mandatory=true
+    versionRange="[1.6.11-1.21.1,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.${mod_id}]]
+    modId="extendedae"
+    mandatory=true
+    versionRange="[1.21-2.2.32-neoforge,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.${mod_id}]]
+    modId="megacells"
+    mandatory=true
+    versionRange="[4.11.0,)"
     ordering="NONE"
     side="BOTH"
 

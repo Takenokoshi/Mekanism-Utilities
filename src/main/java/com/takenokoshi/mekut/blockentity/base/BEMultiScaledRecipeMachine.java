@@ -5,12 +5,10 @@ import java.util.function.ToIntFunction;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.takenokoshi.mekut.core.MekUtUpgradeUtils;
-
 import mekanism.api.Upgrade;
 import mekanism.api.math.MathUtils;
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
-import mekanism.common.config.MekanismConfig;
+import mekanism.common.util.MekanismUtils;
 import mekanism.common.util.UpgradeUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
@@ -33,16 +31,13 @@ public abstract class BEMultiScaledRecipeMachine<RECIPE extends Recipe<?>>
     }
 
     protected void recaluculateProcessingSpeed() {
-        double speedFactor = Math.pow(MekanismConfig.general.maxUpgradeMultiplier.getAsInt(),
-                upgradeComponent.getUpgrades(Upgrade.SPEED) / 8d)
-                * Math.pow(MekanismConfig.general.maxUpgradeMultiplier.getAsLong() * 2,
-                        MekUtUpgradeUtils.getEmpoweredSpeed(upgradeComponent) / 8d);
-        if (speedFactor > recipeTicksRequired) {
-            operationsPerTick = MathUtils.clampToInt(speedFactor / recipeTicksRequired);
+        double ticksD = 1 / MekanismUtils.getTicksD(this, recipeTicksRequired);
+        if (ticksD < 1) {
+            operationsPerTick = MathUtils.clampToInt(baselineMaxOperations / ticksD);
             ticksRequired = 1;
         } else {
-            operationsPerTick = 1;
-            ticksRequired = MathUtils.clampToInt(recipeTicksRequired / speedFactor);
+            operationsPerTick = baselineMaxOperations;
+            ticksRequired = MathUtils.clampToInt(ticksD);
         }
     }
 

@@ -5,12 +5,15 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.UnaryOperator;
 
+import mekanism.api.text.IHasTextComponent;
+import mekanism.api.text.IHasTranslationKey;
 import mekanism.api.text.ILangEntry;
 import mekanism.common.block.prefab.BlockTile.BlockTileModel;
 import mekanism.common.content.blocktype.BlockTypeTile;
 import mekanism.common.content.blocktype.Machine;
 import mekanism.common.content.blocktype.Machine.MachineBuilder;
 import mekanism.common.inventory.container.tile.MekanismTileContainer;
+import mekanism.common.registration.INamedEntry;
 import mekanism.common.registration.impl.BlockDeferredRegister;
 import mekanism.common.registration.impl.BlockRegistryObject;
 import mekanism.common.registration.impl.ContainerTypeDeferredRegister;
@@ -19,10 +22,14 @@ import mekanism.common.registration.impl.ItemRegistryObject;
 import mekanism.common.registration.impl.TileEntityTypeDeferredRegister;
 import mekanism.common.registration.impl.TileEntityTypeRegistryObject;
 import mekanism.common.tile.base.TileEntityMekanism;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.ItemLike;
 
-public class MachineRegistryObject<BE extends TileEntityMekanism, BLOCK extends BlockTileModel<BE, Machine<BE>>, CONTAINER extends MekanismTileContainer<BE>, ITEM extends BlockItem> {
+public class MachineRegistryObject<BE extends TileEntityMekanism, BLOCK extends BlockTileModel<BE, Machine<BE>>, CONTAINER extends MekanismTileContainer<BE>, ITEM extends BlockItem>
+        implements INamedEntry, ItemLike, IHasTextComponent, IHasTranslationKey {
 
     private final BlockRegistryObject<BLOCK, ITEM> blockRegistryObject;
     private final TileEntityTypeRegistryObject<BE> tileRegistryObject;
@@ -89,5 +96,25 @@ public class MachineRegistryObject<BE extends TileEntityMekanism, BLOCK extends 
 
     public BlockTypeTile<BE> getBlockType() {
         return blockType;
+    }
+
+    @Override
+    public ResourceLocation getId() {
+        return blockRegistryObject.getId();
+    }
+
+    @Override
+    public Item asItem() {
+        return blockRegistryObject.asItem();
+    }
+
+    @Override
+    public Component getTextComponent() {
+        return blockRegistryObject.getTextComponent();
+    }
+
+    @Override
+    public String getTranslationKey() {
+        return blockRegistryObject.getTranslationKey();
     }
 }

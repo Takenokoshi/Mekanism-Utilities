@@ -1,0 +1,46 @@
+{
+  "type": "advanced_ae:reaction",
+  "input_energy": 2000000,
+  "input_fluid": {
+    "amount": 400,
+    "ingredient": {
+      "fluid": "minecraft:lava"
+    }
+  },
+  "input_items": [
+    {
+      "ingredient": {
+        "item": "mekanism_utilities:standard_control_circuit"
+      }
+    },
+    {
+      "amount": 8,
+      "ingredient": {
+        "item": "mekanism:upgrade_speed"
+      }
+    },
+    {
+      "amount": 8,
+      "ingredient": {
+        "item": "mekanism:upgrade_energy"
+      }
+    },
+    {
+      "amount": 8,
+      "ingredient": {
+        "item": "mekanism_empowered:upgrade_empowered_speed"
+      }
+    },
+    {
+      "amount": 8,
+      "ingredient": {
+        "item": "mekanism_empowered:upgrade_empowered_energy"
+      }
+    }
+  ],
+  "output": {
+    "#": 1,
+    "#t": "ae2:i",
+    "id": "mekanism_utilities:acceleration_control_circuit"
+  }
+}

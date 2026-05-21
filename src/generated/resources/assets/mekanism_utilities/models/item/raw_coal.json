@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "mekanism_utilities:item/raw/coal"
+    "layer0": "minecraft:item/coal",
+    "layer1": "mekanism_utilities:item/raw/stone_layer"
   }
 }

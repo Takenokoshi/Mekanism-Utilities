@@ -26,6 +26,7 @@ import mekanism.common.capabilities.holder.slot.IInventorySlotHolder;
 import mekanism.common.integration.computer.annotation.ComputerMethod;
 import mekanism.common.inventory.container.MekanismContainer;
 import mekanism.common.inventory.container.sync.SyncableInt;
+import mekanism.common.inventory.container.sync.SyncableLong;
 import mekanism.common.tile.prefab.TileEntityConfigurableMachine;
 import mekanism.common.tile.prefab.TileEntityRecipeMachine;
 import net.minecraft.core.BlockPos;
@@ -50,13 +51,15 @@ public abstract class BlockEntityMekUtRecipeMachine<RECIPE extends Recipe<?>> ex
     private int operatingTicks;
     protected final int baseTicksRequired;
     protected int ticksRequired;
-    protected int operationsPerTick = 1;
+    protected int operationsPerTick;
     protected int recipeTicksRequired;
     protected final ToIntFunction<RECIPE> recipeTicksGetter;
     protected final int baselineMaxOperations;
+    protected long clientEnergyUsed = 0L;
 
     public BlockEntityMekUtRecipeMachine(Holder<Block> blockProvider, BlockPos pos, BlockState state,
-            List<RecipeError> errorTypes, int baseTicksRequired, ToIntFunction<RECIPE> recipeTicksGetter, int baselineMaxOperations) {
+            List<RecipeError> errorTypes, int baseTicksRequired, ToIntFunction<RECIPE> recipeTicksGetter,
+            int baselineMaxOperations) {
         super(blockProvider, pos, state);
         this.recheckAllRecipeErrors = TileEntityRecipeMachine.shouldRecheckAllErrors(this);
         this.errorTypes = List.copyOf(errorTypes);
@@ -67,6 +70,7 @@ public abstract class BlockEntityMekUtRecipeMachine<RECIPE extends Recipe<?>> ex
         this.recipeTicksRequired = this.baseTicksRequired;
         this.recipeTicksGetter = recipeTicksGetter;
         this.baselineMaxOperations = baselineMaxOperations;
+        this.operationsPerTick = this.baselineMaxOperations;
     }
 
     @Override
@@ -121,6 +125,7 @@ public abstract class BlockEntityMekUtRecipeMachine<RECIPE extends Recipe<?>> ex
         container.track(SyncableInt.create(this::getOperatingTicks, this::setOperatingTicks));
         container.track(SyncableInt.create(this::getTicksRequired, (value) -> this.ticksRequired = value));
         container.track(SyncableInt.create(() -> recipeTicksRequired, (value) -> this.recipeTicksRequired = value));
+        container.track(SyncableLong.create(this::getEnergyUsed, value -> clientEnergyUsed = value));
     }
 
     @Override
@@ -236,8 +241,8 @@ public abstract class BlockEntityMekUtRecipeMachine<RECIPE extends Recipe<?>> ex
         return this.operationsPerTick;
     }
 
-    public void onCachedRecipeChanged(@Nullable AbstractCachedRecipe<RECIPE> cachedRecipe, int cacheIndex){
-        IMekUtRecipeLookUpHandler.super.onCachedRecipeChanged(cachedRecipe,cacheIndex);
+    public void onCachedRecipeChanged(@Nullable AbstractCachedRecipe<RECIPE> cachedRecipe, int cacheIndex) {
+        IMekUtRecipeLookUpHandler.super.onCachedRecipeChanged(cachedRecipe, cacheIndex);
         recipeTicksRequired = recipeTicksGetter.applyAsInt(cachedRecipe.getRecipe());
         recaluculateProcessingSpeed();
     }
@@ -249,5 +254,9 @@ public abstract class BlockEntityMekUtRecipeMachine<RECIPE extends Recipe<?>> ex
         if (upgrade == Upgrade.SPEED || MekUtUpgradeUtils.isEmpoweredSpeed(upgrade)) {
             recaluculateProcessingSpeed();
         }
+    }
+
+    public long getEnergyUsed() {
+        return clientEnergyUsed;
     }
 }

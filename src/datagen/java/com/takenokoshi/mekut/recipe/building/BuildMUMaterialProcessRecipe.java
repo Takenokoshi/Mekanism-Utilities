@@ -169,6 +169,10 @@ public class BuildMUMaterialProcessRecipe {
                             0.8f, 100)
                     .unlockedBy("unlock", has.apply(MekUtItems.RAW_MU_MATERIALS.get(material)))
                     .save(output, MekUtConstants.rl("processing/" + material.name + "/final/from_raw_blasting"));
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, MUMaterialDatagen.FINAL_ITEMS_MAP.get(material))
+                    .requires(MekUtItemTags.RAW_MU_MATERIALS.get(material))
+                    .unlockedBy("unlock", has.apply(MekUtItems.RAW_MU_MATERIALS.get(material)))
+                    .save(output, MekUtConstants.rl("processing/" + material.name + "/final/from_raw_crafting"));
         }
 
         for (OreAndRawData rawData : OreAndRawData.LIST) {

@@ -54,9 +54,33 @@ public class MekUtBlockModelProvider extends BlockStateProvider {
         simpleBlockWithItem(MekUtBlocks.RAW_MU_MATERIALS_BLOCK.get(MUMaterial.REDSTONE).get(),
                 new ModelFile.UncheckedModelFile(mcLoc("block/redstone_ore")));
 
+        mekutNormalMachine(MekUtMachines.MEKSTYLED_CHARGER.getBlockObject(),
+                MekUtConstants.rl("block/normal_machine/mekstyled_charger_front"),
+                MekUtConstants.rl("block/normal_machine/mekstyled_charger_front_active"));
+        mekutNormalMachine(MekUtMachines.SUBMATERIAL_CONVERTER.getBlockObject(),
+                MekUtConstants.rl("block/normal_machine/submaterial_converter_front"),
+                MekUtConstants.rl("block/normal_machine/submaterial_converter_front_active"));
         mekanismMachine(MekUtMachines.TWEAKED_ENERGIZED_SMELTER.getBlockObject(),
                 Mekanism.rl("block/energized_smelter"),
                 Mekanism.rl("block/energized_smelter_active"));
+        mekutStandardMachine(MekUtMachines.STANDARD_CHEMICAL_INJECTION_CHAMBER.getBlockObject(),
+                MekUtConstants.rl("block/standard_machine/chemical_injection_chamber_front"),
+                MekUtConstants.rl("block/standard_machine/chemical_injection_chamber_front_active"));
+        mekutStandardMachine(MekUtMachines.STANDARD_CRUSHER.getBlockObject(),
+                MekUtConstants.rl("block/standard_machine/crusher_front"),
+                MekUtConstants.rl("block/standard_machine/crusher_front_active"));
+        mekutStandardMachine(MekUtMachines.STANDARD_ENERGIZED_SMELTER.getBlockObject(),
+                MekUtConstants.rl("block/standard_machine/energized_smelter_front"),
+                MekUtConstants.rl("block/standard_machine/energized_smelter_front_active"));
+        mekutStandardMachine(MekUtMachines.STANDARD_ENRICHMENR_CHAMBER.getBlockObject(),
+                MekUtConstants.rl("block/standard_machine/enrichment_chamber_front"),
+                MekUtConstants.rl("block/standard_machine/enrichment_chamber_front_active"));
+        mekutStandardMachine(MekUtMachines.STANDARD_MEKSTYLED_CHARGER.getBlockObject(),
+                MekUtConstants.rl("block/standard_machine/mekstyled_charger_front"),
+                MekUtConstants.rl("block/standard_machine/mekstyled_charger_front_active"));
+        mekutStandardMachine(MekUtMachines.STANDARD_PURIFICATION_CHAMBER.getBlockObject(),
+                MekUtConstants.rl("block/standard_machine/purification_chamber_front"),
+                MekUtConstants.rl("block/standard_machine/purification_chamber_front_active"));
     }
 
     protected void mekanismMachine(
@@ -67,6 +91,86 @@ public class MekUtBlockModelProvider extends BlockStateProvider {
         ModelFile inactive = new ModelFile.UncheckedModelFile(inactiveModel);
 
         ModelFile active = new ModelFile.UncheckedModelFile(activeModel);
+
+        getVariantBuilder(block.get())
+                .forAllStates(state -> {
+
+                    Direction facing = state.getValue(
+                            BlockStateProperties.HORIZONTAL_FACING);
+
+                    boolean lit = ((AttributeStateActive) (Attributes.ACTIVE_LIGHT)).isActive(state);
+
+                    return ConfiguredModel.builder()
+                            .modelFile(lit ? active : inactive)
+                            .rotationY(((int) facing.toYRot() + 180) % 360)
+                            .build();
+                });
+
+        simpleBlockItem(
+                block.get(),
+                inactive);
+    }
+
+    protected void mekutNormalMachine(
+            BlockRegistryObject<?, ?> block,
+            ResourceLocation inactiveModel,
+            ResourceLocation activeModel) {
+
+        ModelFile inactive = models().cube("block/machine/" + block.getId().getPath(),
+                MekUtConstants.rl("block/machine_base/down"),
+                MekUtConstants.rl("block/machine_base/up"),
+                inactiveModel,
+                MekUtConstants.rl("block/machine_base/back"),
+                MekUtConstants.rl("block/machine_base/side"),
+                MekUtConstants.rl("block/machine_base/side"));
+
+        ModelFile active = models().cube("block/machine/" + block.getId().getPath() + "_active",
+                MekUtConstants.rl("block/machine_base/down"),
+                MekUtConstants.rl("block/machine_base/up"),
+                activeModel,
+                MekUtConstants.rl("block/machine_base/back"),
+                MekUtConstants.rl("block/machine_base/side"),
+                MekUtConstants.rl("block/machine_base/side"));
+
+        getVariantBuilder(block.get())
+                .forAllStates(state -> {
+
+                    Direction facing = state.getValue(
+                            BlockStateProperties.HORIZONTAL_FACING);
+
+                    boolean lit = ((AttributeStateActive) (Attributes.ACTIVE_LIGHT)).isActive(state);
+
+                    return ConfiguredModel.builder()
+                            .modelFile(lit ? active : inactive)
+                            .rotationY(((int) facing.toYRot() + 180) % 360)
+                            .build();
+                });
+
+        simpleBlockItem(
+                block.get(),
+                inactive);
+    }
+
+    protected void mekutStandardMachine(
+            BlockRegistryObject<?, ?> block,
+            ResourceLocation inactiveModel,
+            ResourceLocation activeModel) {
+
+        ModelFile inactive = models().cube("block/machine/" + block.getId().getPath(),
+                MekUtConstants.rl("block/machine_base/down"),
+                MekUtConstants.rl("block/machine_base/up"),
+                inactiveModel,
+                MekUtConstants.rl("block/machine_base/standard_back"),
+                MekUtConstants.rl("block/machine_base/standard_side"),
+                MekUtConstants.rl("block/machine_base/standard_side"));
+
+        ModelFile active = models().cube("block/machine/" + block.getId().getPath() + "_active",
+                MekUtConstants.rl("block/machine_base/down"),
+                MekUtConstants.rl("block/machine_base/up"),
+                activeModel,
+                MekUtConstants.rl("block/machine_base/standard_back"),
+                MekUtConstants.rl("block/machine_base/standard_side"),
+                MekUtConstants.rl("block/machine_base/standard_side"));
 
         getVariantBuilder(block.get())
                 .forAllStates(state -> {

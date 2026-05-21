@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "mekanism_utilities:block/machine_base/down",
+    "east": "mekanism_utilities:block/machine_base/standard_side",
+    "north": "mekanism_utilities:block/standard_machine/crusher_front",
+    "south": "mekanism_utilities:block/machine_base/standard_back",
+    "up": "mekanism_utilities:block/machine_base/up",
+    "west": "mekanism_utilities:block/machine_base/standard_side"
+  }
+}

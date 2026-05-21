@@ -9,6 +9,7 @@ import java.util.function.Predicate;
 import com.takenokoshi.mekut.core.MekUtConstants;
 import com.takenokoshi.mekut.enums.MUMaterial;
 import com.takenokoshi.mekut.item.XpCrystalItem;
+import com.takenokoshi.mekut.item.cell.rainbow.InfinityRainbowCellItem;
 
 import mekanism.common.registration.impl.ItemDeferredRegister;
 import mekanism.common.registration.impl.ItemRegistryObject;
@@ -24,6 +25,10 @@ public class MekUtItems {
 
     public static final ItemRegistryObject<Item> DIGITAL_CONTROL_CIRCUIT = ITEMS.register("digital_control_circuit");
     public static final ItemRegistryObject<Item> STANDARD_CONTROL_CIRCUIT = ITEMS.register("standard_control_circuit");
+    public static final ItemRegistryObject<Item> ACCELERATION_CONTROL_CIRCUIT = ITEMS
+            .register("acceleration_control_circuit");
+    public static final ItemRegistryObject<Item> CHEMICAL_CONTROL_CIRCUIT = ITEMS
+            .register("chemical_control_circuit");
     public static final ItemRegistryObject<Item> KNOWLEDGE_CONTROL_CIRCUIT = ITEMS
             .register("knowladge_control_circuit");
 
@@ -32,6 +37,7 @@ public class MekUtItems {
 
     public static final ItemRegistryObject<Item> GOLDEN_REDSTONE = ITEMS.register("golden_redstone");
     public static final ItemRegistryObject<Item> AMETHYST_DUST = ITEMS.register("amethyst_dust");
+    public static final ItemRegistryObject<Item> REFINED_AMETHYST_INGOT = ITEMS.register("refined_amethyst_ingot");
     public static final ItemRegistryObject<XpCrystalItem> XP_CRYSTAL = ITEMS.registerItem("xp_crystal",
             XpCrystalItem::new);
     public static final ItemRegistryObject<Item> ACTIVATED_LAPIS_LAZULI = ITEMS.registerItem("activated_lapis_lazuli",
@@ -41,6 +47,12 @@ public class MekUtItems {
                     return true;
                 }
             });
+
+    public static final ItemRegistryObject<Item> DARK_RED_DYE = ITEMS.register("dark_red_dye");
+    public static final ItemRegistryObject<Item> AQUA_DYE = ITEMS.register("aqua_dye");
+
+    public static final ItemRegistryObject<InfinityRainbowCellItem> ME_INFINITY_RAINBOW_CELL = ITEMS
+            .registerItem("me_infinity_rainbow_cell", InfinityRainbowCellItem::new);
 
     public static final Map<MUMaterial, ItemRegistryObject<?>> RAW_MU_MATERIALS = registerMaterials(
             m -> true,
