@@ -2,7 +2,7 @@ package com.takenokoshi.mekut.blockentity.standardmachine;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.takenokoshi.mekut.blockentity.prefab.BETweakedItemChemicalToItemMachine;
+import com.takenokoshi.mekut.blockentity.prefab.BEBasicItemChemicalToItemMachine;
 import com.takenokoshi.mekut.config.MekUtConfig;
 
 import mekanism.api.math.MathUtils;
@@ -18,7 +18,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class BEStandardChemicalInjectionChamber extends BETweakedItemChemicalToItemMachine {
+public class BEStandardChemicalInjectionChamber extends BEBasicItemChemicalToItemMachine {
 
     public BEStandardChemicalInjectionChamber(Holder<Block> blockProvider, BlockPos pos, BlockState state) {
         super(blockProvider, pos, state,

@@ -2,7 +2,7 @@ package com.takenokoshi.mekut.gui.machine;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.takenokoshi.mekut.blockentity.prefab.BETweakedItemChemicalToItemMachine;
+import com.takenokoshi.mekut.blockentity.prefab.BEBasicItemChemicalToItemMachine;
 
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
 import mekanism.client.gui.GuiConfigurableTile;
@@ -17,7 +17,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 
-public class GuiTweakedItemChemicalToItemMachine<BE extends BETweakedItemChemicalToItemMachine>
+public class GuiTweakedItemChemicalToItemMachine<BE extends BEBasicItemChemicalToItemMachine>
         extends GuiConfigurableTile<BE, MekanismTileContainer<BE>> {
 
     public GuiTweakedItemChemicalToItemMachine(MekanismTileContainer<BE> container, Inventory inv, Component title) {

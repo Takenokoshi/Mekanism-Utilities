@@ -1,6 +1,7 @@
 package com.takenokoshi.mekut.registries;
 
 import com.takenokoshi.mekut.blockentity.normalmachine.BEMekStyledCharger;
+import com.takenokoshi.mekut.blockentity.normalmachine.BEMekStyledCircuitCutter;
 import com.takenokoshi.mekut.blockentity.normalmachine.BESubMaterialConverter;
 import com.takenokoshi.mekut.blockentity.normalmachine.BETweakedEnergizedSmelter;
 import com.takenokoshi.mekut.blockentity.standardmachine.BEStandardChemicalInjectionChamber;
@@ -8,6 +9,7 @@ import com.takenokoshi.mekut.blockentity.standardmachine.BEStandardCrusher;
 import com.takenokoshi.mekut.blockentity.standardmachine.BEStandardEnergizedSmelter;
 import com.takenokoshi.mekut.blockentity.standardmachine.BEStandardEnrichmentChamber;
 import com.takenokoshi.mekut.blockentity.standardmachine.BEStandardMekStyledCharger;
+import com.takenokoshi.mekut.blockentity.standardmachine.BEStandardMekStyledCircuitCutter;
 import com.takenokoshi.mekut.blockentity.standardmachine.BEStandardPurificationChamber;
 import com.takenokoshi.mekut.core.MekUtConstants;
 import com.takenokoshi.mekut.core.MekUtMathUtils;
@@ -40,6 +42,24 @@ public class MekUtMachines {
                             .withSideConfig(TransmissionType.ITEM, TransmissionType.ENERGY)
                             .withEnergyConfig(MekanismConfig.usage.enrichmentChamber,
                                     MekanismConfig.storage.enrichmentChamber)
+                            .withSound(MekanismSounds.ENRICHMENT_CHAMBER)
+                            .withSupportedUpgrades(Upgrade.ENERGY, Upgrade.SPEED));
+
+    public static final SimpleMachineRegistryObject<BEMekStyledCircuitCutter> MEKSTYLED_CIRCUIT_CUTTER = MACHINES
+            .registerSimple("mekstyled_circuit_cutter", holder -> holder
+                    .addAttachmentOnlyContainers(ContainerType.ITEM, () -> ItemSlotsBuilder.builder()
+                            .addInput(1)
+                            .addOutput()
+                            .addEnergy()
+                            .build()),
+                    BEMekStyledCircuitCutter::new,
+                    BEMekStyledCircuitCutter.class,
+                    MekUtDescription.MEKSTYLED_CIRCUIT_CUTTER,
+                    builder -> builder
+                            .withSideConfig(TransmissionType.ITEM, TransmissionType.ENERGY)
+                            .withEnergyConfig(MekanismConfig.usage.precisionSawmill,
+                                    MekanismConfig.storage.precisionSawmill)
+                            .withSound(MekanismSounds.PRECISION_SAWMILL)
                             .withSupportedUpgrades(Upgrade.ENERGY, Upgrade.SPEED));
 
     public static final SimpleMachineRegistryObject<BESubMaterialConverter> SUBMATERIAL_CONVERTER = MACHINES
@@ -174,6 +194,25 @@ public class MekUtMachines {
                             .withEnergyConfig(
                                     MekUtMathUtils.getUsageAccelerated(MekanismConfig.usage.enrichmentChamber, 1),
                                     MekUtMathUtils.getStorageAccelerated(MekanismConfig.storage.enrichmentChamber, 1))
+                            .withSound(MekanismSounds.ENRICHMENT_CHAMBER)
+                            .withSupportedUpgrades(Upgrade.MUFFLING));
+
+    public static final SimpleMachineRegistryObject<BEStandardMekStyledCircuitCutter> STANDARD_MEKSTYLED_CIRCUIT_CUTTER = MACHINES
+            .registerSimple("standard_mekstyled_circuit_cutter", holder -> holder
+                    .addAttachmentOnlyContainers(ContainerType.ITEM, () -> ItemSlotsBuilder.builder()
+                            .addInput(1)
+                            .addOutput()
+                            .addEnergy()
+                            .build()),
+                    BEStandardMekStyledCircuitCutter::new,
+                    BEStandardMekStyledCircuitCutter.class,
+                    MekUtDescription.STANDARD_MACHINE,
+                    builder -> builder
+                            .withSideConfig(TransmissionType.ITEM, TransmissionType.ENERGY)
+                            .withEnergyConfig(
+                                    MekUtMathUtils.getUsageAccelerated(MekanismConfig.usage.precisionSawmill, 1),
+                                    MekUtMathUtils.getStorageAccelerated(MekanismConfig.storage.precisionSawmill, 1))
+                            .withSound(MekanismSounds.PRECISION_SAWMILL)
                             .withSupportedUpgrades(Upgrade.MUFFLING));
 
     public static final SimpleMachineRegistryObject<BEStandardPurificationChamber> STANDARD_PURIFICATION_CHAMBER = MACHINES

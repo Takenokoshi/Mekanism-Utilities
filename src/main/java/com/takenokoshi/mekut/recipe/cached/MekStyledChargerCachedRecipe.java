@@ -6,6 +6,7 @@ import com.takenokoshi.mekut.recipe.input.IngredientInputHandler;
 import com.takenokoshi.mekut.recipe.output.ItemOutputHandler;
 
 import appeng.recipes.handlers.ChargerRecipe;
+import mekanism.api.recipes.cache.CachedRecipe.OperationTracker;
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
 import net.minecraft.world.item.ItemStack;
 
@@ -23,11 +24,12 @@ public class MekStyledChargerCachedRecipe extends AbstractCachedRecipe<ChargerRe
         this.outputHandler = outputHandler;
     }
 
-    protected void calculateOperationsThisTick(OperationTracker2 tracker) {
+    protected void calculateOperationsThisTick(OperationTracker tracker) {
         super.calculateOperationsThisTick(tracker);
         recipeInput = inputHandler.getRecipeInput(recipe.ingredient);
         if (recipeInput.isEmpty()) {
             tracker.resetProgress(RecipeError.INPUT_DOESNT_PRODUCE_OUTPUT);
+            return;
         }
         inputHandler.calculateOperationsCanSupport(tracker, recipeInput);
         outputHandler.calculateOperationsCanSupport(tracker, recipe.result);

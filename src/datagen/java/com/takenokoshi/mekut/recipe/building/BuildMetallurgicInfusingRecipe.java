@@ -62,5 +62,12 @@ public class BuildMetallurgicInfusingRecipe {
                         new ItemStack(Items.GLOWSTONE_DUST, 20),
                         false)
                 .build(output, MekUtConstants.rl("metallurgic_infusing/glowstone_dust"));
+        ItemStackChemicalToItemStackRecipeBuilder
+                .metallurgicInfusing(
+                        creatorI.from(MekUtItems.BLAZE_CRYSTAL, 1),
+                        creatorC.from(MekanismChemicals.GOLD.asStack(80)),
+                        new ItemStack(Items.BLAZE_ROD, 1),
+                        false)
+                .build(output, MekUtConstants.rl("metallurgic_infusing/blaze_rod"));
     }
 }

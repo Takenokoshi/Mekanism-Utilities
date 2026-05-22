@@ -47,7 +47,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
-public abstract class BETweakedItemChemicalToItemMachine
+public abstract class BEBasicItemChemicalToItemMachine
         extends TileEntityRecipeMachine<ItemStackChemicalToItemStackRecipe> implements
         IRecipeTypedLookupHandler<ItemStackChemicalToItemStackRecipe, ItemChemical<ItemStackChemicalToItemStackRecipe>>,
         IHasMachineEnergyCntainer {
@@ -77,7 +77,7 @@ public abstract class BETweakedItemChemicalToItemMachine
     protected final IInputHandler<@NotNull ItemStack> itemInputHandler;
     protected final IInputHandler<ChemicalStack> chemicalInputHandler;
 
-    protected BETweakedItemChemicalToItemMachine(Holder<Block> blockProvider, BlockPos pos, BlockState state,
+    protected BEBasicItemChemicalToItemMachine(Holder<Block> blockProvider, BlockPos pos, BlockState state,
             TweakedItemChemicalToItemCachedRecipe.ChemicalUsageModifier usageModifier, int baseProcessPerTick) {
         super(blockProvider, pos, state, TRACKED_ERROR_TYPES);
 

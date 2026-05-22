@@ -1,0 +1,15 @@
+{
+  "type": "mekanismelements:adsorption",
+  "fluid_input": {
+    "amount": 1000,
+    "fluid": "minecraft:water"
+  },
+  "item_input": {
+    "count": 1,
+    "tag": "c:dusts/tin"
+  },
+  "output": {
+    "amount": 50,
+    "id": "mekanism_utilities:heavy_water_steam"
+  }
+}

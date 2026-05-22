@@ -66,6 +66,7 @@ public class MekUtItemModelProvider extends ItemModelProvider {
         });
 
         simpleItem(MekUtItems.XP_CRYSTAL.get()).texture("layer0", MekUtConstants.rl("item/crystal/xp"));
+        simpleItem(MekUtItems.BLAZE_CRYSTAL.get()).texture("layer0", MekUtConstants.rl("item/crystal/blaze"));
 
         simpleItem(MekUtItems.AMETHYST_DUST.get()).texture("layer0", MekUtConstants.rl("item/dust/amethyst_dust"));
         simpleItem(MekUtItems.REFINED_AMETHYST_INGOT.get())

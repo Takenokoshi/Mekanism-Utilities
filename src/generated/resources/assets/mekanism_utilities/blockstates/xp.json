@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "level=0": {
+      "model": "mekanism:block/brine"
+    },
+    "level=1": {
+      "model": "mekanism:block/brine"
+    },
+    "level=10": {
+      "model": "mekanism:block/brine"
+    },
+    "level=11": {
+      "model": "mekanism:block/brine"
+    },
+    "level=12": {
+      "model": "mekanism:block/brine"
+    },
+    "level=13": {
+      "model": "mekanism:block/brine"
+    },
+    "level=14": {
+      "model": "mekanism:block/brine"
+    },
+    "level=15": {
+      "model": "mekanism:block/brine"
+    },
+    "level=2": {
+      "model": "mekanism:block/brine"
+    },
+    "level=3": {
+      "model": "mekanism:block/brine"
+    },
+    "level=4": {
+      "model": "mekanism:block/brine"
+    },
+    "level=5": {
+      "model": "mekanism:block/brine"
+    },
+    "level=6": {
+      "model": "mekanism:block/brine"
+    },
+    "level=7": {
+      "model": "mekanism:block/brine"
+    },
+    "level=8": {
+      "model": "mekanism:block/brine"
+    },
+    "level=9": {
+      "model": "mekanism:block/brine"
+    }
+  }
+}

@@ -31,7 +31,7 @@ public abstract class BEMultiScaledRecipeMachine<RECIPE extends Recipe<?>>
     }
 
     protected void recaluculateProcessingSpeed() {
-        double ticksD = 1 / MekanismUtils.getTicksD(this, recipeTicksRequired);
+        double ticksD = MekanismUtils.getTicksD(this, recipeTicksRequired);
         if (ticksD < 1) {
             operationsPerTick = MathUtils.clampToInt(baselineMaxOperations / ticksD);
             ticksRequired = 1;

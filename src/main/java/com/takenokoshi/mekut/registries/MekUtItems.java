@@ -40,6 +40,7 @@ public class MekUtItems {
     public static final ItemRegistryObject<Item> REFINED_AMETHYST_INGOT = ITEMS.register("refined_amethyst_ingot");
     public static final ItemRegistryObject<XpCrystalItem> XP_CRYSTAL = ITEMS.registerItem("xp_crystal",
             XpCrystalItem::new);
+    public static final ItemRegistryObject<Item> BLAZE_CRYSTAL = ITEMS.register("blaze_crystal");
     public static final ItemRegistryObject<Item> ACTIVATED_LAPIS_LAZULI = ITEMS.registerItem("activated_lapis_lazuli",
             p -> new Item(p) {
                 @Override

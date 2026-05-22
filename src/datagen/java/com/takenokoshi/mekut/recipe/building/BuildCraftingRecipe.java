@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
+import com.glodblock.github.extendedae.common.EAESingletons;
 import com.takenokoshi.mekut.core.MekUtConstants;
 import com.takenokoshi.mekut.registration.MachineRegistryObject;
 import com.takenokoshi.mekut.registries.MekUtItems;
@@ -119,6 +120,7 @@ public class BuildCraftingRecipe {
         TWEAKED_MACHINES.add(new SimpleMachineRecipeData(MekUtMachines.TWEAKED_ENERGIZED_SMELTER,
                 MekanismBlocks.ENERGIZED_SMELTER));
         TWEAKED_MACHINES.add(new SimpleMachineRecipeData(MekUtMachines.MEKSTYLED_CHARGER, AEBlocks.CHARGER));
+        TWEAKED_MACHINES.add(new SimpleMachineRecipeData(MekUtMachines.MEKSTYLED_CIRCUIT_CUTTER, EAESingletons.CIRCUIT_CUTTER));
         STANDARD_GAS_MACHINES.add(new SimpleMachineRecipeData(MekUtMachines.STANDARD_CHEMICAL_INJECTION_CHAMBER,
                 MekanismBlocks.CHEMICAL_INJECTION_CHAMBER));
         STANDARD_MACHINES.add(new SimpleMachineRecipeData(MekUtMachines.STANDARD_CRUSHER,
@@ -129,6 +131,8 @@ public class BuildCraftingRecipe {
                 MekanismBlocks.ENRICHMENT_CHAMBER));
         STANDARD_MACHINES.add(new SimpleMachineRecipeData(MekUtMachines.STANDARD_MEKSTYLED_CHARGER,
                 MekUtMachines.MEKSTYLED_CHARGER));
+        STANDARD_MACHINES.add(new SimpleMachineRecipeData(MekUtMachines.STANDARD_MEKSTYLED_CIRCUIT_CUTTER,
+                MekUtMachines.MEKSTYLED_CIRCUIT_CUTTER));
         STANDARD_GAS_MACHINES.add(new SimpleMachineRecipeData(MekUtMachines.STANDARD_PURIFICATION_CHAMBER,
                 MekanismBlocks.PURIFICATION_CHAMBER));
     }

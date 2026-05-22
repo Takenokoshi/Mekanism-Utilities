@@ -1,15 +1,15 @@
 package com.takenokoshi.mekut.recipe.output;
 
-import com.takenokoshi.mekut.recipe.cached.OperationTracker2;
-
 import mekanism.api.Action;
 import mekanism.api.AutomationType;
 import mekanism.api.chemical.ChemicalStack;
 import mekanism.api.chemical.IChemicalTank;
 import mekanism.api.math.MathUtils;
+import mekanism.api.recipes.cache.CachedRecipe.OperationTracker;
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
+import mekanism.api.recipes.outputs.IOutputHandler;
 
-public class ChemicalOutputHandler {
+public class ChemicalOutputHandler implements IOutputHandler<ChemicalStack> {
     private final IChemicalTank tank;
     private final RecipeError notEnoughSpaceError;
 
@@ -17,8 +17,8 @@ public class ChemicalOutputHandler {
         this.tank = tank;
         this.notEnoughSpaceError = notEnoughSpaceError;
     }
-
-    public void calculateOperationsCanSupport(OperationTracker2 tracker, ChemicalStack toOutput) {
+    
+    public void calculateOperationsCanSupport(OperationTracker tracker, ChemicalStack toOutput) {
         if (!toOutput.isEmpty()) {
             ChemicalStack maxOutput = toOutput.copyWithAmount(Long.MAX_VALUE);
             ChemicalStack remainder = tank.insert(maxOutput, Action.SIMULATE, AutomationType.INTERNAL);

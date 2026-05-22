@@ -8,7 +8,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import mekanism.client.MekanismClient;
-import mekanism.common.recipe.MekanismRecipeType;
 import mekanism.common.recipe.lookup.cache.IInputRecipeCache;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
@@ -24,7 +23,6 @@ import net.neoforged.neoforge.server.ServerLifecycleHooks;
 
 public class MekUtRecipeType<VANILLA_INPUT extends RecipeInput, RECIPE extends Recipe<VANILLA_INPUT>, INPUT_CACHE extends IInputRecipeCache>
         implements RecipeType<RECIPE>, IMekUtRecipeTypeProvider<VANILLA_INPUT, RECIPE, INPUT_CACHE> {
-    MekanismRecipeType<?, ?, ?> a;
 
     private List<RecipeHolder<RECIPE>> cachedRecipes = Collections.emptyList();
     private final ResourceLocation registryName;

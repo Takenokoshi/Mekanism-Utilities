@@ -1,0 +1,19 @@
+{
+  "type": "mekanism:rotary",
+  "chemical_input": {
+    "amount": 100,
+    "chemical": "mekanism_utilities:xp"
+  },
+  "chemical_output": {
+    "amount": 100,
+    "id": "mekanism_utilities:xp"
+  },
+  "fluid_input": {
+    "amount": 1,
+    "fluid": "mekanism_utilities:xp"
+  },
+  "fluid_output": {
+    "amount": 1,
+    "id": "mekanism_utilities:xp"
+  }
+}

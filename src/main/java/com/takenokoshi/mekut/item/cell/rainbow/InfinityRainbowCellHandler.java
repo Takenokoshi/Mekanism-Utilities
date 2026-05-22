@@ -11,12 +11,12 @@ public class InfinityRainbowCellHandler implements ICellHandler {
 
     @Override
     public @Nullable StorageCell getCellInventory(ItemStack stack, @Nullable ISaveProvider arg1) {
-        return new InfinityRainbowCellStorage();
+        return isCell(stack) ? new InfinityRainbowCellStorage() : null;
     }
 
     @Override
     public boolean isCell(ItemStack stack) {
         return stack.getItem() instanceof InfinityRainbowCellItem;
     }
-    
+
 }

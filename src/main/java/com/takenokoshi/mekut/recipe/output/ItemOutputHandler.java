@@ -1,14 +1,14 @@
 package com.takenokoshi.mekut.recipe.output;
 
-import com.takenokoshi.mekut.recipe.cached.OperationTracker2;
-
 import mekanism.api.Action;
 import mekanism.api.AutomationType;
 import mekanism.api.inventory.IInventorySlot;
+import mekanism.api.recipes.cache.CachedRecipe.OperationTracker;
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
+import mekanism.api.recipes.outputs.IOutputHandler;
 import net.minecraft.world.item.ItemStack;
 
-public class ItemOutputHandler {
+public class ItemOutputHandler implements IOutputHandler<ItemStack> {
     private final IInventorySlot slot;
     private final RecipeError notEnoughSpaceError;
 
@@ -28,7 +28,7 @@ public class ItemOutputHandler {
         slot.insertItem(output, Action.EXECUTE, AutomationType.INTERNAL);
     }
 
-    public void calculateOperationsCanSupport(OperationTracker2 tracker, ItemStack toOutput) {
+    public void calculateOperationsCanSupport(OperationTracker tracker, ItemStack toOutput) {
         if (!toOutput.isEmpty()) {
             ItemStack stack = toOutput.copyWithCount(slot.getLimit(toOutput));
             ItemStack remainder = slot.insertItem(stack, Action.SIMULATE, AutomationType.INTERNAL);

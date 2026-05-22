@@ -1,51 +1,47 @@
 package com.takenokoshi.mekut.recipe.inputcache;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.takenokoshi.mekut.recipe.MekUtRecipeType;
 
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 
-public class SingleIngredientRecipeCache<RECIPE extends Recipe<?>> extends SimpleInputRecipeCache<RECIPE> {
+public class SingleItemRecipeCache<RECIPE extends Recipe<?>> extends SimpleInputRecipeCache<RECIPE> {
 
-    private final Function<RECIPE, Ingredient> inputExtractor;
-    private final Map<Item, List<RECIPE>> recipeSetMap = new LinkedHashMap<>();
+    private final Function<RECIPE, @NotNull List<Item>> inputExtractor;
+    private final Map<Item, RECIPE> recipeMap;
 
-    public SingleIngredientRecipeCache(MekUtRecipeType<?, RECIPE, ?> recipeType,
-            Function<RECIPE, Ingredient> inputExtractor) {
+    public SingleItemRecipeCache(MekUtRecipeType<?, RECIPE, ?> recipeType,
+            Function<RECIPE, List<Item>> inputExtractor) {
         super(recipeType);
         this.inputExtractor = inputExtractor;
+        this.recipeMap = new HashMap<>();
     }
 
     @Override
     public void clear() {
         super.clear();
-        recipeSetMap.clear();
+        recipeMap.clear();
     }
 
     @Override
     protected void initCache(List<RecipeHolder<RECIPE>> recipes) {
         for (RecipeHolder<RECIPE> recipeHolder : recipes) {
             RECIPE recipe = recipeHolder.value();
-            Ingredient ingredient = inputExtractor.apply(recipe);
-            for (ItemStack stack : ingredient.getItems()) {
-                Item item = stack.getItem();
-                if (!recipeSetMap.containsKey(item)) {
-                    recipeSetMap.put(item, new ArrayList<>());
-                }
-                recipeSetMap.get(item).add(recipe);
-            }
+            inputExtractor.apply(recipe).forEach(item -> {
+                // Use first recipe registered for an item.
+                recipeMap.putIfAbsent(item, recipe);
+            });
         }
     }
 
@@ -54,7 +50,7 @@ public class SingleIngredientRecipeCache<RECIPE extends Recipe<?>> extends Simpl
             return false;
         }
         initCacheIfNeeded(world);
-        return recipeSetMap.containsKey(input.getItem());
+        return recipeMap.containsKey(input.getItem());
     }
 
     @Nullable
@@ -63,11 +59,7 @@ public class SingleIngredientRecipeCache<RECIPE extends Recipe<?>> extends Simpl
             return null;
         }
         initCacheIfNeeded(world);
-        Item item = input.getItem();
-        if (recipeSetMap.containsKey(item)) {
-            return recipeSetMap.get(item).get(0);
-        }
-        return null;
+        return recipeMap.get(input.getItem());
     }
 
 }

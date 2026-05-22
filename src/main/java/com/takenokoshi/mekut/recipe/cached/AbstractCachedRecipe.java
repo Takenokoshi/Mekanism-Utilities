@@ -10,12 +10,15 @@ import java.util.function.IntSupplier;
 import java.util.function.LongConsumer;
 import java.util.function.LongSupplier;
 
+import com.takenokoshi.mekut.mixin.mekanism.recipe.OperationTrackerMixin;
+
 import it.unimi.dsi.fastutil.booleans.BooleanConsumer;
 import mekanism.api.Action;
 import mekanism.api.AutomationType;
 import mekanism.api.energy.IEnergyContainer;
 import mekanism.api.functions.ConstantPredicates;
 import mekanism.api.math.MathUtils;
+import mekanism.api.recipes.cache.CachedRecipe.OperationTracker;
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
 import net.minecraft.world.item.crafting.Recipe;
 
@@ -33,7 +36,7 @@ public abstract class AbstractCachedRecipe<RECIPE extends Recipe<?>> {
     private LongSupplier storedEnergy;
     private LongConsumer useEnergy;
     private IntSupplier baselineMaxOperations;
-    private Consumer<OperationTracker2> postProcessOperations;
+    private Consumer<OperationTracker> postProcessOperations;
     private Consumer<Set<RecipeError>> onErrorsChange;
     private int operatingTicks;
     private IntConsumer operatingTicksChanged;
@@ -105,7 +108,7 @@ public abstract class AbstractCachedRecipe<RECIPE extends Recipe<?>> {
         return this;
     }
 
-    public AbstractCachedRecipe<RECIPE> setPostProcessOperations(Consumer<OperationTracker2> postProcessOperations) {
+    public AbstractCachedRecipe<RECIPE> setPostProcessOperations(Consumer<OperationTracker> postProcessOperations) {
         this.postProcessOperations = Objects.requireNonNull(postProcessOperations,
                 "Post processing of the operation count cannot be null.");
         return this;
@@ -150,19 +153,22 @@ public abstract class AbstractCachedRecipe<RECIPE extends Recipe<?>> {
             int operations;
             if (this.canHolderFunction.getAsBoolean()) {
                 this.setupVariableValues();
-                OperationTracker2 tracker = new OperationTracker2(this.errors, this.recheckAllErrors.getAsBoolean(),
+                OperationTracker tracker = OperationTrackerMixin.mekanism_utilities$invokeInit(this.errors,
+                        this.recheckAllErrors.getAsBoolean(),
                         this.baselineMaxOperations.getAsInt());
                 this.calculateOperationsThisTick(tracker);
                 if (tracker.shouldContinueChecking()) {
                     this.postProcessOperations.accept(tracker);
-                    if (tracker.shouldContinueChecking() && tracker.capAtMaxForEnergy()) {
+                    if (tracker.shouldContinueChecking()
+                            && ((OperationTrackerMixin) (Object) tracker)
+                                    .mekanism_utilities$invokeCapAtMaxForEnergy()) {
                         tracker.addError(RecipeError.NOT_ENOUGH_ENERGY_REDUCED_RATE);
                     }
                 }
 
-                operations = tracker.currentMax;
-                if (tracker.hasErrorsToCopy()) {
-                    this.updateErrors(tracker.errors);
+                operations = ((OperationTrackerMixin) (Object) tracker).mekanism_utilities$getCurrentMax();
+                if (((OperationTrackerMixin) (Object) tracker).mekanism_utilities$invokeHasErrorsToCopy()) {
+                    this.updateErrors(((OperationTrackerMixin) (Object) tracker).mekanism_utilities$getErrors());
                 }
             } else {
                 operations = 0;
@@ -223,12 +229,12 @@ public abstract class AbstractCachedRecipe<RECIPE extends Recipe<?>> {
 
     }
 
-    protected void calculateOperationsThisTick(OperationTracker2 tracker) {
+    protected void calculateOperationsThisTick(OperationTracker tracker) {
         if (tracker.shouldContinueChecking()) {
             long energyPerTick = this.perTickEnergy.getAsLong();
             if (energyPerTick != 0L) {
                 int operations = MathUtils.clampToInt(this.storedEnergy.getAsLong() / energyPerTick);
-                tracker.maxForEnergy = operations;
+                ((OperationTrackerMixin) (Object) tracker).mekanism_utilities$setMaxForEnergy(operations);
                 if (operations == 0) {
                     tracker.updateOperations(operations);
                     tracker.addError(RecipeError.NOT_ENOUGH_ENERGY);

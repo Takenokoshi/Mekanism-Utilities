@@ -1,12 +1,14 @@
 package com.takenokoshi.mekut.recipe;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.takenokoshi.mekut.recipe.inputcache.SingleIngredientRecipeCache;
+import com.glodblock.github.extendedae.recipe.CircuitCutterRecipe;
+import com.takenokoshi.mekut.recipe.inputcache.SingleItemRecipeCache;
 
 import appeng.core.AppEng;
 import appeng.recipes.AERecipeTypes;
@@ -14,6 +16,7 @@ import appeng.recipes.handlers.ChargerRecipe;
 import mekanism.common.recipe.lookup.cache.IInputRecipeCache;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeInput;
@@ -41,14 +44,35 @@ public class WrappedRecipeType<VANILLA_INPUT extends RecipeInput, RECIPE extends
         return recipeManager.getAllRecipesFor(wrappedType);
     }
 
-    public static final WrappedRecipeType<SingleRecipeInput, SmeltingRecipe, SingleIngredientRecipeCache<SmeltingRecipe>> VANILLA_SMELTING = new WrappedRecipeType<>(
+    public static final WrappedRecipeType<SingleRecipeInput, SmeltingRecipe, SingleItemRecipeCache<SmeltingRecipe>> VANILLA_SMELTING = new WrappedRecipeType<>(
             ResourceLocation.withDefaultNamespace("smelting"),
-            type -> new SingleIngredientRecipeCache<>(type, recipe -> recipe.getIngredients().get(0)),
+            type -> new SingleItemRecipeCache<>(type, recipe -> recipe
+                    .getIngredients()
+                    .stream()
+                    .flatMap(ingredient -> Arrays.stream(ingredient.getItems()))
+                    .map(ItemStack::getItem)
+                    .toList()),
             RecipeType.SMELTING);
 
-    public static final WrappedRecipeType<RecipeInput, ChargerRecipe, SingleIngredientRecipeCache<ChargerRecipe>> AE2_CHARGER = new WrappedRecipeType<>(
+    public static final WrappedRecipeType<RecipeInput, ChargerRecipe, SingleItemRecipeCache<ChargerRecipe>> AE2_CHARGER = new WrappedRecipeType<>(
             AppEng.makeId("charger"),
-            type -> new SingleIngredientRecipeCache<>(type, ChargerRecipe::getIngredient),
+            type -> new SingleItemRecipeCache<>(type, recipe -> Arrays
+                    .stream(recipe.getIngredient().getItems())
+                    .map(ItemStack::getItem)
+                    .toList()),
             AERecipeTypes.CHARGER);
+
+    public static final WrappedRecipeType<RecipeInput, CircuitCutterRecipe, SingleItemRecipeCache<CircuitCutterRecipe>> EXTENDEDAE_CIRCUIT_CUTTER = new WrappedRecipeType<>(
+            CircuitCutterRecipe.ID,
+            type -> new SingleItemRecipeCache<>(type, recipe -> Arrays
+                    .stream(recipe.getInput().getIngredient().getItems())
+                    .map(ItemStack::getItem)
+                    .toList()),
+            CircuitCutterRecipe.TYPE) {
+        @Override
+        protected boolean isRecipeComplete(CircuitCutterRecipe recipe) {
+            return !recipe.getInput().getIngredient().isEmpty();
+        }
+    };
 
 }

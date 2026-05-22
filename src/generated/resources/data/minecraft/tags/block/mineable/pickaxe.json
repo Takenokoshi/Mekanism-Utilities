@@ -1,6 +1,7 @@
 {
   "values": [
     "mekanism_utilities:mekstyled_charger",
+    "mekanism_utilities:mekstyled_circuit_cutter",
     "mekanism_utilities:submaterial_converter",
     "mekanism_utilities:tweaked_energized_smelter",
     "mekanism_utilities:standard_chemical_injection_chamber",
@@ -8,6 +9,7 @@
     "mekanism_utilities:standard_energized_smelter",
     "mekanism_utilities:standard_enrichment_chamber",
     "mekanism_utilities:standard_mekstyled_charger",
+    "mekanism_utilities:standard_mekstyled_circuit_cutter",
     "mekanism_utilities:standard_purification_chamber",
     "mekanism_utilities:raw_redstone_block",
     "mekanism_utilities:raw_diamond_block",

@@ -1,9 +1,8 @@
 package com.takenokoshi.mekut.recipe.input;
 
-import com.takenokoshi.mekut.recipe.cached.OperationTracker2;
-
 import mekanism.api.Action;
 import mekanism.api.inventory.IInventorySlot;
+import mekanism.api.recipes.cache.CachedRecipe.OperationTracker;
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -32,7 +31,7 @@ public class IngredientInputHandler {
         return ItemStack.EMPTY;
     }
 
-    public void calculateOperationsCanSupport(OperationTracker2 tracker, ItemStack inputStack) {
+    public void calculateOperationsCanSupport(OperationTracker tracker, ItemStack inputStack) {
         if (slot.isEmpty()) {
             tracker.resetProgress(notEnoughError);
         } else if (ItemStack.isSameItemSameComponents(slot.getStack(), inputStack)) {

@@ -5,7 +5,7 @@ import java.util.List;
 import com.takenokoshi.mekut.recipe.IMekUtRecipeTypeProvider;
 import com.takenokoshi.mekut.recipe.WrappedRecipeType;
 import com.takenokoshi.mekut.recipe.input.IngredientInputHandler;
-import com.takenokoshi.mekut.recipe.inputcache.SingleIngredientRecipeCache;
+import com.takenokoshi.mekut.recipe.inputcache.SingleItemRecipeCache;
 import com.takenokoshi.mekut.recipe.lookup.IMekUtRecipeTypedLookupHandler;
 
 import mekanism.api.chemical.IChemicalTank;
@@ -15,7 +15,7 @@ import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
 
 public interface ITweakedEnergizedSmelter
-        extends IMekUtRecipeTypedLookupHandler<SmeltingRecipe, SingleIngredientRecipeCache<SmeltingRecipe>>,
+        extends IMekUtRecipeTypedLookupHandler<SmeltingRecipe, SingleItemRecipeCache<SmeltingRecipe>>,
         IHasMachineEnergyCntainer {
 
     public static final List<RecipeError> TRACKED_ERROR_TYPES = List.of(
@@ -24,7 +24,7 @@ public interface ITweakedEnergizedSmelter
             RecipeError.NOT_ENOUGH_OUTPUT_SPACE,
             RecipeError.INPUT_DOESNT_PRODUCE_OUTPUT);
 
-    default IMekUtRecipeTypeProvider<SingleRecipeInput, SmeltingRecipe, SingleIngredientRecipeCache<SmeltingRecipe>> getRecipeType() {
+    default IMekUtRecipeTypeProvider<SingleRecipeInput, SmeltingRecipe, SingleItemRecipeCache<SmeltingRecipe>> getRecipeType() {
         return WrappedRecipeType.VANILLA_SMELTING;
     };
 

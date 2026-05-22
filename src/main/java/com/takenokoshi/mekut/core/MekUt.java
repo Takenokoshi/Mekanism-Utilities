@@ -29,6 +29,7 @@ public class MekUt {
     private void addRegistrationListeners(IEventBus modEventBus) {
         MekUtBlocks.BLOCKS.register(modEventBus);
         MekUtChemicals.CHEMICALS.register(modEventBus);
+        MekUtFluids.FLUIDS.register(modEventBus);
         MekUtItems.ITEMS.register(modEventBus);
         MekUtMachines.MACHINES.register(modEventBus);
         MekUtCreativeTabs.CREATIVE_TABS.register(modEventBus);

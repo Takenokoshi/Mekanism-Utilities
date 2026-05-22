@@ -1,0 +1,19 @@
+{
+  "type": "mekanism:rotary",
+  "chemical_input": {
+    "amount": 10,
+    "chemical": "mekanism_utilities:heavy_water_steam"
+  },
+  "chemical_output": {
+    "amount": 10,
+    "id": "mekanism_utilities:heavy_water_steam"
+  },
+  "fluid_input": {
+    "amount": 10,
+    "fluid": "mekanism:heavy_water"
+  },
+  "fluid_output": {
+    "amount": 10,
+    "id": "mekanism:heavy_water"
+  }
+}

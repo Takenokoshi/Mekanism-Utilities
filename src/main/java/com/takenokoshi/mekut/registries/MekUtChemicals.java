@@ -21,6 +21,9 @@ public class MekUtChemicals {
     public static final DeferredChemical<?> SINGULARITY = CHEMICALS.registerInfuse("singularity", 0x1800a8);
     public static final DeferredChemical<?> XP = CHEMICALS.register("xp", 0x7f53ff00);
 
+    public static final DeferredChemical<?> HEAVY_WATER_STEAM = CHEMICALS.register("heavy_water_steam", 0xFF0D1455);
+    public static final DeferredChemical<?> BLAZE_ETHER = CHEMICALS.register("blaze_ether", 0xFFF7D75A);
+
     public static final Map<MUMaterial, DeferredChemical<?>> MU_MATERIALS_CLEAN_SLURRY = registerMaterials(
             m -> "clean_" + m.name + "_slurry",
             m -> new Chemical(ChemicalBuilder.cleanSlurry().tint(0x7f000000 + m.rgbColor)));

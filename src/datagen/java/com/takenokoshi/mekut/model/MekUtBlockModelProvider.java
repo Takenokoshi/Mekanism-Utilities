@@ -3,6 +3,7 @@ package com.takenokoshi.mekut.model;
 import com.takenokoshi.mekut.core.MekUtConstants;
 import com.takenokoshi.mekut.enums.MUMaterial;
 import com.takenokoshi.mekut.registries.MekUtBlocks;
+import com.takenokoshi.mekut.registries.MekUtFluids;
 import com.takenokoshi.mekut.registries.MekUtMachines;
 
 import mekanism.common.Mekanism;
@@ -12,6 +13,7 @@ import mekanism.common.registration.impl.BlockRegistryObject;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
@@ -26,6 +28,9 @@ public class MekUtBlockModelProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
+
+        MekUtFluids.FLUIDS.getBlockEntries().forEach(holder -> this.simpleFluid(holder.get()));
+
         simpleBlockWithItem(MekUtBlocks.AMETHYST_ORE.get(),
                 models().cubeAll("block/ore/amethyst", modLoc("block/ore/amethyst")));
         simpleBlockWithItem(MekUtBlocks.CERTUS_QUARTZ_ORE.get(),
@@ -57,6 +62,9 @@ public class MekUtBlockModelProvider extends BlockStateProvider {
         mekutNormalMachine(MekUtMachines.MEKSTYLED_CHARGER.getBlockObject(),
                 MekUtConstants.rl("block/normal_machine/mekstyled_charger_front"),
                 MekUtConstants.rl("block/normal_machine/mekstyled_charger_front_active"));
+        mekutNormalMachine(MekUtMachines.MEKSTYLED_CIRCUIT_CUTTER.getBlockObject(),
+                MekUtConstants.rl("block/normal_machine/mekstyled_circuit_cutter_front"),
+                MekUtConstants.rl("block/normal_machine/mekstyled_circuit_cutter_front_active"));
         mekutNormalMachine(MekUtMachines.SUBMATERIAL_CONVERTER.getBlockObject(),
                 MekUtConstants.rl("block/normal_machine/submaterial_converter_front"),
                 MekUtConstants.rl("block/normal_machine/submaterial_converter_front_active"));
@@ -78,6 +86,9 @@ public class MekUtBlockModelProvider extends BlockStateProvider {
         mekutStandardMachine(MekUtMachines.STANDARD_MEKSTYLED_CHARGER.getBlockObject(),
                 MekUtConstants.rl("block/standard_machine/mekstyled_charger_front"),
                 MekUtConstants.rl("block/standard_machine/mekstyled_charger_front_active"));
+        mekutStandardMachine(MekUtMachines.STANDARD_MEKSTYLED_CIRCUIT_CUTTER.getBlockObject(),
+                MekUtConstants.rl("block/standard_machine/mekstyled_circuit_cutter_front"),
+                MekUtConstants.rl("block/standard_machine/mekstyled_circuit_cutter_front_active"));
         mekutStandardMachine(MekUtMachines.STANDARD_PURIFICATION_CHAMBER.getBlockObject(),
                 MekUtConstants.rl("block/standard_machine/purification_chamber_front"),
                 MekUtConstants.rl("block/standard_machine/purification_chamber_front_active"));
@@ -189,6 +200,12 @@ public class MekUtBlockModelProvider extends BlockStateProvider {
         simpleBlockItem(
                 block.get(),
                 inactive);
+    }
+
+    protected void simpleFluid(Block liquidBlock) {
+        getVariantBuilder(liquidBlock)
+                .forAllStates(state -> ConfiguredModel.builder()
+                        .modelFile(new ModelFile.UncheckedModelFile(Mekanism.rl("block/brine"))).build());
     }
 
 }

@@ -8,6 +8,7 @@ import com.takenokoshi.mekut.recipe.output.ItemOutputHandler;
 import com.takenokoshi.mekut.registries.MekUtChemicals;
 
 import mekanism.api.chemical.ChemicalStack;
+import mekanism.api.recipes.cache.CachedRecipe.OperationTracker;
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -37,11 +38,12 @@ public class TweakedSmeltingCachedRecipe extends AbstractCachedRecipe<SmeltingRe
         xpOutput = xp < 1 ? ChemicalStack.EMPTY : MekUtChemicals.XP.asStack(xp);
     }
 
-    protected void calculateOperationsThisTick(OperationTracker2 tracker) {
+    protected void calculateOperationsThisTick(OperationTracker tracker) {
         super.calculateOperationsThisTick(tracker);
         recipeInput = inputHandler.getRecipeInput(ingredient);
         if (recipeInput.isEmpty()) {
             tracker.resetProgress(RecipeError.INPUT_DOESNT_PRODUCE_OUTPUT);
+            return;
         }
         inputHandler.calculateOperationsCanSupport(tracker, recipeInput);
         outputHandler.calculateOperationsCanSupport(tracker, recipeOutput);
