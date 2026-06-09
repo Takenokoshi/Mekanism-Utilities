@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "mekanism:block/ore/fluorite"
+      "model": "mekanism_utilities:block/wip_block"
     }
   }
 }

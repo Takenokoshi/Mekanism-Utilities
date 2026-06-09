@@ -2,6 +2,8 @@ package com.takenokoshi.mekut.item.cell.rainbow;
 
 import org.jetbrains.annotations.Nullable;
 
+import com.takenokoshi.mekut.registries.MekUtItems;
+
 import appeng.api.storage.cells.ICellHandler;
 import appeng.api.storage.cells.ISaveProvider;
 import appeng.api.storage.cells.StorageCell;
@@ -16,7 +18,7 @@ public class InfinityRainbowCellHandler implements ICellHandler {
 
     @Override
     public boolean isCell(ItemStack stack) {
-        return stack.getItem() instanceof InfinityRainbowCellItem;
+        return MekUtItems.ME_INFINITY_RAINBOW_CELL.is(stack.getItem());
     }
 
 }

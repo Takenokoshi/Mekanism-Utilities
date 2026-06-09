@@ -39,6 +39,15 @@ public class MekUtBlocks {
                                     .mapColor(MapColor.STONE),
                             MekUtDescription.CERTUS_QUARTZ_ORE),
                     ItemBlockTooltip::new);
+    public static final BlockRegistryObject<?, ?> ENTRO_ORE = BLOCKS
+            .register("entro_ore",
+                    () -> new BlockSimpleDiscription(
+                            BlockBehaviour.Properties.of()
+                                    .strength(1.5f, 18000000.0f)
+                                    .sound(SoundType.AMETHYST)
+                                    .mapColor(MapColor.STONE),
+                            MekUtDescription.ENTRO_ORE),
+                    ItemBlockTooltip::new);
     public static final BlockRegistryObject<?, ?> NETHERITE_ORE = BLOCKS
             .register("netherite_ore",
                     () -> new BlockSimpleDiscription(

@@ -1,7 +1,10 @@
 {
   "values": [
+    "mekanism_utilities:compact_supercritical_phase_shifter",
     "mekanism_utilities:mekstyled_charger",
     "mekanism_utilities:mekstyled_circuit_cutter",
+    "mekanism_utilities:mekstyled_crystal_assembler",
+    "mekanism_utilities:mekstyled_reaction_chamber",
     "mekanism_utilities:submaterial_converter",
     "mekanism_utilities:tweaked_energized_smelter",
     "mekanism_utilities:standard_chemical_injection_chamber",
@@ -10,6 +13,8 @@
     "mekanism_utilities:standard_enrichment_chamber",
     "mekanism_utilities:standard_mekstyled_charger",
     "mekanism_utilities:standard_mekstyled_circuit_cutter",
+    "mekanism_utilities:standard_mekstyled_crystal_assembler",
+    "mekanism_utilities:standard_mekstyled_reaction_chamber",
     "mekanism_utilities:standard_purification_chamber",
     "mekanism_utilities:raw_redstone_block",
     "mekanism_utilities:raw_diamond_block",
@@ -18,6 +23,7 @@
     "mekanism_utilities:raw_quartz_block",
     "mekanism_utilities:raw_amethyst_block",
     "mekanism_utilities:raw_certus_quartz_block",
+    "mekanism_utilities:raw_entro_block",
     "mekanism_utilities:raw_fluorite_block",
     "mekanism_utilities:raw_coal_block",
     "mekanism_utilities:raw_netherite_block",

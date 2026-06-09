@@ -1,0 +1,51 @@
+{
+  "type": "extendedae:crystal_assembler",
+  "input_fluid": {
+    "amount": 10000,
+    "ingredient": {
+      "fluid": "minecraft:lava"
+    }
+  },
+  "input_items": [
+    {
+      "amount": 4,
+      "ingredient": {
+        "item": "mekanism:pigment_extractor"
+      }
+    },
+    {
+      "amount": 2,
+      "ingredient": {
+        "item": "ae2:cell_component_4k"
+      }
+    },
+    {
+      "amount": 16,
+      "ingredient": {
+        "item": "mekanism:dynamic_tank"
+      }
+    },
+    {
+      "amount": 16,
+      "ingredient": {
+        "item": "mekanism:dye_base"
+      }
+    },
+    {
+      "amount": 8,
+      "ingredient": {
+        "item": "ae2:quartz_vibrant_glass"
+      }
+    },
+    {
+      "amount": 32,
+      "ingredient": {
+        "tag": "c:ingots/tin"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "mekanism_utilities:me_infinity_rainbow_cell"
+  }
+}

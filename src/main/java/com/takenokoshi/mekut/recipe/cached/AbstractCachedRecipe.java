@@ -22,7 +22,7 @@ import mekanism.api.recipes.cache.CachedRecipe.OperationTracker;
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
 import net.minecraft.world.item.crafting.Recipe;
 
-public abstract class AbstractCachedRecipe<RECIPE extends Recipe<?>> {
+public abstract class AbstractCachedRecipe<RECIPE extends Recipe<?>> implements ICachedRecipe<RECIPE> {
 
     protected final RECIPE recipe;
     private Set<RecipeError> errors = Collections.emptySet();

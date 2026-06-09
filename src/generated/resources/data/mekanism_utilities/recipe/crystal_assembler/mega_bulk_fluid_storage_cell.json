@@ -1,0 +1,38 @@
+{
+  "type": "extendedae:crystal_assembler",
+  "input_fluid": {
+    "amount": 5000,
+    "ingredient": {
+      "fluid": "mekanism:heavy_water"
+    }
+  },
+  "input_items": [
+    {
+      "ingredient": {
+        "item": "megacells:bulk_cell_component"
+      }
+    },
+    {
+      "amount": 4,
+      "ingredient": {
+        "tag": "c:ingots/netherite"
+      }
+    },
+    {
+      "amount": 4,
+      "ingredient": {
+        "item": "ae2:quartz_glass"
+      }
+    },
+    {
+      "amount": 4,
+      "ingredient": {
+        "item": "ae2:sky_dust"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "mekanism_utilities:mega_bulk_fluid_storage_cell"
+  }
+}

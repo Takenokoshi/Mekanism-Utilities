@@ -25,6 +25,7 @@ public record OreAndRawData(String name, ItemStack raw, int oreAmount) {
         List<OreAndRawData> list = new ArrayList<>();
         list.add(material(MUMaterial.AMETHYST, 12, 1));
         list.add(material(MUMaterial.CERTUS_QUARTZ, 12, 1));
+        list.add(material(MUMaterial.ENTRO, 12, 1));
         list.add(material(MUMaterial.COAL, 3, 1));
         list.add(material(MUMaterial.DIAMOND, 3, 1));
         list.add(material(MUMaterial.EMERALD, 3, 1));

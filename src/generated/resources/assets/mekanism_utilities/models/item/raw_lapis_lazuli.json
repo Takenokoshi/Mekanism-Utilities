@@ -1,7 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "minecraft:item/lapis_lazuli",
-    "layer1": "mekanism_utilities:item/raw/stone_layer"
+    "layer0": "mekanism_utilities:item/raw/lapis_lazuli"
   }
 }

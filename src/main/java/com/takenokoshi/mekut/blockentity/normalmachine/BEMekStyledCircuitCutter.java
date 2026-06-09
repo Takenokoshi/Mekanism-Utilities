@@ -4,7 +4,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.glodblock.github.extendedae.recipe.CircuitCutterRecipe;
-import com.takenokoshi.mekut.blockentity.base.BEMultiScaledRecipeMachine;
+import com.takenokoshi.mekut.blockentity.base.BEMultiScaledProgressMachine;
 import com.takenokoshi.mekut.blockentity.interfaces.IMekStyledCircuitCutter;
 import com.takenokoshi.mekut.recipe.cached.AbstractCachedRecipe;
 import com.takenokoshi.mekut.recipe.cached.MekStyledCircuitCutterCachedRecipe;
@@ -31,7 +31,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class BEMekStyledCircuitCutter extends BEMultiScaledRecipeMachine<CircuitCutterRecipe>
+public class BEMekStyledCircuitCutter extends BEMultiScaledProgressMachine<CircuitCutterRecipe>
         implements IMekStyledCircuitCutter {
 
     private InputInventorySlot inputSlot;

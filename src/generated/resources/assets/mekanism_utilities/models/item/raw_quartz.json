@@ -1,7 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "minecraft:item/quartz",
-    "layer1": "mekanism_utilities:item/raw/netherrack_layer"
+    "layer0": "mekanism_utilities:item/raw/quartz"
   }
 }

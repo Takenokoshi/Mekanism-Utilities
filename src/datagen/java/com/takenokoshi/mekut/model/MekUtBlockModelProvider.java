@@ -1,7 +1,6 @@
 package com.takenokoshi.mekut.model;
 
 import com.takenokoshi.mekut.core.MekUtConstants;
-import com.takenokoshi.mekut.enums.MUMaterial;
 import com.takenokoshi.mekut.registries.MekUtBlocks;
 import com.takenokoshi.mekut.registries.MekUtFluids;
 import com.takenokoshi.mekut.registries.MekUtMachines;
@@ -35,36 +34,31 @@ public class MekUtBlockModelProvider extends BlockStateProvider {
                 models().cubeAll("block/ore/amethyst", modLoc("block/ore/amethyst")));
         simpleBlockWithItem(MekUtBlocks.CERTUS_QUARTZ_ORE.get(),
                 models().cubeAll("block/ore/certus_quartz", modLoc("block/ore/certus_quartz")));
+        simpleBlockWithItem(MekUtBlocks.ENTRO_ORE.get(),
+                models().cubeAll("block/ore/entro", modLoc("block/ore/entro")));
         simpleBlockWithItem(MekUtBlocks.NETHERITE_ORE.get(),
                 models().cubeAll("block/ore/netherite", modLoc("block/ore/netherite")));
 
-        simpleBlockWithItem(MekUtBlocks.RAW_MU_MATERIALS_BLOCK.get(MUMaterial.AMETHYST).get(),
-                new ModelFile.UncheckedModelFile(modLoc("block/ore/amethyst")));
-        simpleBlockWithItem(MekUtBlocks.RAW_MU_MATERIALS_BLOCK.get(MUMaterial.CERTUS_QUARTZ).get(),
-                new ModelFile.UncheckedModelFile(modLoc("block/ore/certus_quartz")));
-        simpleBlockWithItem(MekUtBlocks.RAW_MU_MATERIALS_BLOCK.get(MUMaterial.COAL).get(),
-                new ModelFile.UncheckedModelFile(mcLoc("block/coal_ore")));
-        simpleBlockWithItem(MekUtBlocks.RAW_MU_MATERIALS_BLOCK.get(MUMaterial.DIAMOND).get(),
-                new ModelFile.UncheckedModelFile(mcLoc("block/diamond_ore")));
-        simpleBlockWithItem(MekUtBlocks.RAW_MU_MATERIALS_BLOCK.get(MUMaterial.EMERALD).get(),
-                new ModelFile.UncheckedModelFile(mcLoc("block/emerald_ore")));
-        simpleBlockWithItem(MekUtBlocks.RAW_MU_MATERIALS_BLOCK.get(MUMaterial.FLUORITE).get(),
-                new ModelFile.UncheckedModelFile(Mekanism.rl("block/ore/fluorite")));
-        simpleBlockWithItem(MekUtBlocks.RAW_MU_MATERIALS_BLOCK.get(MUMaterial.LAPIS_LAZULI).get(),
-                new ModelFile.UncheckedModelFile(mcLoc("block/lapis_ore")));
-        simpleBlockWithItem(MekUtBlocks.RAW_MU_MATERIALS_BLOCK.get(MUMaterial.NETHERITE).get(),
-                new ModelFile.UncheckedModelFile(modLoc("block/ore/netherite")));
-        simpleBlockWithItem(MekUtBlocks.RAW_MU_MATERIALS_BLOCK.get(MUMaterial.QUARTZ).get(),
-                new ModelFile.UncheckedModelFile(mcLoc("block/nether_quartz_ore")));
-        simpleBlockWithItem(MekUtBlocks.RAW_MU_MATERIALS_BLOCK.get(MUMaterial.REDSTONE).get(),
-                new ModelFile.UncheckedModelFile(mcLoc("block/redstone_ore")));
+        var wipModel = models().cubeAll("wip_block", modLoc("block/wip"));
+        MekUtBlocks.RAW_MU_MATERIALS_BLOCK.forEach((material, def) -> {
+            simpleBlockWithItem(def.get(), wipModel);
+        });
 
+        mekutNormalMachine(MekUtMachines.COMPACT_SUPERCRITICAL_PHASE_SHIFTER.getBlockObject(),
+                MekUtConstants.rl("block/normal_machine/sps_front"),
+                MekUtConstants.rl("block/normal_machine/sps_front_active"));
         mekutNormalMachine(MekUtMachines.MEKSTYLED_CHARGER.getBlockObject(),
                 MekUtConstants.rl("block/normal_machine/mekstyled_charger_front"),
                 MekUtConstants.rl("block/normal_machine/mekstyled_charger_front_active"));
         mekutNormalMachine(MekUtMachines.MEKSTYLED_CIRCUIT_CUTTER.getBlockObject(),
                 MekUtConstants.rl("block/normal_machine/mekstyled_circuit_cutter_front"),
                 MekUtConstants.rl("block/normal_machine/mekstyled_circuit_cutter_front_active"));
+        mekutNormalMachine(MekUtMachines.MEKSTYLED_CRYSTAL_ASSEMBLER.getBlockObject(),
+                MekUtConstants.rl("block/normal_machine/mekstyled_crystal_assembler_front"),
+                MekUtConstants.rl("block/normal_machine/mekstyled_crystal_assembler_front_active"));
+        mekutNormalMachine(MekUtMachines.MEKSTYLED_REACTION_CHAMBER.getBlockObject(),
+                MekUtConstants.rl("block/normal_machine/mekstyled_reaction_chamber_front"),
+                MekUtConstants.rl("block/normal_machine/mekstyled_reaction_chamber_front_active"));
         mekutNormalMachine(MekUtMachines.SUBMATERIAL_CONVERTER.getBlockObject(),
                 MekUtConstants.rl("block/normal_machine/submaterial_converter_front"),
                 MekUtConstants.rl("block/normal_machine/submaterial_converter_front_active"));
@@ -89,6 +83,12 @@ public class MekUtBlockModelProvider extends BlockStateProvider {
         mekutStandardMachine(MekUtMachines.STANDARD_MEKSTYLED_CIRCUIT_CUTTER.getBlockObject(),
                 MekUtConstants.rl("block/standard_machine/mekstyled_circuit_cutter_front"),
                 MekUtConstants.rl("block/standard_machine/mekstyled_circuit_cutter_front_active"));
+        mekutStandardMachine(MekUtMachines.STANDARD_MEKSTYLED_CRYSTAL_ASSEMBLER.getBlockObject(),
+                MekUtConstants.rl("block/standard_machine/mekstyled_crystal_assembler_front"),
+                MekUtConstants.rl("block/standard_machine/mekstyled_crystal_assembler_front_active"));
+        mekutStandardMachine(MekUtMachines.STANDARD_MEKSTYLED_REACTION_CHAMBER.getBlockObject(),
+                MekUtConstants.rl("block/standard_machine/mekstyled_reaction_chamber_front"),
+                MekUtConstants.rl("block/standard_machine/mekstyled_reaction_chamber_front_active"));
         mekutStandardMachine(MekUtMachines.STANDARD_PURIFICATION_CHAMBER.getBlockObject(),
                 MekUtConstants.rl("block/standard_machine/purification_chamber_front"),
                 MekUtConstants.rl("block/standard_machine/purification_chamber_front_active"));

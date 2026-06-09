@@ -3,7 +3,7 @@ package com.takenokoshi.mekut.blockentity.standardmachine;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.takenokoshi.mekut.blockentity.base.BEMultiScaledRecipeMachine;
+import com.takenokoshi.mekut.blockentity.base.BEMultiScaledProgressMachine;
 import com.takenokoshi.mekut.blockentity.interfaces.ITweakedEnergizedSmelter;
 import com.takenokoshi.mekut.core.MekUtMathUtils;
 import com.takenokoshi.mekut.recipe.cached.AbstractCachedRecipe;
@@ -36,7 +36,7 @@ import net.minecraft.world.item.crafting.SmeltingRecipe;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class BEStandardEnergizedSmelter extends BEMultiScaledRecipeMachine<SmeltingRecipe>
+public class BEStandardEnergizedSmelter extends BEMultiScaledProgressMachine<SmeltingRecipe>
         implements ITweakedEnergizedSmelter {
 
     private InputInventorySlot inputSlot;

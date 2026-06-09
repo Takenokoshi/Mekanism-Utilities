@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "minecraft:block/coal_ore"
+      "model": "mekanism_utilities:block/wip_block"
     }
   }
 }

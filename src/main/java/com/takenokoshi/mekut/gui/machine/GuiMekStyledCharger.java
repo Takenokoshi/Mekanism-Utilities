@@ -2,7 +2,7 @@ package com.takenokoshi.mekut.gui.machine;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.takenokoshi.mekut.blockentity.base.BlockEntityMekUtRecipeMachine;
+import com.takenokoshi.mekut.blockentity.base.BlockEntityMekUtProgressMachine;
 import com.takenokoshi.mekut.blockentity.interfaces.IMekStyledCharger;
 
 import appeng.recipes.handlers.ChargerRecipe;
@@ -19,7 +19,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 
-public class GuiMekStyledCharger<BE extends BlockEntityMekUtRecipeMachine<ChargerRecipe> & IMekStyledCharger>
+public class GuiMekStyledCharger<BE extends BlockEntityMekUtProgressMachine<ChargerRecipe> & IMekStyledCharger>
         extends GuiConfigurableTile<BE, MekanismTileContainer<BE>> {
 
     public GuiMekStyledCharger(MekanismTileContainer<BE> container, Inventory inv, Component title) {

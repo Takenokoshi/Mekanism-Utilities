@@ -4,7 +4,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.glodblock.github.extendedae.recipe.CircuitCutterRecipe;
-import com.takenokoshi.mekut.blockentity.base.BEMultiScaledRecipeMachine;
+import com.takenokoshi.mekut.blockentity.base.BEMultiScaledProgressMachine;
 import com.takenokoshi.mekut.blockentity.interfaces.IMekStyledCircuitCutter;
 import com.takenokoshi.mekut.core.MekUtMathUtils;
 import com.takenokoshi.mekut.recipe.cached.AbstractCachedRecipe;
@@ -32,7 +32,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class BEStandardMekStyledCircuitCutter extends BEMultiScaledRecipeMachine<CircuitCutterRecipe>
+public class BEStandardMekStyledCircuitCutter extends BEMultiScaledProgressMachine<CircuitCutterRecipe>
         implements IMekStyledCircuitCutter {
 
     private InputInventorySlot inputSlot;
@@ -44,9 +44,9 @@ public class BEStandardMekStyledCircuitCutter extends BEMultiScaledRecipeMachine
 
     public BEStandardMekStyledCircuitCutter(Holder<Block> blockProvider, BlockPos pos, BlockState state) {
         super(blockProvider, pos, state, TRACKED_ERROR_TYPES,
-                MekUtMathUtils.getTicksAccelerated(60, 6),
-                r -> MekUtMathUtils.getTicksAccelerated(60, 6),
-                MekUtMathUtils.getBaselineAccelerated(60, 6));
+                MekUtMathUtils.getTicksAccelerated(100, 6),
+                r -> MekUtMathUtils.getTicksAccelerated(100, 6),
+                MekUtMathUtils.getBaselineAccelerated(100, 6));
         configComponent.setupItemIOConfig(inputSlot, outputSlot, energySlot);
         configComponent.setupInputConfig(TransmissionType.ENERGY, energyContainer);
         ejectorComponent = new TileComponentEjector(this)

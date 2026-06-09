@@ -3,7 +3,7 @@ package com.takenokoshi.mekut.blockentity.normalmachine;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.takenokoshi.mekut.blockentity.base.BEMultiScaledRecipeMachine;
+import com.takenokoshi.mekut.blockentity.base.BEMultiScaledProgressMachine;
 import com.takenokoshi.mekut.blockentity.interfaces.IMekStyledCharger;
 import com.takenokoshi.mekut.recipe.cached.AbstractCachedRecipe;
 import com.takenokoshi.mekut.recipe.cached.MekStyledChargerCachedRecipe;
@@ -29,7 +29,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class BEMekStyledCharger extends BEMultiScaledRecipeMachine<ChargerRecipe> implements IMekStyledCharger {
+public class BEMekStyledCharger extends BEMultiScaledProgressMachine<ChargerRecipe> implements IMekStyledCharger {
 
     private InputInventorySlot inputSlot;
     private OutputInventorySlot outputSlot;

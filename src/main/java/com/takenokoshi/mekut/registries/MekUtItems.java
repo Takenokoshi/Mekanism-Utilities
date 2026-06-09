@@ -9,7 +9,7 @@ import java.util.function.Predicate;
 import com.takenokoshi.mekut.core.MekUtConstants;
 import com.takenokoshi.mekut.enums.MUMaterial;
 import com.takenokoshi.mekut.item.XpCrystalItem;
-import com.takenokoshi.mekut.item.cell.rainbow.InfinityRainbowCellItem;
+import com.takenokoshi.mekut.item.cell.bulk.MUBulkCellItem;
 
 import mekanism.common.registration.impl.ItemDeferredRegister;
 import mekanism.common.registration.impl.ItemRegistryObject;
@@ -52,8 +52,13 @@ public class MekUtItems {
     public static final ItemRegistryObject<Item> DARK_RED_DYE = ITEMS.register("dark_red_dye");
     public static final ItemRegistryObject<Item> AQUA_DYE = ITEMS.register("aqua_dye");
 
-    public static final ItemRegistryObject<InfinityRainbowCellItem> ME_INFINITY_RAINBOW_CELL = ITEMS
-            .registerItem("me_infinity_rainbow_cell", InfinityRainbowCellItem::new);
+    public static final ItemRegistryObject<Item> ME_INFINITY_RAINBOW_CELL = ITEMS.register("me_infinity_rainbow_cell");
+    public static final ItemRegistryObject<Item> ME_INFINITY_STONE_CELL = ITEMS.register("me_infinity_stone_cell");
+
+    public static final ItemRegistryObject<MUBulkCellItem<?>> MEGA_BULK_FLUID_STORAGE_CELL = ITEMS
+            .registerItem("mega_bulk_fluid_storage_cell", MUBulkCellItem::fluid);
+    public static final ItemRegistryObject<MUBulkCellItem<?>> MEGA_BULK_CHEMICAL_STORAGE_CELL = ITEMS
+            .registerItem("mega_bulk_chemical_storage_cell", MUBulkCellItem::chemical);
 
     public static final Map<MUMaterial, ItemRegistryObject<?>> RAW_MU_MATERIALS = registerMaterials(
             m -> true,

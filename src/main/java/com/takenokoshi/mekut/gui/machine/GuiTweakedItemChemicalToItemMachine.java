@@ -2,7 +2,7 @@ package com.takenokoshi.mekut.gui.machine;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.takenokoshi.mekut.blockentity.prefab.BEBasicItemChemicalToItemMachine;
+import com.takenokoshi.mekut.blockentity.prefab.BEBasicItemStackChemicalToItemStackMachine;
 
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
 import mekanism.client.gui.GuiConfigurableTile;
@@ -17,7 +17,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 
-public class GuiTweakedItemChemicalToItemMachine<BE extends BEBasicItemChemicalToItemMachine>
+public class GuiTweakedItemChemicalToItemMachine<BE extends BEBasicItemStackChemicalToItemStackMachine>
         extends GuiConfigurableTile<BE, MekanismTileContainer<BE>> {
 
     public GuiTweakedItemChemicalToItemMachine(MekanismTileContainer<BE> container, Inventory inv, Component title) {
@@ -31,7 +31,7 @@ public class GuiTweakedItemChemicalToItemMachine<BE extends BEBasicItemChemicalT
         addRenderableWidget(new GuiVerticalPowerBar(this, tile.getEnergyContainer(), 164, 16))
                 .warning(WarningType.NOT_ENOUGH_ENERGY, tile.getWarningCheck(RecipeError.NOT_ENOUGH_ENERGY));
         addRenderableWidget(new GuiEnergyTab(this, tile.getEnergyContainer(), tile::getEnergyUsed));
-        addRenderableWidget(new GuiProgress(tile::getActive, ProgressType.BAR, this, 86, 38).recipeViewerCategory(tile))
+        addRenderableWidget(new GuiProgress(tile::getActive, ProgressType.BAR, this, 86, 38))
                 .warning(WarningType.INPUT_DOESNT_PRODUCE_OUTPUT,
                         tile.getWarningCheck(RecipeError.INPUT_DOESNT_PRODUCE_OUTPUT));
         addRenderableWidget(new GuiChemicalBar(this,

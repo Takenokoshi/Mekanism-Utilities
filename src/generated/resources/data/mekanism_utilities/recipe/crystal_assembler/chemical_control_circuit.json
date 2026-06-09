@@ -1,0 +1,26 @@
+{
+  "type": "extendedae:crystal_assembler",
+  "input_fluid": {
+    "amount": 1000,
+    "ingredient": {
+      "fluid": "minecraft:water"
+    }
+  },
+  "input_items": [
+    {
+      "ingredient": {
+        "item": "mekanism_utilities:standard_control_circuit"
+      }
+    },
+    {
+      "amount": 8,
+      "ingredient": {
+        "item": "mekanism:upgrade_chemical"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "mekanism_utilities:chemical_control_circuit"
+  }
+}

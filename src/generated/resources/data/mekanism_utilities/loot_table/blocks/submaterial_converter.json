@@ -21,6 +21,7 @@
                 "mekanism:side_config",
                 "mekanism:upgrades",
                 "mekanism_empowered:inserter_config",
+                "mekanism:items",
                 "mekanism:chemicals"
               ],
               "source": "block_entity"

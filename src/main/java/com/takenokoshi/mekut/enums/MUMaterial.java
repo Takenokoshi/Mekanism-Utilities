@@ -8,6 +8,7 @@ public enum MUMaterial {
     QUARTZ("quartz", 0xF5E6DC, true),
     AMETHYST("amethyst", 0xA361FF, true),
     CERTUS_QUARTZ("certus_quartz", 0xC9F2FF, true),
+    ENTRO("entro", 0x03b99a, true),
     FLUORITE("fluorite", 0x78FFBE, true),
     COAL("coal", 0x2D2D2D, true),
     NETHERITE("netherite", 0x433D47, false),

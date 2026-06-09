@@ -22,6 +22,7 @@ public class MekUtRecipeProvider extends RecipeProvider {
         BuildChemicalConvertionRecipe.build(output);
         BuildCompressingRecipe.build(output);
         BuildCraftingRecipe.build(output, RecipeProvider::has);
+        BuildCrystalAssemblerRecipe.build(output);
         BuildCrystallizingRecipe.build(output);
         BuildEnrichingRecipe.build(output);
         BuildInjectingRecipe.build(output);

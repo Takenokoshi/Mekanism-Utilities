@@ -5,8 +5,8 @@ import java.util.stream.Stream;
 
 import org.jetbrains.annotations.Nullable;
 
-import com.takenokoshi.mekut.recipe.IMekUtRecipeTypeProvider;
-import com.takenokoshi.mekut.recipe.MekUtRecipeType;
+import com.takenokoshi.mekut.recipe.type.IMekUtRecipeTypeProvider;
+import com.takenokoshi.mekut.recipe.type.MekUtRecipeType;
 
 import mekanism.api.text.TextComponentUtil;
 import mekanism.client.recipe_viewer.type.IRecipeViewerRecipeType;

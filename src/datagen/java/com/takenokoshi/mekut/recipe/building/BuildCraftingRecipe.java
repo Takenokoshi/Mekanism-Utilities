@@ -21,6 +21,7 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.ItemLike;
+import net.pedroksl.advanced_ae.common.definitions.AAEBlocks;
 
 public class BuildCraftingRecipe {
 
@@ -121,6 +122,8 @@ public class BuildCraftingRecipe {
                 MekanismBlocks.ENERGIZED_SMELTER));
         TWEAKED_MACHINES.add(new SimpleMachineRecipeData(MekUtMachines.MEKSTYLED_CHARGER, AEBlocks.CHARGER));
         TWEAKED_MACHINES.add(new SimpleMachineRecipeData(MekUtMachines.MEKSTYLED_CIRCUIT_CUTTER, EAESingletons.CIRCUIT_CUTTER));
+        TWEAKED_MACHINES.add(new SimpleMachineRecipeData(MekUtMachines.MEKSTYLED_CRYSTAL_ASSEMBLER, EAESingletons.CRYSTAL_ASSEMBLER));
+        TWEAKED_MACHINES.add(new SimpleMachineRecipeData(MekUtMachines.MEKSTYLED_REACTION_CHAMBER, AAEBlocks.REACTION_CHAMBER));
         STANDARD_GAS_MACHINES.add(new SimpleMachineRecipeData(MekUtMachines.STANDARD_CHEMICAL_INJECTION_CHAMBER,
                 MekanismBlocks.CHEMICAL_INJECTION_CHAMBER));
         STANDARD_MACHINES.add(new SimpleMachineRecipeData(MekUtMachines.STANDARD_CRUSHER,
@@ -133,6 +136,10 @@ public class BuildCraftingRecipe {
                 MekUtMachines.MEKSTYLED_CHARGER));
         STANDARD_MACHINES.add(new SimpleMachineRecipeData(MekUtMachines.STANDARD_MEKSTYLED_CIRCUIT_CUTTER,
                 MekUtMachines.MEKSTYLED_CIRCUIT_CUTTER));
+        STANDARD_MACHINES.add(new SimpleMachineRecipeData(MekUtMachines.STANDARD_MEKSTYLED_CRYSTAL_ASSEMBLER,
+                MekUtMachines.MEKSTYLED_CRYSTAL_ASSEMBLER));
+        STANDARD_MACHINES.add(new SimpleMachineRecipeData(MekUtMachines.STANDARD_MEKSTYLED_REACTION_CHAMBER,
+                MekUtMachines.MEKSTYLED_REACTION_CHAMBER));
         STANDARD_GAS_MACHINES.add(new SimpleMachineRecipeData(MekUtMachines.STANDARD_PURIFICATION_CHAMBER,
                 MekanismBlocks.PURIFICATION_CHAMBER));
     }

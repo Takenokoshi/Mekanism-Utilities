@@ -8,6 +8,7 @@ import mekanism.api.datagen.recipe.builder.ItemStackToItemStackRecipeBuilder;
 import mekanism.api.recipes.ingredients.creator.IItemStackIngredientCreator;
 import mekanism.api.recipes.ingredients.creator.IngredientCreatorAccess;
 import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.world.item.Items;
 
 public class BuildEnrichingRecipe {
 
@@ -23,5 +24,10 @@ public class BuildEnrichingRecipe {
                         creatorI.from(AEItems.SINGULARITY),
                         MekUtItems.ENRICHED_SINGULARITY.asStack(1))
                 .build(output, MekUtConstants.rl("enriching/enriched_singurality"));
+        ItemStackToItemStackRecipeBuilder
+                .enriching(
+                        creatorI.from(Items.SNOWBALL, 4),
+                        Items.ICE.getDefaultInstance())
+                .build(output, MekUtConstants.rl("enriching/ice"));
     }
 }

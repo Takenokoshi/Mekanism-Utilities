@@ -3,7 +3,6 @@ package com.takenokoshi.mekut.gui.machine;
 import org.jetbrains.annotations.NotNull;
 
 import com.takenokoshi.mekut.blockentity.prefab.BEBasicItemStackToItemStackMachine;
-
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
 import mekanism.client.gui.GuiConfigurableTile;
 import mekanism.client.gui.element.GuiUpArrow;
@@ -32,7 +31,7 @@ public class GuiBasicItemStackToItemStackMachine<BE extends BEBasicItemStackToIt
         addRenderableWidget(new GuiVerticalPowerBar(this, tile.getEnergyContainer(), 164, 16))
               .warning(WarningType.NOT_ENOUGH_ENERGY, tile.getWarningCheck(RecipeError.NOT_ENOUGH_ENERGY));
         addRenderableWidget(new GuiEnergyTab(this, tile.getEnergyContainer(), tile::getEnergyUsed));
-        addRenderableWidget(new GuiProgress(tile::getActive, ProgressType.BAR, this, 86, 38).recipeViewerCategory(tile))
+        addRenderableWidget(new GuiProgress(tile::getActive, ProgressType.BAR, this, 86, 38))
               .warning(WarningType.INPUT_DOESNT_PRODUCE_OUTPUT, tile.getWarningCheck(RecipeError.INPUT_DOESNT_PRODUCE_OUTPUT));
     }
 

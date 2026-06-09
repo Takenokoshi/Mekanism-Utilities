@@ -3,10 +3,11 @@ package com.takenokoshi.mekut.recipe.lookup;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.takenokoshi.mekut.recipe.IMekUtRecipeTypeProvider;
-import com.takenokoshi.mekut.recipe.cached.AbstractCachedRecipe;
+import com.takenokoshi.mekut.recipe.cached.ICachedRecipe;
+import com.takenokoshi.mekut.recipe.type.IMekUtRecipeTypeProvider;
 
 import mekanism.api.IContentsListener;
+import mekanism.client.recipe_viewer.type.IRecipeViewerRecipeType;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.Level;
@@ -24,6 +25,10 @@ public interface IMekUtRecipeLookUpHandler<RECIPE extends Recipe<?>> extends ICo
         return null;
     }
 
+    default @Nullable IRecipeViewerRecipeType<RECIPE> recipeViewerType() {
+        return null;
+    }
+
     default int getSavedOperatingTicks(int cacheIndex) {
         return 0;
     }
@@ -32,9 +37,9 @@ public interface IMekUtRecipeLookUpHandler<RECIPE extends Recipe<?>> extends ICo
     RECIPE getRecipe(int cacheIndex);
 
     @NotNull
-    AbstractCachedRecipe<RECIPE> createNewCachedRecipe(@NotNull RECIPE recipe, int cacheIndex);
+    ICachedRecipe<RECIPE> createNewCachedRecipe(@NotNull RECIPE recipe, int cacheIndex);
 
-    default void onCachedRecipeChanged(@Nullable AbstractCachedRecipe<RECIPE> cachedRecipe, int cacheIndex) {
+    default void onCachedRecipeChanged(@Nullable ICachedRecipe<RECIPE> cachedRecipe, int cacheIndex) {
         clearRecipeErrors(cacheIndex);
     }
 

@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "mekanism_utilities:block/ore/certus_quartz"
+      "model": "mekanism_utilities:block/wip_block"
     }
   }
 }

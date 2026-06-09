@@ -3,7 +3,7 @@ package com.takenokoshi.mekut.recipe.lookup;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.takenokoshi.mekut.recipe.cached.AbstractCachedRecipe;
+import com.takenokoshi.mekut.recipe.cached.ICachedRecipe;
 
 import mekanism.api.IContentsListener;
 import mekanism.api.energy.IEnergyContainer;
@@ -15,7 +15,7 @@ public class MekUtRecipeCacheLookupMonitor<RECIPE extends Recipe<?>>
 
     private final IMekUtRecipeLookUpHandler<RECIPE> handler;
     protected final int cacheIndex;
-    protected AbstractCachedRecipe<RECIPE> cachedRecipe;
+    protected ICachedRecipe<RECIPE> cachedRecipe;
     protected boolean hasNoRecipe;
    protected boolean shouldUnpause;
 
@@ -52,7 +52,7 @@ public class MekUtRecipeCacheLookupMonitor<RECIPE extends Recipe<?>>
    }
 
    public boolean updateAndProcess() {
-      AbstractCachedRecipe<RECIPE> oldCache = this.cachedRecipe;
+      ICachedRecipe<RECIPE> oldCache = this.cachedRecipe;
       this.cachedRecipe = this.getUpdatedCache(this.cacheIndex);
       if (this.cachedRecipe != oldCache) {
          this.handler.onCachedRecipeChanged(this.cachedRecipe, this.cacheIndex);
@@ -72,7 +72,7 @@ public class MekUtRecipeCacheLookupMonitor<RECIPE extends Recipe<?>>
    }
 
     @Override
-    public void loadSavedData(@NotNull AbstractCachedRecipe<RECIPE> cached, int cacheIndex) {
+    public void loadSavedData(@NotNull ICachedRecipe<RECIPE> cached, int cacheIndex) {
         if (cachedIndexMatches(cacheIndex)) {
             IMekUtCachedRecipeHolder.super.loadSavedData(cached, cacheIndex);
         }
@@ -85,7 +85,7 @@ public class MekUtRecipeCacheLookupMonitor<RECIPE extends Recipe<?>>
     }
 
     @Override
-    public @Nullable AbstractCachedRecipe<RECIPE> getCachedRecipe(int cacheIndex) {
+    public @Nullable ICachedRecipe<RECIPE> getCachedRecipe(int cacheIndex) {
         return cachedIndexMatches(cacheIndex) ? cachedRecipe : null;
     }
 
@@ -95,7 +95,7 @@ public class MekUtRecipeCacheLookupMonitor<RECIPE extends Recipe<?>>
     }
 
     @Override
-    public @Nullable AbstractCachedRecipe<RECIPE> createNewCachedRecipe(@NotNull RECIPE recipe, int cacheIndex) {
+    public @Nullable ICachedRecipe<RECIPE> createNewCachedRecipe(@NotNull RECIPE recipe, int cacheIndex) {
         return cachedIndexMatches(cacheIndex) ? handler.createNewCachedRecipe(recipe, cacheIndex) : null;
     }
 

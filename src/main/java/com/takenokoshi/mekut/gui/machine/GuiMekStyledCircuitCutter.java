@@ -3,7 +3,7 @@ package com.takenokoshi.mekut.gui.machine;
 import org.jetbrains.annotations.NotNull;
 
 import com.glodblock.github.extendedae.recipe.CircuitCutterRecipe;
-import com.takenokoshi.mekut.blockentity.base.BlockEntityMekUtRecipeMachine;
+import com.takenokoshi.mekut.blockentity.base.BlockEntityMekUtProgressMachine;
 import com.takenokoshi.mekut.blockentity.interfaces.IMekStyledCircuitCutter;
 
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
@@ -19,7 +19,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 
-public class GuiMekStyledCircuitCutter<BE extends BlockEntityMekUtRecipeMachine<CircuitCutterRecipe> & IMekStyledCircuitCutter>
+public class GuiMekStyledCircuitCutter<BE extends BlockEntityMekUtProgressMachine<CircuitCutterRecipe> & IMekStyledCircuitCutter>
         extends GuiConfigurableTile<BE, MekanismTileContainer<BE>> {
 
     public GuiMekStyledCircuitCutter(MekanismTileContainer<BE> container, Inventory inv, Component title) {

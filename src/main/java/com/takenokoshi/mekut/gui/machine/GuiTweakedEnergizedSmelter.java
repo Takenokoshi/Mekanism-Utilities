@@ -2,7 +2,7 @@ package com.takenokoshi.mekut.gui.machine;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.takenokoshi.mekut.blockentity.base.BlockEntityMekUtRecipeMachine;
+import com.takenokoshi.mekut.blockentity.base.BlockEntityMekUtProgressMachine;
 import com.takenokoshi.mekut.blockentity.interfaces.ITweakedEnergizedSmelter;
 
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
@@ -20,7 +20,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
 
-public class GuiTweakedEnergizedSmelter<BE extends BlockEntityMekUtRecipeMachine<SmeltingRecipe> & ITweakedEnergizedSmelter>
+public class GuiTweakedEnergizedSmelter<BE extends BlockEntityMekUtProgressMachine<SmeltingRecipe> & ITweakedEnergizedSmelter>
         extends GuiConfigurableTile<BE, MekanismTileContainer<BE>> {
 
     public GuiTweakedEnergizedSmelter(MekanismTileContainer<BE> container, Inventory inv, Component title) {

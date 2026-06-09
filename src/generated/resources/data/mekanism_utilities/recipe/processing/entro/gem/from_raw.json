@@ -1,0 +1,11 @@
+{
+  "type": "mekanism:enriching",
+  "input": {
+    "count": 3,
+    "tag": "c:raw_materials/entro"
+  },
+  "output": {
+    "count": 4,
+    "id": "extendedae:entro_crystal"
+  }
+}

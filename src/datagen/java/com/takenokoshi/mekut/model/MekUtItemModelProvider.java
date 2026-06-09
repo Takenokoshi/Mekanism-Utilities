@@ -1,10 +1,8 @@
 package com.takenokoshi.mekut.model;
 
 import com.takenokoshi.mekut.core.MekUtConstants;
-import com.takenokoshi.mekut.enums.MUMaterial;
 import com.takenokoshi.mekut.registries.MekUtItems;
 
-import appeng.core.AppEng;
 import mekanism.common.Mekanism;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -22,36 +20,10 @@ public class MekUtItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        simpleItem(MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.DIAMOND).get())
-                .texture("layer0", MekUtConstants.rl("item/raw/diamond"));
-        simpleItem(MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.REDSTONE).get())
-                .texture("layer0", MekUtConstants.rl("item/raw/redstone"));
-        simpleItem(MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.NETHERITE).get())
-                .texture("layer0", MekUtConstants.rl("item/raw/netherite"));
 
-        simpleItem(MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.COAL).get())
-                .texture("layer0", mcLoc("item/coal"))
-                .texture("layer1", MekUtConstants.rl("item/raw/stone_layer"));
-        simpleItem(MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.AMETHYST).get())
-                .texture("layer0", mcLoc("item/amethyst_shard"))
-                .texture("layer1", MekUtConstants.rl("item/raw/stone_layer"));
-        simpleItem(MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.EMERALD).get())
-                .texture("layer0", mcLoc("item/emerald"))
-                .texture("layer1", MekUtConstants.rl("item/raw/stone_layer"));
-        simpleItem(MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.LAPIS_LAZULI).get())
-                .texture("layer0", mcLoc("item/lapis_lazuli"))
-                .texture("layer1", MekUtConstants.rl("item/raw/stone_layer"));
-        simpleItem(MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.QUARTZ).get())
-                .texture("layer0", mcLoc("item/quartz"))
-                .texture("layer1", MekUtConstants.rl("item/raw/netherrack_layer"));
-
-        getBuilder(MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.FLUORITE).getId().getPath())
-                .parent(new ModelFile.UncheckedModelFile(Mekanism.rl("item/fluorite_gem")))
-                .texture("layer1", MekUtConstants.rl("item/raw/stone_layer"));
-        getBuilder(MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.CERTUS_QUARTZ).getId().getPath())
-                .parent(new ModelFile.UncheckedModelFile(AppEng.makeId("item/certus_quartz_crystal")))
-                .texture("layer1", MekUtConstants.rl("item/raw/stone_layer"));
-
+        MekUtItems.RAW_MU_MATERIALS.forEach((material, registry) -> {
+            simpleItem(registry.get()).texture("layer0", MekUtConstants.rl("item/raw/" + material.name));
+        });
         MekUtItems.MU_MATERIALS_CLUMP.forEach((material, registry) -> {
             simpleItem(registry.get()).texture("layer0", MekUtConstants.rl("item/clump/" + material.name));
         });
@@ -107,6 +79,12 @@ public class MekUtItemModelProvider extends ItemModelProvider {
 
         simpleItem(MekUtItems.ME_INFINITY_RAINBOW_CELL.get())
                 .texture("layer0", MekUtConstants.rl("item/cell/infinity_rainbow"));
+        simpleItem(MekUtItems.ME_INFINITY_STONE_CELL.get())
+                .texture("layer0", MekUtConstants.rl("item/cell/infinity_stone"));
+        simpleItem(MekUtItems.MEGA_BULK_FLUID_STORAGE_CELL.get())
+                .texture("layer0", MekUtConstants.rl("item/cell/mega_bulk_fluid"));
+        simpleItem(MekUtItems.MEGA_BULK_CHEMICAL_STORAGE_CELL.get())
+                .texture("layer0", MekUtConstants.rl("item/cell/mega_bulk_chemical"));
     }
 
     public ItemModelBuilder simpleItem(Item item) {

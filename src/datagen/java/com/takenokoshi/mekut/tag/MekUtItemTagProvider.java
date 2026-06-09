@@ -49,6 +49,8 @@ public class MekUtItemTagProvider extends ItemTagsProvider {
                 .add(MekUtBlocks.AMETHYST_ORE.asItem());
         tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "ores/certus_quartz")))
                 .add(MekUtBlocks.CERTUS_QUARTZ_ORE.asItem());
+        tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "ores/entro")))
+                .add(MekUtBlocks.ENTRO_ORE.asItem());
         tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "ores/netherite")))
                 .add(MekUtBlocks.NETHERITE_ORE.asItem());
 

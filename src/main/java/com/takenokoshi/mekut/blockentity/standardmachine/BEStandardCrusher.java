@@ -4,12 +4,12 @@ import org.jetbrains.annotations.NotNull;
 
 import com.takenokoshi.mekut.blockentity.prefab.BEBasicItemStackToItemStackMachine;
 import com.takenokoshi.mekut.core.MekUtMathUtils;
+import com.takenokoshi.mekut.recipe.type.IMekUtRecipeTypeProvider;
+import com.takenokoshi.mekut.recipe.type.WrappedMekanismRecipeType;
 
 import mekanism.api.recipes.ItemStackToItemStackRecipe;
 import mekanism.client.recipe_viewer.type.IRecipeViewerRecipeType;
 import mekanism.client.recipe_viewer.type.RecipeViewerRecipeType;
-import mekanism.common.recipe.IMekanismRecipeTypeProvider;
-import mekanism.common.recipe.MekanismRecipeType;
 import mekanism.common.recipe.lookup.cache.InputRecipeCache.SingleItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
@@ -24,13 +24,13 @@ public class BEStandardCrusher extends BEBasicItemStackToItemStackMachine {
     }
 
     @Override
-    public @NotNull IMekanismRecipeTypeProvider<?, ItemStackToItemStackRecipe, SingleItem<ItemStackToItemStackRecipe>> getRecipeType() {
-        return MekanismRecipeType.CRUSHING;
+    public IRecipeViewerRecipeType<ItemStackToItemStackRecipe> recipeViewerType() {
+        return RecipeViewerRecipeType.CRUSHING;
     }
 
     @Override
-    public IRecipeViewerRecipeType<ItemStackToItemStackRecipe> recipeViewerType() {
-        return RecipeViewerRecipeType.CRUSHING;
+    public @NotNull IMekUtRecipeTypeProvider<?, ItemStackToItemStackRecipe, SingleItem<ItemStackToItemStackRecipe>> getRecipeType() {
+        return WrappedMekanismRecipeType.CRUSHING;
     }
 
 }

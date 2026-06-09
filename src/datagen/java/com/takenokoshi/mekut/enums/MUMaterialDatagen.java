@@ -2,6 +2,7 @@ package com.takenokoshi.mekut.enums;
 
 import java.util.EnumMap;
 
+import com.glodblock.github.extendedae.common.EAESingletons;
 import com.takenokoshi.mekut.registries.MekUtBlocks;
 
 import appeng.core.definitions.AEItems;
@@ -20,6 +21,7 @@ public class MUMaterialDatagen {
         // conut should be 1
         FINAL_ITEMS_MAP.put(MUMaterial.AMETHYST, new ItemStack(Items.AMETHYST_SHARD));
         FINAL_ITEMS_MAP.put(MUMaterial.CERTUS_QUARTZ, new ItemStack(AEItems.CERTUS_QUARTZ_CRYSTAL));
+        FINAL_ITEMS_MAP.put(MUMaterial.ENTRO, new ItemStack(EAESingletons.ENTRO_CRYSTAL));
         FINAL_ITEMS_MAP.put(MUMaterial.COAL, new ItemStack(Items.COAL));
         FINAL_ITEMS_MAP.put(MUMaterial.DIAMOND, new ItemStack(Items.DIAMOND));
         FINAL_ITEMS_MAP.put(MUMaterial.EMERALD, new ItemStack(Items.EMERALD));

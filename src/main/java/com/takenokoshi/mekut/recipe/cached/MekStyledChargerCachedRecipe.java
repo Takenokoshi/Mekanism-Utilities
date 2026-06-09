@@ -24,6 +24,7 @@ public class MekStyledChargerCachedRecipe extends AbstractCachedRecipe<ChargerRe
         this.outputHandler = outputHandler;
     }
 
+    @Override
     protected void calculateOperationsThisTick(OperationTracker tracker) {
         super.calculateOperationsThisTick(tracker);
         recipeInput = inputHandler.getRecipeInput(recipe.ingredient);

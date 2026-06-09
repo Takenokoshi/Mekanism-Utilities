@@ -3,23 +3,23 @@ package com.takenokoshi.mekut.recipe.lookup;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.takenokoshi.mekut.recipe.cached.AbstractCachedRecipe;
+import com.takenokoshi.mekut.recipe.cached.ICachedRecipe;
 
 import net.minecraft.world.item.crafting.Recipe;
 
 public interface IMekUtCachedRecipeHolder<RECIPE extends Recipe<?>> {
 
     @Nullable
-    default AbstractCachedRecipe<RECIPE> getUpdatedCache(int cacheIndex) {
+    default ICachedRecipe<RECIPE> getUpdatedCache(int cacheIndex) {
         boolean cacheInvalid = invalidateCache();
-        AbstractCachedRecipe<RECIPE> currentCache = cacheInvalid ? null : getCachedRecipe(cacheIndex);
+        ICachedRecipe<RECIPE> currentCache = cacheInvalid ? null : getCachedRecipe(cacheIndex);
         if (currentCache == null || !currentCache.isInputValid()) {
             if (cacheInvalid || !hasNoRecipe(cacheIndex)) {
                 RECIPE recipe = getRecipe(cacheIndex);
                 if (recipe == null) {
                     setHasNoRecipe(cacheIndex);
                 } else {
-                    AbstractCachedRecipe<RECIPE> cached = createNewCachedRecipe(recipe, cacheIndex);
+                    ICachedRecipe<RECIPE> cached = createNewCachedRecipe(recipe, cacheIndex);
                     if (currentCache == null || cached != null) {
                         if (currentCache == null && cached != null) {
                             loadSavedData(cached, cacheIndex);
@@ -32,7 +32,7 @@ public interface IMekUtCachedRecipeHolder<RECIPE extends Recipe<?>> {
         return currentCache;
     }
 
-    default void loadSavedData(@NotNull AbstractCachedRecipe<RECIPE> cached, int cacheIndex) {
+    default void loadSavedData(@NotNull ICachedRecipe<RECIPE> cached, int cacheIndex) {
         cached.loadSavedOperatingTicks(getSavedOperatingTicks(cacheIndex));
     }
 
@@ -41,13 +41,13 @@ public interface IMekUtCachedRecipeHolder<RECIPE extends Recipe<?>> {
     }
 
     @Nullable
-    AbstractCachedRecipe<RECIPE> getCachedRecipe(int cacheIndex);
+    ICachedRecipe<RECIPE> getCachedRecipe(int cacheIndex);
 
     @Nullable
     RECIPE getRecipe(int cacheIndex);
 
     @Nullable
-    AbstractCachedRecipe<RECIPE> createNewCachedRecipe(@NotNull RECIPE recipe, int cacheIndex);
+    ICachedRecipe<RECIPE> createNewCachedRecipe(@NotNull RECIPE recipe, int cacheIndex);
 
     default boolean invalidateCache() {
         return false;

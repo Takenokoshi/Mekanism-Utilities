@@ -4,7 +4,9 @@ import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
 import com.takenokoshi.mekut.config.MekUtConfig;
+import com.takenokoshi.mekut.item.cell.bulk.MUBulkCellHandler;
 import com.takenokoshi.mekut.item.cell.rainbow.InfinityRainbowCellHandler;
+import com.takenokoshi.mekut.item.cell.stone.InfinityStoneCellHandler;
 import com.takenokoshi.mekut.registries.*;
 
 import appeng.api.storage.StorageCells;
@@ -29,9 +31,12 @@ public class MekUt {
     private void addRegistrationListeners(IEventBus modEventBus) {
         MekUtBlocks.BLOCKS.register(modEventBus);
         MekUtChemicals.CHEMICALS.register(modEventBus);
+        MekUtDataComponents.DATA_COMPONENTS.register(modEventBus);
         MekUtFluids.FLUIDS.register(modEventBus);
         MekUtItems.ITEMS.register(modEventBus);
         MekUtMachines.MACHINES.register(modEventBus);
+        MekUtRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
+        MekUtRecipeTypes.RECIPE_TYPES.register(modEventBus);
         MekUtCreativeTabs.CREATIVE_TABS.register(modEventBus);
     }
 
@@ -41,5 +46,8 @@ public class MekUt {
 
     private void registerCellHandler(final FMLCommonSetupEvent event){
         StorageCells.addCellHandler(new InfinityRainbowCellHandler());
+        StorageCells.addCellHandler(new InfinityStoneCellHandler());
+        StorageCells.addCellHandler(MUBulkCellHandler.FLUID_HANDLER);
+        StorageCells.addCellHandler(MUBulkCellHandler.CHEMICAL_HANDLER);
     }
 }

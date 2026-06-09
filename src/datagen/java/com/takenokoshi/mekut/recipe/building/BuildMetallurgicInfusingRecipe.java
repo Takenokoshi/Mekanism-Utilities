@@ -69,5 +69,12 @@ public class BuildMetallurgicInfusingRecipe {
                         new ItemStack(Items.BLAZE_ROD, 1),
                         false)
                 .build(output, MekUtConstants.rl("metallurgic_infusing/blaze_rod"));
+        ItemStackChemicalToItemStackRecipeBuilder
+                .metallurgicInfusing(
+                        creatorI.from(Items.SLIME_BALL, 1),
+                        creatorC.from(MekUtChemicals.BLAZE_ETHER.asStack(50)),
+                        new ItemStack(Items.MAGMA_CREAM, 1),
+                        false)
+                .build(output, MekUtConstants.rl("metallurgic_infusing/magma_cream"));
     }
 }

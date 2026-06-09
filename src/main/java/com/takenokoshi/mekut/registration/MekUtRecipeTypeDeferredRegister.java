@@ -2,7 +2,7 @@ package com.takenokoshi.mekut.registration;
 
 import java.util.function.Function;
 
-import com.takenokoshi.mekut.recipe.MekUtRecipeType;
+import com.takenokoshi.mekut.recipe.type.MekUtRecipeType;
 
 import mekanism.common.recipe.lookup.cache.IInputRecipeCache;
 import mekanism.common.registration.MekanismDeferredRegister;

@@ -1,0 +1,63 @@
+{
+  "type": "extendedae:crystal_assembler",
+  "input_fluid": {
+    "amount": 1000,
+    "ingredient": {
+      "fluid": "mekanism_utilities:xp"
+    }
+  },
+  "input_items": [
+    {
+      "amount": 60,
+      "ingredient": {
+        "item": "mekanism:sps_casing"
+      }
+    },
+    {
+      "amount": 120,
+      "ingredient": {
+        "item": "mekanism:structural_glass"
+      }
+    },
+    {
+      "amount": 6,
+      "ingredient": {
+        "item": "mekanism:sps_port"
+      }
+    },
+    {
+      "amount": 2,
+      "ingredient": {
+        "item": "mekanism:supercharged_coil"
+      }
+    },
+    {
+      "amount": 2,
+      "ingredient": {
+        "item": "mekanism:ultimate_control_circuit"
+      }
+    },
+    {
+      "amount": 4,
+      "ingredient": {
+        "item": "mekanism:alloy_atomic"
+      }
+    },
+    {
+      "amount": 8,
+      "ingredient": {
+        "item": "mekanism_utilities:knowladge_control_circuit"
+      }
+    },
+    {
+      "amount": 16,
+      "ingredient": {
+        "item": "mekanism_utilities:xp_alloy"
+      }
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "mekanism_utilities:compact_supercritical_phase_shifter"
+  }
+}

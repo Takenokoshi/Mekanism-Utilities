@@ -1,0 +1,11 @@
+{
+  "type": "mekanism:enriching",
+  "input": {
+    "count": 4,
+    "item": "minecraft:snowball"
+  },
+  "output": {
+    "count": 1,
+    "id": "minecraft:ice"
+  }
+}

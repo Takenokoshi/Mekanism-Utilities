@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:raw_materials/entro"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "extendedae:entro_crystal"
+  }
+}
