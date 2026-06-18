@@ -1,5 +1,6 @@
 package com.takenokoshi.mekut.recipe.type;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
@@ -24,6 +25,8 @@ import net.neoforged.neoforge.server.ServerLifecycleHooks;
 public class MekUtRecipeType<VANILLA_INPUT extends RecipeInput, RECIPE extends Recipe<VANILLA_INPUT>, INPUT_CACHE extends IInputRecipeCache>
         implements RecipeType<RECIPE>, IMekUtRecipeTypeProvider<VANILLA_INPUT, RECIPE, INPUT_CACHE> {
 
+    private static final List<MekUtRecipeType<?,?,?>> RECIPE_TYPES = new ArrayList<>();
+
     private List<RecipeHolder<RECIPE>> cachedRecipes = Collections.emptyList();
     private final ResourceLocation registryName;
     private final INPUT_CACHE inputCache;
@@ -32,6 +35,7 @@ public class MekUtRecipeType<VANILLA_INPUT extends RecipeInput, RECIPE extends R
             Function<MekUtRecipeType<VANILLA_INPUT, RECIPE, INPUT_CACHE>, INPUT_CACHE> inputCacheCreator) {
         this.registryName = name;
         this.inputCache = inputCacheCreator.apply(this);
+        RECIPE_TYPES.add(this);
     }
 
     @Override
@@ -112,5 +116,10 @@ public class MekUtRecipeType<VANILLA_INPUT extends RecipeInput, RECIPE extends R
 
     protected boolean isRecipeComplete(RECIPE recipe) {
         return !recipe.isIncomplete();
+    }
+
+    //called from mixin for ReloadListener#onResourceManagerReload
+    public static void clearAllCaches(){
+        RECIPE_TYPES.forEach(MekUtRecipeType::clearCaches);
     }
 }

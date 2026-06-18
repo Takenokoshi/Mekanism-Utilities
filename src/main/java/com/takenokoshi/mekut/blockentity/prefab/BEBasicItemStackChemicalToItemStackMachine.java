@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.takenokoshi.mekut.blockentity.base.BlockEntityMekUtRecipeMachine;
-import com.takenokoshi.mekut.blockentity.interfaces.IHasMachineEnergyCntainer;
+import com.takenokoshi.mekut.blockentity.interfaces.IHasMachineEnergyContainer;
 import com.takenokoshi.mekut.recipe.cached.ICachedRecipe;
 import com.takenokoshi.mekut.recipe.cached.TweakedItemChemicalToItemCachedRecipe;
 import com.takenokoshi.mekut.recipe.lookup.IMekUtRecipeTypedLookupHandler;
@@ -48,7 +48,7 @@ public abstract class BEBasicItemStackChemicalToItemStackMachine
         extends BlockEntityMekUtRecipeMachine<ItemStackChemicalToItemStackRecipe>
         implements
         IMekUtRecipeTypedLookupHandler<ItemStackChemicalToItemStackRecipe, InputRecipeCache.ItemChemical<ItemStackChemicalToItemStackRecipe>>,
-        IHasMachineEnergyCntainer {
+        IHasMachineEnergyContainer {
 
     private static final List<RecipeError> TRACKED_ERROR_TYPES = List.of(
             RecipeError.NOT_ENOUGH_ENERGY,

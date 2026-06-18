@@ -36,15 +36,19 @@ public class SimpleMachineRegistryObject<BE extends TileEntityMekanism> extends
                 ), holder, beConstructor, beClass,
                 MekanismTileContainer::new, entry, operator);
     }
-
     public SimpleMachineRegistryObject(String name, BlockDeferredRegister blockRegister,
             TileEntityTypeDeferredRegister tileRegister, ContainerTypeDeferredRegister containerRegister,
             Function<Machine<BE>, BlockTileModel<BE, Machine<BE>>> blockCreator,
+            AttachedSideConfig attachedSideConfig,
+            Consumer<ItemRegistryObject<ItemBlockTooltip<BlockTileModel<BE, Machine<BE>>>>> holder,
             BlockEntityConstructor<BE, Machine<BE>, BlockTileModel<BE, Machine<BE>>> beConstructor,
             Class<BE> beClass, ILangEntry entry,
             UnaryOperator<MachineBuilder<Machine<BE>, BE, ?>> operator) {
-        this(name, blockRegister, tileRegister, containerRegister, blockCreator, item -> {
-        }, beConstructor, beClass, entry, operator);
+        super(name, blockRegister, tileRegister, containerRegister, blockCreator,
+                (block, properties) -> new ItemBlockTooltip<>(block, true, properties
+                      .component(MekanismDataComponents.EJECTOR, AttachedEjector.DEFAULT)
+                      .component(MekanismDataComponents.SIDE_CONFIG, attachedSideConfig)
+                ), holder, beConstructor, beClass,
+                MekanismTileContainer::new, entry, operator);
     }
-
 }

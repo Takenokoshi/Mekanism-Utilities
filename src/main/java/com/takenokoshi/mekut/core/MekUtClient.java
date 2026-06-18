@@ -5,6 +5,7 @@ import com.takenokoshi.mekut.blockentity.standardmachine.*;
 import com.takenokoshi.mekut.gui.machine.*;
 import com.takenokoshi.mekut.registries.MekUtFluids;
 import com.takenokoshi.mekut.registries.MekUtMachines;
+import com.takenokoshi.mekut.registries.MekUtScreens;
 
 import mekanism.client.ClientRegistrationUtil;
 import net.minecraft.client.Minecraft;
@@ -43,20 +44,13 @@ public class MekUtClient extends MekUt {
     }
 
     private void initScreens(RegisterMenuScreensEvent event) {
-        ClientRegistrationUtil.registerScreen(event, MekUtMachines.COMPACT_SUPERCRITICAL_PHASE_SHIFTER.getContainer(),
-                GuiCompactSPS<BECompactSPS>::new);
-        ClientRegistrationUtil.registerScreen(event, MekUtMachines.MEKSTYLED_CHARGER.getContainer(),
-                GuiMekStyledCharger<BEMekStyledCharger>::new);
+        MekUtScreens.registerScreens(event);
         ClientRegistrationUtil.registerScreen(event, MekUtMachines.MEKSTYLED_CIRCUIT_CUTTER.getContainer(),
                 GuiMekStyledCircuitCutter<BEMekStyledCircuitCutter>::new);
         ClientRegistrationUtil.registerScreen(event, MekUtMachines.MEKSTYLED_CRYSTAL_ASSEMBLER.getContainer(),
                 GuiMekStyledCrystalAssembler<BEMekStyledCrystalAssembler>::new);
         ClientRegistrationUtil.registerScreen(event, MekUtMachines.MEKSTYLED_REACTION_CHAMBER.getContainer(),
                 GuiMekStyledReactionChamber<BEMekStyledReactionChamber>::new);
-        ClientRegistrationUtil.registerScreen(event, MekUtMachines.SUBMATERIAL_CONVERTER.getContainer(),
-                GuiSubMaterialConverter::new);
-        ClientRegistrationUtil.registerScreen(event, MekUtMachines.TWEAKED_ENERGIZED_SMELTER.getContainer(),
-                GuiTweakedEnergizedSmelter<BETweakedEnergizedSmelter>::new);
         ClientRegistrationUtil.registerScreen(event, MekUtMachines.STANDARD_CHEMICAL_INJECTION_CHAMBER.getContainer(),
                 GuiTweakedItemChemicalToItemMachine<BEStandardChemicalInjectionChamber>::new);
         ClientRegistrationUtil.registerScreen(event, MekUtMachines.STANDARD_CRUSHER.getContainer(),

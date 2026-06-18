@@ -1,15 +1,11 @@
 package com.takenokoshi.mekut.blockentity.normalmachine;
 
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import com.takenokoshi.mekut.blockentity.base.BlockEntityMekUtProgressMachine;
-import com.takenokoshi.mekut.recipe.cached.ICachedRecipe;
-import com.takenokoshi.mekut.recipe.lookup.IMekUtRecipeTypedLookupHandler;
-import com.takenokoshi.mekut.recipe.type.IMekUtRecipeTypeProvider;
-import com.takenokoshi.mekut.recipe.type.WrappedMekanismRecipeType;
 
 import mekanism.api.IContentsListener;
 import mekanism.api.RelativeSide;
@@ -17,6 +13,7 @@ import mekanism.api.chemical.BasicChemicalTank;
 import mekanism.api.chemical.ChemicalStack;
 import mekanism.api.chemical.IChemicalTank;
 import mekanism.api.recipes.ItemStackToChemicalRecipe;
+import mekanism.api.recipes.cache.CachedRecipe;
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
 import mekanism.api.recipes.cache.OneInputCachedRecipe;
 import mekanism.api.recipes.inputs.IInputHandler;
@@ -25,6 +22,8 @@ import mekanism.api.recipes.outputs.IOutputHandler;
 import mekanism.api.recipes.outputs.OutputHelper;
 import mekanism.client.recipe_viewer.type.IRecipeViewerRecipeType;
 import mekanism.client.recipe_viewer.type.RecipeViewerRecipeType;
+import mekanism.common.attachments.component.AttachedSideConfig;
+import mekanism.common.attachments.component.AttachedSideConfig.LightConfigInfo;
 import mekanism.common.capabilities.holder.chemical.ChemicalTankHelper;
 import mekanism.common.capabilities.holder.chemical.IChemicalTankHolder;
 import mekanism.common.capabilities.holder.slot.IInventorySlotHolder;
@@ -37,18 +36,21 @@ import mekanism.common.inventory.slot.InputInventorySlot;
 import mekanism.common.inventory.slot.chemical.ChemicalInventorySlot;
 import mekanism.common.inventory.warning.WarningTracker.WarningType;
 import mekanism.common.lib.transmitter.TransmissionType;
+import mekanism.common.recipe.IMekanismRecipeTypeProvider;
+import mekanism.common.recipe.MekanismRecipeType;
+import mekanism.common.recipe.lookup.ISingleRecipeLookupHandler;
 import mekanism.common.recipe.lookup.cache.InputRecipeCache;
-import mekanism.common.recipe.lookup.cache.InputRecipeCache.SingleItem;
 import mekanism.common.tile.component.TileComponentEjector;
+import mekanism.common.tile.prefab.TileEntityRecipeMachine;
+import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class BESubMaterialConverter extends BlockEntityMekUtProgressMachine<ItemStackToChemicalRecipe>
-        implements
-        IMekUtRecipeTypedLookupHandler<ItemStackToChemicalRecipe, InputRecipeCache.SingleItem<ItemStackToChemicalRecipe>> {
+public class BESubMaterialConverter extends TileEntityRecipeMachine<ItemStackToChemicalRecipe>
+        implements ISingleRecipeLookupHandler<ItemStack,ItemStackToChemicalRecipe,InputRecipeCache.SingleItem<ItemStackToChemicalRecipe>> {
 
     private static final List<RecipeError> TRACKED_ERROR_TYPES = List.of(
             RecipeError.NOT_ENOUGH_ENERGY,
@@ -70,7 +72,7 @@ public class BESubMaterialConverter extends BlockEntityMekUtProgressMachine<Item
     ChemicalInventorySlot outputSlot;
 
     public BESubMaterialConverter(Holder<Block> blockProvider, BlockPos pos, BlockState state) {
-        super(blockProvider, pos, state, TRACKED_ERROR_TYPES, 1, r -> 1, 0x7fffffff);
+        super(blockProvider, pos, state, TRACKED_ERROR_TYPES);
         configComponent.setupIOConfig(TransmissionType.ITEM, inputSlot, outputSlot, RelativeSide.RIGHT);
         configComponent.setupOutputConfig(TransmissionType.CHEMICAL, gasTank, RelativeSide.RIGHT);
         ejectorComponent = new TileComponentEjector(this, () -> Long.MAX_VALUE);
@@ -102,10 +104,6 @@ public class BESubMaterialConverter extends BlockEntityMekUtProgressMachine<Item
         return builder.build();
     }
 
-    private boolean containsRecipe(ItemStack input) {
-        return getRecipeType().getInputCache().containsInput(getHandlerWorld(), input);
-    }
-
     @Override
     protected boolean onUpdateServer() {
         boolean sendUpdatePacket = super.onUpdateServer();
@@ -125,34 +123,28 @@ public class BESubMaterialConverter extends BlockEntityMekUtProgressMachine<Item
         return findFirstRecipe(inputHandler);
     }
 
-    private @Nullable ItemStackToChemicalRecipe findFirstRecipe(ItemStack input) {
-        return getRecipeType().getInputCache().findFirstRecipe(getHandlerWorld(), input);
-    }
-
-    private @Nullable ItemStackToChemicalRecipe findFirstRecipe(IInputHandler<ItemStack> handler) {
-        return findFirstRecipe(handler.getInput());
-    }
-
     @NotNull
     @Override
-    public ICachedRecipe<ItemStackToChemicalRecipe> createNewCachedRecipe(@NotNull ItemStackToChemicalRecipe recipe,
+    public CachedRecipe<ItemStackToChemicalRecipe> createNewCachedRecipe(@NotNull ItemStackToChemicalRecipe recipe,
             int cacheIndex) {
-        return ICachedRecipe.fromMekanism(
-                OneInputCachedRecipe.itemToChemical(recipe, recheckAllRecipeErrors, inputHandler, outputHandler)
-                        .setErrorsChanged(this::onErrorsChanged)
-                        .setCanHolderFunction(this::canFunction)
-                        .setActive(this::setActive)
-                        .setOnFinish(this::markForSave)
-                        .setBaselineMaxOperations(() -> 0x7fffffff));
+        return OneInputCachedRecipe.itemToChemical(recipe, recheckAllRecipeErrors, inputHandler, outputHandler)
+                .setErrorsChanged(this::onErrorsChanged)
+                .setCanHolderFunction(this::canFunction)
+                .setActive(this::setActive)
+                .setOnFinish(this::markForSave)
+                .setBaselineMaxOperations(() -> 0x7fffffff);
     }
 
     @Override
-    public @NotNull IMekUtRecipeTypeProvider<?, ItemStackToChemicalRecipe, SingleItem<ItemStackToChemicalRecipe>> getRecipeType() {
-        return WrappedMekanismRecipeType.CHEMICAL_CONVERSION;
+    public @NotNull IMekanismRecipeTypeProvider<?,ItemStackToChemicalRecipe,InputRecipeCache.SingleItem<ItemStackToChemicalRecipe>> getRecipeType() {
+        return MekanismRecipeType.CHEMICAL_CONVERSION;
     }
 
-    @Override
-    protected void recaluculateProcessingSpeed() {
-    }
+    public static final AttachedSideConfig SIDE_CONFIG = Util.make(() -> {
+        Map<TransmissionType, LightConfigInfo> configInfo = new EnumMap<>(TransmissionType.class);
+        configInfo.put(TransmissionType.ITEM, AttachedSideConfig.LightConfigInfo.INPUT_ONLY);
+        configInfo.put(TransmissionType.CHEMICAL, AttachedSideConfig.LightConfigInfo.OUT_EJECT);
+        return new AttachedSideConfig(configInfo);
+    });
 
 }

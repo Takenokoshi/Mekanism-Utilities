@@ -8,8 +8,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.takenokoshi.mekut.core.MekUtConstants;
-import com.takenokoshi.mekut.recipe.basic.BasicSPSRecipe;
 import com.takenokoshi.mekut.recipe.inputcache.MUSingleInputRecipeCache;
+import com.takenokoshi.mekut.recipe.recipe.basic.BasicSPSRecipe;
+
 import mekanism.api.recipes.ChemicalToChemicalRecipe;
 import mekanism.api.recipes.ingredients.creator.IngredientCreatorAccess;
 import mekanism.api.recipes.vanilla_input.SingleChemicalRecipeInput;

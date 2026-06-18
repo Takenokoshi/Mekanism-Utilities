@@ -4,7 +4,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.takenokoshi.mekut.blockentity.base.BEMultiScaledProgressMachine;
-import com.takenokoshi.mekut.blockentity.interfaces.ITweakedEnergizedSmelter;
+import com.takenokoshi.mekut.blockentity.interfaces.machine.ITweakedEnergizedSmelter;
 import com.takenokoshi.mekut.recipe.cached.AbstractCachedRecipe;
 import com.takenokoshi.mekut.recipe.cached.TweakedSmeltingCachedRecipe;
 import com.takenokoshi.mekut.recipe.input.IngredientInputHandler;

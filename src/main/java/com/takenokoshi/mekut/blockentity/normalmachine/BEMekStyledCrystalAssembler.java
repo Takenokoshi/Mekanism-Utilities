@@ -8,7 +8,7 @@ import org.jetbrains.annotations.Nullable;
 
 import com.glodblock.github.extendedae.recipe.CrystalAssemblerRecipe;
 import com.takenokoshi.mekut.blockentity.base.BEMultiScaledProgressMachine;
-import com.takenokoshi.mekut.blockentity.interfaces.IMekStyledCrystalAssembler;
+import com.takenokoshi.mekut.blockentity.interfaces.machine.IMekStyledCrystalAssembler;
 import com.takenokoshi.mekut.recipe.cached.AbstractCachedRecipe;
 import com.takenokoshi.mekut.recipe.cached.MekStyledCrystalAssemblerCachedRecipe;
 import com.takenokoshi.mekut.recipe.input.ItemStackListInputHandler;

@@ -1,7 +1,8 @@
-package com.takenokoshi.mekut.blockentity.interfaces;
+package com.takenokoshi.mekut.blockentity.interfaces.machine;
 
 import java.util.List;
 
+import com.takenokoshi.mekut.blockentity.interfaces.IHasMachineEnergyContainer;
 import com.takenokoshi.mekut.recipe.input.IngredientInputHandler;
 import com.takenokoshi.mekut.recipe.inputcache.MUSingleInputRecipeCache;
 import com.takenokoshi.mekut.recipe.lookup.IMekUtRecipeTypedLookupHandler;
@@ -16,7 +17,7 @@ import net.minecraft.world.item.crafting.SmeltingRecipe;
 
 public interface ITweakedEnergizedSmelter
         extends IMekUtRecipeTypedLookupHandler<SmeltingRecipe, MUSingleInputRecipeCache.MUSingleItem<SmeltingRecipe>>,
-        IHasMachineEnergyCntainer {
+        IHasMachineEnergyContainer {
 
     public static final List<RecipeError> TRACKED_ERROR_TYPES = List.of(
             RecipeError.NOT_ENOUGH_ENERGY,

@@ -1,6 +1,7 @@
 package com.takenokoshi.mekut.model;
 
 import com.takenokoshi.mekut.core.MekUtConstants;
+import com.takenokoshi.mekut.registration.MachineRegistryObject;
 import com.takenokoshi.mekut.registries.MekUtBlocks;
 import com.takenokoshi.mekut.registries.MekUtFluids;
 import com.takenokoshi.mekut.registries.MekUtMachines;
@@ -59,6 +60,10 @@ public class MekUtBlockModelProvider extends BlockStateProvider {
         mekutNormalMachine(MekUtMachines.MEKSTYLED_REACTION_CHAMBER.getBlockObject(),
                 MekUtConstants.rl("block/normal_machine/mekstyled_reaction_chamber_front"),
                 MekUtConstants.rl("block/normal_machine/mekstyled_reaction_chamber_front_active"));
+        mekutNormalMachine(MekUtMachines.SMALL_DIGITAL_ASSEMBLER,
+                "normal_machine/small_digital_assembler_front");
+        mekutNormalMachine(MekUtMachines.SMALL_DIGITAL_REACTION_CHAMBER,
+                "normal_machine/small_digital_reaction_chamber_front");
         mekutNormalMachine(MekUtMachines.SUBMATERIAL_CONVERTER.getBlockObject(),
                 MekUtConstants.rl("block/normal_machine/submaterial_converter_front"),
                 MekUtConstants.rl("block/normal_machine/submaterial_converter_front_active"));
@@ -120,6 +125,14 @@ public class MekUtBlockModelProvider extends BlockStateProvider {
         simpleBlockItem(
                 block.get(),
                 inactive);
+    }
+
+    protected void mekutNormalMachine(
+            MachineRegistryObject<?, ?, ?, ?> machine,
+            String basePath) {
+        mekutNormalMachine(machine.getBlockObject(),
+                MekUtConstants.rl("block/" + basePath),
+                MekUtConstants.rl("block/" + basePath + "_active"));
     }
 
     protected void mekutNormalMachine(

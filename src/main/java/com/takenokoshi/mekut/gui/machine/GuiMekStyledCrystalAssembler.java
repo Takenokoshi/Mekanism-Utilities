@@ -4,7 +4,7 @@ import org.jetbrains.annotations.NotNull;
 
 import com.glodblock.github.extendedae.recipe.CrystalAssemblerRecipe;
 import com.takenokoshi.mekut.blockentity.base.BlockEntityMekUtProgressMachine;
-import com.takenokoshi.mekut.blockentity.interfaces.IMekStyledCrystalAssembler;
+import com.takenokoshi.mekut.blockentity.interfaces.machine.IMekStyledCrystalAssembler;
 
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
 import mekanism.client.gui.GuiConfigurableTile;

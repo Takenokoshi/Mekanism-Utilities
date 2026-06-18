@@ -1,10 +1,15 @@
 package com.takenokoshi.mekut.registries;
 
+import com.takenokoshi.mekut.blockentity.abs.BEAbstractCompactSPS;
+import com.takenokoshi.mekut.blockentity.interfaces.machine.IItemStackListFluidChemicalToItemFluidChemicalRecipeMachine;
+import com.takenokoshi.mekut.blockentity.interfaces.machine.IItemStackListFluidChemicalToItemRecipeMachine;
 import com.takenokoshi.mekut.blockentity.normalmachine.BECompactSPS;
 import com.takenokoshi.mekut.blockentity.normalmachine.BEMekStyledCharger;
 import com.takenokoshi.mekut.blockentity.normalmachine.BEMekStyledCircuitCutter;
 import com.takenokoshi.mekut.blockentity.normalmachine.BEMekStyledCrystalAssembler;
 import com.takenokoshi.mekut.blockentity.normalmachine.BEMekStyledReactionChamber;
+import com.takenokoshi.mekut.blockentity.normalmachine.BESmallDigitalAssembler;
+import com.takenokoshi.mekut.blockentity.normalmachine.BESmallDigitalReactionChamber;
 import com.takenokoshi.mekut.blockentity.normalmachine.BESubMaterialConverter;
 import com.takenokoshi.mekut.blockentity.normalmachine.BETweakedEnergizedSmelter;
 import com.takenokoshi.mekut.blockentity.standardmachine.BEStandardChemicalInjectionChamber;
@@ -19,10 +24,12 @@ import com.takenokoshi.mekut.blockentity.standardmachine.BEStandardPurificationC
 import com.takenokoshi.mekut.core.MekUtConstants;
 import com.takenokoshi.mekut.core.MekUtMathUtils;
 import com.takenokoshi.mekut.lang.MekUtDescription;
+import com.takenokoshi.mekut.registration.GuiSizedMachineRegistryObject;
 import com.takenokoshi.mekut.registration.MachineDeferredRegister;
 import com.takenokoshi.mekut.registration.SimpleMachineRegistryObject;
 
 import mekanism.api.Upgrade;
+import mekanism.common.attachments.component.AttachedSideConfig;
 import mekanism.common.attachments.containers.ContainerType;
 import mekanism.common.attachments.containers.chemical.ChemicalTanksBuilder;
 import mekanism.common.attachments.containers.fluid.FluidTanksBuilder;
@@ -35,12 +42,14 @@ public class MekUtMachines {
     public static final MachineDeferredRegister MACHINES = new MachineDeferredRegister(MekUtConstants.MODID);
 
     public static final SimpleMachineRegistryObject<BECompactSPS> COMPACT_SUPERCRITICAL_PHASE_SHIFTER = MACHINES
-            .registerSimple("compact_supercritical_phase_shifter", holder -> holder
-                    .addAttachmentOnlyContainers(ContainerType.CHEMICAL,
-                            () -> ChemicalTanksBuilder.builder()
-                                    .addBasic(2000)
-                                    .addBasic(2000)
-                                    .build()),
+            .registerSimple("compact_supercritical_phase_shifter",
+                    BEAbstractCompactSPS.SIDE_CONFIG,
+                    holder -> holder
+                            .addAttachmentOnlyContainers(ContainerType.CHEMICAL,
+                                    () -> ChemicalTanksBuilder.builder()
+                                            .addBasic(2000)
+                                            .addBasic(2000)
+                                            .build()),
                     BECompactSPS::new,
                     BECompactSPS.class,
                     MekUtDescription.COMPACT_SPS,
@@ -58,12 +67,14 @@ public class MekUtMachines {
                             .withSupportedUpgrades(Upgrade.MUFFLING));
 
     public static final SimpleMachineRegistryObject<BEMekStyledCharger> MEKSTYLED_CHARGER = MACHINES
-            .registerSimple("mekstyled_charger", holder -> holder
-                    .addAttachmentOnlyContainers(ContainerType.ITEM, () -> ItemSlotsBuilder.builder()
-                            .addInput(1)
-                            .addOutput()
-                            .addEnergy()
-                            .build()),
+            .registerSimple("mekstyled_charger",
+                    AttachedSideConfig.ELECTRIC_MACHINE,
+                    holder -> holder
+                            .addAttachmentOnlyContainers(ContainerType.ITEM, () -> ItemSlotsBuilder.builder()
+                                    .addInput(1)
+                                    .addOutput()
+                                    .addEnergy()
+                                    .build()),
                     BEMekStyledCharger::new,
                     BEMekStyledCharger.class,
                     MekUtDescription.MEKSTYLED_CHARGER,
@@ -132,8 +143,39 @@ public class MekUtMachines {
                             .withSound(MekanismSounds.PRESSURIZED_REACTION_CHAMBER)
                             .withSupportedUpgrades(Upgrade.ENERGY, Upgrade.SPEED, Upgrade.MUFFLING));
 
+    public static final GuiSizedMachineRegistryObject<BESmallDigitalAssembler> SMALL_DIGITAL_ASSEMBLER = MACHINES
+            .registerGuiSized("small_digital_assembler",
+                    IItemStackListFluidChemicalToItemRecipeMachine.SIDE_CONFIG,
+                    IItemStackListFluidChemicalToItemRecipeMachine::addContainersToItem,
+                    BESmallDigitalAssembler::new,
+                    BESmallDigitalAssembler.class,
+                    MekUtDescription.MEKSTYLED_CRYSTAL_ASSEMBLER,
+                    builder -> builder
+                            .withSideConfig(TransmissionType.ITEM, TransmissionType.FLUID, TransmissionType.CHEMICAL,
+                                    TransmissionType.ENERGY)
+                            .withEnergyConfig(MekanismConfig.usage.formulaicAssemblicator,
+                                    MekanismConfig.storage.formulaicAssemblicator)
+                            .withSound(MekanismSounds.CHEMICAL_CRYSTALLIZER)
+                            .withSupportedUpgrades(Upgrade.ENERGY, Upgrade.SPEED, Upgrade.MUFFLING));
+
+    public static final GuiSizedMachineRegistryObject<BESmallDigitalReactionChamber> SMALL_DIGITAL_REACTION_CHAMBER = MACHINES
+            .registerGuiSized("small_digital_reaction_chamber",
+                    IItemStackListFluidChemicalToItemFluidChemicalRecipeMachine.SIDE_CONFIG,
+                    IItemStackListFluidChemicalToItemFluidChemicalRecipeMachine::addContainersToItem,
+                    BESmallDigitalReactionChamber::new,
+                    BESmallDigitalReactionChamber.class,
+                    MekUtDescription.MEKSTYLED_REACTION_CHAMBER,
+                    builder -> builder
+                            .withSideConfig(TransmissionType.ITEM, TransmissionType.FLUID, TransmissionType.CHEMICAL,
+                                    TransmissionType.ENERGY)
+                            .withEnergyConfig(MekanismConfig.usage.pressurizedReactionBase,
+                                    MekanismConfig.storage.pressurizedReactionBase)
+                            .withSound(MekanismSounds.PRECISION_SAWMILL)
+                            .withSupportedUpgrades(Upgrade.ENERGY, Upgrade.SPEED, Upgrade.MUFFLING));
+
     public static final SimpleMachineRegistryObject<BESubMaterialConverter> SUBMATERIAL_CONVERTER = MACHINES
             .registerSimple("submaterial_converter",
+                    BESubMaterialConverter.SIDE_CONFIG,
                     holder -> holder
                             .addAttachmentOnlyContainers(ContainerType.ITEM, () -> ItemSlotsBuilder.builder()
                                     .addInput(1)

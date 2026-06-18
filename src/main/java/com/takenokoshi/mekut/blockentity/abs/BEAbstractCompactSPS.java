@@ -1,11 +1,14 @@
 package com.takenokoshi.mekut.blockentity.abs;
 
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.takenokoshi.mekut.blockentity.base.BEMultiScaledProgressMachine;
-import com.takenokoshi.mekut.blockentity.interfaces.IHasMachineEnergyCntainer;
+import com.takenokoshi.mekut.blockentity.interfaces.IHasMachineEnergyContainer;
 import com.takenokoshi.mekut.recipe.cached.ICachedRecipe;
 import com.takenokoshi.mekut.recipe.inputcache.MUSingleInputRecipeCache;
 import com.takenokoshi.mekut.recipe.lookup.IMekUtRecipeTypedLookupHandler;
@@ -28,6 +31,8 @@ import mekanism.api.recipes.inputs.InputHelper;
 import mekanism.api.recipes.outputs.IOutputHandler;
 import mekanism.api.recipes.outputs.OutputHelper;
 import mekanism.api.recipes.vanilla_input.SingleChemicalRecipeInput;
+import mekanism.common.attachments.component.AttachedSideConfig;
+import mekanism.common.attachments.component.AttachedSideConfig.LightConfigInfo;
 import mekanism.common.capabilities.energy.FixedUsageEnergyContainer;
 import mekanism.common.capabilities.energy.MachineEnergyContainer;
 import mekanism.common.capabilities.holder.chemical.ChemicalTankHelper;
@@ -37,6 +42,7 @@ import mekanism.common.capabilities.holder.energy.IEnergyContainerHolder;
 import mekanism.common.config.MekanismConfig;
 import mekanism.common.lib.transmitter.TransmissionType;
 import mekanism.common.tile.component.TileComponentEjector;
+import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.world.level.block.Block;
@@ -44,7 +50,13 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public abstract class BEAbstractCompactSPS extends BEMultiScaledProgressMachine<ChemicalToChemicalRecipe> implements
         IMekUtRecipeTypedLookupHandler<ChemicalToChemicalRecipe, MUSingleInputRecipeCache.MUSingleChemical<ChemicalToChemicalRecipe>>,
-        IHasMachineEnergyCntainer {
+        IHasMachineEnergyContainer {
+
+    public static final AttachedSideConfig SIDE_CONFIG = Util.make(() -> {
+        Map<TransmissionType, LightConfigInfo> configInfo = new EnumMap<>(TransmissionType.class);
+        configInfo.put(TransmissionType.CHEMICAL, AttachedSideConfig.LightConfigInfo.OUT_EJECT);
+        return new AttachedSideConfig(configInfo);
+    });
 
     public static final List<RecipeError> TRACKED_ERROR_TYPES = List.of(
             RecipeError.NOT_ENOUGH_ENERGY,
@@ -64,8 +76,8 @@ public abstract class BEAbstractCompactSPS extends BEMultiScaledProgressMachine<
     protected BEAbstractCompactSPS(Holder<Block> blockProvider, BlockPos pos, BlockState state,
             int baselineMaxOperations, double speedModifier) {
         super(blockProvider, pos, state, TRACKED_ERROR_TYPES,
-                MathUtils.clampToInt(MekanismConfig.general.spsInputPerAntimatter.getAsInt() / 1000 * speedModifier),
-                r -> MathUtils.clampToInt(r.getInput().amount() / 1000 * speedModifier),
+                MathUtils.clampToInt(MekanismConfig.general.spsInputPerAntimatter.getAsInt() / 1000d * speedModifier),
+                r -> MathUtils.clampToInt(r.getInput().amount() / 1000d * speedModifier),
                 baselineMaxOperations);
         configComponent.setupIOConfig(TransmissionType.CHEMICAL, inputTank, outputTank, RelativeSide.RIGHT, false);
         configComponent.setupInputConfig(TransmissionType.ENERGY, energyContainer);

@@ -5,7 +5,7 @@ import org.jetbrains.annotations.Nullable;
 
 import com.glodblock.github.extendedae.recipe.CircuitCutterRecipe;
 import com.takenokoshi.mekut.blockentity.base.BEMultiScaledProgressMachine;
-import com.takenokoshi.mekut.blockentity.interfaces.IMekStyledCircuitCutter;
+import com.takenokoshi.mekut.blockentity.interfaces.machine.IMekStyledCircuitCutter;
 import com.takenokoshi.mekut.core.MekUtMathUtils;
 import com.takenokoshi.mekut.recipe.cached.AbstractCachedRecipe;
 import com.takenokoshi.mekut.recipe.cached.MekStyledCircuitCutterCachedRecipe;

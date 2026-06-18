@@ -17,10 +17,10 @@ import net.minecraft.world.item.ItemStack;
 
 public class ItemStackListInputHandler {
 
-    private final List<IInventorySlot> slots;
+    private final List<? extends IInventorySlot> slots;
     private final RecipeError notEnoughError;
 
-    public ItemStackListInputHandler(List<IInventorySlot> slots, RecipeError notEnoughError) {
+    public ItemStackListInputHandler(List<? extends IInventorySlot> slots, RecipeError notEnoughError) {
         this.slots = slots;
         this.notEnoughError = notEnoughError;
     }

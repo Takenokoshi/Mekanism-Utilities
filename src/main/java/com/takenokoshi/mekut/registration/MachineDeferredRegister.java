@@ -8,7 +8,10 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.UnaryOperator;
 
+import com.takenokoshi.mekut.blockentity.interfaces.IHasGuiSizeOffset;
+
 import mekanism.api.text.ILangEntry;
+import mekanism.common.attachments.component.AttachedSideConfig;
 import mekanism.common.block.prefab.BlockTile.BlockTileModel;
 import mekanism.common.content.blocktype.Machine;
 import mekanism.common.content.blocktype.Machine.MachineBuilder;
@@ -64,15 +67,34 @@ public class MachineDeferredRegister {
         return result;
     }
 
-    public <BE extends TileEntityMekanism> SimpleMachineRegistryObject<BE> registerSimple(String name,
+    public <BE extends TileEntityMekanism & IHasGuiSizeOffset> GuiSizedMachineRegistryObject<BE> registerGuiSized(
+            String name,
+            Consumer<ItemRegistryObject<ItemBlockTooltip<BlockTileModel<BE, Machine<BE>>>>> holder,
             BlockEntityConstructor<BE, Machine<BE>, BlockTileModel<BE, Machine<BE>>> beConstructor,
             Class<BE> beClass, ILangEntry entry,
             UnaryOperator<MachineBuilder<Machine<BE>, BE, ?>> operator) {
-        SimpleMachineRegistryObject<BE> result = new SimpleMachineRegistryObject<>(name, blockRegister, tileRegister,
-                containerRegister,
+        GuiSizedMachineRegistryObject<BE> result = new GuiSizedMachineRegistryObject<>(name,
+                blockRegister, tileRegister, containerRegister,
                 bt -> new BlockTileModel<>(bt, p -> p.strength(1.5f, 6.0f)
                         .sound(SoundType.STONE).mapColor(MapColor.STONE)),
-                beConstructor, beClass, entry, operator);
+                holder, beConstructor, beClass, entry, operator);
+        machines.add(result);
+        return result;
+    }
+
+    public <BE extends TileEntityMekanism & IHasGuiSizeOffset> GuiSizedMachineRegistryObject<BE> registerGuiSized(
+            String name,
+            AttachedSideConfig attachedSideConfig,
+            Consumer<ItemRegistryObject<ItemBlockTooltip<BlockTileModel<BE, Machine<BE>>>>> holder,
+            BlockEntityConstructor<BE, Machine<BE>, BlockTileModel<BE, Machine<BE>>> beConstructor,
+            Class<BE> beClass, ILangEntry entry,
+            UnaryOperator<MachineBuilder<Machine<BE>, BE, ?>> operator) {
+        GuiSizedMachineRegistryObject<BE> result = new GuiSizedMachineRegistryObject<>(name,
+                blockRegister, tileRegister, containerRegister,
+                bt -> new BlockTileModel<>(bt, p -> p.strength(1.5f, 6.0f)
+                        .sound(SoundType.STONE).mapColor(MapColor.STONE)),
+                attachedSideConfig,
+                holder, beConstructor, beClass, entry, operator);
         machines.add(result);
         return result;
     }
@@ -82,12 +104,27 @@ public class MachineDeferredRegister {
             BlockEntityConstructor<BE, Machine<BE>, BlockTileModel<BE, Machine<BE>>> beConstructor,
             Class<BE> beClass, ILangEntry entry,
             UnaryOperator<MachineBuilder<Machine<BE>, BE, ?>> operator) {
-        SimpleMachineRegistryObject<BE> result = new SimpleMachineRegistryObject<>(name, blockRegister, tileRegister,
-                containerRegister,
+        SimpleMachineRegistryObject<BE> result = new SimpleMachineRegistryObject<>(name,
+                blockRegister, tileRegister, containerRegister,
                 bt -> new BlockTileModel<>(bt, p -> p.strength(1.5f, 6.0f)
                         .sound(SoundType.STONE).mapColor(MapColor.STONE)),
-                holder,
-                beConstructor, beClass, entry, operator);
+                holder, beConstructor, beClass, entry, operator);
+        machines.add(result);
+        return result;
+    }
+
+    public <BE extends TileEntityMekanism> SimpleMachineRegistryObject<BE> registerSimple(String name,
+            AttachedSideConfig attachedSideConfig,
+            Consumer<ItemRegistryObject<ItemBlockTooltip<BlockTileModel<BE, Machine<BE>>>>> holder,
+            BlockEntityConstructor<BE, Machine<BE>, BlockTileModel<BE, Machine<BE>>> beConstructor,
+            Class<BE> beClass, ILangEntry entry,
+            UnaryOperator<MachineBuilder<Machine<BE>, BE, ?>> operator) {
+        SimpleMachineRegistryObject<BE> result = new SimpleMachineRegistryObject<>(name,
+                blockRegister, tileRegister, containerRegister,
+                bt -> new BlockTileModel<>(bt, p -> p.strength(1.5f, 6.0f)
+                        .sound(SoundType.STONE).mapColor(MapColor.STONE)),
+                attachedSideConfig,
+                holder, beConstructor, beClass, entry, operator);
         machines.add(result);
         return result;
     }

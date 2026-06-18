@@ -1,4 +1,4 @@
-package com.takenokoshi.mekut.recipe.basic;
+package com.takenokoshi.mekut.recipe.recipe.basic;
 
 import com.takenokoshi.mekut.registries.MekUtRecipeSerializers;
 import com.takenokoshi.mekut.registries.MekUtRecipeTypes;

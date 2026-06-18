@@ -3,7 +3,7 @@ package com.takenokoshi.mekut.gui.machine;
 import org.jetbrains.annotations.NotNull;
 
 import com.takenokoshi.mekut.blockentity.base.BlockEntityMekUtProgressMachine;
-import com.takenokoshi.mekut.blockentity.interfaces.IMekStyledCharger;
+import com.takenokoshi.mekut.blockentity.interfaces.machine.IMekStyledCharger;
 
 import appeng.recipes.handlers.ChargerRecipe;
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;

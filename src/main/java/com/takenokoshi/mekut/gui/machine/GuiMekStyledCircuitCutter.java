@@ -4,7 +4,7 @@ import org.jetbrains.annotations.NotNull;
 
 import com.glodblock.github.extendedae.recipe.CircuitCutterRecipe;
 import com.takenokoshi.mekut.blockentity.base.BlockEntityMekUtProgressMachine;
-import com.takenokoshi.mekut.blockentity.interfaces.IMekStyledCircuitCutter;
+import com.takenokoshi.mekut.blockentity.interfaces.machine.IMekStyledCircuitCutter;
 
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
 import mekanism.client.gui.GuiConfigurableTile;

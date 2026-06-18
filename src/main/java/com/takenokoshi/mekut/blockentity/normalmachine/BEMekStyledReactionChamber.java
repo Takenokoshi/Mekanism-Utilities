@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.takenokoshi.mekut.blockentity.base.BEMultiScaledProgressMachine;
-import com.takenokoshi.mekut.blockentity.interfaces.IMekStyledReactionChamber;
+import com.takenokoshi.mekut.blockentity.interfaces.machine.IMekStyledReactionChamber;
 import com.takenokoshi.mekut.capabilities.energy.VariableUsageMachineEnergyContainer;
 import com.takenokoshi.mekut.core.EjectorComponentUtils;
 import com.takenokoshi.mekut.recipe.cached.AbstractCachedRecipe;

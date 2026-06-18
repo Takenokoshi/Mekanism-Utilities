@@ -5,6 +5,8 @@
     "mekanism_utilities:mekstyled_circuit_cutter",
     "mekanism_utilities:mekstyled_crystal_assembler",
     "mekanism_utilities:mekstyled_reaction_chamber",
+    "mekanism_utilities:small_digital_assembler",
+    "mekanism_utilities:small_digital_reaction_chamber",
     "mekanism_utilities:submaterial_converter",
     "mekanism_utilities:tweaked_energized_smelter",
     "mekanism_utilities:standard_chemical_injection_chamber",
