@@ -161,23 +161,23 @@ public abstract class BEBasicItemStackChemicalToItemStackMachine
     }
 
     protected boolean containsRecipeA(ItemStack a) {
-        return getRecipeType().getInputCache().containsInputA(getHandlerWorld(), a);
+        return getRecipeType().getInputCache().containsInputA(getLevel(), a);
     }
 
     protected boolean containsRecipeB(ChemicalStack b) {
-        return getRecipeType().getInputCache().containsInputB(getHandlerWorld(), b);
+        return getRecipeType().getInputCache().containsInputB(getLevel(), b);
     }
 
     protected boolean containsRecipeAB(ItemStack a, ChemicalStack b) {
-        return getRecipeType().getInputCache().containsInputAB(getHandlerWorld(), a, b);
+        return getRecipeType().getInputCache().containsInputAB(getLevel(), a, b);
     }
 
     protected boolean containsRecipeBA(ItemStack a, ChemicalStack b) {
-        return getRecipeType().getInputCache().containsInputBA(getHandlerWorld(), a, b);
+        return getRecipeType().getInputCache().containsInputBA(getLevel(), a, b);
     }
 
     protected @Nullable ItemStackChemicalToItemStackRecipe findFirstRecipe(ItemStack a, ChemicalStack b) {
-        return getRecipeType().getInputCache().findFirstRecipe(getHandlerWorld(), a, b);
+        return getRecipeType().getInputCache().findFirstRecipe(getLevel(), a, b);
     }
 
     protected @Nullable ItemStackChemicalToItemStackRecipe findFirstRecipe(IInputHandler<ItemStack> a,

@@ -1,0 +1,15 @@
+{
+  "type": "mekanism_utilities:lazer_compress",
+  "left_input": {
+    "amount": 1,
+    "chemical": "mekanism:plutonium"
+  },
+  "output": {
+    "amount": 1,
+    "id": "mekanism:polonium"
+  },
+  "right_input": {
+    "amount": 1,
+    "chemical": "mekanism_utilities:singularity"
+  }
+}

@@ -29,10 +29,10 @@ public record RVMekUtRecipeTypeWrapper<VANILLA_INPUT extends RecipeInput, RECIPE
 
     public RVMekUtRecipeTypeWrapper(
             ResourceLocation id,
-            ItemLike item,
             Class<? extends RECIPE> recipeClass,
             IMekUtRecipeTypeProvider<VANILLA_INPUT, RECIPE, INPUT_CACHE> vanillaProvider,
             int xOffset, int yOffset, int width, int height,
+            ItemLike item,
             ItemLike... workstations) {
         this(id, item, recipeClass, vanillaProvider, xOffset, yOffset, width, height, List.of(workstations));
     }

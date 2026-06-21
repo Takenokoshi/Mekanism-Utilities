@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "mekanism_utilities:crafting/hq_concreate/dark_red_powder"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "unlock": {
+      "conditions": {
+        "items": [
+          {
+            "items": "mekanism_utilities:dark_red_dye"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "unlock"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "mekanism_utilities:crafting/hq_concreate/dark_red_powder"
+    ]
+  }
+}

@@ -9,6 +9,7 @@ import mekanism.api.recipes.ingredients.creator.IItemStackIngredientCreator;
 import mekanism.api.recipes.ingredients.creator.IngredientCreatorAccess;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
 
 public class BuildEnrichingRecipe {
 
@@ -16,14 +17,14 @@ public class BuildEnrichingRecipe {
         IItemStackIngredientCreator creatorI = IngredientCreatorAccess.item();
         ItemStackToItemStackRecipeBuilder
                 .enriching(
-                        creatorI.from(MekUtItems.ACTIVATED_LAPIS_LAZULI),
-                        MekUtItems.ENRICHED_LAPIS_LAZULI.asStack(1))
-                .build(output, MekUtConstants.rl("enriching/enriched_lapis_lazuli"));
-        ItemStackToItemStackRecipeBuilder
-                .enriching(
                         creatorI.from(AEItems.SINGULARITY),
                         MekUtItems.ENRICHED_SINGULARITY.asStack(1))
                 .build(output, MekUtConstants.rl("enriching/enriched_singurality"));
+        ItemStackToItemStackRecipeBuilder
+                .enriching(
+                        creatorI.from(1, new ItemLike[] { AEItems.FLUIX_CRYSTAL, AEItems.FLUIX_DUST }),
+                        MekUtItems.ENRICHED_FLUIX.asStack(1))
+                .build(output, MekUtConstants.rl("enriching/enriched_fluix"));
         ItemStackToItemStackRecipeBuilder
                 .enriching(
                         creatorI.from(Items.SNOWBALL, 4),

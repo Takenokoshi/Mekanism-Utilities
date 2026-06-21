@@ -2,7 +2,7 @@
   "type": "mekanism:metallurgic_infusing",
   "chemical_input": {
     "amount": 10,
-    "chemical": "mekanism_utilities:activated_lapis_lazuli"
+    "chemical": "mekanism_utilities:fluix"
   },
   "item_input": {
     "count": 1,

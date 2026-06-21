@@ -1,7 +1,12 @@
 package com.takenokoshi.mekut.blockentity.normalmachine;
 
-import com.takenokoshi.mekut.blockentity.abs.BEAbstractCompactSPS;
+import org.jetbrains.annotations.Nullable;
 
+import com.takenokoshi.mekut.blockentity.abs.BEAbstractCompactSPS;
+import com.takenokoshi.mekut.recipe_viewer.type.MekUtRecipeViewerRecipeType;
+
+import mekanism.api.recipes.ChemicalToChemicalRecipe;
+import mekanism.client.recipe_viewer.type.IRecipeViewerRecipeType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.world.level.block.Block;
@@ -16,6 +21,11 @@ public class BECompactSPS extends BEAbstractCompactSPS {
     @Override
     protected long initTankCapacity() {
         return 2000;
+    }
+
+    @Override
+    public @Nullable IRecipeViewerRecipeType<ChemicalToChemicalRecipe> recipeViewerType() {
+        return MekUtRecipeViewerRecipeType.SPS;
     }
     
 }

@@ -30,7 +30,7 @@ public abstract class AbstractCachedRecipe<RECIPE extends Recipe<?>> implements 
     private boolean pausedForErrors = false;
     private BooleanSupplier canHolderFunction;
     private BooleanConsumer setActive;
-    private IntSupplier requiredTicks;
+    protected IntSupplier requiredTicks;
     private Runnable onFinish;
     private LongSupplier perTickEnergy;
     private LongSupplier storedEnergy;

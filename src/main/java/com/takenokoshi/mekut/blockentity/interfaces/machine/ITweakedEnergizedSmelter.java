@@ -32,11 +32,11 @@ public interface ITweakedEnergizedSmelter
     IChemicalTank getXpTank();
 
     default boolean containsInput(ItemStack input) {
-        return getRecipeType().getInputCache().containsInput(getHandlerWorld(), input);
+        return getRecipeType().getInputCache().containsInput(getLevel(), input);
     }
 
     default SmeltingRecipe findFirstRecipe(IngredientInputHandler inputHandler) {
-        return getRecipeType().getInputCache().findFirstRecipe(getHandlerWorld(), inputHandler.getInput());
+        return getRecipeType().getInputCache().findFirstRecipe(getLevel(), inputHandler.getInput());
     }
 
     double getScaledProgress();

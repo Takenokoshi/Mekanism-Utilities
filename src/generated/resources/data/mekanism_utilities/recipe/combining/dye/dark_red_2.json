@@ -1,0 +1,15 @@
+{
+  "type": "mekanism:combining",
+  "extra_input": {
+    "count": 2,
+    "item": "minecraft:red_dye"
+  },
+  "main_input": {
+    "count": 1,
+    "item": "minecraft:gray_dye"
+  },
+  "output": {
+    "count": 6,
+    "id": "mekanism_utilities:dark_red_dye"
+  }
+}

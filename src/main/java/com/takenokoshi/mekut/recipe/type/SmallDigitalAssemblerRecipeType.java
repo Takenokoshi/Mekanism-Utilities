@@ -7,7 +7,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.glodblock.github.extendedae.recipe.CrystalAssemblerRecipe;
-import com.takenokoshi.mekut.core.MekUtConstants;
 import com.takenokoshi.mekut.recipe.inputcache.ItemStackListFluidChemicalInputRecipeCache;
 import com.takenokoshi.mekut.recipe.recipe.basic.BasicSmallDigitalAssemblerRecipe;
 import com.takenokoshi.mekut.recipe.recipe.prefab.ItemStackListFluidChemicalToItemRecipe;
@@ -35,8 +34,8 @@ public class SmallDigitalAssemblerRecipeType extends
         for (RecipeHolder<CrystalAssemblerRecipe> holder : crystalAssemblerRecipes) {
             CrystalAssemblerRecipe assemblerRecipe = holder.value();
             result.add(new RecipeHolder<>(
-                    MekUtConstants.rl("small_digital_assembler/runtime_generated/eae_crystal_assembler/"
-                            + holder.id().getPath()),
+                    ResourceLocation.fromNamespaceAndPath(holder.id().getNamespace(),
+                            "small_digital_assembler/runtime_generated/eae_crystal_assembler/" + holder.id().getPath()),
                     BasicSmallDigitalAssemblerRecipe.convertCrystalAssembler(assemblerRecipe)));
         }
         return Collections.unmodifiableList(result);

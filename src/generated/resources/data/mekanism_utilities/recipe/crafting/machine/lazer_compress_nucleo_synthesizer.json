@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "A": {
+      "tag": "c:ingots/netherite"
+    },
+    "B": {
+      "item": "mekanism_utilities:knowladge_control_circuit"
+    },
+    "C": {
+      "item": "mekanism:steel_casing"
+    },
+    "D": {
+      "item": "mekanism:laser"
+    }
+  },
+  "pattern": [
+    "ABA",
+    "DCD",
+    "ABA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "mekanism_utilities:lazer_compress_nucleo_synthesizer"
+  }
+}

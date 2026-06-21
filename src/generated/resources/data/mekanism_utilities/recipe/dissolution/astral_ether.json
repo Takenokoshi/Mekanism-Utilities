@@ -1,0 +1,24 @@
+{
+  "type": "mekanism:dissolution",
+  "chemical_input": {
+    "amount": 10,
+    "chemical": "mekanismelements:aqua_regia"
+  },
+  "item_input": {
+    "type": "neoforge:compound",
+    "children": [
+      {
+        "item": "minecraft:nether_star"
+      },
+      {
+        "item": "mekanism_utilities:artificial_star"
+      }
+    ],
+    "count": 1
+  },
+  "output": {
+    "amount": 1000,
+    "id": "mekanism_utilities:astral_ether"
+  },
+  "per_tick_usage": true
+}

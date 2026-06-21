@@ -1,0 +1,25 @@
+{
+  "type": "mekanism_utilities:small_digital_assembler",
+  "chemical_input": {
+    "amount": 640,
+    "chemical": "mekanism_utilities:fluix"
+  },
+  "fluid_input": {
+    "amount": 1000,
+    "tag": "c:lava"
+  },
+  "list_item_input": [
+    {
+      "count": 64,
+      "item": "megacells:printed_accumulation_processor"
+    },
+    {
+      "count": 64,
+      "item": "ae2:printed_silicon"
+    }
+  ],
+  "output": {
+    "count": 64,
+    "id": "megacells:accumulation_processor"
+  }
+}

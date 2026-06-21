@@ -7,6 +7,7 @@ import java.util.function.BooleanSupplier;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import com.takenokoshi.mekut.blockentity.interfaces.IWarningSupporter;
 import com.takenokoshi.mekut.recipe.lookup.IMekUtRecipeLookUpHandler;
 import com.takenokoshi.mekut.recipe.lookup.MekUtRecipeCacheLookupMonitor;
 
@@ -31,7 +32,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
 public abstract class BlockEntityMekUtRecipeMachine<RECIPE extends Recipe<?>> extends TileEntityConfigurableMachine
-        implements IMekUtRecipeLookUpHandler<RECIPE> {
+        implements IMekUtRecipeLookUpHandler<RECIPE>, IWarningSupporter {
 
     protected final BooleanSupplier recheckAllRecipeErrors;
     private final List<RecipeError> errorTypes;
@@ -119,6 +120,7 @@ public abstract class BlockEntityMekUtRecipeMachine<RECIPE extends Recipe<?>> ex
         }
     }
 
+    @Override
     public BooleanSupplier getWarningCheck(RecipeError error) {
         int errorIndex = errorTypes.indexOf(error);
         if (errorIndex == -1) {

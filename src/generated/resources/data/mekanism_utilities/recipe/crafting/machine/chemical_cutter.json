@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "A": {
+      "item": "mekanism:alloy_reinforced"
+    },
+    "B": {
+      "item": "mekanism_utilities:standard_control_circuit"
+    },
+    "C": {
+      "item": "mekanism:steel_casing"
+    },
+    "D": {
+      "item": "extendedae:circuit_cutter"
+    }
+  },
+  "pattern": [
+    "ABA",
+    "DCD",
+    "ABA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "mekanism_utilities:chemical_cutter"
+  }
+}

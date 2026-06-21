@@ -13,6 +13,7 @@ import com.takenokoshi.mekut.blockentity.interfaces.IHasMachineEnergyContainer;
 import com.takenokoshi.mekut.blockentity.interfaces.machine.IItemStackListFluidChemicalToItemFluidChemicalRecipeMachine;
 import com.takenokoshi.mekut.capabilities.energy.VariableUsageMachineEnergyContainer;
 import com.takenokoshi.mekut.core.EjectorComponentUtils;
+import com.takenokoshi.mekut.inventory.slot.LimitChangedInputInventorySlot;
 import com.takenokoshi.mekut.recipe.cached.ICachedRecipe;
 import com.takenokoshi.mekut.recipe.cached.ItemStackListFluidChemicalToItemFluidChemicalCachedRecipe;
 import com.takenokoshi.mekut.recipe.input.ItemStackListInputHandler;
@@ -20,6 +21,7 @@ import com.takenokoshi.mekut.recipe.inputcache.ItemStackListFluidChemicalInputRe
 import com.takenokoshi.mekut.recipe.output.ItemOutputHandler;
 import com.takenokoshi.mekut.recipe.recipe.prefab.ItemStackListFluidChemicalToItemFluidChemicalRecipe;
 import com.takenokoshi.mekut.recipe.type.IMekUtRecipeTypeProvider;
+import com.takenokoshi.mekut.recipe_viewer.type.MekUtRecipeViewerRecipeType;
 import com.takenokoshi.mekut.registries.MekUtRecipeTypes;
 
 import mekanism.api.AutomationType;
@@ -36,6 +38,7 @@ import mekanism.api.recipes.inputs.IInputHandler;
 import mekanism.api.recipes.inputs.InputHelper;
 import mekanism.api.recipes.outputs.IOutputHandler;
 import mekanism.api.recipes.outputs.OutputHelper;
+import mekanism.client.recipe_viewer.type.IRecipeViewerRecipeType;
 import mekanism.common.capabilities.energy.MachineEnergyContainer;
 import mekanism.common.capabilities.fluid.BasicFluidTank;
 import mekanism.common.capabilities.holder.chemical.ChemicalTankHelper;
@@ -46,6 +49,7 @@ import mekanism.common.capabilities.holder.fluid.FluidTankHelper;
 import mekanism.common.capabilities.holder.fluid.IFluidTankHolder;
 import mekanism.common.capabilities.holder.slot.IInventorySlotHolder;
 import mekanism.common.capabilities.holder.slot.InventorySlotHelper;
+import mekanism.common.inventory.container.slot.SlotOverlay;
 import mekanism.common.inventory.slot.EnergyInventorySlot;
 import mekanism.common.inventory.slot.FluidInventorySlot;
 import mekanism.common.inventory.slot.InputInventorySlot;
@@ -136,22 +140,22 @@ public class BESmallDigitalReactionChamber
         inputSlots = new InputInventorySlot[9];
         for (int index = 0; index < 9; index++) {
             int value = index;
-            builder.addSlot(inputSlots[index] = InputInventorySlot.at(
+            builder.addSlot(inputSlots[index] = LimitChangedInputInventorySlot.at(
                     stack -> containsRecipeItemOther(stack, value, getItemsInOtherSlots(value),
                             inputFluidTank.getFluid(), inputChemicalTank.getStack()),
                     stack -> containsRecipeItem(stack, value),
-                    recipeCacheListener, 54 + index % 3 * 18, 22 + index / 3 * 18))
+                    recipeCacheListener, 54 + index % 3 * 18, 22 + index / 3 * 18, 256))
                     .tracksWarnings(warning -> warning.warning(WarningType.NO_MATCHING_RECIPE,
                             getWarningCheck(RecipeError.NOT_ENOUGH_INPUT)));
         }
         builder.addSlot(fluidInputSlot = FluidInventorySlot.fill(inputFluidTank,
-                listener, 06, 58));
+                listener, 6, 58)).setSlotOverlay(SlotOverlay.MINUS);
         builder.addSlot(chemicalInputSlot = ChemicalInventorySlot.fillOrConvert(inputChemicalTank, this::getLevel,
-                listener, 29, 58));
+                listener, 29, 58)).setSlotOverlay(SlotOverlay.MINUS);
         builder.addSlot(chemicalOutputSlot = ChemicalInventorySlot.drain(outputChemicalTank,
-                listener, 177, 58));
+                listener, 177, 58)).setSlotOverlay(SlotOverlay.PLUS);
         builder.addSlot(fluidOutputSlot = FluidInventorySlot.drain(outputFluidTank,
-                listener, 200, 58));
+                listener, 200, 58)).setSlotOverlay(SlotOverlay.PLUS);
         builder.addSlot(fluidInputReturnSlot = OutputInventorySlot.at(listener, 06, 89));
         builder.addSlot(fluidOutputReturnSlot = OutputInventorySlot.at(listener, 200, 89));
         builder.addSlot(outputSlot = OutputInventorySlot.at(recipeCacheUnpauseListener, 152, 40))
@@ -199,7 +203,7 @@ public class BESmallDigitalReactionChamber
                 (stack, type) -> containsRecipeChemicalOther(getItems(), inputFluidTank.getFluid(), stack.getStack(1)),
                 chemical -> containsRecipeChemical(chemical.getStack(1)),
                 ChemicalAttributeValidator.ALWAYS_ALLOW,
-                recipeCacheUnpauseListener));
+                recipeCacheListener));
         builder.addTank(outputChemicalTank = BasicChemicalTank.output(200000, recipeCacheUnpauseListener));
         return builder.build();
     }
@@ -207,6 +211,11 @@ public class BESmallDigitalReactionChamber
     @Override
     public int getExtraWidth() {
         return 60;
+    }
+
+    @Override
+    public int getExtraHeight() {
+        return 5;
     }
 
     @Override
@@ -279,6 +288,11 @@ public class BESmallDigitalReactionChamber
     @Override
     public IChemicalTank getOutputChemicalTank() {
         return outputChemicalTank;
+    }
+
+    @Override
+    public @Nullable IRecipeViewerRecipeType<ItemStackListFluidChemicalToItemFluidChemicalRecipe> recipeViewerType() {
+        return MekUtRecipeViewerRecipeType.SMALL_DIGITAL_REACTION_CHAMBER;
     }
 
 }

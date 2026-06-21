@@ -1,0 +1,41 @@
+{
+  "type": "mekanism_utilities:small_digital_assembler",
+  "chemical_input": {
+    "amount": 10000,
+    "chemical": "mekanism_utilities:xp"
+  },
+  "fluid_input": {
+    "amount": 1000,
+    "tag": "c:water"
+  },
+  "list_item_input": [
+    {
+      "count": 1,
+      "item": "mekanism:ultimate_control_circuit"
+    },
+    {
+      "count": 1,
+      "item": "mekanism_utilities:knowladge_control_circuit"
+    },
+    {
+      "count": 4,
+      "item": "mekanism_utilities:stardust_alloy"
+    },
+    {
+      "count": 2,
+      "item": "advanced_ae:quantum_processor"
+    },
+    {
+      "count": 2,
+      "item": "ae2:spatial_cell_component_128"
+    },
+    {
+      "count": 8,
+      "item": "ae2:not_so_mysterious_cube"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "mekanism_utilities:comet_control_circuit"
+  }
+}

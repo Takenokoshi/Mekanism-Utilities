@@ -20,18 +20,26 @@ public class MekUtRecipeProvider extends RecipeProvider {
         BuildAAEReactionRecipe.build(output);
         BuildAdsorptionRecipe.build(output);
         BuildChemicalConvertionRecipe.build(output);
+        BuildChemicalCutRecipe.build(output);
+        BuildChemicalDissolutionRecipe.build(output);
+        BuildCombiningRecipe.build(output);
         BuildCompressingRecipe.build(output);
         BuildCraftingRecipe.build(output, RecipeProvider::has);
         BuildCrystalAssemblerRecipe.build(output);
         BuildCrystallizingRecipe.build(output);
         BuildEnrichingRecipe.build(output);
+        BuildIceMakerRecipe.build(output);
         BuildInjectingRecipe.build(output);
+        BuildLazerCompressNucleoSynthesizeRecipe.build(output);
         BuildMekReactionRecipe.build(output);
         BuildMetallurgicInfusingRecipe.build(output);
         BuildMUMaterialProcessRecipe.build(output, RecipeProvider::has);
         BuildPaintingRecipe.build(output);
         BuildPigmentExtractingRecipe.build(output);
         BuildRotaryRecipe.build(output);
+        BuildSmallDigitalAssemblerRecipe.build(output);
+        BuildSmallDigitalReactionChamberRecipe.build(output);
+        BuildStellarGenesisRecipe.build(output);
     }
 
 }

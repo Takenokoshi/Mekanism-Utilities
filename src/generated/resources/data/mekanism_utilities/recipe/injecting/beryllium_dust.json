@@ -1,0 +1,16 @@
+{
+  "type": "mekanism:injecting",
+  "chemical_input": {
+    "amount": 1,
+    "chemical": "mekanism:sulfuric_acid"
+  },
+  "item_input": {
+    "count": 5,
+    "tag": "c:dusts/emerald"
+  },
+  "output": {
+    "count": 1,
+    "id": "mekanismelements:dust_beryllium"
+  },
+  "per_tick_usage": true
+}

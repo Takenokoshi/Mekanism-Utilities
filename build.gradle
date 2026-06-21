@@ -142,6 +142,10 @@ dependencies {
     implementation "curse.maven:jei-238222:7391682"
     implementation "curse.maven:ae2-jei-integration-1074338:7727898"
 
+    //Datagen only
+    datagenImplementation "curse.maven:applied-flux-965012:8204513"
+    datagenImplementation "curse.maven:mekanism-extras-1026040:7921191"
+
 
 }
 

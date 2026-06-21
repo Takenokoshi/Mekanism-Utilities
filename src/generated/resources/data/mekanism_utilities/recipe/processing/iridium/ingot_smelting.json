@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 400.0,
+  "ingredient": {
+    "item": "mekanism_utilities:iridium_dust"
+  },
+  "result": {
+    "count": 1,
+    "id": "mekanism_utilities:iridium_ingot"
+  }
+}

@@ -1,15 +1,9 @@
 package com.takenokoshi.mekut.recipe.building;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.glodblock.github.extendedae.common.EAESingletons;
 import com.glodblock.github.extendedae.recipe.CrystalAssemblerRecipeBuilder;
 import com.takenokoshi.mekut.core.MekUtConstants;
-import com.takenokoshi.mekut.registries.MekUtFluids;
 import com.takenokoshi.mekut.registries.MekUtItems;
-import com.takenokoshi.mekut.registries.MekUtMachines;
-
 import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
 import dev.lapis256.mekanism_empowered.common.init.MekEmpItems;
@@ -21,13 +15,9 @@ import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.material.Fluids;
-import net.pedroksl.advanced_ae.common.definitions.AAEItems;
 
 public class BuildCrystalAssemblerRecipe {
-
-    private static final List<ProcessorRecipeData> PROCESSORS = new ArrayList<>();
 
     public static void build(RecipeOutput output) {
         CrystalAssemblerRecipeBuilder.assemble(MekUtItems.ACCELERATION_CONTROL_CIRCUIT)
@@ -71,49 +61,5 @@ public class BuildCrystalAssemblerRecipe {
                 .input(AEBlocks.QUARTZ_GLASS, 4)
                 .input(AEItems.SKY_DUST, 4)
                 .save(output, MekUtConstants.rl("crystal_assembler/mega_bulk_chemical_storage_cell"));
-        CrystalAssemblerRecipeBuilder.assemble(MekUtMachines.COMPACT_SUPERCRITICAL_PHASE_SHIFTER)
-                .fluid(MekUtFluids.XP.asStack(1000))
-                .input(MekanismBlocks.SPS_CASING, 60)
-                .input(MekanismBlocks.STRUCTURAL_GLASS, 120)
-                .input(MekanismBlocks.SPS_PORT, 6)
-                .input(MekanismBlocks.SUPERCHARGED_COIL, 2)
-                .input(MekanismItems.ULTIMATE_CONTROL_CIRCUIT, 2)
-                .input(MekanismItems.ATOMIC_ALLOY, 4)
-                .input(MekUtItems.KNOWLEDGE_CONTROL_CIRCUIT, 8)
-                .input(MekUtItems.XP_ALLOY, 16)
-                .save(output, MekUtConstants.rl("crystal_assembler/compact_sps"));
-        PROCESSORS.forEach(data -> {
-            CrystalAssemblerRecipeBuilder.assemble(data.result, 64)
-                    .fluid(MekUtFluids.XP.get(), data.fluidAmount)
-                    .input(data.printed, 64)
-                    .input(data.dust, 64)
-                    .input(AEItems.SILICON_PRINT, 64)
-                    .save(output, MekUtConstants.rl("crystal_assembler/" + data.nameString));
-        });
-    }
-
-    private static record ProcessorRecipeData(ItemLike result, ItemLike printed, ItemLike dust, int fluidAmount,
-            String nameString) {
-    }
-
-    static {
-        PROCESSORS.add(new ProcessorRecipeData(AEItems.LOGIC_PROCESSOR, AEItems.LOGIC_PROCESSOR_PRINT, Items.REDSTONE,
-                1000, "logic_processor"));
-        PROCESSORS.add(new ProcessorRecipeData(AEItems.CALCULATION_PROCESSOR, AEItems.CALCULATION_PROCESSOR_PRINT,
-                Items.REDSTONE,
-                1000, "calculation_processor"));
-        PROCESSORS.add(new ProcessorRecipeData(AEItems.ENGINEERING_PROCESSOR, AEItems.ENGINEERING_PROCESSOR_PRINT,
-                Items.REDSTONE,
-                1000, "engineering_processor"));
-        PROCESSORS.add(new ProcessorRecipeData(MEGAItems.ACCUMULATION_PROCESSOR, MEGAItems.ACCUMULATION_PROCESSOR_PRINT,
-                AEItems.FLUIX_DUST,
-                10000, "accumulation_processor"));
-        PROCESSORS.add(new ProcessorRecipeData(AAEItems.QUANTUM_PROCESSOR, AAEItems.QUANTUM_PROCESSOR_PRINT,
-                AAEItems.QUANTUM_INFUSED_DUST,
-                10000, "quantum_processor"));
-        PROCESSORS.add(
-                new ProcessorRecipeData(EAESingletons.CONCURRENT_PROCESSOR, EAESingletons.CONCURRENT_PROCESSOR_PRINT,
-                        Items.REDSTONE,
-                        10000, "concurrent_processor"));
     }
 }

@@ -19,9 +19,12 @@ import net.minecraft.world.item.ItemStack;
 public class MekUtItems {
     public static final ItemDeferredRegister ITEMS = new ItemDeferredRegister(MekUtConstants.MODID);
 
+    public static final ItemRegistryObject<Item> ARTIFICIAL_STAR = registerFoiling("artificial_star");
+
     public static final ItemRegistryObject<Item> ELASTIC_ALLOY = ITEMS.register("elastic_alloy");
     public static final ItemRegistryObject<Item> CONVERGENT_ALLOY = ITEMS.register("convergent_alloy");
-    public static final ItemRegistryObject<Item> XP_ALLOY = ITEMS.register("xp_alloy");
+    public static final ItemRegistryObject<Item> XP_ALLOY = registerFoiling("xp_alloy");
+    public static final ItemRegistryObject<Item> STARDUST_ALLOY = registerFoiling("stardust_alloy");
 
     public static final ItemRegistryObject<Item> DIGITAL_CONTROL_CIRCUIT = ITEMS.register("digital_control_circuit");
     public static final ItemRegistryObject<Item> STANDARD_CONTROL_CIRCUIT = ITEMS.register("standard_control_circuit");
@@ -29,25 +32,25 @@ public class MekUtItems {
             .register("acceleration_control_circuit");
     public static final ItemRegistryObject<Item> CHEMICAL_CONTROL_CIRCUIT = ITEMS
             .register("chemical_control_circuit");
-    public static final ItemRegistryObject<Item> KNOWLEDGE_CONTROL_CIRCUIT = ITEMS
-            .register("knowladge_control_circuit");
+    public static final ItemRegistryObject<Item> KNOWLEDGE_CONTROL_CIRCUIT = registerFoiling(
+            "knowladge_control_circuit");
+    public static final ItemRegistryObject<Item> COMET_CONTROL_CIRCUIT = registerFoiling(
+            "comet_control_circuit");
 
-    public static final ItemRegistryObject<Item> ENRICHED_LAPIS_LAZULI = ITEMS.register("enriched_lapis_lazuli");
     public static final ItemRegistryObject<Item> ENRICHED_SINGULARITY = ITEMS.register("enriched_singularity");
+    public static final ItemRegistryObject<Item> ENRICHED_FLUIX = ITEMS.register("enriched_fluix");
 
     public static final ItemRegistryObject<Item> GOLDEN_REDSTONE = ITEMS.register("golden_redstone");
     public static final ItemRegistryObject<Item> AMETHYST_DUST = ITEMS.register("amethyst_dust");
+    public static final ItemRegistryObject<Item> IRIDIUM_DUST = ITEMS.register("iridium_dust");
+
     public static final ItemRegistryObject<Item> REFINED_AMETHYST_INGOT = ITEMS.register("refined_amethyst_ingot");
+    public static final ItemRegistryObject<Item> IRIDIUM_INGOT = ITEMS.register("iridium_ingot");
+    public static final ItemRegistryObject<Item> ASTRAL_GLOWSTONE_INGOT = ITEMS.register("astral_glowstone_ingot");
+
     public static final ItemRegistryObject<XpCrystalItem> XP_CRYSTAL = ITEMS.registerItem("xp_crystal",
             XpCrystalItem::new);
     public static final ItemRegistryObject<Item> BLAZE_CRYSTAL = ITEMS.register("blaze_crystal");
-    public static final ItemRegistryObject<Item> ACTIVATED_LAPIS_LAZULI = ITEMS.registerItem("activated_lapis_lazuli",
-            p -> new Item(p) {
-                @Override
-                public boolean isFoil(ItemStack stack) {
-                    return true;
-                }
-            });
 
     public static final ItemRegistryObject<Item> DARK_RED_DYE = ITEMS.register("dark_red_dye");
     public static final ItemRegistryObject<Item> AQUA_DYE = ITEMS.register("aqua_dye");
@@ -96,5 +99,13 @@ public class MekUtItems {
             }
         }
         return Collections.unmodifiableMap(result);
+    }
+
+    private static ItemRegistryObject<Item> registerFoiling(String name) {
+        return ITEMS.registerItem(name, props -> new Item(props) {
+            public boolean isFoil(ItemStack stack) {
+                return true;
+            };
+        });
     }
 }

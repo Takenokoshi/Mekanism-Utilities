@@ -1,5 +1,6 @@
 package com.takenokoshi.mekut.recipe.building;
 
+import com.fxd927.mekanismelements.common.registries.MSItems;
 import com.takenokoshi.mekut.core.MekUtConstants;
 
 import mekanism.api.datagen.recipe.builder.ItemStackChemicalToItemStackRecipeBuilder;
@@ -31,5 +32,12 @@ public class BuildInjectingRecipe {
                         MekanismItems.STEEL_DUST.asStack(1),
                         true)
                 .build(output, MekUtConstants.rl("injecting/steel_dust"));
+        ItemStackChemicalToItemStackRecipeBuilder
+                .injecting(
+                        creatorI.from(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "dusts/emerald")), 5),
+                        creatorC.from(MekanismChemicals.SULFURIC_ACID.asStack(1)),
+                        MSItems.DUST_BERYLLIUM.asStack(1),
+                        true)
+                .build(output, MekUtConstants.rl("injecting/beryllium_dust"));
     }
 }

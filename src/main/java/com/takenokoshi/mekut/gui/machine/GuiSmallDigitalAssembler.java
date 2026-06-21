@@ -2,13 +2,11 @@ package com.takenokoshi.mekut.gui.machine;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.takenokoshi.mekut.blockentity.base.BlockEntityMekUtRecipeMachine;
 import com.takenokoshi.mekut.blockentity.interfaces.IHasGuiSizeOffset;
 import com.takenokoshi.mekut.blockentity.interfaces.IHasMachineEnergyContainer;
+import com.takenokoshi.mekut.blockentity.interfaces.IWarningSupporter;
 import com.takenokoshi.mekut.blockentity.interfaces.machine.IItemStackListFluidChemicalToItemRecipeMachine;
 import com.takenokoshi.mekut.inventory.container.MekUtDynamicSizedContainer;
-import com.takenokoshi.mekut.recipe.recipe.prefab.ItemStackListFluidChemicalToItemRecipe;
-
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
 import mekanism.client.gui.GuiConfigurableTile;
 import mekanism.client.gui.element.GuiDownArrow;
@@ -19,21 +17,26 @@ import mekanism.client.gui.element.gauge.GuiFluidGauge;
 import mekanism.client.gui.element.progress.GuiProgress;
 import mekanism.client.gui.element.progress.ProgressType;
 import mekanism.client.gui.element.tab.GuiEnergyTab;
+import mekanism.client.recipe_viewer.type.IRecipeViewerRecipeType;
 import mekanism.common.inventory.warning.WarningTracker.WarningType;
+import mekanism.common.tile.base.TileEntityMekanism;
+import mekanism.common.tile.interfaces.ISideConfiguration;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 
-public class GuiSmallDigitalAssembler<BE extends BlockEntityMekUtRecipeMachine<ItemStackListFluidChemicalToItemRecipe> & IItemStackListFluidChemicalToItemRecipeMachine & IHasMachineEnergyContainer & IHasGuiSizeOffset>
+public class GuiSmallDigitalAssembler<BE extends TileEntityMekanism & ISideConfiguration & IItemStackListFluidChemicalToItemRecipeMachine & IHasMachineEnergyContainer & IHasGuiSizeOffset & IWarningSupporter>
         extends GuiConfigurableTile<BE, MekUtDynamicSizedContainer<BE>> {
 
     public GuiSmallDigitalAssembler(MekUtDynamicSizedContainer<BE> container, Inventory inv, Component title) {
         super(container, inv, title);
         dynamicSlots = true;
         int extraWidth = tile.getExtraWidth();
-        imageWidth  += extraWidth;
-        width += extraWidth;
+        imageWidth += extraWidth;
         inventoryLabelX += extraWidth / 2;
+        int extraHeight = tile.getExtraHeight();
+        imageHeight += extraHeight;
+        inventoryLabelY += extraHeight;
     }
 
     @Override
@@ -49,7 +52,8 @@ public class GuiSmallDigitalAssembler<BE extends BlockEntityMekUtRecipeMachine<I
         addRenderableWidget(new GuiVerticalPowerBar(this, tile.getEnergyContainer(), 199, 21))
                 .warning(WarningType.NOT_ENOUGH_ENERGY, tile.getWarningCheck(RecipeError.NOT_ENOUGH_ENERGY));
         addRenderableWidget(new GuiProgress(tile::getScaledProgress, ProgressType.RIGHT, this, 113, 43)).warning(
-                WarningType.INPUT_DOESNT_PRODUCE_OUTPUT, tile.getWarningCheck(RecipeError.INPUT_DOESNT_PRODUCE_OUTPUT));
+                WarningType.INPUT_DOESNT_PRODUCE_OUTPUT, tile.getWarningCheck(RecipeError.INPUT_DOESNT_PRODUCE_OUTPUT))
+                .recipeViewerCategories(new IRecipeViewerRecipeType[] { tile.recipeViewerType() });
         addRenderableWidget(new GuiDownArrow(this, 10, 77));
     }
 

@@ -1,0 +1,27 @@
+{
+  "type": "mekanism_utilities:small_digital_reaction_chamber",
+  "chemical_input": {
+    "amount": 2560,
+    "chemical": "mekanism_utilities:singularity"
+  },
+  "duration": 100,
+  "energy_required": 8000000,
+  "fluid_input": {
+    "amount": 16000,
+    "fluid": "advanced_ae:quantum_infusion_source"
+  },
+  "item_output": {
+    "count": 16,
+    "id": "advanced_ae:quantum_alloy"
+  },
+  "list_item_input": [
+    {
+      "count": 64,
+      "item": "mekanism:crystal_copper"
+    },
+    {
+      "count": 64,
+      "item": "advanced_ae:shattered_singularity"
+    }
+  ]
+}

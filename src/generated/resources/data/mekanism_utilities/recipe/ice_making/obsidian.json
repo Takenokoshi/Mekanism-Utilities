@@ -1,0 +1,11 @@
+{
+  "type": "mekanism_utilities:ice_making",
+  "input": {
+    "amount": 1000,
+    "tag": "c:lava"
+  },
+  "output": {
+    "count": 1,
+    "id": "minecraft:obsidian"
+  }
+}

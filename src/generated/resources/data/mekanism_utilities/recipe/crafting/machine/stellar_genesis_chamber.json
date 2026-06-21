@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "A": {
+      "item": "mekanism_utilities:stardust_alloy"
+    },
+    "B": {
+      "item": "mekanism_utilities:comet_control_circuit"
+    },
+    "C": {
+      "item": "mekanism:steel_casing"
+    },
+    "D": {
+      "item": "mekanism:pellet_antimatter"
+    }
+  },
+  "pattern": [
+    "ABA",
+    "DCD",
+    "ABA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "mekanism_utilities:stellar_genesis_chamber"
+  }
+}

@@ -124,11 +124,11 @@ public abstract class BEBasicItemStackToItemStackMachine
     }
 
     protected boolean containsRecipe(ItemStack stack) {
-        return getRecipeType().getInputCache().containsInput(getHandlerWorld(), stack);
+        return getRecipeType().getInputCache().containsInput(getLevel(), stack);
     }
 
     protected @Nullable ItemStackToItemStackRecipe findFirstRecipe(ItemStack stack) {
-        return getRecipeType().getInputCache().findFirstRecipe(getHandlerWorld(), stack);
+        return getRecipeType().getInputCache().findFirstRecipe(getLevel(), stack);
     }
 
     protected @Nullable ItemStackToItemStackRecipe findFirstRecipe(IInputHandler<ItemStack> handler) {

@@ -122,11 +122,11 @@ public abstract class BEAbstractCompactSPS extends BEMultiScaledProgressMachine<
     protected abstract long initTankCapacity();
 
     protected boolean containsRecipe(ChemicalStack input) {
-        return getRecipeType().getInputCache().containsInput(getHandlerWorld(), input);
+        return getRecipeType().getInputCache().containsInput(getLevel(), input);
     }
 
     protected @Nullable ChemicalToChemicalRecipe findfirstRecipe(ChemicalStack input) {
-        return getRecipeType().getInputCache().findFirstRecipe(getHandlerWorld(), input);
+        return getRecipeType().getInputCache().findFirstRecipe(getLevel(), input);
     }
 
     @Override

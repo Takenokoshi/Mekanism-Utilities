@@ -8,15 +8,19 @@ import java.util.function.Function;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import com.takenokoshi.mekut.recipe.recipe.prefab.FluidToItemRecipe;
 import com.takenokoshi.mekut.recipe.type.MekUtRecipeType;
 
 import mekanism.api.chemical.Chemical;
 import mekanism.api.chemical.ChemicalStack;
+import mekanism.api.recipes.vanilla_input.SingleFluidRecipeInput;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.material.Fluid;
+import net.neoforged.neoforge.fluids.FluidStack;
 
 public class MUSingleInputRecipeCache<RECIPE extends Recipe<?>, INPUT_TYPE> extends MUAbstractInputRecipeCache<RECIPE> {
 
@@ -70,6 +74,38 @@ public class MUSingleInputRecipeCache<RECIPE extends Recipe<?>, INPUT_TYPE> exte
             initCacheIfNeeded(world);
             return recipeMap.get(input.getItem());
         }
+    }
+
+    public static class MUSingleFluid<RECIPE extends Recipe<?>> extends MUSingleInputRecipeCache<RECIPE, Fluid> {
+
+        public MUSingleFluid(MekUtRecipeType<?, RECIPE, ?> recipeType,
+                Function<RECIPE, @NotNull List<Fluid>> inputExtractor) {
+            super(recipeType, inputExtractor);
+        }
+
+        public static <RECIPE extends FluidToItemRecipe> MUSingleFluid<RECIPE> toItem(
+                MekUtRecipeType<SingleFluidRecipeInput, RECIPE, ?> recipeType) {
+            return new MUSingleFluid<>(recipeType,
+                    recipe -> recipe.input.getRepresentations().stream().map(FluidStack::getFluid).toList());
+        }
+
+        public boolean containsInput(Level world, FluidStack input) {
+            if (input.isEmpty()) {
+                return false;
+            }
+            initCacheIfNeeded(world);
+            return recipeMap.containsKey(input.getFluid());
+        }
+
+        @Nullable
+        public RECIPE findFirstRecipe(Level world, FluidStack input) {
+            if (input.isEmpty()) {
+                return null;
+            }
+            initCacheIfNeeded(world);
+            return recipeMap.get(input.getFluid());
+        }
+
     }
 
     public static class MUSingleChemical<RECIPE extends Recipe<?>> extends MUSingleInputRecipeCache<RECIPE, Chemical> {

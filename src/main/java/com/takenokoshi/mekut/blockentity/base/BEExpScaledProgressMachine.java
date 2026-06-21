@@ -18,7 +18,8 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
-public abstract class BEExpScaledProgressMachine<RECIPE extends Recipe<?>> extends BlockEntityMekUtProgressMachine<RECIPE> {
+public abstract class BEExpScaledProgressMachine<RECIPE extends Recipe<?>>
+        extends BlockEntityMekUtProgressMachine<RECIPE> {
 
     public BEExpScaledProgressMachine(Holder<Block> blockProvider, BlockPos pos, BlockState state,
             List<RecipeError> errorTypes, int baseTicksRequired, ToIntFunction<RECIPE> recipeTicksGetter,
@@ -31,13 +32,13 @@ public abstract class BEExpScaledProgressMachine<RECIPE extends Recipe<?>> exten
     }
 
     protected void recaluculateProcessingSpeed() {
-        int speedFactor = 1 << upgradeComponent.getUpgrades(Upgrade.SPEED)
-                + 2 << MekUtUpgradeUtils.getEmpoweredSpeed(upgradeComponent);
+        int speedFactor = (1 << upgradeComponent.getUpgrades(Upgrade.SPEED))
+                + (2 << MekUtUpgradeUtils.getEmpoweredSpeed(upgradeComponent));
         if (speedFactor > recipeTicksRequired) {
-            operationsPerTick = MathUtils.clampToInt(speedFactor / recipeTicksRequired);
+            operationsPerTick = MathUtils.clampToInt(speedFactor / recipeTicksRequired * baselineMaxOperations);
             ticksRequired = 1;
         } else {
-            operationsPerTick = 1;
+            operationsPerTick = baselineMaxOperations;
             ticksRequired = MathUtils.clampToInt(recipeTicksRequired / speedFactor);
         }
     }

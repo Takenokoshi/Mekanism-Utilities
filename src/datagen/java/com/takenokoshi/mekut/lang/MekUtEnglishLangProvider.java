@@ -49,11 +49,14 @@ public class MekUtEnglishLangProvider extends LanguageProvider {
         MekUtChemicals.MU_MATERIALS_DIRTY_SLURRY.forEach((material, registry) -> {
             add(registry.getTranslationKey(), format(registry.getId().getPath()));
         });
-        addChemical(MekUtChemicals.ACTIVATED_LAPIS_LAZULI);
         addChemical(MekUtChemicals.SINGULARITY);
         addChemical(MekUtChemicals.XP);
         addChemical(MekUtChemicals.HEAVY_WATER_STEAM);
         addChemical(MekUtChemicals.BLAZE_ETHER);
+        addChemical(MekUtChemicals.FLUIX);
+        addChemical(MekUtChemicals.ASTRAL_ETHER);
+        addChemical(MekUtChemicals.IRIDIUM);
+        addChemical(MekUtChemicals.NETHERITE);
         addLang(MekUtLang.MOD_NAME, "Mekanism:Utilities");
         addLang(MekUtDescription.AMETHYST_ORE,
                 "Unrecorded ore that should only form in places outside the laws of this world.\\nNot found in nature.");

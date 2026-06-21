@@ -1,0 +1,11 @@
+{
+  "type": "mekanism:crushing",
+  "input": {
+    "count": 1,
+    "item": "mekanism_utilities:iridium_ingot"
+  },
+  "output": {
+    "count": 1,
+    "id": "mekanism_utilities:iridium_dust"
+  }
+}

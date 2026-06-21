@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "mekanism_utilities:aqua_dye"
+    },
+    {
+      "item": "mekanismelements:powder_high_quality_concrete"
+    },
+    {
+      "item": "mekanismelements:powder_high_quality_concrete"
+    },
+    {
+      "item": "mekanismelements:powder_high_quality_concrete"
+    },
+    {
+      "item": "mekanismelements:powder_high_quality_concrete"
+    },
+    {
+      "item": "mekanismelements:powder_high_quality_concrete"
+    },
+    {
+      "item": "mekanismelements:powder_high_quality_concrete"
+    },
+    {
+      "item": "mekanismelements:powder_high_quality_concrete"
+    },
+    {
+      "item": "mekanismelements:powder_high_quality_concrete"
+    }
+  ],
+  "result": {
+    "count": 8,
+    "id": "mekanismelements:powder_high_quality_concrete_aqua"
+  }
+}

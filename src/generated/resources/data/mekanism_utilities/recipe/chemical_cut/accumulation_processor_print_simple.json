@@ -1,0 +1,16 @@
+{
+  "type": "mekanism_utilities:chemical_cut",
+  "chemical_input": {
+    "amount": 1,
+    "chemical": "mekanism:oxygen"
+  },
+  "item_input": {
+    "count": 16,
+    "item": "megacells:sky_steel_ingot"
+  },
+  "output": {
+    "count": 16,
+    "id": "megacells:printed_accumulation_processor"
+  },
+  "per_tick_usage": true
+}

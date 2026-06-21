@@ -3,7 +3,6 @@ package com.takenokoshi.mekut.model;
 import com.takenokoshi.mekut.core.MekUtConstants;
 import com.takenokoshi.mekut.registries.MekUtItems;
 
-import mekanism.common.Mekanism;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.Item;
@@ -37,17 +36,25 @@ public class MekUtItemModelProvider extends ItemModelProvider {
             simpleItem(registry.get()).texture("layer0", MekUtConstants.rl("item/shard/" + material.name));
         });
 
+        simpleItem(MekUtItems.ARTIFICIAL_STAR.get())
+                .texture("layer0", MekUtConstants.rl("item/artificial_star"));
+
         simpleItem(MekUtItems.XP_CRYSTAL.get()).texture("layer0", MekUtConstants.rl("item/crystal/xp"));
         simpleItem(MekUtItems.BLAZE_CRYSTAL.get()).texture("layer0", MekUtConstants.rl("item/crystal/blaze"));
 
         simpleItem(MekUtItems.AMETHYST_DUST.get()).texture("layer0", MekUtConstants.rl("item/dust/amethyst_dust"));
+        simpleItem(MekUtItems.GOLDEN_REDSTONE.get()).texture("layer0", MekUtConstants.rl("item/dust/golden_redstone"));
+        simpleItem(MekUtItems.IRIDIUM_DUST.get()).texture("layer0", MekUtConstants.rl("item/dust/iridium"));
+
         simpleItem(MekUtItems.REFINED_AMETHYST_INGOT.get())
                 .texture("layer0", MekUtConstants.rl("item/ingot/refined_amethyst"));
-        simpleItem(MekUtItems.GOLDEN_REDSTONE.get()).texture("layer0", MekUtConstants.rl("item/dust/golden_redstone"));
+        simpleItem(MekUtItems.IRIDIUM_INGOT.get())
+                .texture("layer0", MekUtConstants.rl("item/ingot/iridium"));
 
         simpleItem(MekUtItems.ELASTIC_ALLOY.get()).texture("layer0", MekUtConstants.rl("item/alloy/elastic"));
         simpleItem(MekUtItems.CONVERGENT_ALLOY.get()).texture("layer0", MekUtConstants.rl("item/alloy/convergent"));
         simpleItem(MekUtItems.XP_ALLOY.get()).texture("layer0", MekUtConstants.rl("item/alloy/xp"));
+        simpleItem(MekUtItems.STARDUST_ALLOY.get()).texture("layer0", MekUtConstants.rl("item/alloy/stardust"));
 
         simpleItem(MekUtItems.DIGITAL_CONTROL_CIRCUIT.get())
                 .texture("layer0", MekUtConstants.rl("item/control_circuit/digital"));
@@ -61,16 +68,13 @@ public class MekUtItemModelProvider extends ItemModelProvider {
                 .texture("layer1", MekUtConstants.rl("item/control_circuit/chemical"));
         simpleItem(MekUtItems.KNOWLEDGE_CONTROL_CIRCUIT.get())
                 .texture("layer0", MekUtConstants.rl("item/control_circuit/knowledge"));
+        simpleItem(MekUtItems.COMET_CONTROL_CIRCUIT.get())
+                .texture("layer0", MekUtConstants.rl("item/control_circuit/comet"));
 
-        simpleItem(MekUtItems.ACTIVATED_LAPIS_LAZULI.get())
-                .texture("layer0", mcLoc("item/lapis_lazuli"))
-                .texture("layer1", MekUtConstants.rl("item/gem/activated_lapis_lazuli"));
-
-        getBuilder(MekUtItems.ENRICHED_LAPIS_LAZULI.getId().getPath())
-                .parent(new ModelFile.UncheckedModelFile(Mekanism.rl("item/enriched_redstone")))
-                .texture("layer1", MekUtConstants.rl("item/enriched/lapis_lazuli"));
         simpleItem(MekUtItems.ENRICHED_SINGULARITY.get())
                 .texture("layer0", MekUtConstants.rl("item/enriched/singularity"));
+        simpleItem(MekUtItems.ENRICHED_FLUIX.get())
+                .texture("layer0", MekUtConstants.rl("item/enriched/fluix"));
 
         simpleItem(MekUtItems.DARK_RED_DYE.get())
                 .texture("layer0", MekUtConstants.rl("item/dye/dark_red"));

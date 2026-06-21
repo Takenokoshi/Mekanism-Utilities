@@ -1,0 +1,26 @@
+{
+  "type": "mekanism_utilities:small_digital_reaction_chamber",
+  "chemical_input": {
+    "amount": 160000,
+    "chemical": "mekanism_utilities:xp"
+  },
+  "duration": 100,
+  "fluid_input": {
+    "amount": 100,
+    "tag": "c:lava"
+  },
+  "item_output": {
+    "count": 16,
+    "id": "minecraft:glowstone_dust"
+  },
+  "list_item_input": [
+    {
+      "count": 16,
+      "tag": "c:dusts/redstone"
+    },
+    {
+      "count": 8,
+      "tag": "c:dusts/gold"
+    }
+  ]
+}

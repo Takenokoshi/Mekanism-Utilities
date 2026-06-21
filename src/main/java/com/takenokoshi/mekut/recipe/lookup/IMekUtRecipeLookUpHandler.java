@@ -3,6 +3,7 @@ package com.takenokoshi.mekut.recipe.lookup;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import com.takenokoshi.mekut.blockentity.interfaces.IRecipeViewerTypeProvider;
 import com.takenokoshi.mekut.recipe.cached.ICachedRecipe;
 import com.takenokoshi.mekut.recipe.type.IMekUtRecipeTypeProvider;
 
@@ -13,10 +14,11 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
-public interface IMekUtRecipeLookUpHandler<RECIPE extends Recipe<?>> extends IContentsListener {
+public interface IMekUtRecipeLookUpHandler<RECIPE extends Recipe<?>>
+        extends IContentsListener, IRecipeViewerTypeProvider {
 
     @Nullable
-    default Level getHandlerWorld() {
+    default Level getLevel() {
         if (this instanceof BlockEntity tile) {
             return tile.getLevel();
         } else if (this instanceof Entity entity) {

@@ -1,5 +1,6 @@
 package com.takenokoshi.mekut.loottable;
 
+import com.glodblock.github.extendedae.common.EAESingletons;
 import com.takenokoshi.mekut.enums.MUMaterial;
 import com.takenokoshi.mekut.registries.MekUtBlocks;
 import com.takenokoshi.mekut.registries.MekUtItems;
@@ -66,6 +67,8 @@ public class MekUtBlockLootProvider extends BaseBlockLootTables {
 
         createOreDrop(AEBlocks.QUARTZ_CLUSTER.block(),
                 MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.CERTUS_QUARTZ).asItem(), 4);
+        createOreDrop(EAESingletons.ENTRO_CLUSTER,
+                MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.ENTRO).asItem(), 1);
     }
 
     protected void createOreDrop(Block block, Item item, int amount) {

@@ -15,37 +15,37 @@ import net.neoforged.neoforge.fluids.FluidStack;
 public interface IItemStackListFluidChemicalRecipeLookupHandler<RECIPE extends ItemStackListFluidChemicalToObjectsRecipe>
         extends IMekUtRecipeTypedLookupHandler<RECIPE, ItemStackListFluidChemicalInputRecipeCache<RECIPE>> {
     default boolean containsRecipeItem(ItemStack stack, int slotIndex) {
-        return getRecipeType().getInputCache().containsItem(getHandlerWorld(), stack, slotIndex);
+        return getRecipeType().getInputCache().containsItem(getLevel(), stack, slotIndex);
     }
 
     default boolean containsRecipeFluid(FluidStack stack) {
-        return getRecipeType().getInputCache().containsFluid(getHandlerWorld(), stack);
+        return getRecipeType().getInputCache().containsFluid(getLevel(), stack);
     }
 
     default boolean containsRecipeChemical(ChemicalStack stack) {
-        return getRecipeType().getInputCache().containsChemical(getHandlerWorld(), stack);
+        return getRecipeType().getInputCache().containsChemical(getLevel(), stack);
     }
 
     default boolean containsRecipeItemOther(ItemStack itemInput, int slotIndex, List<ItemStack> otherItemInputs,
             FluidStack fluidInput, ChemicalStack chemicalInput) {
-        return getRecipeType().getInputCache().containsItemOther(getHandlerWorld(), itemInput, slotIndex,
+        return getRecipeType().getInputCache().containsItemOther(getLevel(), itemInput, slotIndex,
                 otherItemInputs, fluidInput, chemicalInput);
     }
 
     default boolean containsRecipeFluidOther(List<ItemStack> itemInputs, FluidStack fluidInput,
             ChemicalStack chemicalInput) {
-        return getRecipeType().getInputCache().containsFluidOther(getHandlerWorld(), itemInputs, fluidInput,
+        return getRecipeType().getInputCache().containsFluidOther(getLevel(), itemInputs, fluidInput,
                 chemicalInput);
     }
 
     default boolean containsRecipeChemicalOther(List<ItemStack> itemInputs, FluidStack fluidInput,
             ChemicalStack chemicalInput) {
-        return getRecipeType().getInputCache().containsChemicalOther(getHandlerWorld(), itemInputs, fluidInput,
+        return getRecipeType().getInputCache().containsChemicalOther(getLevel(), itemInputs, fluidInput,
                 chemicalInput);
     }
 
     default RECIPE findFirstRecipe(List<ItemStack> itemInputs, FluidStack fluidInput, ChemicalStack chemicalInput) {
-        return getRecipeType().getInputCache().findFirstRecipe(getHandlerWorld(), itemInputs, fluidInput,
+        return getRecipeType().getInputCache().findFirstRecipe(getLevel(), itemInputs, fluidInput,
                 chemicalInput);
     }
 

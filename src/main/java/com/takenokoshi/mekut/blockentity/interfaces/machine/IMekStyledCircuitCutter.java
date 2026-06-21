@@ -31,11 +31,11 @@ public interface IMekStyledCircuitCutter
     }
 
     default boolean containsRecipe(ItemStack input) {
-        return getRecipeType().getInputCache().containsInput(getHandlerWorld(), input);
+        return getRecipeType().getInputCache().containsInput(getLevel(), input);
     }
 
     default @Nullable CircuitCutterRecipe findFirstRecipe(IInputHandler<ItemStack> inputHandler) {
-        return getRecipeType().getInputCache().findFirstRecipe(getHandlerWorld(), inputHandler.getInput());
+        return getRecipeType().getInputCache().findFirstRecipe(getLevel(), inputHandler.getInput());
     }
 
     double getScaledProgress();

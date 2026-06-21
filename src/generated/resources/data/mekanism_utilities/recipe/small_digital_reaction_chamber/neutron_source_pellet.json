@@ -1,0 +1,26 @@
+{
+  "type": "mekanism_utilities:small_digital_reaction_chamber",
+  "chemical_input": {
+    "amount": 100,
+    "chemical": "mekanismelements:americium"
+  },
+  "duration": 100,
+  "fluid_input": {
+    "amount": 100,
+    "tag": "c:water"
+  },
+  "item_output": {
+    "count": 1,
+    "id": "mekanismelements:pellet_neutron_source"
+  },
+  "list_item_input": [
+    {
+      "count": 1,
+      "tag": "c:dusts/beryllium"
+    },
+    {
+      "count": 1,
+      "tag": "c:dusts/steel"
+    }
+  ]
+}

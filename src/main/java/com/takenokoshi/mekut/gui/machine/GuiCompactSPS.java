@@ -3,6 +3,7 @@ package com.takenokoshi.mekut.gui.machine;
 import org.jetbrains.annotations.NotNull;
 
 import com.takenokoshi.mekut.blockentity.abs.BEAbstractCompactSPS;
+import com.takenokoshi.mekut.recipe_viewer.type.MekUtRecipeViewerRecipeType;
 
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
 import mekanism.client.gui.GuiConfigurableTile;
@@ -12,6 +13,7 @@ import mekanism.client.gui.element.gauge.GuiChemicalGauge;
 import mekanism.client.gui.element.progress.GuiProgress;
 import mekanism.client.gui.element.progress.ProgressType;
 import mekanism.client.gui.element.tab.GuiEnergyTab;
+import mekanism.client.recipe_viewer.type.IRecipeViewerRecipeType;
 import mekanism.common.inventory.container.tile.MekanismTileContainer;
 import mekanism.common.inventory.warning.WarningTracker.WarningType;
 import net.minecraft.client.gui.GuiGraphics;
@@ -39,7 +41,8 @@ public class GuiCompactSPS<BE extends BEAbstractCompactSPS> extends GuiConfigura
                 .warning(WarningType.NO_SPACE_IN_OUTPUT, tile.getWarningCheck(RecipeError.NOT_ENOUGH_OUTPUT_SPACE));
         addRenderableWidget(new GuiProgress(tile::getActive, ProgressType.LARGE_RIGHT, this, 64, 39))
                 .warning(WarningType.INPUT_DOESNT_PRODUCE_OUTPUT,
-                        tile.getWarningCheck(RecipeError.INPUT_DOESNT_PRODUCE_OUTPUT));
+                        tile.getWarningCheck(RecipeError.INPUT_DOESNT_PRODUCE_OUTPUT))
+                .recipeViewerCategories(new IRecipeViewerRecipeType[] { MekUtRecipeViewerRecipeType.SPS });
     }
 
     @Override

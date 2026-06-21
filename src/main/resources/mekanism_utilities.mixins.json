@@ -4,8 +4,6 @@
     "compatibilityLevel": "JAVA_21",
     "mixins": [
         "mekanism.blockentity.component.TileComponentEjectorMixin",
-        "mekanism.inventory.slot.BasicInventorySlotMixin",
-        "mekanism.inventory.slot.OutputInventorySlotMixin",
         "mekanism.recipe.CachedRecipeMixin",
         "mekanism.recipe.OperationTrackerMixin",
         "mekanism.ReloadListenerMixin"

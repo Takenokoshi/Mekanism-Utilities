@@ -2,15 +2,20 @@ package com.takenokoshi.mekut.recipe.building;
 
 import java.util.function.Function;
 
+import com.jerry.mekextras.MekanismExtras;
+import com.jerry.mekextras.common.registries.ExtraItems;
+import com.jerry.mekextras.common.resource.ExtraResource;
 import com.takenokoshi.mekut.core.MekUtConstants;
 import com.takenokoshi.mekut.enums.MUMaterial;
 import com.takenokoshi.mekut.enums.MUMaterialDatagen;
+import com.takenokoshi.mekut.recipe.builder.ItemStackListFluidChemicalToItemFluidChemicalRecipeBuilder;
 import com.takenokoshi.mekut.recipe.data.OreAndRawData;
 import com.takenokoshi.mekut.registries.MekUtBlocks;
 import com.takenokoshi.mekut.registries.MekUtChemicals;
 import com.takenokoshi.mekut.registries.MekUtItems;
 import com.takenokoshi.mekut.tag.MekUtItemTags;
 
+import mekanism.api.chemical.ChemicalStack;
 import mekanism.api.datagen.recipe.builder.ChemicalCrystallizerRecipeBuilder;
 import mekanism.api.datagen.recipe.builder.ChemicalDissolutionRecipeBuilder;
 import mekanism.api.datagen.recipe.builder.FluidChemicalToChemicalRecipeBuilder;
@@ -21,6 +26,7 @@ import mekanism.api.recipes.ingredients.creator.IFluidStackIngredientCreator;
 import mekanism.api.recipes.ingredients.creator.IItemStackIngredientCreator;
 import mekanism.api.recipes.ingredients.creator.IngredientCreatorAccess;
 import mekanism.common.registries.MekanismChemicals;
+import mekanism.common.resource.ResourceType;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -33,7 +39,9 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.material.Fluids;
-import net.pedroksl.advanced_ae.recipes.ReactionChamberRecipeBuilder;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
+import net.neoforged.neoforge.fluids.FluidStack;
 
 public class BuildMUMaterialProcessRecipe {
     public static void build(RecipeOutput output,
@@ -188,12 +196,32 @@ public class BuildMUMaterialProcessRecipe {
                     .build(output, MekUtConstants.rl("processing/" + rawData.name() + "/raw_from_ore"));
         }
 
-        ReactionChamberRecipeBuilder
-                .react(MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.NETHERITE), 1000)
-                .input(Items.ANCIENT_DEBRIS, 4)
-                .input(Items.RAW_GOLD, 4)
-                .fluid(Fluids.LAVA, 100)
-                .save(output, MekUtConstants.rl("processing/netherite/raw_from_ancient_debris"));
+        ItemStackChemicalToItemStackRecipeBuilder
+                .metallurgicInfusing(
+                        creatorI.from(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "ores/naquadah"))),
+                        creatorC.from(MekUtChemicals.XP.get(), 100),
+                        ExtraItems.PROCESSED_RESOURCES.get(ResourceType.RAW, ExtraResource.NAQUADAH).asStack(3),
+                        false)
+                .addCondition(new ModLoadedCondition(MekanismExtras.MOD_ID))
+                .build(output, MekUtConstants.rl("processing/naquadah/raw_from_ore"));
+
+        SimpleCookingRecipeBuilder
+                .smelting(Ingredient.of(MekUtItems.IRIDIUM_DUST), RecipeCategory.MISC, MekUtItems.IRIDIUM_INGOT, 400,
+                        200)
+                .unlockedBy("unlock", has.apply(MekUtItems.IRIDIUM_DUST))
+                .save(output, MekUtConstants.rl("processing/iridium/ingot_smelting"));
+        ItemStackToItemStackRecipeBuilder
+                .crushing(creatorI.from(MekUtItems.IRIDIUM_INGOT.asStack()), MekUtItems.IRIDIUM_DUST.asStack())
+                .build(output, MekUtConstants.rl("processing/iridium/dust"));
+
+        ItemStackListFluidChemicalToItemFluidChemicalRecipeBuilder
+                .smallDigitalReactionChamber(MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.NETHERITE).asStack(1),
+                        FluidStack.EMPTY, ChemicalStack.EMPTY)
+                .addItemInput(Items.ANCIENT_DEBRIS, 4)
+                .addItemInput(Items.RAW_GOLD, 4)
+                .setFluidInput(Tags.Fluids.LAVA, 100)
+                .setChemicalInput(MekUtChemicals.XP.asStack(1000))
+                .build(output, MekUtConstants.rl("processing/netherite/raw_from_ancient_debris"));
 
         ItemStackToItemStackRecipeBuilder
                 .crushing(

@@ -22,6 +22,9 @@ public class BasicSmallDigitalAssemblerRecipe extends ItemStackListFluidChemical
             ChemicalStackIngredient chemicalInput, ItemStack outputItem, long energyRequired) {
         super(MekUtRecipeTypes.SMALL_DIGITAL_ASSEMBLER.get(), itemInputs, fluidInput, chemicalInput, outputItem,
                 energyRequired);
+        if (itemInputs.size() > 9) {
+            throw new IllegalStateException("itemInputs size can't be larger then 9");
+        }
     }
 
     public BasicSmallDigitalAssemblerRecipe(

@@ -55,8 +55,8 @@ public interface IItemStackListFluidChemicalToItemFluidChemicalRecipeMachine
                         .addBasic(20000)
                         .build())
                 .addAttachmentOnlyContainers(ContainerType.CHEMICAL, () -> ChemicalTanksBuilder.builder()
-                        .addBasic(20000)
-                        .addBasic(20000)
+                        .addBasic(200000)
+                        .addBasic(200000)
                         .build());
     }
 

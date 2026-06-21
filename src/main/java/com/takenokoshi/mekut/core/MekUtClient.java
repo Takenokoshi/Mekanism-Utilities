@@ -1,6 +1,5 @@
 package com.takenokoshi.mekut.core;
 
-import com.takenokoshi.mekut.blockentity.normalmachine.*;
 import com.takenokoshi.mekut.blockentity.standardmachine.*;
 import com.takenokoshi.mekut.gui.machine.*;
 import com.takenokoshi.mekut.registries.MekUtFluids;
@@ -45,12 +44,6 @@ public class MekUtClient extends MekUt {
 
     private void initScreens(RegisterMenuScreensEvent event) {
         MekUtScreens.registerScreens(event);
-        ClientRegistrationUtil.registerScreen(event, MekUtMachines.MEKSTYLED_CIRCUIT_CUTTER.getContainer(),
-                GuiMekStyledCircuitCutter<BEMekStyledCircuitCutter>::new);
-        ClientRegistrationUtil.registerScreen(event, MekUtMachines.MEKSTYLED_CRYSTAL_ASSEMBLER.getContainer(),
-                GuiMekStyledCrystalAssembler<BEMekStyledCrystalAssembler>::new);
-        ClientRegistrationUtil.registerScreen(event, MekUtMachines.MEKSTYLED_REACTION_CHAMBER.getContainer(),
-                GuiMekStyledReactionChamber<BEMekStyledReactionChamber>::new);
         ClientRegistrationUtil.registerScreen(event, MekUtMachines.STANDARD_CHEMICAL_INJECTION_CHAMBER.getContainer(),
                 GuiTweakedItemChemicalToItemMachine<BEStandardChemicalInjectionChamber>::new);
         ClientRegistrationUtil.registerScreen(event, MekUtMachines.STANDARD_CRUSHER.getContainer(),
@@ -61,12 +54,6 @@ public class MekUtClient extends MekUt {
                 GuiBasicItemStackToItemStackMachine<BEStandardEnrichmentChamber>::new);
         ClientRegistrationUtil.registerScreen(event, MekUtMachines.STANDARD_MEKSTYLED_CHARGER.getContainer(),
                 GuiMekStyledCharger<BEStandardMekStyledCharger>::new);
-        ClientRegistrationUtil.registerScreen(event, MekUtMachines.STANDARD_MEKSTYLED_CIRCUIT_CUTTER.getContainer(),
-                GuiMekStyledCircuitCutter<BEStandardMekStyledCircuitCutter>::new);
-        ClientRegistrationUtil.registerScreen(event, MekUtMachines.STANDARD_MEKSTYLED_CRYSTAL_ASSEMBLER.getContainer(),
-                GuiMekStyledCrystalAssembler<BEStandardMekStyledCrystalAssembler>::new);
-        ClientRegistrationUtil.registerScreen(event, MekUtMachines.STANDARD_MEKSTYLED_REACTION_CHAMBER.getContainer(),
-                GuiMekStyledReactionChamber<BEStandardMekStyledReactionChamber>::new);
         ClientRegistrationUtil.registerScreen(event, MekUtMachines.STANDARD_PURIFICATION_CHAMBER.getContainer(),
                 GuiTweakedItemChemicalToItemMachine<BEStandardPurificationChamber>::new);
     }

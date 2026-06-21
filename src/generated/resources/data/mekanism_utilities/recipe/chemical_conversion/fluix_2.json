@@ -1,0 +1,11 @@
+{
+  "type": "mekanism:chemical_conversion",
+  "input": {
+    "count": 1,
+    "item": "mekanism_utilities:enriched_fluix"
+  },
+  "output": {
+    "amount": 80,
+    "id": "mekanism_utilities:fluix"
+  }
+}

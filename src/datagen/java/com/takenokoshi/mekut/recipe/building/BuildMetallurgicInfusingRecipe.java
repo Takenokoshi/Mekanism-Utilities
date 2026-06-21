@@ -4,6 +4,7 @@ import com.takenokoshi.mekut.core.MekUtConstants;
 import com.takenokoshi.mekut.registries.MekUtChemicals;
 import com.takenokoshi.mekut.registries.MekUtItems;
 
+import appeng.core.definitions.AEItems;
 import mekanism.api.datagen.recipe.builder.ItemStackChemicalToItemStackRecipeBuilder;
 import mekanism.api.recipes.ingredients.creator.IChemicalStackIngredientCreator;
 import mekanism.api.recipes.ingredients.creator.IItemStackIngredientCreator;
@@ -22,15 +23,8 @@ public class BuildMetallurgicInfusingRecipe {
         IChemicalStackIngredientCreator creatorC = IngredientCreatorAccess.chemicalStack();
         ItemStackChemicalToItemStackRecipeBuilder
                 .metallurgicInfusing(
-                        creatorI.from(Items.LAPIS_LAZULI),
-                        creatorC.from(MekanismChemicals.REDSTONE.asStack(20)),
-                        MekUtItems.ACTIVATED_LAPIS_LAZULI.asStack(1),
-                        false)
-                .build(output, MekUtConstants.rl("metallurgic_infusing/activated_lapis_lazuli"));
-        ItemStackChemicalToItemStackRecipeBuilder
-                .metallurgicInfusing(
                         creatorI.from(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "ingots/tin"))),
-                        creatorC.from(MekUtChemicals.ACTIVATED_LAPIS_LAZULI.asStack(10)),
+                        creatorC.from(MekUtChemicals.FLUIX.asStack(10)),
                         MekUtItems.ELASTIC_ALLOY.asStack(1),
                         false)
                 .build(output, MekUtConstants.rl("metallurgic_infusing/elastic_alloy"));
@@ -76,5 +70,12 @@ public class BuildMetallurgicInfusingRecipe {
                         new ItemStack(Items.MAGMA_CREAM, 1),
                         false)
                 .build(output, MekUtConstants.rl("metallurgic_infusing/magma_cream"));
+        ItemStackChemicalToItemStackRecipeBuilder
+                .metallurgicInfusing(
+                        creatorI.from(Items.ENDER_PEARL, 1),
+                        creatorC.from(MekUtChemicals.FLUIX.asStack(80)),
+                        AEItems.FLUIX_PEARL.stack(1),
+                        false)
+                .build(output, MekUtConstants.rl("metallurgic_infusing/fluix_pearl"));
     }
 }

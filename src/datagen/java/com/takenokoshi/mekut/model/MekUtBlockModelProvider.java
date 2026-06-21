@@ -45,28 +45,27 @@ public class MekUtBlockModelProvider extends BlockStateProvider {
             simpleBlockWithItem(def.get(), wipModel);
         });
 
-        mekutNormalMachine(MekUtMachines.COMPACT_SUPERCRITICAL_PHASE_SHIFTER.getBlockObject(),
-                MekUtConstants.rl("block/normal_machine/sps_front"),
-                MekUtConstants.rl("block/normal_machine/sps_front_active"));
         mekutNormalMachine(MekUtMachines.MEKSTYLED_CHARGER.getBlockObject(),
                 MekUtConstants.rl("block/normal_machine/mekstyled_charger_front"),
                 MekUtConstants.rl("block/normal_machine/mekstyled_charger_front_active"));
-        mekutNormalMachine(MekUtMachines.MEKSTYLED_CIRCUIT_CUTTER.getBlockObject(),
-                MekUtConstants.rl("block/normal_machine/mekstyled_circuit_cutter_front"),
-                MekUtConstants.rl("block/normal_machine/mekstyled_circuit_cutter_front_active"));
-        mekutNormalMachine(MekUtMachines.MEKSTYLED_CRYSTAL_ASSEMBLER.getBlockObject(),
-                MekUtConstants.rl("block/normal_machine/mekstyled_crystal_assembler_front"),
-                MekUtConstants.rl("block/normal_machine/mekstyled_crystal_assembler_front_active"));
-        mekutNormalMachine(MekUtMachines.MEKSTYLED_REACTION_CHAMBER.getBlockObject(),
-                MekUtConstants.rl("block/normal_machine/mekstyled_reaction_chamber_front"),
-                MekUtConstants.rl("block/normal_machine/mekstyled_reaction_chamber_front_active"));
+
+        mekutNormalMachine(MekUtMachines.CHEMICAL_CUTTER,
+                "chemical_cutter");
+        mekutNormalMachine(MekUtMachines.COMPACT_SUPERCRITICAL_PHASE_SHIFTER,
+                "sps");
+        mekutNormalMachine(MekUtMachines.ICE_MAKER,
+                "ice_maker");
+        mekutNormalMachine(MekUtMachines.LAZER_COMPRESS_NUCLEO_SYNTHESIZER,
+                "lazer_compress_nucleo_synthesizer");
         mekutNormalMachine(MekUtMachines.SMALL_DIGITAL_ASSEMBLER,
-                "normal_machine/small_digital_assembler_front");
+                "small_digital_assembler");
         mekutNormalMachine(MekUtMachines.SMALL_DIGITAL_REACTION_CHAMBER,
-                "normal_machine/small_digital_reaction_chamber_front");
-        mekutNormalMachine(MekUtMachines.SUBMATERIAL_CONVERTER.getBlockObject(),
-                MekUtConstants.rl("block/normal_machine/submaterial_converter_front"),
-                MekUtConstants.rl("block/normal_machine/submaterial_converter_front_active"));
+                "small_digital_reaction_chamber");
+        mekutNormalMachine(MekUtMachines.STELLAR_GENESIS_CHAMBER,
+                "stellar_genesis_chamber");
+        mekutNormalMachine(MekUtMachines.SUBMATERIAL_CONVERTER,
+                "submaterial_converter");
+
         mekanismMachine(MekUtMachines.TWEAKED_ENERGIZED_SMELTER.getBlockObject(),
                 Mekanism.rl("block/energized_smelter"),
                 Mekanism.rl("block/energized_smelter_active"));
@@ -85,15 +84,6 @@ public class MekUtBlockModelProvider extends BlockStateProvider {
         mekutStandardMachine(MekUtMachines.STANDARD_MEKSTYLED_CHARGER.getBlockObject(),
                 MekUtConstants.rl("block/standard_machine/mekstyled_charger_front"),
                 MekUtConstants.rl("block/standard_machine/mekstyled_charger_front_active"));
-        mekutStandardMachine(MekUtMachines.STANDARD_MEKSTYLED_CIRCUIT_CUTTER.getBlockObject(),
-                MekUtConstants.rl("block/standard_machine/mekstyled_circuit_cutter_front"),
-                MekUtConstants.rl("block/standard_machine/mekstyled_circuit_cutter_front_active"));
-        mekutStandardMachine(MekUtMachines.STANDARD_MEKSTYLED_CRYSTAL_ASSEMBLER.getBlockObject(),
-                MekUtConstants.rl("block/standard_machine/mekstyled_crystal_assembler_front"),
-                MekUtConstants.rl("block/standard_machine/mekstyled_crystal_assembler_front_active"));
-        mekutStandardMachine(MekUtMachines.STANDARD_MEKSTYLED_REACTION_CHAMBER.getBlockObject(),
-                MekUtConstants.rl("block/standard_machine/mekstyled_reaction_chamber_front"),
-                MekUtConstants.rl("block/standard_machine/mekstyled_reaction_chamber_front_active"));
         mekutStandardMachine(MekUtMachines.STANDARD_PURIFICATION_CHAMBER.getBlockObject(),
                 MekUtConstants.rl("block/standard_machine/purification_chamber_front"),
                 MekUtConstants.rl("block/standard_machine/purification_chamber_front_active"));
@@ -131,8 +121,8 @@ public class MekUtBlockModelProvider extends BlockStateProvider {
             MachineRegistryObject<?, ?, ?, ?> machine,
             String basePath) {
         mekutNormalMachine(machine.getBlockObject(),
-                MekUtConstants.rl("block/" + basePath),
-                MekUtConstants.rl("block/" + basePath + "_active"));
+                MekUtConstants.rl("block/normal_machine/" + basePath + "_front"),
+                MekUtConstants.rl("block/normal_machine/" + basePath + "_front_active"));
     }
 
     protected void mekutNormalMachine(

@@ -1,29 +1,26 @@
 {
-  "type": "advanced_ae:reaction",
-  "input_energy": 1000,
-  "input_fluid": {
-    "amount": 100,
-    "ingredient": {
-      "fluid": "minecraft:lava"
-    }
+  "type": "mekanism_utilities:small_digital_reaction_chamber",
+  "chemical_input": {
+    "amount": 1000,
+    "chemical": "mekanism_utilities:xp"
   },
-  "input_items": [
+  "duration": 100,
+  "fluid_input": {
+    "amount": 100,
+    "tag": "c:lava"
+  },
+  "item_output": {
+    "count": 1,
+    "id": "mekanism_utilities:raw_netherite"
+  },
+  "list_item_input": [
     {
-      "amount": 4,
-      "ingredient": {
-        "item": "minecraft:ancient_debris"
-      }
+      "count": 4,
+      "item": "minecraft:ancient_debris"
     },
     {
-      "amount": 4,
-      "ingredient": {
-        "item": "minecraft:raw_gold"
-      }
+      "count": 4,
+      "item": "minecraft:raw_gold"
     }
-  ],
-  "output": {
-    "#": 1,
-    "#t": "ae2:i",
-    "id": "mekanism_utilities:raw_netherite"
-  }
+  ]
 }

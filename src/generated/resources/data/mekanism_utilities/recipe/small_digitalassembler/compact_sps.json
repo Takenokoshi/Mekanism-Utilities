@@ -1,0 +1,49 @@
+{
+  "type": "mekanism_utilities:small_digital_assembler",
+  "chemical_input": {
+    "amount": 2000,
+    "chemical": "mekanism:tin"
+  },
+  "fluid_input": {
+    "amount": 1000,
+    "fluid": "mekanism:heavy_water"
+  },
+  "list_item_input": [
+    {
+      "count": 60,
+      "item": "mekanism:sps_casing"
+    },
+    {
+      "count": 120,
+      "item": "mekanism:structural_glass"
+    },
+    {
+      "count": 6,
+      "item": "mekanism:sps_port"
+    },
+    {
+      "count": 2,
+      "item": "mekanism:supercharged_coil"
+    },
+    {
+      "count": 2,
+      "item": "mekanism:ultimate_control_circuit"
+    },
+    {
+      "count": 4,
+      "item": "mekanism:alloy_atomic"
+    },
+    {
+      "count": 8,
+      "item": "mekanism_utilities:knowladge_control_circuit"
+    },
+    {
+      "count": 16,
+      "item": "mekanism_utilities:xp_alloy"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "mekanism_utilities:compact_supercritical_phase_shifter"
+  }
+}

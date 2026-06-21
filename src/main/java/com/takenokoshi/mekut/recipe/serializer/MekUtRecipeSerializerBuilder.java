@@ -2,10 +2,14 @@ package com.takenokoshi.mekut.recipe.serializer;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.BiFunction;
 
+import com.mojang.datafixers.util.Function3;
 import com.mojang.datafixers.util.Function5;
 import com.mojang.datafixers.util.Function8;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.takenokoshi.mekut.recipe.recipe.prefab.BiChemicalToItemRecipe;
+import com.takenokoshi.mekut.recipe.recipe.prefab.FluidToItemRecipe;
 import com.takenokoshi.mekut.recipe.recipe.prefab.ItemStackListFluidChemicalToItemFluidChemicalRecipe;
 import com.takenokoshi.mekut.recipe.recipe.prefab.ItemStackListFluidChemicalToItemRecipe;
 
@@ -79,16 +83,49 @@ public final class MekUtRecipeSerializerBuilder {
                         ItemStackListFluidChemicalToItemFluidChemicalRecipe::getFluidInputAsOptional,
                         MekUtCodecConstants.CHEMICALSTACK_INGREDIENT_OPTIONAL_STREAM_CODEC,
                         ItemStackListFluidChemicalToItemFluidChemicalRecipe::getChemicalInputAsOptional,
-                        ItemStack.STREAM_CODEC,
+                        ItemStack.OPTIONAL_STREAM_CODEC,
                         ItemStackListFluidChemicalToItemFluidChemicalRecipe::getItemOutput,
-                        FluidStack.STREAM_CODEC,
+                        FluidStack.OPTIONAL_STREAM_CODEC,
                         ItemStackListFluidChemicalToItemFluidChemicalRecipe::getFluidOutput,
-                        ChemicalStack.STREAM_CODEC,
+                        ChemicalStack.OPTIONAL_STREAM_CODEC,
                         ItemStackListFluidChemicalToItemFluidChemicalRecipe::getChemicalOutput,
                         ByteBufCodecs.VAR_LONG,
                         ItemStackListFluidChemicalToItemFluidChemicalRecipe::getEnergyRequired,
                         ByteBufCodecs.VAR_INT,
                         ItemStackListFluidChemicalToItemFluidChemicalRecipe::getDuration,
+                        factory));
+    }
+
+    public static <RECIPE extends BiChemicalToItemRecipe> MekanismRecipeSerializer<RECIPE> chemicalChemicalToItem(
+            Function3<ChemicalStackIngredient, ChemicalStackIngredient, ItemStack, RECIPE> factory) {
+        return new MekanismRecipeSerializer<>(RecordCodecBuilder.mapCodec(instance -> instance.group(
+                IngredientCreatorAccess.chemicalStack().codec().fieldOf(SerializationConstants.LEFT_INPUT)
+                        .forGetter(BiChemicalToItemRecipe::getLeftInput),
+                IngredientCreatorAccess.chemicalStack().codec().fieldOf(SerializationConstants.RIGHT_INPUT)
+                        .forGetter(BiChemicalToItemRecipe::getRightInput),
+                ItemStack.CODEC.fieldOf(SerializationConstants.OUTPUT)
+                        .forGetter(BiChemicalToItemRecipe::getOutputRaw))
+                .apply(instance, factory)),
+                StreamCodec.composite(IngredientCreatorAccess.chemicalStack().streamCodec(),
+                        BiChemicalToItemRecipe::getLeftInput,
+                        IngredientCreatorAccess.chemicalStack().streamCodec(),
+                        BiChemicalToItemRecipe::getRightInput,
+                        ItemStack.STREAM_CODEC, BiChemicalToItemRecipe::getOutputRaw, factory));
+    }
+
+    public static <RECIPE extends FluidToItemRecipe> MekanismRecipeSerializer<RECIPE> fluidToItem(
+            BiFunction<FluidStackIngredient, ItemStack, RECIPE> factory) {
+        return new MekanismRecipeSerializer<>(RecordCodecBuilder.mapCodec(instance -> instance.group(
+                IngredientCreatorAccess.fluid().codec().fieldOf(SerializationConstants.INPUT)
+                        .forGetter(FluidToItemRecipe::getInput),
+                ItemStack.CODEC.fieldOf(SerializationConstants.OUTPUT)
+                        .forGetter(FluidToItemRecipe::getOutputRaw))
+                .apply(instance, factory)),
+                StreamCodec.composite(
+                        IngredientCreatorAccess.fluid().streamCodec(),
+                        FluidToItemRecipe::getInput,
+                        ItemStack.STREAM_CODEC,
+                        FluidToItemRecipe::getOutputRaw,
                         factory));
     }
 

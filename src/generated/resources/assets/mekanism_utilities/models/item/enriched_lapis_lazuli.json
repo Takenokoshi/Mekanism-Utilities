@@ -1,6 +1,0 @@
-{
-  "parent": "mekanism:item/enriched_redstone",
-  "textures": {
-    "layer1": "mekanism_utilities:item/enriched/lapis_lazuli"
-  }
-}

@@ -29,6 +29,9 @@ public class BasicSmallDigitalReactionChamberRecipe extends ItemStackListFluidCh
         super(MekUtRecipeTypes.SMALL_DIGITAL_REACTION_CHAMBER.get(), itemInputs, fluidInput, chemicalInput, outputItem, outputFluid,
                 outputChemical, energyRequired,
                 duration);
+        if (itemInputs.size() > 9) {
+            throw new IllegalStateException("itemInputs size can't be larger then 9");
+        }
     }
 
     public BasicSmallDigitalReactionChamberRecipe(

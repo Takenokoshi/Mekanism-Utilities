@@ -53,30 +53,38 @@ public class ItemStackListFluidChemicalInputRecipeCache<RECIPE extends ItemStack
             RECIPE recipe = recipeHolder.value();
             int listSize = recipe.itemInputs.size();
             recipe.getIngredientItems().forEach(item -> {
-                itemToRecipeCache.merge(item, new HashSet<>(List.of(recipe)),
+                itemToRecipeCache.merge(item, singleSet(recipe),
                         ItemStackListFluidChemicalInputRecipeCache::addAll);
                 itemToMaxListSizeCache.mergeInt(item, listSize, Math::max);
             });
             final List<Fluid> fluids = recipe.getIngredientFluids();
             final List<Chemical> chemicals = recipe.getIngredientChemicals();
             fluids.forEach(fluid -> {
-                fluidToRecipeCache.merge(fluid, new HashSet<>(List.of(recipe)),
+                fluidToRecipeCache.merge(fluid, singleSet(recipe),
                         ItemStackListFluidChemicalInputRecipeCache::addAll);
                 chemicals.forEach(chemical -> {
-                    fluidChemicalToRecipeCache.merge(fluid, chemical, new HashSet<>(List.of(recipe)),
+                    fluidChemicalToRecipeCache.merge(fluid, chemical, singleSet(recipe),
                             ItemStackListFluidChemicalInputRecipeCache::addAll);
                 });
             });
             chemicals.forEach(chemical -> {
-                chemicalToRecipeCache.merge(chemical, new HashSet<>(List.of(recipe)),
+                chemicalToRecipeCache.merge(chemical, singleSet(recipe),
                         ItemStackListFluidChemicalInputRecipeCache::addAll);
             });
         }
     }
 
+    private static <T> Set<T> singleSet(T elem) {
+        Set<T> result = new HashSet<>();
+        result.add(elem);
+        return result;
+    }
+
     private static <T> Set<T> addAll(Set<T> a, Set<T> b) {
-        a.addAll(b);
-        return a;
+        Set<T> result = new HashSet<>();
+        a.forEach(result::add);
+        b.forEach(result::add);
+        return result;
     }
 
     // slotIndex >= 0

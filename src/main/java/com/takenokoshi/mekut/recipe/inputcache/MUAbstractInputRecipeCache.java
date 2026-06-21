@@ -1,7 +1,6 @@
 package com.takenokoshi.mekut.recipe.inputcache;
 
 import java.util.List;
-
 import org.jetbrains.annotations.Nullable;
 
 import com.takenokoshi.mekut.recipe.type.MekUtRecipeType;

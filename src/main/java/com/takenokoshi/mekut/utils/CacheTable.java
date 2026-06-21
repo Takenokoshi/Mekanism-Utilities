@@ -117,19 +117,19 @@ public class CacheTable<KEY1, KEY2, VALUE> {
     }
 
     public void merge(KEY1 key1, KEY2 key2, VALUE value, BinaryOperator<VALUE> remappingFunction) {
-        VALUE v = get(key1, key2);
-        if (v == null) {
+        VALUE oldValue = get(key1, key2);
+        if (oldValue == null) {
             if (value == null) {
                 remove(key1, key2);
             } else {
                 put(key1, key2, value);
             }
         } else {
-            v = remappingFunction.apply(v, value);
-            if (v == null) {
+            VALUE newValue = remappingFunction.apply(oldValue, value);
+            if (newValue == null) {
                 remove(key1, key2);
             } else {
-                put(key1, key2, value);
+                put(key1, key2, newValue);
             }
         }
     }

@@ -1,0 +1,15 @@
+{
+  "type": "mekanism:combining",
+  "extra_input": {
+    "count": 1,
+    "item": "minecraft:lime_dye"
+  },
+  "main_input": {
+    "count": 1,
+    "item": "minecraft:light_blue_dye"
+  },
+  "output": {
+    "count": 4,
+    "id": "mekanism_utilities:aqua_dye"
+  }
+}
