@@ -1,16 +1,16 @@
 {
   "type": "mekanism:metallurgic_infusing",
   "chemical_input": {
-    "amount": 50,
-    "chemical": "mekanism_utilities:blaze_ether"
+    "amount": 1000,
+    "chemical": "mekanism_utilities:xp"
   },
   "item_input": {
     "count": 1,
-    "item": "minecraft:slime_ball"
+    "item": "ae2:singularity"
   },
   "output": {
-    "count": 1,
-    "id": "minecraft:magma_cream"
+    "count": 2,
+    "id": "minecraft:ender_pearl"
   },
   "per_tick_usage": false
 }

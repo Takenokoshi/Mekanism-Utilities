@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:amethyst_block"
+    },
+    "B": {
+      "item": "advanced_ae:quantum_upgrade_base"
+    },
+    "F": {
+      "item": "minecraft:rabbit_foot"
+    },
+    "S": {
+      "item": "mekanism_utilities:artificial_star"
+    }
+  },
+  "pattern": [
+    "AFA",
+    "SBS",
+    "AFA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "advanced_ae:luck_card"
+  }
+}

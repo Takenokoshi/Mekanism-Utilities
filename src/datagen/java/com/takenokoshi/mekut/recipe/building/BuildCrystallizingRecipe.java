@@ -15,14 +15,9 @@ public class BuildCrystallizingRecipe {
         IChemicalStackIngredientCreator creatorC = IngredientCreatorAccess.chemicalStack();
         ChemicalCrystallizerRecipeBuilder
                 .crystallizing(
-                        creatorC.from(MekUtChemicals.XP.asStack(100000)),
+                        creatorC.from(MekUtChemicals.ENRICHED_XP.asStack(10)),
                         MekUtItems.XP_CRYSTAL.asStack(1))
                 .build(output, MekUtConstants.rl("crystallizing/xp_crystal"));
-        ChemicalCrystallizerRecipeBuilder
-                .crystallizing(
-                        creatorC.from(MekUtChemicals.BLAZE_ETHER.asStack(200)),
-                        MekUtItems.BLAZE_CRYSTAL.asStack(1))
-                .build(output, MekUtConstants.rl("crystallizing/blaze_crystal"));
         ChemicalCrystallizerRecipeBuilder
                 .crystallizing(
                         creatorC.from(MekUtChemicals.IRIDIUM.asStack(1000)),

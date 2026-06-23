@@ -1,8 +1,8 @@
 {
   "type": "mekanism:metallurgic_infusing",
   "chemical_input": {
-    "amount": 2000000,
-    "chemical": "mekanism_utilities:xp"
+    "amount": 100,
+    "chemical": "mekanism_utilities:enriched_xp"
   },
   "item_input": {
     "count": 1,

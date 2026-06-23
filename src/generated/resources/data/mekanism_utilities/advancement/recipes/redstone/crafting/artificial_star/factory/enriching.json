@@ -1,0 +1,38 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "evolvedmekanism"
+    }
+  ],
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "mekanism_utilities:crafting/artificial_star/factory/enriching"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "unlock": {
+      "conditions": {
+        "items": [
+          {
+            "items": "evolvedmekanism:alloy_creative"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "unlock"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "mekanism_utilities:crafting/artificial_star/factory/enriching"
+    ]
+  }
+}

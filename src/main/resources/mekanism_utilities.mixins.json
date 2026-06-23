@@ -6,7 +6,8 @@
         "mekanism.blockentity.component.TileComponentEjectorMixin",
         "mekanism.recipe.CachedRecipeMixin",
         "mekanism.recipe.OperationTrackerMixin",
-        "mekanism.ReloadListenerMixin"
+        "mekanism.ReloadListenerMixin",
+        "minecraft.RecipeManagerMixin"
     ],
     "injectors": {
         "defaultRequire": 1

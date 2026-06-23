@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "mekanism:alloy_atomic"
+    },
+    "B": {
+      "item": "mekanism:module_base"
+    },
+    "I": {
+      "item": "mekanism:ultimate_induction_provider"
+    },
+    "P": {
+      "item": "mekanism:pellet_antimatter"
+    },
+    "S": {
+      "item": "mekanism_utilities:artificial_star"
+    }
+  },
+  "pattern": [
+    "ASA",
+    "IBI",
+    "PPP"
+  ],
+  "result": {
+    "count": 1,
+    "id": "mekanism:module_gravitational_modulating_unit"
+  }
+}

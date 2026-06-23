@@ -1,0 +1,37 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "evolvedmekanism"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "mekmm"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "A": {
+      "item": "evolvedmekanism:alloy_creative"
+    },
+    "C": {
+      "item": "evolvedmekanism:creative_control_circuit"
+    },
+    "F": {
+      "item": "mekmm:multiversal_recycling_factory"
+    },
+    "S": {
+      "item": "mekanism_utilities:artificial_star"
+    }
+  },
+  "pattern": [
+    "ACA",
+    "SFS",
+    "ACA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "mekmm:creative_recycling_factory"
+  }
+}

@@ -38,7 +38,7 @@ public class BuildMetallurgicInfusingRecipe {
         ItemStackChemicalToItemStackRecipeBuilder
                 .metallurgicInfusing(
                         creatorI.from(MekUtItems.CONVERGENT_ALLOY),
-                        creatorC.from(MekUtChemicals.XP.asStack(2000000)),
+                        creatorC.from(MekUtChemicals.ENRICHED_XP.asStack(100)),
                         MekUtItems.XP_ALLOY.asStack(1),
                         false)
                 .build(output, MekUtConstants.rl("metallurgic_infusing/xp_alloy"));
@@ -52,24 +52,10 @@ public class BuildMetallurgicInfusingRecipe {
         ItemStackChemicalToItemStackRecipeBuilder
                 .metallurgicInfusing(
                         creatorI.from(MekUtItems.GOLDEN_REDSTONE, 20),
-                        creatorC.from(MekUtChemicals.XP.asStack(200000)),
+                        creatorC.from(MekUtChemicals.XP.asStack(200)),
                         new ItemStack(Items.GLOWSTONE_DUST, 20),
                         false)
                 .build(output, MekUtConstants.rl("metallurgic_infusing/glowstone_dust"));
-        ItemStackChemicalToItemStackRecipeBuilder
-                .metallurgicInfusing(
-                        creatorI.from(MekUtItems.BLAZE_CRYSTAL, 1),
-                        creatorC.from(MekanismChemicals.GOLD.asStack(80)),
-                        new ItemStack(Items.BLAZE_ROD, 1),
-                        false)
-                .build(output, MekUtConstants.rl("metallurgic_infusing/blaze_rod"));
-        ItemStackChemicalToItemStackRecipeBuilder
-                .metallurgicInfusing(
-                        creatorI.from(Items.SLIME_BALL, 1),
-                        creatorC.from(MekUtChemicals.BLAZE_ETHER.asStack(50)),
-                        new ItemStack(Items.MAGMA_CREAM, 1),
-                        false)
-                .build(output, MekUtConstants.rl("metallurgic_infusing/magma_cream"));
         ItemStackChemicalToItemStackRecipeBuilder
                 .metallurgicInfusing(
                         creatorI.from(Items.ENDER_PEARL, 1),
@@ -77,5 +63,12 @@ public class BuildMetallurgicInfusingRecipe {
                         AEItems.FLUIX_PEARL.stack(1),
                         false)
                 .build(output, MekUtConstants.rl("metallurgic_infusing/fluix_pearl"));
+        ItemStackChemicalToItemStackRecipeBuilder
+                .metallurgicInfusing(
+                        creatorI.from(AEItems.SINGULARITY.stack()),
+                        creatorC.from(MekUtChemicals.XP.asStack(1000)),
+                        new ItemStack(Items.ENDER_PEARL,2),
+                        false)
+                .build(output, MekUtConstants.rl("metallurgic_infusing/ender_pearl"));
     }
 }

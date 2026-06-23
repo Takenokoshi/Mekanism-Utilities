@@ -1,0 +1,27 @@
+{
+  "type": "mekanism_utilities:small_digital_reaction_chamber",
+  "chemical_input": {
+    "amount": 200,
+    "chemical": "mekanism:carbon"
+  },
+  "duration": 100,
+  "energy_required": 200,
+  "fluid_input": {
+    "amount": 100,
+    "tag": "c:lava"
+  },
+  "item_output": {
+    "count": 1,
+    "id": "minecraft:blaze_rod"
+  },
+  "list_item_input": [
+    {
+      "count": 2,
+      "tag": "c:dusts/glowstone"
+    },
+    {
+      "count": 1,
+      "tag": "c:dusts/lithium"
+    }
+  ]
+}

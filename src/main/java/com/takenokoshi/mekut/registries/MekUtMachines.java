@@ -25,7 +25,6 @@ import com.takenokoshi.mekut.blockentity.standardmachine.BEStandardPurificationC
 import com.takenokoshi.mekut.core.MekUtConstants;
 import com.takenokoshi.mekut.core.MekUtMathUtils;
 import com.takenokoshi.mekut.lang.MekUtDescription;
-import com.takenokoshi.mekut.lang.MekUtLang;
 import com.takenokoshi.mekut.registration.GuiSizedMachineRegistryObject;
 import com.takenokoshi.mekut.registration.MachineDeferredRegister;
 import com.takenokoshi.mekut.registration.SimpleMachineRegistryObject;
@@ -48,7 +47,7 @@ public class MekUtMachines {
                     IItemStackChemicalToItemStackMachine::addContainersToItem,
                     BEChemicalCutter::new,
                     BEChemicalCutter.class,
-                    MekUtLang.MOD_NAME,
+                    MekUtDescription.CHEMICAL_CUTTER,
                     builder -> builder
                             .withSideConfig(TransmissionType.ITEM, TransmissionType.CHEMICAL, TransmissionType.ENERGY)
                             .withEnergyConfig(
@@ -87,7 +86,7 @@ public class MekUtMachines {
                     IFluidToObjectMachine::addContainersFluidToItem,
                     BEIceMaker::new,
                     BEIceMaker.class,
-                    MekUtLang.MOD_NAME,
+                    MekUtDescription.ICE_MAKER,
                     builder -> builder
                             .withSideConfig(TransmissionType.ITEM, TransmissionType.FLUID, TransmissionType.ENERGY)
                             .withEnergyConfig(
@@ -101,7 +100,7 @@ public class MekUtMachines {
                     IBiChemicalToObjectRecipeMachine::addContainersBiChemicalToChemical,
                     BELazerCompressNucleoSynthesizer::new,
                     BELazerCompressNucleoSynthesizer.class,
-                    MekUtLang.MOD_NAME,
+                    MekUtDescription.LAZER_COMPRESS_NUCLEO_SYNTHESIZER,
                     builder -> builder
                             .withSideConfig(TransmissionType.ITEM, TransmissionType.CHEMICAL, TransmissionType.ENERGY)
                             .withEnergyConfig(
@@ -135,7 +134,7 @@ public class MekUtMachines {
                     IItemStackListFluidChemicalToItemRecipeMachine::addContainersToItem,
                     BESmallDigitalAssembler::new,
                     BESmallDigitalAssembler.class,
-                    MekUtDescription.MEKSTYLED_CRYSTAL_ASSEMBLER,
+                    MekUtDescription.SMALL_DIGITAL_ASSEMBLER,
                     builder -> builder
                             .withSideConfig(TransmissionType.ITEM, TransmissionType.FLUID, TransmissionType.CHEMICAL,
                                     TransmissionType.ENERGY)
@@ -150,7 +149,7 @@ public class MekUtMachines {
                     IItemStackListFluidChemicalToItemFluidChemicalRecipeMachine::addContainersToItem,
                     BESmallDigitalReactionChamber::new,
                     BESmallDigitalReactionChamber.class,
-                    MekUtDescription.MEKSTYLED_REACTION_CHAMBER,
+                    MekUtDescription.SMALL_DIGITAL_REACTION_CHAMBER,
                     builder -> builder
                             .withSideConfig(TransmissionType.ITEM, TransmissionType.FLUID, TransmissionType.CHEMICAL,
                                     TransmissionType.ENERGY)
@@ -165,7 +164,7 @@ public class MekUtMachines {
                     IBiChemicalToObjectRecipeMachine::addContainersBiChemicalToItem,
                     BEStellarGenesisChamber::new,
                     BEStellarGenesisChamber.class,
-                    MekUtLang.MOD_NAME,
+                    MekUtDescription.STELLAR_GENESIS_CHAMBER,
                     builder -> builder
                             .withSideConfig(TransmissionType.ITEM, TransmissionType.CHEMICAL,
                                     TransmissionType.ENERGY)

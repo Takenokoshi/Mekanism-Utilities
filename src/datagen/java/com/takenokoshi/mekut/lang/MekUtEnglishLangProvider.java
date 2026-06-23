@@ -50,9 +50,9 @@ public class MekUtEnglishLangProvider extends LanguageProvider {
             add(registry.getTranslationKey(), format(registry.getId().getPath()));
         });
         addChemical(MekUtChemicals.SINGULARITY);
+        addChemical(MekUtChemicals.ENRICHED_XP);
         addChemical(MekUtChemicals.XP);
         addChemical(MekUtChemicals.HEAVY_WATER_STEAM);
-        addChemical(MekUtChemicals.BLAZE_ETHER);
         addChemical(MekUtChemicals.FLUIX);
         addChemical(MekUtChemicals.ASTRAL_ETHER);
         addChemical(MekUtChemicals.IRIDIUM);
@@ -62,13 +62,25 @@ public class MekUtEnglishLangProvider extends LanguageProvider {
                 "Unrecorded ore that should only form in places outside the laws of this world.\\nNot found in nature.");
         addLang(MekUtDescription.CERTUS_QUARTZ_ORE,
                 "Ore that might exist on a planet somewhere in the distant universe.\\nNot found in nature.");
+        addLang(MekUtDescription.ENTRO_ORE,
+                "Ore that might exist on a planet somewhere in the distant universe.\\nNot found in nature.");
         addLang(MekUtDescription.NETHERITE_ORE,
                 "Ore that was likely mined by the former Piglin civilization.\\nNot found in nature.");
 
         addLang(MekUtDescription.MEKSTYLED_CHARGER,
                 "This is a machine that reconstructs the AE2 Charger in the style of Mekanism.\\nThe reaction chamber of the AdvancedAE is probably more convenient.");
-        addLang(MekUtDescription.MEKSTYLED_CIRCUIT_CUTTER,
-                "This is a machine that reconstructs the ExtendedAE Circuit Cutter in the style of Mekanism.");
+        addLang(MekUtDescription.CHEMICAL_CUTTER,
+                "This is a machine that creates AE2 printed processor from Mekanism crystals.");
+        addLang(MekUtDescription.ICE_MAKER,
+                "A machine that lives up to its name: one that cools water to produce ice.");
+        addLang(MekUtDescription.LAZER_COMPRESS_NUCLEO_SYNTHESIZER,
+                "A machine that triggers a special nuclear reaction through precise laser control.");
+        addLang(MekUtDescription.STELLAR_GENESIS_CHAMBER,
+                "A machine that simulates the birth of a star originating from an accumulation of interstellar matter.");
+        addLang(MekUtDescription.SMALL_DIGITAL_ASSEMBLER,
+                "An advanced machine that automatically performs specialized crafting tasks.\\nIt can also handle assembring in ExtendedAE's Crystal Assembler.");
+        addLang(MekUtDescription.SMALL_DIGITAL_REACTION_CHAMBER,
+                "An advanced machine for efficient material synthesis.\\nIt can also handle material synthesis in Mekanism's Pressurized Reaction Chamber and AdvancedAE's reaction chamber.");
         addLang(MekUtDescription.SUBMATERIAL_CONVERTER,
                 "This Machine can Convert Submaterial for Metallurgic Infuser & Osmium Compressor.");
         addLang(MekUtDescription.TWEAKED_ENERGIZED_SMELTER,

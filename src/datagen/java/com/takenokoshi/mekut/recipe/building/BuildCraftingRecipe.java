@@ -6,6 +6,12 @@ import java.util.function.Function;
 
 import com.fxd927.mekanismelements.common.registries.MSItems;
 import com.glodblock.github.extendedae.common.EAESingletons;
+import com.jerry.mekaf.common.content.blocktype.AdvancedFactoryType;
+import com.jerry.mekaf.common.registries.AdvancedFactoryBlocks;
+import com.jerry.mekmm.Mekmm;
+import com.jerry.mekmm.common.content.blocktype.MoreMachineFactoryType;
+import com.jerry.mekmm.common.registries.MoreMachineBlocks;
+import com.jerry.mekmm.common.util.MoreMachineEnumUtils;
 import com.takenokoshi.mekut.core.MekUtConstants;
 import com.takenokoshi.mekut.registration.MachineRegistryObject;
 import com.takenokoshi.mekut.registries.MekUtItems;
@@ -13,8 +19,15 @@ import com.takenokoshi.mekut.registries.MekUtMachines;
 
 import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
+import fr.iglee42.emgenerators.registries.EMGenBlocks;
+import fr.iglee42.evolvedmekanism.EvolvedMekanism;
+import fr.iglee42.evolvedmekanism.registries.EMBlocks;
+import fr.iglee42.evolvedmekanism.registries.EMItems;
+import fr.iglee42.evolvedmekanism.tiers.EMFactoryTier;
+import mekanism.common.content.blocktype.FactoryType;
 import mekanism.common.registries.MekanismBlocks;
 import mekanism.common.registries.MekanismItems;
+import mekanism.common.util.EnumUtils;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -25,7 +38,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
+import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 import net.pedroksl.advanced_ae.common.definitions.AAEBlocks;
+import net.pedroksl.advanced_ae.common.definitions.AAEItems;
 
 public class BuildCraftingRecipe {
 
@@ -33,6 +48,8 @@ public class BuildCraftingRecipe {
     private static final List<SimpleMachineRecipeData> TWEAKED_MACHINES = new ArrayList<>();
     private static final List<SimpleMachineRecipeData> STANDARD_MACHINES = new ArrayList<>();
     private static final List<SimpleMachineRecipeData> STANDARD_GAS_MACHINES = new ArrayList<>();
+    private static final List<SimpleMachineRecipeData> EVOMEK_CREATIVE_FACTORIES = new ArrayList<>();
+    private static final List<SimpleMachineRecipeData> MEKMM_CREATIVE_FACTORIES = new ArrayList<>();
 
     public static void build(RecipeOutput output,
             Function<ItemLike, Criterion<InventoryChangeTrigger.TriggerInstance>> has) {
@@ -125,7 +142,7 @@ public class BuildCraftingRecipe {
                 .unlockedBy("unlock", has.apply(MekUtItems.COMET_CONTROL_CIRCUIT))
                 .save(output, MekUtConstants.rl("crafting/machine/stellar_genesis_chamber"));
         ShapedRecipeBuilder
-                .shaped(RecipeCategory.BUILDING_BLOCKS, Items.BEACON)
+                .shaped(RecipeCategory.MISC, Items.BEACON)
                 .define('G', Items.GLASS)
                 .define('S', MekUtItems.ARTIFICIAL_STAR)
                 .define('O', Items.OBSIDIAN)
@@ -133,17 +150,40 @@ public class BuildCraftingRecipe {
                 .pattern("GSG")
                 .pattern("OOO")
                 .unlockedBy("unlock", has.apply(MekUtItems.COMET_CONTROL_CIRCUIT))
-                .save(output, MekUtConstants.rl("crafting/beacon"));
+                .save(output, MekUtConstants.rl("crafting/artificial_star/beacon"));
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.MISC, MekanismItems.MODULE_GRAVITATIONAL_MODULATING)
+                .define('A', MekanismItems.ATOMIC_ALLOY)
+                .define('S', MekUtItems.ARTIFICIAL_STAR)
+                .define('I', MekanismBlocks.ULTIMATE_INDUCTION_PROVIDER)
+                .define('B', MekanismItems.MODULE_BASE)
+                .define('P', MekanismItems.ANTIMATTER_PELLET)
+                .pattern("ASA")
+                .pattern("IBI")
+                .pattern("PPP")
+                .unlockedBy("unlock", has.apply(MekUtItems.COMET_CONTROL_CIRCUIT))
+                .save(output, MekUtConstants.rl("crafting/artificial_star/gravitational_modulating_unit"));
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.MISC, AAEItems.LUCK_CARD)
+                .define('A', Items.AMETHYST_BLOCK)
+                .define('F', Items.RABBIT_FOOT)
+                .define('S', MekUtItems.ARTIFICIAL_STAR)
+                .define('B', AAEItems.QUANTUM_UPGRADE_BASE)
+                .pattern("AFA")
+                .pattern("SBS")
+                .pattern("AFA")
+                .unlockedBy("unlock", has.apply(MekUtItems.COMET_CONTROL_CIRCUIT))
+                .save(output, MekUtConstants.rl("crafting/artificial_star/luck_card"));
         ShapelessRecipeBuilder
                 .shapeless(RecipeCategory.DECORATIONS, MSItems.HIGH_QUALITY_CONCRETE_POWDER_AQUA.asStack(8))
-                .requires(MekUtItems.AQUA_DYE, 1)
                 .requires(MSItems.HIGH_QUALITY_CONCRETE_POWDER, 8)
+                .requires(MekUtItems.AQUA_DYE, 1)
                 .unlockedBy("unlock", has.apply(MekUtItems.AQUA_DYE))
                 .save(output, MekUtConstants.rl("crafting/hq_concreate/aqua_powder"));
         ShapelessRecipeBuilder
                 .shapeless(RecipeCategory.DECORATIONS, MSItems.HIGH_QUALITY_CONCRETE_POWDER_DARK_RED.asStack(8))
-                .requires(MekUtItems.DARK_RED_DYE, 1)
                 .requires(MSItems.HIGH_QUALITY_CONCRETE_POWDER, 8)
+                .requires(MekUtItems.DARK_RED_DYE, 1)
                 .unlockedBy("unlock", has.apply(MekUtItems.DARK_RED_DYE))
                 .save(output, MekUtConstants.rl("crafting/hq_concreate/dark_red_powder"));
         NORMAL_MACHINES.forEach(data -> {
@@ -200,11 +240,58 @@ public class BuildCraftingRecipe {
                     .unlockedBy("unlock", has.apply(data.input))
                     .save(output, MekUtConstants.rl("crafting/machine/" + data.name));
         });
+        MEKMM_CREATIVE_FACTORIES.forEach(data -> {
+            ShapedRecipeBuilder
+                    .shaped(RecipeCategory.REDSTONE, data.output)
+                    .define('A', EMItems.CREATIVE_ALLOY)
+                    .define('C', EMItems.CREATIVE_CONTROL_CIRCUIT)
+                    .define('S', MekUtItems.ARTIFICIAL_STAR)
+                    .define('F', data.input)
+                    .pattern("ACA")
+                    .pattern("SFS")
+                    .pattern("ACA")
+                    .unlockedBy("unlock", has.apply(EMItems.CREATIVE_ALLOY))
+                    .save(output.withConditions(new ModLoadedCondition(EvolvedMekanism.MODID),
+                            new ModLoadedCondition(Mekmm.MOD_ID)),
+                            MekUtConstants.rl("crafting/artificial_star/factory/" + data.name));
+        });
+        EVOMEK_CREATIVE_FACTORIES.forEach(data -> {
+            ShapedRecipeBuilder
+                    .shaped(RecipeCategory.REDSTONE, data.output)
+                    .define('A', EMItems.CREATIVE_ALLOY)
+                    .define('C', EMItems.CREATIVE_CONTROL_CIRCUIT)
+                    .define('S', MekUtItems.ARTIFICIAL_STAR)
+                    .define('F', data.input)
+                    .pattern("ACA")
+                    .pattern("SFS")
+                    .pattern("ACA")
+                    .unlockedBy("unlock", has.apply(EMItems.CREATIVE_ALLOY))
+                    .save(output.withConditions(new ModLoadedCondition(EvolvedMekanism.MODID)),
+                            MekUtConstants.rl("crafting/artificial_star/factory/" + data.name));
+        });
     }
 
     private static record SimpleMachineRecipeData(String name, ItemLike output, ItemLike input) {
         private SimpleMachineRecipeData(MachineRegistryObject<?, ?, ?, ?> output, ItemLike input) {
             this(output.getId().getPath(), output, input);
+        }
+
+        static SimpleMachineRecipeData mekAFCreative(AdvancedFactoryType factoryType) {
+            return new SimpleMachineRecipeData(factoryType.getRegistryNameComponent(),
+                    AdvancedFactoryBlocks.getAdvancedFactory(EMFactoryTier.CREATIVE, factoryType),
+                    AdvancedFactoryBlocks.getAdvancedFactory(EMFactoryTier.MULTIVERSAL, factoryType));
+        }
+
+        static SimpleMachineRecipeData mekMMCreative(MoreMachineFactoryType factoryType) {
+            return new SimpleMachineRecipeData(factoryType.getRegistryNameComponent(),
+                    MoreMachineBlocks.getMoreMachineFactory(EMFactoryTier.CREATIVE, factoryType),
+                    MoreMachineBlocks.getMoreMachineFactory(EMFactoryTier.MULTIVERSAL, factoryType));
+        }
+
+        static SimpleMachineRecipeData evoMekCreative(FactoryType factoryType) {
+            return new SimpleMachineRecipeData(factoryType.getRegistryNameComponent(),
+                    EMBlocks.getFactory(EMFactoryTier.CREATIVE, factoryType),
+                    EMBlocks.getFactory(EMFactoryTier.MULTIVERSAL, factoryType));
         }
     }
 
@@ -226,5 +313,16 @@ public class BuildCraftingRecipe {
                 MekUtMachines.MEKSTYLED_CHARGER));
         STANDARD_GAS_MACHINES.add(new SimpleMachineRecipeData(MekUtMachines.STANDARD_PURIFICATION_CHAMBER,
                 MekanismBlocks.PURIFICATION_CHAMBER));
+        for (AdvancedFactoryType factoryType : MoreMachineEnumUtils.ADVANCED_FACTORY_TYPES) {
+            MEKMM_CREATIVE_FACTORIES.add(SimpleMachineRecipeData.mekAFCreative(factoryType));
+        }
+        for (MoreMachineFactoryType factoryType : MoreMachineEnumUtils.MM_FACTORY_TYPES) {
+            MEKMM_CREATIVE_FACTORIES.add(SimpleMachineRecipeData.mekMMCreative(factoryType));
+        }
+        for (FactoryType factoryType : EnumUtils.FACTORY_TYPES) {
+            EVOMEK_CREATIVE_FACTORIES.add(SimpleMachineRecipeData.evoMekCreative(factoryType));
+        }
+        EVOMEK_CREATIVE_FACTORIES.add(new SimpleMachineRecipeData("solar_generator",
+                EMGenBlocks.CREATIVE_SOLAR_GENERATOR, EMGenBlocks.MULTIVERSAL_SOLAR_GENERATOR));
     }
 }

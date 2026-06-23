@@ -19,6 +19,7 @@ import mekanism.common.registries.MekanismChemicals;
 import mekanism.common.registries.MekanismItems;
 import mekanism.common.resource.PrimaryResource;
 import mekanism.common.resource.ResourceType;
+import mekanism.common.tags.MekanismTags;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
@@ -61,7 +62,7 @@ public class BuildSmallDigitalReactionChamberRecipe {
                 .addItemInput(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "dusts/redstone")), 16)
                 .addItemInput(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "dusts/gold")), 8)
                 .setFluidInput(IngredientCreatorAccess.fluid().from(Tags.Fluids.LAVA, 100))
-                .setChemicalInput(MekUtChemicals.XP.asStack(160000))
+                .setChemicalInput(MekUtChemicals.XP.asStack(160))
                 .build(output, MekUtConstants.rl("small_digital_reaction_chamber/glowstone_dust"));
         ItemStackListFluidChemicalToItemFluidChemicalRecipeBuilder
                 .smallDigitalReactionChamber(AAEItems.QUANTUM_ALLOY.stack(16), FluidStack.EMPTY,
@@ -122,5 +123,33 @@ public class BuildSmallDigitalReactionChamberRecipe {
                 .setChemicalInput(MekanismChemicals.HYDROGEN.asStack(200))
                 .setEnergyRequired(500000)
                 .build(output, MekUtConstants.rl("small_digital_reaction_chamber/sky_osmium_ingot"));
+        ItemStackListFluidChemicalToItemFluidChemicalRecipeBuilder
+                .smallDigitalReactionChamber(new ItemStack(Items.BLAZE_ROD, 1), FluidStack.EMPTY,
+                        ChemicalStack.EMPTY)
+                .addItemInput(Tags.Items.DUSTS_GLOWSTONE, 2)
+                .addItemInput(MekanismTags.Items.DUSTS_LITHIUM, 1)
+                .setFluidInput(Tags.Fluids.LAVA, 100)
+                .setChemicalInput(MekanismChemicals.CARBON.asStack(200))
+                .setEnergyRequired(200)
+                .build(output, MekUtConstants.rl("small_digital_reaction_chamber/blaze_rod"));
+        ItemStackListFluidChemicalToItemFluidChemicalRecipeBuilder
+                .smallDigitalReactionChamber(new ItemStack(Items.NETHER_WART, 1), FluidStack.EMPTY,
+                        ChemicalStack.EMPTY)
+                .addItemInput(Items.WHEAT, 1)
+                .addItemInput(Items.BLAZE_POWDER, 3)
+                .setFluidInput(Tags.Fluids.LAVA, 200)
+                .setChemicalInput(MekanismChemicals.REDSTONE.asStack(200))
+                .setEnergyRequired(500)
+                .build(output, MekUtConstants.rl("small_digital_reaction_chamber/nether_wart"));
+        ItemStackListFluidChemicalToItemFluidChemicalRecipeBuilder
+                .smallDigitalReactionChamber(new ItemStack(Items.END_STONE, 8), FluidStack.EMPTY,
+                        ChemicalStack.EMPTY)
+                .addItemInput(Tags.Items.COBBLESTONES, 8)
+                .addItemInput(Tags.Items.DUSTS_GLOWSTONE, 4)
+                .addItemInput(AEItems.ENDER_DUST.stack(1))
+                .setFluidInput(AAEFluids.QUANTUM_INFUSION.stack(100))
+                .setChemicalInput(MekanismChemicals.LITHIUM.asStack(200))
+                .setEnergyRequired(200)
+                .build(output, MekUtConstants.rl("small_digital_reaction_chamber/end_stone"));
     }
 }

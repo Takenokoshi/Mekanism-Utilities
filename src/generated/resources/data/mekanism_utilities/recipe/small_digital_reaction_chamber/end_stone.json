@@ -1,0 +1,31 @@
+{
+  "type": "mekanism_utilities:small_digital_reaction_chamber",
+  "chemical_input": {
+    "amount": 200,
+    "chemical": "mekanism:lithium"
+  },
+  "duration": 100,
+  "energy_required": 200,
+  "fluid_input": {
+    "amount": 100,
+    "fluid": "advanced_ae:quantum_infusion_source"
+  },
+  "item_output": {
+    "count": 8,
+    "id": "minecraft:end_stone"
+  },
+  "list_item_input": [
+    {
+      "count": 8,
+      "tag": "c:cobblestones"
+    },
+    {
+      "count": 4,
+      "tag": "c:dusts/glowstone"
+    },
+    {
+      "count": 1,
+      "item": "ae2:ender_dust"
+    }
+  ]
+}

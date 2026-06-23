@@ -1,0 +1,15 @@
+{
+  "type": "mekanism:washing",
+  "chemical_input": {
+    "amount": 10000,
+    "chemical": "mekanism_utilities:xp"
+  },
+  "fluid_input": {
+    "amount": 1,
+    "tag": "c:water"
+  },
+  "output": {
+    "amount": 1,
+    "id": "mekanism_utilities:enriched_xp"
+  }
+}

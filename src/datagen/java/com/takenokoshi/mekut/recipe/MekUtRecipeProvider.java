@@ -19,9 +19,11 @@ public class MekUtRecipeProvider extends RecipeProvider {
     protected void buildRecipes(RecipeOutput output) {
         BuildAAEReactionRecipe.build(output);
         BuildAdsorptionRecipe.build(output);
+        BuildAntiprotonicNucleoSynthesizeRecipe.build(output);
         BuildChemicalConvertionRecipe.build(output);
         BuildChemicalCutRecipe.build(output);
         BuildChemicalDissolutionRecipe.build(output);
+        BuildChemicalWashingRecipe.build(output);
         BuildCombiningRecipe.build(output);
         BuildCompressingRecipe.build(output);
         BuildCraftingRecipe.build(output, RecipeProvider::has);

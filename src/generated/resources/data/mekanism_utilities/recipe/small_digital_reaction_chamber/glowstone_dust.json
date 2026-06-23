@@ -1,7 +1,7 @@
 {
   "type": "mekanism_utilities:small_digital_reaction_chamber",
   "chemical_input": {
-    "amount": 160000,
+    "amount": 160,
     "chemical": "mekanism_utilities:xp"
   },
   "duration": 100,

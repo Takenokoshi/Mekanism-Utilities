@@ -1,8 +1,8 @@
 {
   "type": "mekanism:crystallizing",
   "input": {
-    "amount": 100000,
-    "chemical": "mekanism_utilities:xp"
+    "amount": 10,
+    "chemical": "mekanism_utilities:enriched_xp"
   },
   "output": {
     "count": 1,

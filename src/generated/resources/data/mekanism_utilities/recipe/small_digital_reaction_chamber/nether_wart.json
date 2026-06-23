@@ -1,0 +1,27 @@
+{
+  "type": "mekanism_utilities:small_digital_reaction_chamber",
+  "chemical_input": {
+    "amount": 200,
+    "chemical": "mekanism:redstone"
+  },
+  "duration": 100,
+  "energy_required": 500,
+  "fluid_input": {
+    "amount": 200,
+    "tag": "c:lava"
+  },
+  "item_output": {
+    "count": 1,
+    "id": "minecraft:nether_wart"
+  },
+  "list_item_input": [
+    {
+      "count": 1,
+      "item": "minecraft:wheat"
+    },
+    {
+      "count": 3,
+      "item": "minecraft:blaze_powder"
+    }
+  ]
+}

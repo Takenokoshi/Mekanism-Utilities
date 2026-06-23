@@ -18,13 +18,13 @@ public class MekUtChemicals {
 
     public static final DeferredChemical<?> SINGULARITY = CHEMICALS.registerInfuse("singularity", 0x1800a8);
     public static final DeferredChemical<?> XP = CHEMICALS.register("xp", 0x7f53ff00);
+    public static final DeferredChemical<?> ENRICHED_XP = CHEMICALS.register("enriched_xp", 0x7f29ff00);
     public static final DeferredChemical<?> ASTRAL_ETHER = CHEMICALS.register("astral_ether", 0xD4A1FF);
     public static final DeferredChemical<?> FLUIX = CHEMICALS.registerInfuse("fluix", 0x7A73B8);
     public static final DeferredChemical<?> IRIDIUM = CHEMICALS.register("iridium", 0xC4CCD8);
     public static final DeferredChemical<?> NETHERITE = CHEMICALS.register("netherite", 0x5A4E52);
 
     public static final DeferredChemical<?> HEAVY_WATER_STEAM = CHEMICALS.register("heavy_water_steam", 0xFF0D1455);
-    public static final DeferredChemical<?> BLAZE_ETHER = CHEMICALS.register("blaze_ether", 0xFFF7D75A);
 
     public static final Map<MUMaterial, DeferredChemical<?>> MU_MATERIALS_CLEAN_SLURRY = registerMaterials(
             m -> "clean_" + m.name + "_slurry",

@@ -16,6 +16,7 @@ import mekanism.api.recipes.ingredients.creator.IngredientCreatorAccess;
 import mekanism.api.recipes.vanilla_input.SingleChemicalRecipeInput;
 import mekanism.common.config.MekanismConfig;
 import mekanism.common.registries.MekanismChemicals;
+import net.minecraft.core.Holder;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeHolder;
@@ -26,7 +27,7 @@ public class SPSRecipeType extends
 
     public SPSRecipeType(ResourceLocation name) {
         super(name, type -> new MUSingleInputRecipeCache.MUSingleChemical<>(type,
-                r -> r.getInput().ingredient().getChemicals()));
+                r -> r.getInput().ingredient().getChemicalHolders().stream().map(Holder::value).toList()));
     }
 
     @Override
