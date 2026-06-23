@@ -46,8 +46,6 @@ public class BuildCraftingRecipe {
 
     private static final List<SimpleMachineRecipeData> NORMAL_MACHINES = new ArrayList<>();
     private static final List<SimpleMachineRecipeData> TWEAKED_MACHINES = new ArrayList<>();
-    private static final List<SimpleMachineRecipeData> STANDARD_MACHINES = new ArrayList<>();
-    private static final List<SimpleMachineRecipeData> STANDARD_GAS_MACHINES = new ArrayList<>();
     private static final List<SimpleMachineRecipeData> EVOMEK_CREATIVE_FACTORIES = new ArrayList<>();
     private static final List<SimpleMachineRecipeData> MEKMM_CREATIVE_FACTORIES = new ArrayList<>();
 
@@ -212,34 +210,6 @@ public class BuildCraftingRecipe {
                     .unlockedBy("unlock", has.apply(data.input))
                     .save(output, MekUtConstants.rl("crafting/machine/" + data.name));
         });
-        STANDARD_MACHINES.forEach(data -> {
-            ShapedRecipeBuilder
-                    .shaped(RecipeCategory.REDSTONE, data.output)
-                    .define('C', data.input)
-                    .define('A', MekUtItems.CONVERGENT_ALLOY)
-                    .define('D', ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "ingots/refined_amethyst")))
-                    .define('X', MekUtItems.ACCELERATION_CONTROL_CIRCUIT)
-                    .define('B', MekUtItems.STANDARD_CONTROL_CIRCUIT)
-                    .pattern("AXA")
-                    .pattern("DCD")
-                    .pattern("ABA")
-                    .unlockedBy("unlock", has.apply(data.input))
-                    .save(output, MekUtConstants.rl("crafting/machine/" + data.name));
-        });
-        STANDARD_GAS_MACHINES.forEach(data -> {
-            ShapedRecipeBuilder
-                    .shaped(RecipeCategory.REDSTONE, data.output)
-                    .define('C', data.input)
-                    .define('A', MekUtItems.CONVERGENT_ALLOY)
-                    .define('D', ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "ingots/refined_amethyst")))
-                    .define('X', MekUtItems.ACCELERATION_CONTROL_CIRCUIT)
-                    .define('B', MekUtItems.CHEMICAL_CONTROL_CIRCUIT)
-                    .pattern("AXA")
-                    .pattern("DCD")
-                    .pattern("ABA")
-                    .unlockedBy("unlock", has.apply(data.input))
-                    .save(output, MekUtConstants.rl("crafting/machine/" + data.name));
-        });
         MEKMM_CREATIVE_FACTORIES.forEach(data -> {
             ShapedRecipeBuilder
                     .shaped(RecipeCategory.REDSTONE, data.output)
@@ -301,18 +271,6 @@ public class BuildCraftingRecipe {
         TWEAKED_MACHINES.add(new SimpleMachineRecipeData(MekUtMachines.TWEAKED_ENERGIZED_SMELTER,
                 MekanismBlocks.ENERGIZED_SMELTER));
         TWEAKED_MACHINES.add(new SimpleMachineRecipeData(MekUtMachines.MEKSTYLED_CHARGER, AEBlocks.CHARGER));
-        STANDARD_GAS_MACHINES.add(new SimpleMachineRecipeData(MekUtMachines.STANDARD_CHEMICAL_INJECTION_CHAMBER,
-                MekanismBlocks.CHEMICAL_INJECTION_CHAMBER));
-        STANDARD_MACHINES.add(new SimpleMachineRecipeData(MekUtMachines.STANDARD_CRUSHER,
-                MekanismBlocks.CRUSHER));
-        STANDARD_MACHINES.add(new SimpleMachineRecipeData(MekUtMachines.STANDARD_ENERGIZED_SMELTER,
-                MekUtMachines.TWEAKED_ENERGIZED_SMELTER));
-        STANDARD_MACHINES.add(new SimpleMachineRecipeData(MekUtMachines.STANDARD_ENRICHMENR_CHAMBER,
-                MekanismBlocks.ENRICHMENT_CHAMBER));
-        STANDARD_MACHINES.add(new SimpleMachineRecipeData(MekUtMachines.STANDARD_MEKSTYLED_CHARGER,
-                MekUtMachines.MEKSTYLED_CHARGER));
-        STANDARD_GAS_MACHINES.add(new SimpleMachineRecipeData(MekUtMachines.STANDARD_PURIFICATION_CHAMBER,
-                MekanismBlocks.PURIFICATION_CHAMBER));
         for (AdvancedFactoryType factoryType : MoreMachineEnumUtils.ADVANCED_FACTORY_TYPES) {
             MEKMM_CREATIVE_FACTORIES.add(SimpleMachineRecipeData.mekAFCreative(factoryType));
         }

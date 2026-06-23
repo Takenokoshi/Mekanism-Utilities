@@ -6,7 +6,6 @@ import com.takenokoshi.mekut.core.MekUtConstants;
 import com.takenokoshi.mekut.registries.MekUtItems;
 import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
-import dev.lapis256.mekanism_empowered.common.init.MekEmpItems;
 import gripe._90.megacells.definition.MEGAItems;
 import mekanism.common.registries.MekanismBlocks;
 import mekanism.common.registries.MekanismFluids;
@@ -20,19 +19,6 @@ import net.minecraft.world.level.material.Fluids;
 public class BuildCrystalAssemblerRecipe {
 
     public static void build(RecipeOutput output) {
-        CrystalAssemblerRecipeBuilder.assemble(MekUtItems.ACCELERATION_CONTROL_CIRCUIT)
-                .fluid(Fluids.LAVA, 200)
-                .input(MekUtItems.STANDARD_CONTROL_CIRCUIT)
-                .input(MekanismItems.SPEED_UPGRADE, 8)
-                .input(MekanismItems.ENERGY_UPGRADE, 8)
-                .input(MekEmpItems.INSTANCE.getEMPOWERED_SPEED(), 8)
-                .input(MekEmpItems.INSTANCE.getEMPOWERED_ENERGY(), 8)
-                .save(output, MekUtConstants.rl("crystal_assembler/acceleration_control_circuit"));
-        CrystalAssemblerRecipeBuilder.assemble(MekUtItems.CHEMICAL_CONTROL_CIRCUIT)
-                .fluid(Fluids.WATER, 1000)
-                .input(MekUtItems.STANDARD_CONTROL_CIRCUIT)
-                .input(MekanismItems.CHEMICAL_UPGRADE, 8)
-                .save(output, MekUtConstants.rl("crystal_assembler/chemical_control_circuit"));
         CrystalAssemblerRecipeBuilder.assemble(MekUtItems.ME_INFINITY_RAINBOW_CELL)
                 .fluid(Fluids.LAVA, 10000)
                 .input(MekanismBlocks.PIGMENT_EXTRACTOR, 4)

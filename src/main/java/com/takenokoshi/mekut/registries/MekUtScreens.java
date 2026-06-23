@@ -10,8 +10,11 @@ import mekanism.common.tile.base.TileEntityMekanism;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.MenuScreens.ScreenConstructor;
 import net.minecraft.client.gui.screens.inventory.MenuAccess;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 
+@OnlyIn(value = Dist.CLIENT)
 public class MekUtScreens {
     public static void registerScreens(RegisterMenuScreensEvent event) {
         registerMachineGui(event, MekUtMachines.CHEMICAL_CUTTER, GuiChemicalCutter<BEChemicalCutter>::new);

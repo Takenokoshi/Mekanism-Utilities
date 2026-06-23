@@ -59,12 +59,6 @@ public class MekUtItemModelProvider extends ItemModelProvider {
                 .texture("layer0", MekUtConstants.rl("item/control_circuit/digital"));
         simpleItem(MekUtItems.STANDARD_CONTROL_CIRCUIT.get())
                 .texture("layer0", MekUtConstants.rl("item/control_circuit/standard"));
-        simpleItem(MekUtItems.ACCELERATION_CONTROL_CIRCUIT.get())
-                .texture("layer0", MekUtConstants.rl("item/control_circuit/standard"))
-                .texture("layer1", MekUtConstants.rl("item/control_circuit/acceleration"));
-        simpleItem(MekUtItems.CHEMICAL_CONTROL_CIRCUIT.get())
-                .texture("layer0", MekUtConstants.rl("item/control_circuit/standard"))
-                .texture("layer1", MekUtConstants.rl("item/control_circuit/chemical"));
         simpleItem(MekUtItems.KNOWLEDGE_CONTROL_CIRCUIT.get())
                 .texture("layer0", MekUtConstants.rl("item/control_circuit/knowledge"));
         simpleItem(MekUtItems.COMET_CONTROL_CIRCUIT.get())

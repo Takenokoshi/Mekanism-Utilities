@@ -69,24 +69,6 @@ public class MekUtBlockModelProvider extends BlockStateProvider {
         mekanismMachine(MekUtMachines.TWEAKED_ENERGIZED_SMELTER.getBlockObject(),
                 Mekanism.rl("block/energized_smelter"),
                 Mekanism.rl("block/energized_smelter_active"));
-        mekutStandardMachine(MekUtMachines.STANDARD_CHEMICAL_INJECTION_CHAMBER.getBlockObject(),
-                MekUtConstants.rl("block/standard_machine/chemical_injection_chamber_front"),
-                MekUtConstants.rl("block/standard_machine/chemical_injection_chamber_front_active"));
-        mekutStandardMachine(MekUtMachines.STANDARD_CRUSHER.getBlockObject(),
-                MekUtConstants.rl("block/standard_machine/crusher_front"),
-                MekUtConstants.rl("block/standard_machine/crusher_front_active"));
-        mekutStandardMachine(MekUtMachines.STANDARD_ENERGIZED_SMELTER.getBlockObject(),
-                MekUtConstants.rl("block/standard_machine/energized_smelter_front"),
-                MekUtConstants.rl("block/standard_machine/energized_smelter_front_active"));
-        mekutStandardMachine(MekUtMachines.STANDARD_ENRICHMENR_CHAMBER.getBlockObject(),
-                MekUtConstants.rl("block/standard_machine/enrichment_chamber_front"),
-                MekUtConstants.rl("block/standard_machine/enrichment_chamber_front_active"));
-        mekutStandardMachine(MekUtMachines.STANDARD_MEKSTYLED_CHARGER.getBlockObject(),
-                MekUtConstants.rl("block/standard_machine/mekstyled_charger_front"),
-                MekUtConstants.rl("block/standard_machine/mekstyled_charger_front_active"));
-        mekutStandardMachine(MekUtMachines.STANDARD_PURIFICATION_CHAMBER.getBlockObject(),
-                MekUtConstants.rl("block/standard_machine/purification_chamber_front"),
-                MekUtConstants.rl("block/standard_machine/purification_chamber_front_active"));
     }
 
     protected void mekanismMachine(

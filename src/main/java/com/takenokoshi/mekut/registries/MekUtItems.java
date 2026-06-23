@@ -28,10 +28,6 @@ public class MekUtItems {
 
     public static final ItemRegistryObject<Item> DIGITAL_CONTROL_CIRCUIT = ITEMS.register("digital_control_circuit");
     public static final ItemRegistryObject<Item> STANDARD_CONTROL_CIRCUIT = ITEMS.register("standard_control_circuit");
-    public static final ItemRegistryObject<Item> ACCELERATION_CONTROL_CIRCUIT = ITEMS
-            .register("acceleration_control_circuit");
-    public static final ItemRegistryObject<Item> CHEMICAL_CONTROL_CIRCUIT = ITEMS
-            .register("chemical_control_circuit");
     public static final ItemRegistryObject<Item> KNOWLEDGE_CONTROL_CIRCUIT = registerFoiling(
             "knowledge_control_circuit");
     public static final ItemRegistryObject<Item> COMET_CONTROL_CIRCUIT = registerFoiling(
