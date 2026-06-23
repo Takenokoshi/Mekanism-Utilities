@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "mekanism_utilities:item/control_circuit/standard",
-    "layer1": "mekanism_utilities:item/control_circuit/acceleration"
-  }
-}
