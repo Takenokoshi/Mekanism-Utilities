@@ -23,13 +23,12 @@ public class MekUtItems {
 
     public static final ItemRegistryObject<Item> ELASTIC_ALLOY = ITEMS.register("elastic_alloy");
     public static final ItemRegistryObject<Item> CONVERGENT_ALLOY = ITEMS.register("convergent_alloy");
-    public static final ItemRegistryObject<Item> XP_ALLOY = registerFoiling("xp_alloy");
+    public static final ItemRegistryObject<Item> COMPISITE_ALLOY = ITEMS.register("composite_alloy");
     public static final ItemRegistryObject<Item> STARDUST_ALLOY = registerFoiling("stardust_alloy");
 
     public static final ItemRegistryObject<Item> DIGITAL_CONTROL_CIRCUIT = ITEMS.register("digital_control_circuit");
     public static final ItemRegistryObject<Item> STANDARD_CONTROL_CIRCUIT = ITEMS.register("standard_control_circuit");
-    public static final ItemRegistryObject<Item> KNOWLEDGE_CONTROL_CIRCUIT = registerFoiling(
-            "knowledge_control_circuit");
+    public static final ItemRegistryObject<Item> AUGMENT_CONTROL_CIRCUIT = ITEMS.register("augment_control_circuit");
     public static final ItemRegistryObject<Item> COMET_CONTROL_CIRCUIT = registerFoiling(
             "comet_control_circuit");
 
@@ -42,7 +41,6 @@ public class MekUtItems {
 
     public static final ItemRegistryObject<Item> REFINED_AMETHYST_INGOT = ITEMS.register("refined_amethyst_ingot");
     public static final ItemRegistryObject<Item> IRIDIUM_INGOT = ITEMS.register("iridium_ingot");
-    public static final ItemRegistryObject<Item> ASTRAL_GLOWSTONE_INGOT = ITEMS.register("astral_glowstone_ingot");
 
     public static final ItemRegistryObject<XpCrystalItem> XP_CRYSTAL = ITEMS.registerItem("xp_crystal",
             XpCrystalItem::new);

@@ -25,20 +25,6 @@ public class SimpleMachineRegistryObject<BE extends TileEntityMekanism> extends
     public SimpleMachineRegistryObject(String name, BlockDeferredRegister blockRegister,
             TileEntityTypeDeferredRegister tileRegister, ContainerTypeDeferredRegister containerRegister,
             Function<Machine<BE>, BlockTileModel<BE, Machine<BE>>> blockCreator,
-            Consumer<ItemRegistryObject<ItemBlockTooltip<BlockTileModel<BE, Machine<BE>>>>> holder,
-            BlockEntityConstructor<BE, Machine<BE>, BlockTileModel<BE, Machine<BE>>> beConstructor,
-            Class<BE> beClass, ILangEntry entry,
-            UnaryOperator<MachineBuilder<Machine<BE>, BE, ?>> operator) {
-        super(name, blockRegister, tileRegister, containerRegister, blockCreator,
-                (block, properties) -> new ItemBlockTooltip<>(block, true, properties
-                      .component(MekanismDataComponents.EJECTOR, AttachedEjector.DEFAULT)
-                      .component(MekanismDataComponents.SIDE_CONFIG, AttachedSideConfig.ELECTRIC_MACHINE)
-                ), holder, beConstructor, beClass,
-                MekanismTileContainer::new, entry, operator);
-    }
-    public SimpleMachineRegistryObject(String name, BlockDeferredRegister blockRegister,
-            TileEntityTypeDeferredRegister tileRegister, ContainerTypeDeferredRegister containerRegister,
-            Function<Machine<BE>, BlockTileModel<BE, Machine<BE>>> blockCreator,
             AttachedSideConfig attachedSideConfig,
             Consumer<ItemRegistryObject<ItemBlockTooltip<BlockTileModel<BE, Machine<BE>>>>> holder,
             BlockEntityConstructor<BE, Machine<BE>, BlockTileModel<BE, Machine<BE>>> beConstructor,
@@ -46,9 +32,25 @@ public class SimpleMachineRegistryObject<BE extends TileEntityMekanism> extends
             UnaryOperator<MachineBuilder<Machine<BE>, BE, ?>> operator) {
         super(name, blockRegister, tileRegister, containerRegister, blockCreator,
                 (block, properties) -> new ItemBlockTooltip<>(block, true, properties
-                      .component(MekanismDataComponents.EJECTOR, AttachedEjector.DEFAULT)
-                      .component(MekanismDataComponents.SIDE_CONFIG, attachedSideConfig)
-                ), holder, beConstructor, beClass,
+                        .component(MekanismDataComponents.EJECTOR, AttachedEjector.DEFAULT)
+                        .component(MekanismDataComponents.SIDE_CONFIG, attachedSideConfig)),
+                holder, beConstructor, beClass,
                 MekanismTileContainer::new, entry, operator);
+    }
+
+    public SimpleMachineRegistryObject(String modid, String name, BlockDeferredRegister blockRegister,
+            TileEntityTypeDeferredRegister tileRegister, ContainerTypeDeferredRegister containerRegister,
+            Function<Machine<BE>, BlockTileModel<BE, Machine<BE>>> blockCreator,
+            AttachedSideConfig attachedSideConfig,
+            Consumer<ItemRegistryObject<ItemBlockTooltip<BlockTileModel<BE, Machine<BE>>>>> holder,
+            BlockEntityConstructor<BE, Machine<BE>, BlockTileModel<BE, Machine<BE>>> beConstructor,
+            Class<BE> beClass,
+            UnaryOperator<MachineBuilder<Machine<BE>, BE, ?>> operator) {
+        super(modid, name, blockRegister, tileRegister, containerRegister, blockCreator,
+                (block, properties) -> new ItemBlockTooltip<>(block, true, properties
+                        .component(MekanismDataComponents.EJECTOR, AttachedEjector.DEFAULT)
+                        .component(MekanismDataComponents.SIDE_CONFIG, attachedSideConfig)),
+                holder, beConstructor, beClass,
+                MekanismTileContainer::new, operator);
     }
 }

@@ -41,7 +41,6 @@ public class MekUtMachines {
                     IItemStackChemicalToItemStackMachine::addContainersToItem,
                     BEChemicalCutter::new,
                     BEChemicalCutter.class,
-                    MekUtDescription.CHEMICAL_CUTTER,
                     builder -> builder
                             .withSideConfig(TransmissionType.ITEM, TransmissionType.CHEMICAL, TransmissionType.ENERGY)
                             .withEnergyConfig(
@@ -80,7 +79,6 @@ public class MekUtMachines {
                     IFluidToObjectMachine::addContainersFluidToItem,
                     BEIceMaker::new,
                     BEIceMaker.class,
-                    MekUtDescription.ICE_MAKER,
                     builder -> builder
                             .withSideConfig(TransmissionType.ITEM, TransmissionType.FLUID, TransmissionType.ENERGY)
                             .withEnergyConfig(
@@ -94,7 +92,6 @@ public class MekUtMachines {
                     IBiChemicalToObjectRecipeMachine::addContainersBiChemicalToChemical,
                     BELazerCompressNucleoSynthesizer::new,
                     BELazerCompressNucleoSynthesizer.class,
-                    MekUtDescription.LAZER_COMPRESS_NUCLEO_SYNTHESIZER,
                     builder -> builder
                             .withSideConfig(TransmissionType.ITEM, TransmissionType.CHEMICAL, TransmissionType.ENERGY)
                             .withEnergyConfig(
@@ -114,7 +111,6 @@ public class MekUtMachines {
                                     .build()),
                     BEMekStyledCharger::new,
                     BEMekStyledCharger.class,
-                    MekUtDescription.MEKSTYLED_CHARGER,
                     builder -> builder
                             .withSideConfig(TransmissionType.ITEM, TransmissionType.ENERGY)
                             .withEnergyConfig(MekanismConfig.usage.enrichmentChamber,
@@ -128,7 +124,6 @@ public class MekUtMachines {
                     IItemStackListFluidChemicalToItemRecipeMachine::addContainersToItem,
                     BESmallDigitalAssembler::new,
                     BESmallDigitalAssembler.class,
-                    MekUtDescription.SMALL_DIGITAL_ASSEMBLER,
                     builder -> builder
                             .withSideConfig(TransmissionType.ITEM, TransmissionType.FLUID, TransmissionType.CHEMICAL,
                                     TransmissionType.ENERGY)
@@ -143,7 +138,6 @@ public class MekUtMachines {
                     IItemStackListFluidChemicalToItemFluidChemicalRecipeMachine::addContainersToItem,
                     BESmallDigitalReactionChamber::new,
                     BESmallDigitalReactionChamber.class,
-                    MekUtDescription.SMALL_DIGITAL_REACTION_CHAMBER,
                     builder -> builder
                             .withSideConfig(TransmissionType.ITEM, TransmissionType.FLUID, TransmissionType.CHEMICAL,
                                     TransmissionType.ENERGY)
@@ -158,7 +152,6 @@ public class MekUtMachines {
                     IBiChemicalToObjectRecipeMachine::addContainersBiChemicalToItem,
                     BEStellarGenesisChamber::new,
                     BEStellarGenesisChamber.class,
-                    MekUtDescription.STELLAR_GENESIS_CHAMBER,
                     builder -> builder
                             .withSideConfig(TransmissionType.ITEM, TransmissionType.CHEMICAL,
                                     TransmissionType.ENERGY)
@@ -186,13 +179,13 @@ public class MekUtMachines {
                                     .build()),
                     BESubMaterialConverter::new,
                     BESubMaterialConverter.class,
-                    MekUtDescription.SUBMATERIAL_CONVERTER,
                     builder -> builder
                             .withSideConfig(TransmissionType.ITEM, TransmissionType.CHEMICAL)
                             .withSupportedUpgrades(Upgrade.MUFFLING));
 
     public static final SimpleMachineRegistryObject<BETweakedEnergizedSmelter> TWEAKED_ENERGIZED_SMELTER = MACHINES
             .registerSimple("tweaked_energized_smelter",
+                    AttachedSideConfig.CHEMICAL_OUT_MACHINE,
                     holder -> holder
                             .addAttachmentOnlyContainers(ContainerType.ITEM, () -> ItemSlotsBuilder.builder()
                                     .addInput(1)
@@ -204,7 +197,6 @@ public class MekUtMachines {
                                     .build()),
                     BETweakedEnergizedSmelter::new,
                     BETweakedEnergizedSmelter.class,
-                    MekUtDescription.TWEAKED_ENERGIZED_SMELTER,
                     builder -> builder
                             .withSideConfig(TransmissionType.ITEM, TransmissionType.ENERGY, TransmissionType.CHEMICAL)
                             .withEnergyConfig(MekanismConfig.usage.energizedSmelter,

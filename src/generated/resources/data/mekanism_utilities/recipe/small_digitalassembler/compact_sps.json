@@ -35,11 +35,11 @@
     },
     {
       "count": 8,
-      "item": "mekanism_utilities:knowledge_control_circuit"
+      "item": "mekanism_utilities:augment_control_circuit"
     },
     {
       "count": 16,
-      "item": "mekanism_utilities:xp_alloy"
+      "item": "mekanism_utilities:composite_alloy"
     }
   ],
   "output": {

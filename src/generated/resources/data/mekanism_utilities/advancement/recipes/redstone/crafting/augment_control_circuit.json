@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "mekanism_utilities:crafting/knowledge_control_circuit"
+        "recipe": "mekanism_utilities:crafting/augment_control_circuit"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": "mekanism_utilities:xp_alloy"
+            "items": "mekanism_utilities:composite_alloy"
           }
         ]
       },
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "mekanism_utilities:crafting/knowledge_control_circuit"
+      "mekanism_utilities:crafting/augment_control_circuit"
     ]
   }
 }

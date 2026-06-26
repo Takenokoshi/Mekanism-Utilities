@@ -67,26 +67,24 @@ public class MekUtEnglishLangProvider extends LanguageProvider {
         addLang(MekUtDescription.NETHERITE_ORE,
                 "Ore that was likely mined by the former Piglin civilization.\\nNot found in nature.");
 
-        addLang(MekUtDescription.MEKSTYLED_CHARGER,
+        addLang(MekUtMachines.MEKSTYLED_CHARGER.descriptionEntry,
                 "This is a machine that reconstructs the AE2 Charger in the style of Mekanism.\\nThe reaction chamber of the AdvancedAE is probably more convenient.");
-        addLang(MekUtDescription.CHEMICAL_CUTTER,
+        addLang(MekUtMachines.CHEMICAL_CUTTER.descriptionEntry,
                 "This is a machine that creates AE2 printed processor from Mekanism crystals.");
-        addLang(MekUtDescription.ICE_MAKER,
+        addLang(MekUtMachines.ICE_MAKER.descriptionEntry,
                 "A machine that lives up to its name: one that cools water to produce ice.");
-        addLang(MekUtDescription.LAZER_COMPRESS_NUCLEO_SYNTHESIZER,
+        addLang(MekUtMachines.LAZER_COMPRESS_NUCLEO_SYNTHESIZER.descriptionEntry,
                 "A machine that triggers a special nuclear reaction through precise laser control.");
-        addLang(MekUtDescription.STELLAR_GENESIS_CHAMBER,
+        addLang(MekUtMachines.STELLAR_GENESIS_CHAMBER.descriptionEntry,
                 "A machine that simulates the birth of a star originating from an accumulation of interstellar matter.");
-        addLang(MekUtDescription.SMALL_DIGITAL_ASSEMBLER,
+        addLang(MekUtMachines.SMALL_DIGITAL_ASSEMBLER.descriptionEntry,
                 "An advanced machine that automatically performs specialized crafting tasks.\\nIt can also handle assembring in ExtendedAE's Crystal Assembler.");
-        addLang(MekUtDescription.SMALL_DIGITAL_REACTION_CHAMBER,
+        addLang(MekUtMachines.SMALL_DIGITAL_REACTION_CHAMBER.descriptionEntry,
                 "An advanced machine for efficient material synthesis.\\nIt can also handle material synthesis in Mekanism's Pressurized Reaction Chamber and AdvancedAE's reaction chamber.");
-        addLang(MekUtDescription.SUBMATERIAL_CONVERTER,
+        addLang(MekUtMachines.SUBMATERIAL_CONVERTER.descriptionEntry,
                 "This Machine can Convert Submaterial for Metallurgic Infuser & Osmium Compressor.");
-        addLang(MekUtDescription.TWEAKED_ENERGIZED_SMELTER,
+        addLang(MekUtMachines.TWEAKED_ENERGIZED_SMELTER.descriptionEntry,
                 "This is an energized smelter machine that allows you to gain xp through smelting.");
-        addLang(MekUtDescription.STANDARD_MACHINE,
-                "This machine has a higher processing speed than conventional machines.");
     }
 
     private String format(String name) {

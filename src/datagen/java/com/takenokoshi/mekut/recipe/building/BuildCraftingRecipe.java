@@ -66,12 +66,12 @@ public class BuildCraftingRecipe {
                 .unlockedBy("unlock", has.apply(MekUtItems.CONVERGENT_ALLOY))
                 .save(output, MekUtConstants.rl("crafting/standard_control_circuit"));
         ShapedRecipeBuilder
-                .shaped(RecipeCategory.REDSTONE, MekUtItems.KNOWLEDGE_CONTROL_CIRCUIT)
-                .define('A', MekUtItems.XP_ALLOY)
+                .shaped(RecipeCategory.REDSTONE, MekUtItems.AUGMENT_CONTROL_CIRCUIT)
+                .define('A', MekUtItems.COMPISITE_ALLOY)
                 .define('B', MekUtItems.STANDARD_CONTROL_CIRCUIT)
                 .pattern("ABA")
-                .unlockedBy("unlock", has.apply(MekUtItems.XP_ALLOY))
-                .save(output, MekUtConstants.rl("crafting/knowledge_control_circuit"));
+                .unlockedBy("unlock", has.apply(MekUtItems.COMPISITE_ALLOY))
+                .save(output, MekUtConstants.rl("crafting/augment_control_circuit"));
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.REDSTONE, MekUtMachines.CHEMICAL_CUTTER)
                 .define('C', MekanismBlocks.STEEL_CASING)
@@ -98,7 +98,7 @@ public class BuildCraftingRecipe {
                 .shaped(RecipeCategory.REDSTONE, MekUtMachines.LAZER_COMPRESS_NUCLEO_SYNTHESIZER)
                 .define('C', MekanismBlocks.STEEL_CASING)
                 .define('A', ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "ingots/netherite")))
-                .define('B', MekUtItems.KNOWLEDGE_CONTROL_CIRCUIT)
+                .define('B', MekUtItems.AUGMENT_CONTROL_CIRCUIT)
                 .define('D', MekanismBlocks.LASER)
                 .pattern("ABA")
                 .pattern("DCD")

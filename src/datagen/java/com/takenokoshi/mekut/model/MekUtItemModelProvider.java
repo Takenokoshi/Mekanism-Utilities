@@ -52,15 +52,15 @@ public class MekUtItemModelProvider extends ItemModelProvider {
 
         simpleItem(MekUtItems.ELASTIC_ALLOY.get()).texture("layer0", MekUtConstants.rl("item/alloy/elastic"));
         simpleItem(MekUtItems.CONVERGENT_ALLOY.get()).texture("layer0", MekUtConstants.rl("item/alloy/convergent"));
-        simpleItem(MekUtItems.XP_ALLOY.get()).texture("layer0", MekUtConstants.rl("item/alloy/xp"));
+        simpleItem(MekUtItems.COMPISITE_ALLOY.get()).texture("layer0", MekUtConstants.rl("item/alloy/composite"));
         simpleItem(MekUtItems.STARDUST_ALLOY.get()).texture("layer0", MekUtConstants.rl("item/alloy/stardust"));
 
         simpleItem(MekUtItems.DIGITAL_CONTROL_CIRCUIT.get())
                 .texture("layer0", MekUtConstants.rl("item/control_circuit/digital"));
         simpleItem(MekUtItems.STANDARD_CONTROL_CIRCUIT.get())
                 .texture("layer0", MekUtConstants.rl("item/control_circuit/standard"));
-        simpleItem(MekUtItems.KNOWLEDGE_CONTROL_CIRCUIT.get())
-                .texture("layer0", MekUtConstants.rl("item/control_circuit/knowledge"));
+        simpleItem(MekUtItems.AUGMENT_CONTROL_CIRCUIT.get())
+                .texture("layer0", MekUtConstants.rl("item/control_circuit/augment"));
         simpleItem(MekUtItems.COMET_CONTROL_CIRCUIT.get())
                 .texture("layer0", MekUtConstants.rl("item/control_circuit/comet"));
 

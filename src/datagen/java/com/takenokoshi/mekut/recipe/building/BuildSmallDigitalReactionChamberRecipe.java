@@ -43,7 +43,7 @@ public class BuildSmallDigitalReactionChamberRecipe {
         ItemStackListFluidChemicalToItemFluidChemicalRecipeBuilder
                 .smallDigitalReactionChamber(MekUtItems.STARDUST_ALLOY.asStack(), FluidStack.EMPTY, ChemicalStack.EMPTY)
                 .addItemInput(MekanismItems.ATOMIC_ALLOY.asStack(4))
-                .addItemInput(MekUtItems.XP_ALLOY.asStack(4))
+                .addItemInput(MekUtItems.COMPISITE_ALLOY.asStack(4))
                 .addItemInput(MekUtItems.IRIDIUM_INGOT.asStack(4))
                 .setFluidInput(IngredientCreatorAccess.fluid().from(Tags.Fluids.WATER, 100))
                 .setChemicalInput(MekUtChemicals.ASTRAL_ETHER.asStack(200))

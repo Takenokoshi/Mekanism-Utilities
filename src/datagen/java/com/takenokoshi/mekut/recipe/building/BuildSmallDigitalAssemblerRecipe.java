@@ -66,7 +66,7 @@ public class BuildSmallDigitalAssemblerRecipe {
                 .build(output, MekUtConstants.rl("small_digital_assembler/energy_processor"));
         ItemStackListFluidChemicalToItemRecipeBuilder.smallDigitalAssembler(MekUtItems.COMET_CONTROL_CIRCUIT.asStack())
                 .addItemInput(MekanismItems.ULTIMATE_CONTROL_CIRCUIT.asStack())
-                .addItemInput(MekUtItems.KNOWLEDGE_CONTROL_CIRCUIT.asStack())
+                .addItemInput(MekUtItems.AUGMENT_CONTROL_CIRCUIT.asStack())
                 .addItemInput(MekUtItems.STARDUST_ALLOY.asStack(4))
                 .addItemInput(AAEItems.QUANTUM_PROCESSOR.stack(2))
                 .addItemInput(AEItems.SPATIAL_128_CELL_COMPONENT.stack(2))
@@ -82,8 +82,8 @@ public class BuildSmallDigitalAssemblerRecipe {
                 .addItemInput(MekanismBlocks.SUPERCHARGED_COIL, 2)
                 .addItemInput(MekanismItems.ULTIMATE_CONTROL_CIRCUIT.asStack(2))
                 .addItemInput(MekanismItems.ATOMIC_ALLOY.asStack(4))
-                .addItemInput(MekUtItems.KNOWLEDGE_CONTROL_CIRCUIT.asStack(8))
-                .addItemInput(MekUtItems.XP_ALLOY.asStack(16))
+                .addItemInput(MekUtItems.AUGMENT_CONTROL_CIRCUIT.asStack(8))
+                .addItemInput(MekUtItems.COMPISITE_ALLOY.asStack(16))
                 .setFluidInput(MekanismFluids.HEAVY_WATER.asStack(1000))
                 .setChemicalInput(MekanismChemicals.TIN.asStack(2000))
                 .build(output, MekUtConstants.rl("small_digitalassembler/compact_sps"));

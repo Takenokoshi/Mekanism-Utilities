@@ -22,6 +22,7 @@ import mekanism.common.registration.impl.ItemRegistryObject;
 import mekanism.common.registration.impl.TileEntityTypeDeferredRegister;
 import mekanism.common.registration.impl.TileEntityTypeRegistryObject;
 import mekanism.common.tile.base.TileEntityMekanism;
+import net.minecraft.Util;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
@@ -35,6 +36,7 @@ public class MachineRegistryObject<BE extends TileEntityMekanism, BLOCK extends 
     private final TileEntityTypeRegistryObject<BE> tileRegistryObject;
     private final ContainerTypeRegistryObject<CONTAINER> containerRegistryObject;
     private final Machine<BE> blockType;
+    public final ILangEntry descriptionEntry;
 
     public MachineRegistryObject(
             String name,
@@ -62,24 +64,25 @@ public class MachineRegistryObject<BE extends TileEntityMekanism, BLOCK extends 
                 .build();
         containerRegistryObject = containerRegister.register(name, beClass,
                 (id, inv, be) -> contConstructor.create(getContainer(), id, inv, be));
+        this.descriptionEntry = entry;
 
     }
 
     public MachineRegistryObject(
+            String modid,
             String name,
             BlockDeferredRegister blockRegister,
             TileEntityTypeDeferredRegister tileRegister,
             ContainerTypeDeferredRegister containerRegister,
             Function<Machine<BE>, BLOCK> blockCreator,
             BiFunction<BLOCK, Item.Properties, ITEM> itemCreator,
+            Consumer<ItemRegistryObject<ITEM>> holder,
             BlockEntityConstructor<BE, Machine<BE>, BLOCK> beConstructor,
             Class<BE> beClass,
             ContainerConstructor<BE, CONTAINER> contConstructor,
-            ILangEntry entry,
             UnaryOperator<MachineBuilder<Machine<BE>, BE, ?>> operator) {
-        this(name, blockRegister, tileRegister, containerRegister, blockCreator, itemCreator, item -> {
-        }, beConstructor, beClass, contConstructor, entry, operator);
-
+        this(name, blockRegister, tileRegister, containerRegister, blockCreator, itemCreator, holder, beConstructor,
+                beClass, contConstructor, new MachineDescription(modid, name), operator);
     }
 
     public BlockRegistryObject<BLOCK, ITEM> getBlockObject() {
@@ -116,5 +119,19 @@ public class MachineRegistryObject<BE extends TileEntityMekanism, BLOCK extends 
     @Override
     public String getTranslationKey() {
         return blockRegistryObject.getTranslationKey();
+    }
+
+    private static class MachineDescription implements ILangEntry {
+        private final String key;
+
+        private MachineDescription(String modid, String machineName) {
+            this.key = Util.makeDescriptionId("description", ResourceLocation.fromNamespaceAndPath(modid, machineName));
+        }
+
+        @Override
+        public String getTranslationKey() {
+            return key;
+        };
+
     }
 }

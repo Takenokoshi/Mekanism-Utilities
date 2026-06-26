@@ -39,9 +39,9 @@ public class BuildMetallurgicInfusingRecipe {
                 .metallurgicInfusing(
                         creatorI.from(MekUtItems.CONVERGENT_ALLOY),
                         creatorC.from(MekUtChemicals.ENRICHED_XP.asStack(100)),
-                        MekUtItems.XP_ALLOY.asStack(1),
+                        MekUtItems.COMPISITE_ALLOY.asStack(1),
                         false)
-                .build(output, MekUtConstants.rl("metallurgic_infusing/xp_alloy"));
+                .build(output, MekUtConstants.rl("metallurgic_infusing/composite_alloy"));
         ItemStackChemicalToItemStackRecipeBuilder
                 .metallurgicInfusing(
                         creatorI.from(Items.REDSTONE, 20),

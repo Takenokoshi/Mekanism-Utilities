@@ -12,7 +12,7 @@ public class MekUtCreativeTabs {
             MekUtConstants.MODID);
 
     public static final MekanismDeferredHolder<CreativeModeTab, CreativeModeTab> MAIN_TAB = CREATIVE_TABS
-            .register("creative_tab", MekUtLang.MOD_NAME, MekUtItems.XP_ALLOY, builder -> builder.displayItems(
+            .register("creative_tab", MekUtLang.MOD_NAME, MekUtItems.COMPISITE_ALLOY, builder -> builder.displayItems(
                     (displayParameters, output) -> {
                         CreativeTabDeferredRegister.addToDisplay(MekUtItems.ITEMS, output);
                         CreativeTabDeferredRegister.addToDisplay(MekUtBlocks.BLOCKS, output);

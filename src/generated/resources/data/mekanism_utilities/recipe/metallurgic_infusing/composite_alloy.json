@@ -10,7 +10,7 @@
   },
   "output": {
     "count": 1,
-    "id": "mekanism_utilities:xp_alloy"
+    "id": "mekanism_utilities:composite_alloy"
   },
   "per_tick_usage": false
 }
