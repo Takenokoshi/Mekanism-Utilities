@@ -12,7 +12,8 @@ import mekanism.api.recipes.inputs.IInputHandler;
 import mekanism.api.recipes.outputs.IOutputHandler;
 import net.minecraft.world.item.ItemStack;
 
-public class TweakedItemChemicalToItemCachedRecipe extends CachedRecipe<ItemStackChemicalToItemStackRecipe> {
+public class TweakedItemChemicalToItemCachedRecipe extends CachedRecipe<ItemStackChemicalToItemStackRecipe>
+        implements ICachedRecipe<ItemStackChemicalToItemStackRecipe> {
 
     private final IInputHandler<ItemStack> itemInputHandler;
     private final IInputHandler<ChemicalStack> chamicalInputHandler;

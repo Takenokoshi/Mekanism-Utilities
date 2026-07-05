@@ -1,7 +1,7 @@
 {
   "type": "mekanism_utilities:stellar_genesis",
   "left_input": {
-    "amount": 1000000000,
+    "amount": 1000000,
     "chemical": "mekanism:hydrogen"
   },
   "output": {
@@ -9,7 +9,7 @@
     "id": "mekanism_utilities:artificial_star"
   },
   "right_input": {
-    "amount": 200000000,
+    "amount": 200000,
     "chemical": "mekanismelements:helium"
   }
 }

@@ -11,6 +11,7 @@ import com.takenokoshi.mekut.enums.MUMaterial;
 import com.takenokoshi.mekut.item.XpCrystalItem;
 import com.takenokoshi.mekut.item.cell.bulk.MUBulkCellItem;
 
+import mekanism.api.text.EnumColor;
 import mekanism.common.registration.impl.ItemDeferredRegister;
 import mekanism.common.registration.impl.ItemRegistryObject;
 import net.minecraft.world.item.Item;
@@ -21,14 +22,20 @@ public class MekUtItems {
 
     public static final ItemRegistryObject<Item> ARTIFICIAL_STAR = registerFoiling("artificial_star");
 
-    public static final ItemRegistryObject<Item> ELASTIC_ALLOY = ITEMS.register("elastic_alloy");
-    public static final ItemRegistryObject<Item> CONVERGENT_ALLOY = ITEMS.register("convergent_alloy");
-    public static final ItemRegistryObject<Item> COMPISITE_ALLOY = ITEMS.register("composite_alloy");
+    public static final ItemRegistryObject<Item> ELASTIC_ALLOY = ITEMS
+            .register("elastic_alloy", EnumColor.PINK);
+    public static final ItemRegistryObject<Item> CONVERGENT_ALLOY = ITEMS
+            .register("convergent_alloy", EnumColor.DARK_BLUE);
+    public static final ItemRegistryObject<Item> COMPISITE_ALLOY = ITEMS
+            .register("composite_alloy", EnumColor.DARK_GREEN);
     public static final ItemRegistryObject<Item> STARDUST_ALLOY = registerFoiling("stardust_alloy");
 
-    public static final ItemRegistryObject<Item> DIGITAL_CONTROL_CIRCUIT = ITEMS.register("digital_control_circuit");
-    public static final ItemRegistryObject<Item> STANDARD_CONTROL_CIRCUIT = ITEMS.register("standard_control_circuit");
-    public static final ItemRegistryObject<Item> AUGMENT_CONTROL_CIRCUIT = ITEMS.register("augment_control_circuit");
+    public static final ItemRegistryObject<Item> DIGITAL_CONTROL_CIRCUIT = ITEMS
+            .register("digital_control_circuit", EnumColor.PINK);
+    public static final ItemRegistryObject<Item> STANDARD_CONTROL_CIRCUIT = ITEMS
+            .register("standard_control_circuit", EnumColor.DARK_BLUE);
+    public static final ItemRegistryObject<Item> AUGMENT_CONTROL_CIRCUIT = ITEMS
+            .register("augment_control_circuit", EnumColor.DARK_GREEN);
     public static final ItemRegistryObject<Item> COMET_CONTROL_CIRCUIT = registerFoiling(
             "comet_control_circuit");
 

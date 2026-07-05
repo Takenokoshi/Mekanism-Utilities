@@ -1,6 +1,7 @@
 package com.takenokoshi.mekut.blockentity.interfaces.machine;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 import com.takenokoshi.mekut.blockentity.interfaces.IHasInputChemicalTank;
 import com.takenokoshi.mekut.blockentity.interfaces.IScaledProgressProvider;
@@ -26,7 +27,7 @@ import net.minecraft.world.item.ItemStack;
 
 public interface IItemStackChemicalToItemStackMachine extends
         IMekUtRecipeTypedLookupHandler<ItemStackChemicalToItemStackRecipe, MekUtDoubleInputRecipeCache.MekUtItemChemical<ItemStackChemicalToItemStackRecipe>>,
-        IHasInputChemicalTank,IScaledProgressProvider {
+        IHasInputChemicalTank, IScaledProgressProvider {
 
     public static final List<RecipeError> TRACKED_ERROR_TYPES = List.of(
             RecipeError.NOT_ENOUGH_ENERGY,
@@ -68,6 +69,20 @@ public interface IItemStackChemicalToItemStackMachine extends
                 .addAttachmentOnlyContainers(ContainerType.CHEMICAL, () -> ChemicalTanksBuilder.builder()
                         .addBasic(200000)
                         .build());
+    }
+
+    static Consumer<ItemRegistryObject<?>> getContainerAdder(long chemicalTankCapacity) {
+        return value -> {
+            value.addAttachmentOnlyContainers(ContainerType.ITEM, () -> ItemSlotsBuilder.builder()
+                    .addInput(1)
+                    .addChemicalFillOrConvertSlot(0)
+                    .addOutput(1)
+                    .addEnergy()
+                    .build());
+            value.addAttachmentOnlyContainers(ContainerType.CHEMICAL, () -> ChemicalTanksBuilder.builder()
+                    .addBasic(chemicalTankCapacity)
+                    .build());
+        };
     }
 
     public static TileComponentEjector setUpConfig(TileEntityMekanism machine, TileComponentConfig config,

@@ -7,11 +7,13 @@ import com.takenokoshi.mekut.recipe.inputcache.MUEitherSideInputRecipeCache;
 import com.takenokoshi.mekut.recipe.inputcache.MUSingleInputRecipeCache;
 import com.takenokoshi.mekut.recipe.inputcache.MekUtDoubleInputRecipeCache;
 import com.takenokoshi.mekut.recipe.recipe.prefab.BiChemicalToItemRecipe;
+import com.takenokoshi.mekut.recipe.recipe.prefab.ChemicalToChemicalHeatRecipe;
 import com.takenokoshi.mekut.recipe.recipe.prefab.FluidToItemRecipe;
 import com.takenokoshi.mekut.recipe.recipe.prefab.ItemStackListFluidChemicalToItemFluidChemicalRecipe;
 import com.takenokoshi.mekut.recipe.recipe.prefab.ItemStackListFluidChemicalToItemRecipe;
 import com.takenokoshi.mekut.recipe.type.SmallDigitalReactionChamberRecipeType;
 import com.takenokoshi.mekut.recipe.type.ChemicalCutRecipeType;
+import com.takenokoshi.mekut.recipe.type.FissonReactorRecipeType;
 import com.takenokoshi.mekut.recipe.type.MekUtRecipeType;
 import com.takenokoshi.mekut.recipe.type.SPSRecipeType;
 import com.takenokoshi.mekut.recipe.type.SmallDigitalAssemblerRecipeType;
@@ -58,4 +60,7 @@ public class MekUtRecipeTypes {
     public static final MekUtRecipeTypeRegistryObject<BiChemicalRecipeInput, BiChemicalToItemRecipe, MUEitherSideInputRecipeCache<ChemicalStack, ChemicalStackIngredient, BiChemicalToItemRecipe, ChemicalInputCache<BiChemicalToItemRecipe>>> STELLAR_GENESIS = RECIPE_TYPES
             .registerMekUt(MekUtRecipeConstants.STELLAR_GENESIS,
                     id -> new MekUtRecipeType<>(id, MUEitherSideInputRecipeCache::chemicalToItem));
+
+    public static final MekUtRecipeTypeRegistryObject<SingleChemicalRecipeInput, ChemicalToChemicalHeatRecipe, MUSingleInputRecipeCache.MUSingleChemical<ChemicalToChemicalHeatRecipe>> FISSION_REACTOR = RECIPE_TYPES
+            .registerMekUt(MekUtRecipeConstants.FISSION_REACTOR, FissonReactorRecipeType::new);
 }

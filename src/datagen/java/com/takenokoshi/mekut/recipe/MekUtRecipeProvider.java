@@ -17,31 +17,31 @@ public class MekUtRecipeProvider extends RecipeProvider {
 
     @Override
     protected void buildRecipes(RecipeOutput output) {
-        BuildAAEReactionRecipe.build(output);
-        BuildAdsorptionRecipe.build(output);
-        BuildAntiprotonicNucleoSynthesizeRecipe.build(output);
-        BuildChemicalConvertionRecipe.build(output);
-        BuildChemicalCutRecipe.build(output);
-        BuildChemicalDissolutionRecipe.build(output);
-        BuildChemicalWashingRecipe.build(output);
-        BuildCombiningRecipe.build(output);
-        BuildCompressingRecipe.build(output);
-        BuildCraftingRecipe.build(output, RecipeProvider::has);
-        BuildCrystalAssemblerRecipe.build(output);
-        BuildCrystallizingRecipe.build(output);
-        BuildEnrichingRecipe.build(output);
-        BuildIceMakerRecipe.build(output);
-        BuildInjectingRecipe.build(output);
-        BuildLazerCompressNucleoSynthesizeRecipe.build(output);
-        BuildMekReactionRecipe.build(output);
-        BuildMetallurgicInfusingRecipe.build(output);
-        BuildMUMaterialProcessRecipe.build(output, RecipeProvider::has);
-        BuildPaintingRecipe.build(output);
-        BuildPigmentExtractingRecipe.build(output);
-        BuildRotaryRecipe.build(output);
-        BuildSmallDigitalAssemblerRecipe.build(output);
-        BuildSmallDigitalReactionChamberRecipe.build(output);
-        BuildStellarGenesisRecipe.build(output);
+        AAEReactionRecipes.build(output);
+        AdsorptionRecipes.build(output);
+        AntiprotonicNucleoSynthesizeRecipes.build(output);
+        ChemicalConvertionRecipes.build(output);
+        ChemicalCutRecipes.build(output);
+        ChemicalDissolutionRecipes.build(output);
+        ChemicalWashingRecipes.build(output);
+        CombiningRecipes.build(output);
+        CompressingRecipes.build(output);
+        CraftingRecipes.build(output, RecipeProvider::has);
+        CrystalAssemblerRecipes.build(output);
+        CrystallizingRecipes.build(output);
+        EnrichingRecipes.build(output);
+        IceMakerRecipes.build(output);
+        InjectingRecipes.build(output);
+        LazerCompressNucleoSynthesizeRecipes.build(output);
+        MekReactionRecipes.build(output);
+        MetallurgicInfusingRecipes.build(output);
+        MUMaterialProcessRecipes.build(output, RecipeProvider::has);
+        PaintingRecipes.build(output);
+        PigmentExtractingRecipes.build(output);
+        RotaryRecipes.build(output);
+        SmallDigitalAssemblerRecipes.build(output);
+        SmallDigitalReactionChamberRecipes.build(output);
+        StellarGenesisRecipes.build(output);
     }
 
 }

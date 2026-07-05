@@ -35,7 +35,8 @@ public class SmallDigitalAssemblerRecipeType extends
             CrystalAssemblerRecipe assemblerRecipe = holder.value();
             result.add(new RecipeHolder<>(
                     ResourceLocation.fromNamespaceAndPath(holder.id().getNamespace(),
-                            "small_digital_assembler/runtime_generated/eae_crystal_assembler/" + holder.id().getPath()),
+                            "/runtime_generated/small_digital_assembler/from_crystal_assemblers/"
+                                    + holder.id().getPath()),
                     BasicSmallDigitalAssemblerRecipe.convertCrystalAssembler(assemblerRecipe)));
         }
         return Collections.unmodifiableList(result);

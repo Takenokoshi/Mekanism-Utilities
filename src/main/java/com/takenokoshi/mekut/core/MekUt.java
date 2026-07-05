@@ -7,9 +7,11 @@ import com.takenokoshi.mekut.config.MekUtConfig;
 import com.takenokoshi.mekut.item.cell.bulk.MUBulkCellHandler;
 import com.takenokoshi.mekut.item.cell.rainbow.InfinityRainbowCellHandler;
 import com.takenokoshi.mekut.item.cell.stone.InfinityStoneCellHandler;
+import com.takenokoshi.mekut.network.MekUtPacketHandler;
 import com.takenokoshi.mekut.registries.*;
 
 import appeng.api.storage.StorageCells;
+import mekanism.common.lib.Version;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -19,13 +21,23 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 @Mod(value = MekUtConstants.MODID, dist = Dist.DEDICATED_SERVER)
 public class MekUt {
     public static final Logger LOGGER = LogUtils.getLogger();
+    public static MekUt instance;
+    public final Version versionNumber;
+    private final MekUtPacketHandler packetHandler;
 
     public MekUt(IEventBus modEventBus, ModContainer modContainer) {
+        instance = this;
+        versionNumber = new Version(modContainer);
         MekUtConfig.registerConfigs(modContainer);
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(MekUtConfig::onConfigLoad);
         addRegistrationListeners(modEventBus);
         modEventBus.addListener(this::registerCellHandler);
+        packetHandler = new MekUtPacketHandler(modEventBus, versionNumber);
+    }
+
+    public static MekUtPacketHandler packetHandler() {
+        return instance.packetHandler;
     }
 
     private void addRegistrationListeners(IEventBus modEventBus) {
@@ -44,7 +56,7 @@ public class MekUt {
         LOGGER.info("HELLO FROM MekUt SETUP");
     }
 
-    private void registerCellHandler(final FMLCommonSetupEvent event){
+    private void registerCellHandler(final FMLCommonSetupEvent event) {
         StorageCells.addCellHandler(new InfinityRainbowCellHandler());
         StorageCells.addCellHandler(new InfinityStoneCellHandler());
         StorageCells.addCellHandler(MUBulkCellHandler.FLUID_HANDLER);

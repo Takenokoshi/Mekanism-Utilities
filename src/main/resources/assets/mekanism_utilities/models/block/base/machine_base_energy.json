@@ -1,0 +1,6 @@
+{
+    "parent": "mekanism_utilities:block/base/machine_base",
+    "textures": {
+        "back": "mekanism_utilities:block/machine_base/back_with_energy"
+    }
+}

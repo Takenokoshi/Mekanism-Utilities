@@ -17,7 +17,7 @@ public class MekUtRecipeCacheLookupMonitor<RECIPE extends Recipe<?>>
     protected final int cacheIndex;
     protected ICachedRecipe<RECIPE> cachedRecipe;
     protected boolean hasNoRecipe;
-   protected boolean shouldUnpause;
+    protected boolean shouldUnpause;
 
     public MekUtRecipeCacheLookupMonitor(IMekUtRecipeLookUpHandler<RECIPE> handler) {
         this(handler, 0);
@@ -28,48 +28,48 @@ public class MekUtRecipeCacheLookupMonitor<RECIPE extends Recipe<?>>
         this.cacheIndex = cacheIndex;
     }
 
-   protected boolean cachedIndexMatches(int cacheIndex) {
-      return this.cacheIndex == cacheIndex;
-   }
+    protected boolean cachedIndexMatches(int cacheIndex) {
+        return this.cacheIndex == cacheIndex;
+    }
 
-   public final void onContentsChanged() {
-      this.handler.onContentsChanged();
-      this.onChange();
-   }
+    public final void onContentsChanged() {
+        this.handler.onContentsChanged();
+        this.onChange();
+    }
 
-   public void onChange() {
-      this.hasNoRecipe = false;
-      this.unpause();
-   }
+    public void onChange() {
+        this.hasNoRecipe = false;
+        this.unpause();
+    }
 
-   public void unpause() {
-      this.shouldUnpause = true;
-   }
+    public void unpause() {
+        this.shouldUnpause = true;
+    }
 
-   public long updateAndProcess(IEnergyContainer energyContainer) {
-      long prev = energyContainer.getEnergy();
-      return this.updateAndProcess() ? Math.max(0L, prev - energyContainer.getEnergy()) : 0L;
-   }
+    public long updateAndProcess(IEnergyContainer energyContainer) {
+        long prev = energyContainer.getEnergy();
+        return this.updateAndProcess() ? Math.max(0L, prev - energyContainer.getEnergy()) : 0L;
+    }
 
-   public boolean updateAndProcess() {
-      ICachedRecipe<RECIPE> oldCache = this.cachedRecipe;
-      this.cachedRecipe = this.getUpdatedCache(this.cacheIndex);
-      if (this.cachedRecipe != oldCache) {
-         this.handler.onCachedRecipeChanged(this.cachedRecipe, this.cacheIndex);
-      }
+    public boolean updateAndProcess() {
+        ICachedRecipe<RECIPE> oldCache = this.cachedRecipe;
+        this.cachedRecipe = this.getUpdatedCache(this.cacheIndex);
+        if (this.cachedRecipe != oldCache) {
+            this.handler.onCachedRecipeChanged(this.cachedRecipe, this.cacheIndex);
+        }
 
-      if (this.cachedRecipe != null) {
-         if (this.shouldUnpause) {
-            this.shouldUnpause = false;
-            this.cachedRecipe.unpauseErrors();
-         }
+        if (this.cachedRecipe != null) {
+            if (this.shouldUnpause) {
+                this.shouldUnpause = false;
+                this.cachedRecipe.unpauseErrors();
+            }
 
-         this.cachedRecipe.process();
-         return true;
-      } else {
-         return false;
-      }
-   }
+            this.cachedRecipe.process();
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     @Override
     public void loadSavedData(@NotNull ICachedRecipe<RECIPE> cached, int cacheIndex) {

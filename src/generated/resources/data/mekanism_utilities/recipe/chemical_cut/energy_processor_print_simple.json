@@ -8,7 +8,7 @@
   "type": "mekanism_utilities:chemical_cut",
   "chemical_input": {
     "amount": 1,
-    "chemical": "mekanism:oxygen"
+    "chemical": "mekanismelements:compressed_air"
   },
   "item_input": {
     "count": 16,

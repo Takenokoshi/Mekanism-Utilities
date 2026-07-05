@@ -43,4 +43,14 @@ public class MekUtMathUtils {
                 .reduce(1d * base.getAsLong(), (a, b) -> a * b));
     }
 
+    public static int clampToInt(double value) {
+        if (value > 0x7fffffff) {
+            return 0x7fffffff;
+        } else if (value < 0x80000000) {
+            return 0x80000000;
+        } else {
+            return (int) value;
+        }
+    }
+
 }

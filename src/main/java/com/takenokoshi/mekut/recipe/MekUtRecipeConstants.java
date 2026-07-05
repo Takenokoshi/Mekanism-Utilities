@@ -9,4 +9,5 @@ public final class MekUtRecipeConstants {
     public static final String SMALL_DIGITAL_REACTION_CHAMBER = "small_digital_reaction_chamber";
     public static final String SPS = "sps";
     public static final String STELLAR_GENESIS = "stellar_genesis";
+    public static final String FISSION_REACTOR = "fission_reactor";
 }

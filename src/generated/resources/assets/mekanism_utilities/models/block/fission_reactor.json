@@ -1,0 +1,7 @@
+{
+  "parent": "mekanism_utilities:block/base/machine_base",
+  "textures": {
+    "decoration": "mekanism_utilities:block/tier_decoration/standard",
+    "front": "mekanism_utilities:block/machine_front/fission_reactor"
+  }
+}

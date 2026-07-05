@@ -3,6 +3,7 @@ package com.takenokoshi.mekut.blockentity.interfaces.machine;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 
 import com.takenokoshi.mekut.recipe.inputcache.MUSingleInputRecipeCache;
 import com.takenokoshi.mekut.recipe.lookup.IMekUtRecipeTypedLookupHandler;
@@ -68,6 +69,19 @@ public interface IFluidToObjectMachine<RECIPE extends Recipe<?>> extends
                 .addAttachmentOnlyContainers(ContainerType.FLUID, () -> FluidTanksBuilder.builder()
                         .addBasic(20000)
                         .build());
+    }
+
+    static Consumer<ItemRegistryObject<?>> getToItemContainerAdder(int tankCapacity) {
+        return value -> {
+            value.addAttachmentOnlyContainers(ContainerType.ITEM, () -> ItemSlotsBuilder.builder()
+                    .addFluidFillSlot(0)
+                    .addOutput(2)
+                    .addEnergy()
+                    .build());
+            value.addAttachmentOnlyContainers(ContainerType.FLUID, () -> FluidTanksBuilder.builder()
+                    .addBasic(tankCapacity)
+                    .build());
+        };
     }
 
     public static final AttachedSideConfig SIDE_CONFIG_TO_ITEM = Util.make(() -> {

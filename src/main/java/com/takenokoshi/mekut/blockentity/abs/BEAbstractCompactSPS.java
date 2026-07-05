@@ -3,6 +3,7 @@ package com.takenokoshi.mekut.blockentity.abs;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -33,6 +34,8 @@ import mekanism.api.recipes.outputs.OutputHelper;
 import mekanism.api.recipes.vanilla_input.SingleChemicalRecipeInput;
 import mekanism.common.attachments.component.AttachedSideConfig;
 import mekanism.common.attachments.component.AttachedSideConfig.LightConfigInfo;
+import mekanism.common.attachments.containers.ContainerType;
+import mekanism.common.attachments.containers.chemical.ChemicalTanksBuilder;
 import mekanism.common.capabilities.energy.FixedUsageEnergyContainer;
 import mekanism.common.capabilities.energy.MachineEnergyContainer;
 import mekanism.common.capabilities.holder.chemical.ChemicalTankHelper;
@@ -41,6 +44,7 @@ import mekanism.common.capabilities.holder.energy.EnergyContainerHelper;
 import mekanism.common.capabilities.holder.energy.IEnergyContainerHolder;
 import mekanism.common.config.MekanismConfig;
 import mekanism.common.lib.transmitter.TransmissionType;
+import mekanism.common.registration.impl.ItemRegistryObject;
 import mekanism.common.tile.component.TileComponentEjector;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -84,6 +88,16 @@ public abstract class BEAbstractCompactSPS extends BEMultiScaledProgressMachine<
         ejectorComponent = new TileComponentEjector(this).setOutputData(configComponent, TransmissionType.CHEMICAL);
         this.inputHandler = InputHelper.getInputHandler(inputTank, RecipeError.NOT_ENOUGH_INPUT);
         this.outputHandler = OutputHelper.getOutputHandler(outputTank, RecipeError.NOT_ENOUGH_OUTPUT_SPACE);
+    }
+
+    public static Consumer<ItemRegistryObject<?>> getContainerAdder(long tankCapacity) {
+        return value -> {
+            value.addAttachmentOnlyContainers(ContainerType.CHEMICAL,
+                    () -> ChemicalTanksBuilder.builder()
+                            .addBasic(tankCapacity)
+                            .addBasic(tankCapacity)
+                            .build());
+        };
     }
 
     @NotNull

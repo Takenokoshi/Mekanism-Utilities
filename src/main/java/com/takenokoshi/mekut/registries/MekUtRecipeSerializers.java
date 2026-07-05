@@ -5,6 +5,7 @@ import com.takenokoshi.mekut.recipe.recipe.basic.BasicSmallDigitalReactionChambe
 import com.takenokoshi.mekut.recipe.recipe.basic.BasicStellarGenesisRecipe;
 import com.takenokoshi.mekut.recipe.MekUtRecipeConstants;
 import com.takenokoshi.mekut.recipe.recipe.basic.BasicChemicalCutRecipe;
+import com.takenokoshi.mekut.recipe.recipe.basic.BasicFissionReactorRecipe;
 import com.takenokoshi.mekut.recipe.recipe.basic.BasicIceMakingRecipe;
 import com.takenokoshi.mekut.recipe.recipe.basic.BasicLazerCompressRecipe;
 import com.takenokoshi.mekut.recipe.recipe.basic.BasicSPSRecipe;
@@ -52,4 +53,8 @@ public class MekUtRecipeSerializers {
     public static final DeferredHolder<RecipeSerializer<?>, MekanismRecipeSerializer<BasicStellarGenesisRecipe>> STELLAR_GENESIS = RECIPE_SERIALIZERS
             .register(MekUtRecipeConstants.STELLAR_GENESIS,
                     () -> MekUtRecipeSerializerBuilder.chemicalChemicalToItem(BasicStellarGenesisRecipe::new));
+
+    public static final DeferredHolder<RecipeSerializer<?>, MekanismRecipeSerializer<BasicFissionReactorRecipe>> FISSION_REACTOR = RECIPE_SERIALIZERS
+            .register(MekUtRecipeConstants.FISSION_REACTOR,
+                    () -> MekUtRecipeSerializerBuilder.chemicalToChemicalHeat(BasicFissionReactorRecipe::new));
 }

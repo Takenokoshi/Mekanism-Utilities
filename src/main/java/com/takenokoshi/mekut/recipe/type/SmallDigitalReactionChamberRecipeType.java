@@ -34,13 +34,14 @@ public class SmallDigitalReactionChamberRecipeType extends
         recipeManager.getAllRecipesFor(MekanismRecipeType.REACTION.get()).forEach(holder -> {
             result.add(new RecipeHolder<>(
                     ResourceLocation.fromNamespaceAndPath(holder.id().getNamespace(),
-                            "small_digital_reaction_chamber/runtime_generated/mek_prc/" + holder.id().getPath()),
+                            "/runtime_generated/small_digital_reaction_chamber/from_prc/"
+                                    + holder.id().getPath()),
                     BasicSmallDigitalReactionChamberRecipe.convertPRC(holder.value())));
         });
         recipeManager.getAllRecipesFor(ReactionChamberRecipe.TYPE).forEach(holder -> {
             result.add(new RecipeHolder<>(
                     ResourceLocation.fromNamespaceAndPath(holder.id().getNamespace(),
-                            "small_digital_reaction_chamber/runtime_generated/aae_reaction_chamber/"
+                            "/runtime_generated/small_digital_reaction_chamber/from_reaction_chamber/"
                                     + holder.id().getPath()),
                     BasicSmallDigitalReactionChamberRecipe.convertAAE(holder.value())));
         });

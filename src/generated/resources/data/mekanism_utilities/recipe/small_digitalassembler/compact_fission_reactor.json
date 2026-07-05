@@ -1,0 +1,49 @@
+{
+  "type": "mekanism_utilities:small_digital_assembler",
+  "chemical_input": {
+    "amount": 160,
+    "chemical": "mekanism:redstone"
+  },
+  "fluid_input": {
+    "amount": 100,
+    "fluid": "mekanism:heavy_water"
+  },
+  "list_item_input": [
+    {
+      "count": 456,
+      "item": "mekanismgenerators:fission_reactor_casing"
+    },
+    {
+      "count": 1264,
+      "item": "mekanismgenerators:reactor_glass"
+    },
+    {
+      "count": 8,
+      "item": "mekanismgenerators:fission_reactor_logic_adapter"
+    },
+    {
+      "count": 8,
+      "item": "mekanismgenerators:fission_reactor_port"
+    },
+    {
+      "count": 1920,
+      "item": "mekanismgenerators:fission_fuel_assembly"
+    },
+    {
+      "count": 128,
+      "item": "mekanismgenerators:control_rod_assembly"
+    },
+    {
+      "count": 4,
+      "item": "mekanism_utilities:standard_control_circuit"
+    },
+    {
+      "count": 8,
+      "item": "mekanism_utilities:convergent_alloy"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "mekanism_utilities:compact_fission_reactor"
+  }
+}

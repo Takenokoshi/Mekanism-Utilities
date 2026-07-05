@@ -35,7 +35,7 @@ public class SPSRecipeType extends
             @NotNull RecipeManager recipeManager, @Nullable RegistryAccess registryAccess) {
         List<RecipeHolder<ChemicalToChemicalRecipe>> list = new ArrayList<>(
                 super.getRecipesUncached(recipeManager, registryAccess));
-        list.add(new RecipeHolder<ChemicalToChemicalRecipe>(MekUtConstants.rl("sps/runtime_generated/antimatter"),
+        list.add(new RecipeHolder<ChemicalToChemicalRecipe>(MekUtConstants.rl("/runtime_generated/sps/antimatter"),
                 new BasicSPSRecipe(
                         IngredientCreatorAccess.chemicalStack().from(
                                 MekanismChemicals.POLONIUM

@@ -31,7 +31,7 @@ public class ChemicalCutRecipeType extends
         recipeManager.getAllRecipesFor(CircuitCutterRecipe.TYPE).forEach(recipe -> {
             result.add(new RecipeHolder<>(
                     ResourceLocation.fromNamespaceAndPath(recipe.id().getNamespace(),
-                            "chemical_cut/runtime_generated/" + recipe.id().getPath()),
+                            "/runtime_generated/chemical_cut/from_circuit_cutter/" + recipe.id().getPath()),
                     BasicChemicalCutRecipe.convertFromCircuitCutter(recipe.value())));
         });
         return List.copyOf(result);

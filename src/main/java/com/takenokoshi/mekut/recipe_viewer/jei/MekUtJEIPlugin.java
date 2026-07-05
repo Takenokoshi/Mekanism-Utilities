@@ -5,6 +5,7 @@ import java.util.List;
 import com.takenokoshi.mekut.core.MekUtConstants;
 import com.takenokoshi.mekut.recipe.type.WrappedRecipeType;
 import com.takenokoshi.mekut.recipe_viewer.jei.category.BiChemicalToItemRecipeCategory;
+import com.takenokoshi.mekut.recipe_viewer.jei.category.FissionReactorRecipeCategory;
 import com.takenokoshi.mekut.recipe_viewer.jei.category.FluidToItemRecipeCategory;
 import com.takenokoshi.mekut.recipe_viewer.jei.category.MekUtEnergizedSmelterRecipeCategory;
 import com.takenokoshi.mekut.recipe_viewer.jei.category.SmallDigitalAssemblerRecipeCategory;
@@ -21,6 +22,8 @@ import mekanism.client.recipe_viewer.jei.machine.ChemicalChemicalToChemicalRecip
 import mekanism.client.recipe_viewer.jei.machine.ChemicalToChemicalRecipeCategory;
 import mekanism.client.recipe_viewer.jei.machine.ItemStackChemicalToItemStackRecipeCategory;
 import mekanism.client.recipe_viewer.type.IRecipeViewerRecipeType;
+import mekanism.client.recipe_viewer.type.RecipeViewerRecipeType;
+import mekanism.generators.client.recipe_viewer.GeneratorsRVRecipeType;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.RecipeTypes;
@@ -73,6 +76,7 @@ public class MekUtJEIPlugin implements IModPlugin {
                 new ChemicalToChemicalRecipeCategory(guiHelper, MekUtRecipeViewerRecipeType.SPS),
                 new BiChemicalToItemRecipeCategory(guiHelper, MekUtRecipeViewerRecipeType.STELLAR_GENESIS),
                 new MekUtEnergizedSmelterRecipeCategory<>(guiHelper, MekUtRecipeViewerRecipeType.TWEAKED_SMELLTING),
+                new FissionReactorRecipeCategory(guiHelper, MekUtRecipeViewerRecipeType.FISSION_REACTOR),
         });
     }
 
@@ -95,6 +99,8 @@ public class MekUtJEIPlugin implements IModPlugin {
                 MekUtRecipeTypes.SPS);
         MekUtRecipeRegistryHelper.register(registry, MekUtRecipeViewerRecipeType.STELLAR_GENESIS,
                 MekUtRecipeTypes.STELLAR_GENESIS);
+        MekUtRecipeRegistryHelper.register(registry, MekUtRecipeViewerRecipeType.FISSION_REACTOR,
+                MekUtRecipeTypes.FISSION_REACTOR);
         MekUtRecipeRegistryHelper.register(registry, MekUtRecipeViewerRecipeType.TWEAKED_SMELLTING,
                 WrappedRecipeType.VANILLA_SMELTING);
     }
@@ -112,10 +118,17 @@ public class MekUtJEIPlugin implements IModPlugin {
                 MekUtRecipeViewerRecipeType.SMALL_DIGITAL_REACTION_CHAMBER,
                 MekUtRecipeViewerRecipeType.SPS,
                 MekUtRecipeViewerRecipeType.STELLAR_GENESIS,
+                MekUtRecipeViewerRecipeType.FISSION_REACTOR,
                 MekUtRecipeViewerRecipeType.TWEAKED_SMELLTING,
         });
         CatalystRegistryHelper.register(registry, RecipeTypes.SMELTING,
                 List.of(MekUtMachines.TWEAKED_ENERGIZED_SMELTER));
+        CatalystRegistryHelper.register(registry,
+                MekanismJEI.genericRecipeType(RecipeViewerRecipeType.CHEMICAL_CONVERSION),
+                List.of(MekUtMachines.SUBMATERIAL_CONVERTER));
+        CatalystRegistryHelper.register(registry,
+                MekanismJEI.genericRecipeType(GeneratorsRVRecipeType.FISSION),
+                List.of(MekUtMachines.COMPACT_FISSION_REACTOR));
     }
 
 }

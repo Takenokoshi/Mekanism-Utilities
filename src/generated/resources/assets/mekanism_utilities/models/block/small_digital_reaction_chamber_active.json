@@ -1,0 +1,7 @@
+{
+  "parent": "mekanism_utilities:block/base/machine_base_energy",
+  "textures": {
+    "decoration": "mekanism_utilities:block/tier_decoration/standard",
+    "front": "mekanism_utilities:block/machine_front_active/small_digital_reaction_chamber"
+  }
+}

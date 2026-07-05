@@ -1,5 +1,6 @@
 package com.takenokoshi.mekut.registries;
 
+import com.takenokoshi.mekut.blockentity.abs.BEAbstractCompactFissionReactor;
 import com.takenokoshi.mekut.blockentity.abs.BEAbstractCompactSPS;
 import com.takenokoshi.mekut.blockentity.interfaces.machine.IBiChemicalToObjectRecipeMachine;
 import com.takenokoshi.mekut.blockentity.interfaces.machine.IFluidToObjectMachine;
@@ -7,6 +8,7 @@ import com.takenokoshi.mekut.blockentity.interfaces.machine.IItemStackChemicalTo
 import com.takenokoshi.mekut.blockentity.interfaces.machine.IItemStackListFluidChemicalToItemFluidChemicalRecipeMachine;
 import com.takenokoshi.mekut.blockentity.interfaces.machine.IItemStackListFluidChemicalToItemRecipeMachine;
 import com.takenokoshi.mekut.blockentity.normalmachine.BEChemicalCutter;
+import com.takenokoshi.mekut.blockentity.normalmachine.BECompactFissionReactor;
 import com.takenokoshi.mekut.blockentity.normalmachine.BECompactSPS;
 import com.takenokoshi.mekut.blockentity.normalmachine.BEIceMaker;
 import com.takenokoshi.mekut.blockentity.normalmachine.BELazerCompressNucleoSynthesizer;
@@ -31,6 +33,7 @@ import mekanism.common.attachments.containers.item.ItemSlotsBuilder;
 import mekanism.common.config.MekanismConfig;
 import mekanism.common.lib.transmitter.TransmissionType;
 import mekanism.common.registries.MekanismSounds;
+import mekanism.generators.common.registries.GeneratorsSounds;
 
 public class MekUtMachines {
     public static final MachineDeferredRegister MACHINES = new MachineDeferredRegister(MekUtConstants.MODID);
@@ -38,7 +41,7 @@ public class MekUtMachines {
     public static final SimpleMachineRegistryObject<BEChemicalCutter> CHEMICAL_CUTTER = MACHINES
             .registerSimple("chemical_cutter",
                     AttachedSideConfig.ADVANCED_MACHINE,
-                    IItemStackChemicalToItemStackMachine::addContainersToItem,
+                    IItemStackChemicalToItemStackMachine.getContainerAdder(200000)::accept,
                     BEChemicalCutter::new,
                     BEChemicalCutter.class,
                     builder -> builder
@@ -48,15 +51,26 @@ public class MekUtMachines {
                                     MekanismConfig.storage.chemicalCrystallizer)
                             .withSupportedUpgrades(Upgrade.SPEED, Upgrade.ENERGY, Upgrade.CHEMICAL));
 
+    public static final GuiSizedMachineRegistryObject<BECompactFissionReactor> COMPACT_FISSION_REACTOR = MACHINES
+            .registerGuiSized("compact_fission_reactor",
+                    BEAbstractCompactFissionReactor.SIDE_CONFIG,
+                    item -> BEAbstractCompactFissionReactor.addContainers(item,
+                            15_360_000l,
+                            1736000.0d,
+                            583_200_000,
+                            583_200_000l,
+                            5_832_000_000l),
+                    BECompactFissionReactor::new,
+                    BECompactFissionReactor.class,
+                    builder -> builder
+                            .withSideConfig(TransmissionType.CHEMICAL, TransmissionType.FLUID, TransmissionType.HEAT)
+                            .withSound(GeneratorsSounds.FISSION_REACTOR)
+                            .withSupportedUpgrades(Upgrade.MUFFLING));
+
     public static final SimpleMachineRegistryObject<BECompactSPS> COMPACT_SUPERCRITICAL_PHASE_SHIFTER = MACHINES
             .registerSimple("compact_supercritical_phase_shifter",
                     BEAbstractCompactSPS.SIDE_CONFIG,
-                    holder -> holder
-                            .addAttachmentOnlyContainers(ContainerType.CHEMICAL,
-                                    () -> ChemicalTanksBuilder.builder()
-                                            .addBasic(2000)
-                                            .addBasic(2000)
-                                            .build()),
+                    BEAbstractCompactSPS.getContainerAdder(2000)::accept,
                     BECompactSPS::new,
                     BECompactSPS.class,
                     MekUtDescription.COMPACT_SPS,
@@ -76,7 +90,7 @@ public class MekUtMachines {
     public static final SimpleMachineRegistryObject<BEIceMaker> ICE_MAKER = MACHINES
             .registerSimple("ice_maker",
                     IFluidToObjectMachine.SIDE_CONFIG_TO_ITEM,
-                    IFluidToObjectMachine::addContainersFluidToItem,
+                    IFluidToObjectMachine.getToItemContainerAdder(20000)::accept,
                     BEIceMaker::new,
                     BEIceMaker.class,
                     builder -> builder

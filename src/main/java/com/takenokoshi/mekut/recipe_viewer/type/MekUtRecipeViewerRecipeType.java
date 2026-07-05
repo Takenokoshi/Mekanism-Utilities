@@ -3,6 +3,7 @@ package com.takenokoshi.mekut.recipe_viewer.type;
 import com.takenokoshi.mekut.core.MekUtConstants;
 import com.takenokoshi.mekut.recipe.MekUtRecipeConstants;
 import com.takenokoshi.mekut.recipe.recipe.prefab.BiChemicalToItemRecipe;
+import com.takenokoshi.mekut.recipe.recipe.prefab.ChemicalToChemicalHeatRecipe;
 import com.takenokoshi.mekut.recipe.recipe.prefab.FluidToItemRecipe;
 import com.takenokoshi.mekut.recipe.recipe.prefab.ItemStackListFluidChemicalToItemFluidChemicalRecipe;
 import com.takenokoshi.mekut.recipe.recipe.prefab.ItemStackListFluidChemicalToItemRecipe;
@@ -58,6 +59,12 @@ public class MekUtRecipeViewerRecipeType {
             BiChemicalToItemRecipe.class,
             MekUtRecipeTypes.STELLAR_GENESIS, -3, -3, 170, 80,
             MekUtMachines.STELLAR_GENESIS_CHAMBER);
+
+    public static final RVMekUtRecipeTypeWrapper<?, ChemicalToChemicalHeatRecipe, ?> FISSION_REACTOR = new RVMekUtRecipeTypeWrapper<>(
+            MekUtConstants.rl(MekUtRecipeConstants.FISSION_REACTOR),
+            ChemicalToChemicalHeatRecipe.class,
+            MekUtRecipeTypes.FISSION_REACTOR, -4, -13, 168, 60,
+            MekUtMachines.COMPACT_FISSION_REACTOR);
 
     public static final RVMekUtRecipeTypeWrapper<?, SmeltingRecipe, ?> TWEAKED_SMELLTING = new RVMekUtRecipeTypeWrapper<>(
             MekUtConstants.rl("smelting"),

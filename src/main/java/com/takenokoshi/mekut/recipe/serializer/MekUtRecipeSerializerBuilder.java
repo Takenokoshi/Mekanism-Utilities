@@ -7,8 +7,10 @@ import java.util.function.BiFunction;
 import com.mojang.datafixers.util.Function3;
 import com.mojang.datafixers.util.Function5;
 import com.mojang.datafixers.util.Function8;
+import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.takenokoshi.mekut.recipe.recipe.prefab.BiChemicalToItemRecipe;
+import com.takenokoshi.mekut.recipe.recipe.prefab.ChemicalToChemicalHeatRecipe;
 import com.takenokoshi.mekut.recipe.recipe.prefab.FluidToItemRecipe;
 import com.takenokoshi.mekut.recipe.recipe.prefab.ItemStackListFluidChemicalToItemFluidChemicalRecipe;
 import com.takenokoshi.mekut.recipe.recipe.prefab.ItemStackListFluidChemicalToItemRecipe;
@@ -126,6 +128,25 @@ public final class MekUtRecipeSerializerBuilder {
                         FluidToItemRecipe::getInput,
                         ItemStack.STREAM_CODEC,
                         FluidToItemRecipe::getOutputRaw,
+                        factory));
+    }
+
+    public static <RECIPE extends ChemicalToChemicalHeatRecipe> MekanismRecipeSerializer<RECIPE> chemicalToChemicalHeat(
+            Function3<ChemicalStackIngredient, ChemicalStack, Double, RECIPE> factory) {
+        return new MekanismRecipeSerializer<>(RecordCodecBuilder.mapCodec(instance -> instance.group(
+                IngredientCreatorAccess.chemicalStack().codec().fieldOf(SerializationConstants.INPUT)
+                        .forGetter(ChemicalToChemicalHeatRecipe::getInput),
+                ChemicalStack.CODEC.fieldOf(SerializationConstants.OUTPUT)
+                        .forGetter(ChemicalToChemicalHeatRecipe::getOutputRaw),
+                Codec.DOUBLE.fieldOf(MekUtSerializationConstants.HEAT_GENERATION).forGetter(r -> r.heatGeneration))
+                .apply(instance, factory)),
+                StreamCodec.composite(
+                        IngredientCreatorAccess.chemicalStack().streamCodec(),
+                        ChemicalToChemicalHeatRecipe::getInput,
+                        ChemicalStack.STREAM_CODEC,
+                        ChemicalToChemicalHeatRecipe::getOutputRaw,
+                        ByteBufCodecs.DOUBLE,
+                        r -> r.heatGeneration,
                         factory));
     }
 
