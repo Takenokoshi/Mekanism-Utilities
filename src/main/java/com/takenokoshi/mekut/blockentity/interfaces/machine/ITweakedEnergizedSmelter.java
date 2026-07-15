@@ -2,11 +2,11 @@ package com.takenokoshi.mekut.blockentity.interfaces.machine;
 
 import java.util.List;
 
+import com.takenokoshi.mekaddonlib.recipe.lookup.IMekALRecipeTypedLookupHandler;
+import com.takenokoshi.mekaddonlib.recipe.type.IMekALRecipeTypeProvider;
 import com.takenokoshi.mekut.blockentity.interfaces.IHasMachineEnergyContainer;
-import com.takenokoshi.mekut.recipe.input.IngredientInputHandler;
+import com.takenokoshi.mekut.recipe.input.AdvancedIngredientInputHandler;
 import com.takenokoshi.mekut.recipe.inputcache.MUSingleInputRecipeCache;
-import com.takenokoshi.mekut.recipe.lookup.IMekUtRecipeTypedLookupHandler;
-import com.takenokoshi.mekut.recipe.type.IMekUtRecipeTypeProvider;
 import com.takenokoshi.mekut.recipe.type.WrappedRecipeType;
 
 import mekanism.api.chemical.IChemicalTank;
@@ -16,7 +16,7 @@ import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
 
 public interface ITweakedEnergizedSmelter
-        extends IMekUtRecipeTypedLookupHandler<SmeltingRecipe, MUSingleInputRecipeCache.MUSingleItem<SmeltingRecipe>>,
+        extends IMekALRecipeTypedLookupHandler<SmeltingRecipe, MUSingleInputRecipeCache.MUSingleItem<SmeltingRecipe>>,
         IHasMachineEnergyContainer {
 
     public static final List<RecipeError> TRACKED_ERROR_TYPES = List.of(
@@ -25,7 +25,7 @@ public interface ITweakedEnergizedSmelter
             RecipeError.NOT_ENOUGH_OUTPUT_SPACE,
             RecipeError.INPUT_DOESNT_PRODUCE_OUTPUT);
 
-    default IMekUtRecipeTypeProvider<SingleRecipeInput, SmeltingRecipe, MUSingleInputRecipeCache.MUSingleItem<SmeltingRecipe>> getRecipeType() {
+    default IMekALRecipeTypeProvider<SingleRecipeInput, SmeltingRecipe, MUSingleInputRecipeCache.MUSingleItem<SmeltingRecipe>> getRecipeType() {
         return WrappedRecipeType.VANILLA_SMELTING;
     };
 
@@ -35,7 +35,7 @@ public interface ITweakedEnergizedSmelter
         return getRecipeType().getInputCache().containsInput(getLevel(), input);
     }
 
-    default SmeltingRecipe findFirstRecipe(IngredientInputHandler inputHandler) {
+    default SmeltingRecipe findFirstRecipe(AdvancedIngredientInputHandler inputHandler) {
         return getRecipeType().getInputCache().findFirstRecipe(getLevel(), inputHandler.getInput());
     }
 

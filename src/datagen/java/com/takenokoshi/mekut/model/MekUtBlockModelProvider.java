@@ -1,7 +1,7 @@
 package com.takenokoshi.mekut.model;
 
+import com.takenokoshi.mekaddonlib.registration.MachineRegistryObject;
 import com.takenokoshi.mekut.core.MekUtConstants;
-import com.takenokoshi.mekut.registration.MachineRegistryObject;
 import com.takenokoshi.mekut.registries.MekUtBlocks;
 import com.takenokoshi.mekut.registries.MekUtFluids;
 import com.takenokoshi.mekut.registries.MekUtMachines;
@@ -82,11 +82,11 @@ public class MekUtBlockModelProvider extends BlockStateProvider {
                 "comet",
                 "stellar_genesis_chamber");
         mekUtSimpleMachine(MekUtMachines.SUBMATERIAL_CONVERTER,
-                true,
+                false,
                 "digital",
                 "submaterial_converter");
 
-        mekanismMachine(MekUtMachines.TWEAKED_ENERGIZED_SMELTER.getBlockObject(),
+        mekanismMachine(MekUtMachines.TWEAKED_ENERGIZED_SMELTER.getBlock(),
                 Mekanism.rl("block/energized_smelter"),
                 Mekanism.rl("block/energized_smelter_active"));
     }
@@ -96,7 +96,7 @@ public class MekUtBlockModelProvider extends BlockStateProvider {
             boolean energy,
             String tierDecoration,
             String baseName) {
-        mekUtSimpleMachine(registryObject.getBlockObject(), energy, tierDecoration, baseName);
+        mekUtSimpleMachine(registryObject.getBlock(), energy, tierDecoration, baseName);
     }
 
     protected void mekUtSimpleMachine(

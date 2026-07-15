@@ -3,11 +3,11 @@ package com.takenokoshi.mekut.blockentity.normalmachine;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.takenokoshi.mekut.blockentity.base.BEMultiScaledProgressMachine;
+import com.takenokoshi.mekaddonlib.blockentity.base.BEMultiScaledProgressMachine;
+import com.takenokoshi.mekaddonlib.recipe.cached.AbstractCachedRecipe;
 import com.takenokoshi.mekut.blockentity.interfaces.machine.IMekStyledCharger;
-import com.takenokoshi.mekut.recipe.cached.AbstractCachedRecipe;
 import com.takenokoshi.mekut.recipe.cached.MekStyledChargerCachedRecipe;
-import com.takenokoshi.mekut.recipe.input.IngredientInputHandler;
+import com.takenokoshi.mekut.recipe.input.AdvancedIngredientInputHandler;
 import com.takenokoshi.mekut.recipe.output.ItemOutputHandler;
 
 import appeng.recipes.handlers.ChargerRecipe;
@@ -35,16 +35,16 @@ public class BEMekStyledCharger extends BEMultiScaledProgressMachine<ChargerReci
     private OutputInventorySlot outputSlot;
     private EnergyInventorySlot energySlot;
     private MachineEnergyContainer<?> energyContainer;
-    private final IngredientInputHandler inputHandler;
+    private final AdvancedIngredientInputHandler inputHandler;
     private final ItemOutputHandler outputHandler;
 
     public BEMekStyledCharger(Holder<Block> blockProvider, BlockPos pos, BlockState state) {
-        super(blockProvider, pos, state, TRACKED_ERROR_TYPES, 60, r -> 60, 1);
+        super(blockProvider, pos, state, TRACKED_ERROR_TYPES, 2, r -> 60);
         configComponent.setupItemIOConfig(inputSlot, outputSlot, energySlot);
         configComponent.setupInputConfig(TransmissionType.ENERGY, energyContainer);
         ejectorComponent = new TileComponentEjector(this)
                 .setOutputData(configComponent, TransmissionType.ITEM);
-        this.inputHandler = new IngredientInputHandler(inputSlot, RecipeError.NOT_ENOUGH_INPUT);
+        this.inputHandler = new AdvancedIngredientInputHandler(inputSlot, RecipeError.NOT_ENOUGH_INPUT);
         this.outputHandler = new ItemOutputHandler(outputSlot, RecipeError.NOT_ENOUGH_OUTPUT_SPACE);
     }
 

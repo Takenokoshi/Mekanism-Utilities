@@ -8,8 +8,8 @@ import java.util.function.Function;
 
 import org.jetbrains.annotations.Nullable;
 
+import com.takenokoshi.mekaddonlib.recipe.type.MekALRecipeType;
 import com.takenokoshi.mekut.recipe.recipe.prefab.BiChemicalToItemRecipe;
-import com.takenokoshi.mekut.recipe.type.MekUtRecipeType;
 
 import mekanism.api.chemical.ChemicalStack;
 import mekanism.api.recipes.ChemicalChemicalToChemicalRecipe;
@@ -29,7 +29,7 @@ public class MUEitherSideInputRecipeCache<INPUT, INGREDIENT extends InputIngredi
     private final Function<RECIPE, INGREDIENT> inputBExtractor;
     private final CACHE cache;
 
-    public MUEitherSideInputRecipeCache(MekUtRecipeType<?, RECIPE, ?> recipeType,
+    public MUEitherSideInputRecipeCache(MekALRecipeType<?, RECIPE, ?> recipeType,
             Function<RECIPE, INGREDIENT> inputAExtractor,
             Function<RECIPE, INGREDIENT> inputBExtractor, CACHE cache) {
         super(recipeType);
@@ -39,7 +39,7 @@ public class MUEitherSideInputRecipeCache<INPUT, INGREDIENT extends InputIngredi
     }
 
     public static MUEitherSideInputRecipeCache<ChemicalStack, ChemicalStackIngredient, ChemicalChemicalToChemicalRecipe, ChemicalInputCache<ChemicalChemicalToChemicalRecipe>> chemicalToChemical(
-            MekUtRecipeType<?, ChemicalChemicalToChemicalRecipe, ?> recipeType) {
+            MekALRecipeType<?, ChemicalChemicalToChemicalRecipe, ?> recipeType) {
         return new MUEitherSideInputRecipeCache<>(recipeType,
                 ChemicalChemicalToChemicalRecipe::getLeftInput,
                 ChemicalChemicalToChemicalRecipe::getRightInput,
@@ -47,7 +47,7 @@ public class MUEitherSideInputRecipeCache<INPUT, INGREDIENT extends InputIngredi
     }
 
     public static MUEitherSideInputRecipeCache<ChemicalStack, ChemicalStackIngredient, BiChemicalToItemRecipe, ChemicalInputCache<BiChemicalToItemRecipe>> chemicalToItem(
-            MekUtRecipeType<?, BiChemicalToItemRecipe, ?> recipeType) {
+            MekALRecipeType<?, BiChemicalToItemRecipe, ?> recipeType) {
         return new MUEitherSideInputRecipeCache<>(recipeType,
                 BiChemicalToItemRecipe::getLeftInput,
                 BiChemicalToItemRecipe::getRightInput,

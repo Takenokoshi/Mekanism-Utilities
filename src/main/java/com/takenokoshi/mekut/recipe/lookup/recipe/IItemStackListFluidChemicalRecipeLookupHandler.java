@@ -2,9 +2,9 @@ package com.takenokoshi.mekut.recipe.lookup.recipe;
 
 import java.util.List;
 
+import com.takenokoshi.mekaddonlib.recipe.lookup.IMekALRecipeTypedLookupHandler;
 import com.takenokoshi.mekut.recipe.input.ItemStackListInputHandler;
 import com.takenokoshi.mekut.recipe.inputcache.ItemStackListFluidChemicalInputRecipeCache;
-import com.takenokoshi.mekut.recipe.lookup.IMekUtRecipeTypedLookupHandler;
 import com.takenokoshi.mekut.recipe.recipe.prefab.ItemStackListFluidChemicalToObjectsRecipe;
 
 import mekanism.api.chemical.ChemicalStack;
@@ -13,7 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.fluids.FluidStack;
 
 public interface IItemStackListFluidChemicalRecipeLookupHandler<RECIPE extends ItemStackListFluidChemicalToObjectsRecipe>
-        extends IMekUtRecipeTypedLookupHandler<RECIPE, ItemStackListFluidChemicalInputRecipeCache<RECIPE>> {
+        extends IMekALRecipeTypedLookupHandler<RECIPE, ItemStackListFluidChemicalInputRecipeCache<RECIPE>> {
     default boolean containsRecipeItem(ItemStack stack, int slotIndex) {
         return getRecipeType().getInputCache().containsItem(getLevel(), stack, slotIndex);
     }

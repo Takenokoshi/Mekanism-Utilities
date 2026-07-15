@@ -19,6 +19,8 @@ import mekanism.common.registries.MekanismFluids;
 import mekanism.common.registries.MekanismItems;
 import mekanism.generators.common.registries.GeneratorsBlocks;
 import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
@@ -101,5 +103,27 @@ public class SmallDigitalAssemblerRecipes {
                 .setFluidInput(MekanismFluids.HEAVY_WATER.asStack(100))
                 .setChemicalInput(MekanismChemicals.REDSTONE.asStack(160))
                 .build(output, MekUtConstants.rl("small_digitalassembler/compact_fission_reactor"));
+        ItemStackListFluidChemicalToItemRecipeBuilder
+                .smallDigitalAssembler(MekUtItems.SUPPLIER_BASE.asStack(4))
+                .addItemInput(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "ingots/bronze")), 4)
+                .addItemInput(MekanismItems.HDPE_ROD, 1)
+                .addItemInput(MekanismItems.ENRICHED_IRON.asStack(2))
+                .setChemicalInput(MekanismChemicals.CARBON.asStack(1600))
+                .setFluidInput(MekanismFluids.HEAVY_WATER.asStack(2000))
+                .build(output, MekUtConstants.rl("small_digitalassembler/supplier_base"));
+        ItemStackListFluidChemicalToItemRecipeBuilder
+                .smallDigitalAssembler(MekUtItems.WATER_SUPPLIER.asStack(1))
+                .addItemInput(MekUtItems.SUPPLIER_BASE.asStack(1))
+                .addItemInput(new ItemStack(MekanismBlocks.DYNAMIC_TANK, 32))
+                .setFluidInput(Tags.Fluids.WATER, 20000)
+                .setChemicalInput(MekanismChemicals.GOLD.asStack(160))
+                .build(output, MekUtConstants.rl("small_digitalassembler/water_supplier"));
+        ItemStackListFluidChemicalToItemRecipeBuilder
+                .smallDigitalAssembler(MekUtItems.COBBLESTONE_SUPPLIER.asStack(1))
+                .addItemInput(MekUtItems.WATER_SUPPLIER.asStack(1))
+                .addItemInput(new ItemStack(MekanismBlocks.ULTIMATE_BIN, 1))
+                .setFluidInput(Tags.Fluids.LAVA, 20000)
+                .setChemicalInput(MekanismChemicals.TIN.asStack(160))
+                .build(output, MekUtConstants.rl("small_digitalassembler/cobblestone_supplier"));
     }
 }

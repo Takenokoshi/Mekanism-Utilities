@@ -1,0 +1,25 @@
+{
+  "type": "mekanism_utilities:small_digital_assembler",
+  "chemical_input": {
+    "amount": 160,
+    "chemical": "mekanism:gold"
+  },
+  "fluid_input": {
+    "amount": 20000,
+    "tag": "c:water"
+  },
+  "list_item_input": [
+    {
+      "count": 1,
+      "item": "mekanism_utilities:supplier_base"
+    },
+    {
+      "count": 32,
+      "item": "mekanism:dynamic_tank"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "mekanism_utilities:water_supplier"
+  }
+}

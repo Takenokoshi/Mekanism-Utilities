@@ -1,5 +1,8 @@
 package com.takenokoshi.mekut.registries;
 
+import com.takenokoshi.mekaddonlib.recipe.type.MekALRecipeType;
+import com.takenokoshi.mekaddonlib.registration.MekALRecipeTypeDeferredRegister;
+import com.takenokoshi.mekaddonlib.registration.MekALRecipeTypeRegistryObject;
 import com.takenokoshi.mekut.core.MekUtConstants;
 import com.takenokoshi.mekut.recipe.MekUtRecipeConstants;
 import com.takenokoshi.mekut.recipe.inputcache.ItemStackListFluidChemicalInputRecipeCache;
@@ -14,12 +17,8 @@ import com.takenokoshi.mekut.recipe.recipe.prefab.ItemStackListFluidChemicalToIt
 import com.takenokoshi.mekut.recipe.type.SmallDigitalReactionChamberRecipeType;
 import com.takenokoshi.mekut.recipe.type.ChemicalCutRecipeType;
 import com.takenokoshi.mekut.recipe.type.FissonReactorRecipeType;
-import com.takenokoshi.mekut.recipe.type.MekUtRecipeType;
 import com.takenokoshi.mekut.recipe.type.SPSRecipeType;
 import com.takenokoshi.mekut.recipe.type.SmallDigitalAssemblerRecipeType;
-import com.takenokoshi.mekut.registration.MekUtRecipeTypeDeferredRegister;
-import com.takenokoshi.mekut.registration.MekUtRecipeTypeRegistryObject;
-
 import mekanism.api.chemical.ChemicalStack;
 import mekanism.api.recipes.ChemicalChemicalToChemicalRecipe;
 import mekanism.api.recipes.ChemicalToChemicalRecipe;
@@ -33,34 +32,34 @@ import mekanism.common.recipe.lookup.cache.type.ChemicalInputCache;
 import net.minecraft.world.item.crafting.RecipeInput;
 
 public class MekUtRecipeTypes {
-    public static final MekUtRecipeTypeDeferredRegister RECIPE_TYPES = new MekUtRecipeTypeDeferredRegister(
+    public static final MekALRecipeTypeDeferredRegister RECIPE_TYPES = new MekALRecipeTypeDeferredRegister(
             MekUtConstants.MODID);
 
-    public static final MekUtRecipeTypeRegistryObject<SingleItemChemicalRecipeInput, ItemStackChemicalToItemStackRecipe, MekUtDoubleInputRecipeCache.MekUtItemChemical<ItemStackChemicalToItemStackRecipe>> CHEMICAL_CUT = RECIPE_TYPES
-            .registerMekUt(MekUtRecipeConstants.CHEMICAL_CUT, ChemicalCutRecipeType::new);
+    public static final MekALRecipeTypeRegistryObject<SingleItemChemicalRecipeInput, ItemStackChemicalToItemStackRecipe, MekUtDoubleInputRecipeCache.MekUtItemChemical<ItemStackChemicalToItemStackRecipe>> CHEMICAL_CUT = RECIPE_TYPES
+            .registerMekAL(MekUtRecipeConstants.CHEMICAL_CUT, ChemicalCutRecipeType::new);
 
-    public static final MekUtRecipeTypeRegistryObject<SingleFluidRecipeInput, FluidToItemRecipe, MUSingleInputRecipeCache.MUSingleFluid<FluidToItemRecipe>> ICE_MAKING = RECIPE_TYPES
-            .registerMekUt(MekUtRecipeConstants.ICE_MAKING,
-                    id -> new MekUtRecipeType<>(id, MUSingleInputRecipeCache.MUSingleFluid::toItem));
+    public static final MekALRecipeTypeRegistryObject<SingleFluidRecipeInput, FluidToItemRecipe, MUSingleInputRecipeCache.MUSingleFluid<FluidToItemRecipe>> ICE_MAKING = RECIPE_TYPES
+            .registerMekAL(MekUtRecipeConstants.ICE_MAKING,
+                    id -> new MekALRecipeType<>(id, MUSingleInputRecipeCache.MUSingleFluid::toItem));
 
-    public static final MekUtRecipeTypeRegistryObject<BiChemicalRecipeInput, ChemicalChemicalToChemicalRecipe, MUEitherSideInputRecipeCache<ChemicalStack, ChemicalStackIngredient, ChemicalChemicalToChemicalRecipe, ChemicalInputCache<ChemicalChemicalToChemicalRecipe>>> LAZER_COMPRESS = RECIPE_TYPES
-            .registerMekUt(MekUtRecipeConstants.LAZER_COMPRESS,
-                    id -> new MekUtRecipeType<>(id, MUEitherSideInputRecipeCache::chemicalToChemical));
+    public static final MekALRecipeTypeRegistryObject<BiChemicalRecipeInput, ChemicalChemicalToChemicalRecipe, MUEitherSideInputRecipeCache<ChemicalStack, ChemicalStackIngredient, ChemicalChemicalToChemicalRecipe, ChemicalInputCache<ChemicalChemicalToChemicalRecipe>>> LAZER_COMPRESS = RECIPE_TYPES
+            .registerMekAL(MekUtRecipeConstants.LAZER_COMPRESS,
+                    id -> new MekALRecipeType<>(id, MUEitherSideInputRecipeCache::chemicalToChemical));
 
-    public static final MekUtRecipeTypeRegistryObject<RecipeInput, ItemStackListFluidChemicalToItemRecipe, ItemStackListFluidChemicalInputRecipeCache<ItemStackListFluidChemicalToItemRecipe>> SMALL_DIGITAL_ASSEMBLER = RECIPE_TYPES
-            .registerMekUt(MekUtRecipeConstants.SMALL_DIGITAL_ASSEMBLER, SmallDigitalAssemblerRecipeType::new);
+    public static final MekALRecipeTypeRegistryObject<RecipeInput, ItemStackListFluidChemicalToItemRecipe, ItemStackListFluidChemicalInputRecipeCache<ItemStackListFluidChemicalToItemRecipe>> SMALL_DIGITAL_ASSEMBLER = RECIPE_TYPES
+            .registerMekAL(MekUtRecipeConstants.SMALL_DIGITAL_ASSEMBLER, SmallDigitalAssemblerRecipeType::new);
 
-    public static final MekUtRecipeTypeRegistryObject<RecipeInput, ItemStackListFluidChemicalToItemFluidChemicalRecipe, ItemStackListFluidChemicalInputRecipeCache<ItemStackListFluidChemicalToItemFluidChemicalRecipe>> SMALL_DIGITAL_REACTION_CHAMBER = RECIPE_TYPES
-            .registerMekUt(MekUtRecipeConstants.SMALL_DIGITAL_REACTION_CHAMBER,
+    public static final MekALRecipeTypeRegistryObject<RecipeInput, ItemStackListFluidChemicalToItemFluidChemicalRecipe, ItemStackListFluidChemicalInputRecipeCache<ItemStackListFluidChemicalToItemFluidChemicalRecipe>> SMALL_DIGITAL_REACTION_CHAMBER = RECIPE_TYPES
+            .registerMekAL(MekUtRecipeConstants.SMALL_DIGITAL_REACTION_CHAMBER,
                     SmallDigitalReactionChamberRecipeType::new);
 
-    public static final MekUtRecipeTypeRegistryObject<SingleChemicalRecipeInput, ChemicalToChemicalRecipe, MUSingleInputRecipeCache.MUSingleChemical<ChemicalToChemicalRecipe>> SPS = RECIPE_TYPES
-            .registerMekUt(MekUtRecipeConstants.SPS, SPSRecipeType::new);
+    public static final MekALRecipeTypeRegistryObject<SingleChemicalRecipeInput, ChemicalToChemicalRecipe, MUSingleInputRecipeCache.MUSingleChemical<ChemicalToChemicalRecipe>> SPS = RECIPE_TYPES
+            .registerMekAL(MekUtRecipeConstants.SPS, SPSRecipeType::new);
 
-    public static final MekUtRecipeTypeRegistryObject<BiChemicalRecipeInput, BiChemicalToItemRecipe, MUEitherSideInputRecipeCache<ChemicalStack, ChemicalStackIngredient, BiChemicalToItemRecipe, ChemicalInputCache<BiChemicalToItemRecipe>>> STELLAR_GENESIS = RECIPE_TYPES
-            .registerMekUt(MekUtRecipeConstants.STELLAR_GENESIS,
-                    id -> new MekUtRecipeType<>(id, MUEitherSideInputRecipeCache::chemicalToItem));
+    public static final MekALRecipeTypeRegistryObject<BiChemicalRecipeInput, BiChemicalToItemRecipe, MUEitherSideInputRecipeCache<ChemicalStack, ChemicalStackIngredient, BiChemicalToItemRecipe, ChemicalInputCache<BiChemicalToItemRecipe>>> STELLAR_GENESIS = RECIPE_TYPES
+            .registerMekAL(MekUtRecipeConstants.STELLAR_GENESIS,
+                    id -> new MekALRecipeType<>(id, MUEitherSideInputRecipeCache::chemicalToItem));
 
-    public static final MekUtRecipeTypeRegistryObject<SingleChemicalRecipeInput, ChemicalToChemicalHeatRecipe, MUSingleInputRecipeCache.MUSingleChemical<ChemicalToChemicalHeatRecipe>> FISSION_REACTOR = RECIPE_TYPES
-            .registerMekUt(MekUtRecipeConstants.FISSION_REACTOR, FissonReactorRecipeType::new);
+    public static final MekALRecipeTypeRegistryObject<SingleChemicalRecipeInput, ChemicalToChemicalHeatRecipe, MUSingleInputRecipeCache.MUSingleChemical<ChemicalToChemicalHeatRecipe>> FISSION_REACTOR = RECIPE_TYPES
+            .registerMekAL(MekUtRecipeConstants.FISSION_REACTOR, FissonReactorRecipeType::new);
 }

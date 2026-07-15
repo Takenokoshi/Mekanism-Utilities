@@ -13,7 +13,7 @@ import java.util.function.ToIntFunction;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.takenokoshi.mekut.recipe.type.MekUtRecipeType;
+import com.takenokoshi.mekaddonlib.recipe.type.MekALRecipeType;
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
@@ -37,7 +37,7 @@ public class ItemStackListFluidInputRecipeCache<RECIPE extends Recipe<?>> extend
     protected final Object2IntMap<Item> itemToMaxListSizeCache = new Object2IntOpenHashMap<>();
     protected final Map<Fluid, Set<RECIPE>> fluidToRecipeCache = new HashMap<>();
 
-    public ItemStackListFluidInputRecipeCache(MekUtRecipeType<?, RECIPE, ?> recipeType,
+    public ItemStackListFluidInputRecipeCache(MekALRecipeType<?, RECIPE, ?> recipeType,
             Function<RECIPE, List<Item>> itemInputExtractor,
             Function<RECIPE, List<Fluid>> fluidInputExtractor,
             ToIntFunction<RECIPE> listSizeExtractor,

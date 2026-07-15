@@ -1,0 +1,29 @@
+{
+  "type": "mekanism_utilities:small_digital_assembler",
+  "chemical_input": {
+    "amount": 1600,
+    "chemical": "mekanism:carbon"
+  },
+  "fluid_input": {
+    "amount": 2000,
+    "fluid": "mekanism:heavy_water"
+  },
+  "list_item_input": [
+    {
+      "count": 4,
+      "tag": "c:ingots/bronze"
+    },
+    {
+      "count": 1,
+      "item": "mekanism:hdpe_rod"
+    },
+    {
+      "count": 2,
+      "item": "mekanism:enriched_iron"
+    }
+  ],
+  "output": {
+    "count": 4,
+    "id": "mekanism_utilities:supplier_base"
+  }
+}

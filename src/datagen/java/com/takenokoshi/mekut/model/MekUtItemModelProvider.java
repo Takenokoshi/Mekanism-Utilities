@@ -82,6 +82,13 @@ public class MekUtItemModelProvider extends ItemModelProvider {
                 .texture("layer0", MekUtConstants.rl("item/cell/mega_bulk_fluid"));
         simpleItem(MekUtItems.MEGA_BULK_CHEMICAL_STORAGE_CELL.get())
                 .texture("layer0", MekUtConstants.rl("item/cell/mega_bulk_chemical"));
+
+        simpleItem(MekUtItems.SUPPLIER_BASE.get())
+                .texture("layer0", MekUtConstants.rl("item/supplier/base"));
+        simpleItem(MekUtItems.WATER_SUPPLIER.get())
+                .texture("layer0", MekUtConstants.rl("item/supplier/water"));
+        simpleItem(MekUtItems.COBBLESTONE_SUPPLIER.get())
+                .texture("layer0", MekUtConstants.rl("item/supplier/cobblestone"));
     }
 
     public ItemModelBuilder simpleItem(Item item) {

@@ -7,6 +7,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.glodblock.github.extendedae.recipe.CircuitCutterRecipe;
+import com.takenokoshi.mekaddonlib.recipe.type.MekALRecipeType;
 import com.takenokoshi.mekut.recipe.inputcache.MekUtDoubleInputRecipeCache;
 import com.takenokoshi.mekut.recipe.recipe.basic.BasicChemicalCutRecipe;
 
@@ -18,7 +19,7 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 
 public class ChemicalCutRecipeType extends
-        MekUtRecipeType<SingleItemChemicalRecipeInput, ItemStackChemicalToItemStackRecipe, MekUtDoubleInputRecipeCache.MekUtItemChemical<ItemStackChemicalToItemStackRecipe>> {
+        MekALRecipeType<SingleItemChemicalRecipeInput, ItemStackChemicalToItemStackRecipe, MekUtDoubleInputRecipeCache.MekUtItemChemical<ItemStackChemicalToItemStackRecipe>> {
 
     public ChemicalCutRecipeType(ResourceLocation name) {
         super(name, MekUtDoubleInputRecipeCache.MekUtItemChemical::toItem);

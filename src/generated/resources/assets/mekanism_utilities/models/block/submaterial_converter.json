@@ -1,5 +1,5 @@
 {
-  "parent": "mekanism_utilities:block/base/machine_base_energy",
+  "parent": "mekanism_utilities:block/base/machine_base",
   "textures": {
     "decoration": "mekanism_utilities:block/tier_decoration/digital",
     "front": "mekanism_utilities:block/machine_front/submaterial_converter"

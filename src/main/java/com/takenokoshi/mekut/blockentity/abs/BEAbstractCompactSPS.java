@@ -8,12 +8,16 @@ import java.util.function.Consumer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.takenokoshi.mekut.blockentity.base.BEMultiScaledProgressMachine;
+import com.takenokoshi.mekaddonlib.blockentity.base.BEMultiScaledProgressMachine;
+import com.takenokoshi.mekaddonlib.recipe.cached.ICachedRecipe;
+import com.takenokoshi.mekaddonlib.recipe.lookup.IMekALRecipeTypedLookupHandler;
+import com.takenokoshi.mekaddonlib.recipe.type.IMekALRecipeTypeProvider;
 import com.takenokoshi.mekut.blockentity.interfaces.IHasMachineEnergyContainer;
-import com.takenokoshi.mekut.recipe.cached.ICachedRecipe;
+import com.takenokoshi.mekut.blockentity.interfaces.IRecipeViewerTypeProvider;
+import com.takenokoshi.mekut.inventory.slot.ChemicalFillConvertOrSupplyingSlot;
+import com.takenokoshi.mekut.recipe.input.AdvancedChemicalInputHandler;
 import com.takenokoshi.mekut.recipe.inputcache.MUSingleInputRecipeCache;
-import com.takenokoshi.mekut.recipe.lookup.IMekUtRecipeTypedLookupHandler;
-import com.takenokoshi.mekut.recipe.type.IMekUtRecipeTypeProvider;
+import com.takenokoshi.mekut.recipe_viewer.type.MekUtRecipeViewerRecipeType;
 import com.takenokoshi.mekut.registries.MekUtRecipeTypes;
 
 import mekanism.api.AutomationType;
@@ -27,22 +31,27 @@ import mekanism.api.math.MathUtils;
 import mekanism.api.recipes.ChemicalToChemicalRecipe;
 import mekanism.api.recipes.cache.OneInputCachedRecipe;
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
-import mekanism.api.recipes.inputs.IInputHandler;
-import mekanism.api.recipes.inputs.InputHelper;
 import mekanism.api.recipes.outputs.IOutputHandler;
 import mekanism.api.recipes.outputs.OutputHelper;
 import mekanism.api.recipes.vanilla_input.SingleChemicalRecipeInput;
+import mekanism.client.recipe_viewer.type.IRecipeViewerRecipeType;
 import mekanism.common.attachments.component.AttachedSideConfig;
 import mekanism.common.attachments.component.AttachedSideConfig.LightConfigInfo;
 import mekanism.common.attachments.containers.ContainerType;
 import mekanism.common.attachments.containers.chemical.ChemicalTanksBuilder;
+import mekanism.common.attachments.containers.item.ItemSlotsBuilder;
 import mekanism.common.capabilities.energy.FixedUsageEnergyContainer;
 import mekanism.common.capabilities.energy.MachineEnergyContainer;
 import mekanism.common.capabilities.holder.chemical.ChemicalTankHelper;
 import mekanism.common.capabilities.holder.chemical.IChemicalTankHolder;
 import mekanism.common.capabilities.holder.energy.EnergyContainerHelper;
 import mekanism.common.capabilities.holder.energy.IEnergyContainerHolder;
+import mekanism.common.capabilities.holder.slot.IInventorySlotHolder;
+import mekanism.common.capabilities.holder.slot.InventorySlotHelper;
 import mekanism.common.config.MekanismConfig;
+import mekanism.common.inventory.container.slot.SlotOverlay;
+import mekanism.common.inventory.slot.EnergyInventorySlot;
+import mekanism.common.inventory.slot.chemical.ChemicalInventorySlot;
 import mekanism.common.lib.transmitter.TransmissionType;
 import mekanism.common.registration.impl.ItemRegistryObject;
 import mekanism.common.tile.component.TileComponentEjector;
@@ -53,8 +62,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
 public abstract class BEAbstractCompactSPS extends BEMultiScaledProgressMachine<ChemicalToChemicalRecipe> implements
-        IMekUtRecipeTypedLookupHandler<ChemicalToChemicalRecipe, MUSingleInputRecipeCache.MUSingleChemical<ChemicalToChemicalRecipe>>,
-        IHasMachineEnergyContainer {
+        IMekALRecipeTypedLookupHandler<ChemicalToChemicalRecipe, MUSingleInputRecipeCache.MUSingleChemical<ChemicalToChemicalRecipe>>,
+        IHasMachineEnergyContainer, IRecipeViewerTypeProvider {
 
     public static final AttachedSideConfig SIDE_CONFIG = Util.make(() -> {
         Map<TransmissionType, LightConfigInfo> configInfo = new EnumMap<>(TransmissionType.class);
@@ -72,7 +81,11 @@ public abstract class BEAbstractCompactSPS extends BEMultiScaledProgressMachine<
     protected IChemicalTank inputTank;
     protected IChemicalTank outputTank;
 
-    protected final IInputHandler<ChemicalStack> inputHandler;
+    protected ChemicalFillConvertOrSupplyingSlot inputSlot;
+    protected ChemicalInventorySlot outputSlot;
+    protected EnergyInventorySlot energySlot;
+
+    protected final AdvancedChemicalInputHandler inputHandler;
     protected final IOutputHandler<ChemicalStack> outputHandler;
 
     protected long inputUsagePerTick = 1;
@@ -80,18 +93,24 @@ public abstract class BEAbstractCompactSPS extends BEMultiScaledProgressMachine<
     protected BEAbstractCompactSPS(Holder<Block> blockProvider, BlockPos pos, BlockState state,
             int baselineMaxOperations, double speedModifier) {
         super(blockProvider, pos, state, TRACKED_ERROR_TYPES,
-                MathUtils.clampToInt(MekanismConfig.general.spsInputPerAntimatter.getAsInt() / 1000d * speedModifier),
-                r -> MathUtils.clampToInt(r.getInput().amount() / 1000d * speedModifier),
-                baselineMaxOperations);
+                baselineMaxOperations,
+                r -> MathUtils.clampToInt(r.getInput().amount() / 1000d * speedModifier));
+        configComponent.setupItemIOConfig(inputSlot, outputSlot, energySlot);
         configComponent.setupIOConfig(TransmissionType.CHEMICAL, inputTank, outputTank, RelativeSide.RIGHT, false);
         configComponent.setupInputConfig(TransmissionType.ENERGY, energyContainer);
         ejectorComponent = new TileComponentEjector(this).setOutputData(configComponent, TransmissionType.CHEMICAL);
-        this.inputHandler = InputHelper.getInputHandler(inputTank, RecipeError.NOT_ENOUGH_INPUT);
+        this.inputHandler = AdvancedChemicalInputHandler.create(inputTank, RecipeError.NOT_ENOUGH_INPUT);
         this.outputHandler = OutputHelper.getOutputHandler(outputTank, RecipeError.NOT_ENOUGH_OUTPUT_SPACE);
+        inputSlot.setSupplyingStackSetter(inputHandler::setSuppliedStack);
     }
 
     public static Consumer<ItemRegistryObject<?>> getContainerAdder(long tankCapacity) {
         return value -> {
+            value.addAttachmentOnlyContainers(ContainerType.ITEM, () -> ItemSlotsBuilder.builder()
+                    .addBasic(1)
+                    .addOutput(2)
+                    .addEnergy()
+                    .build());
             value.addAttachmentOnlyContainers(ContainerType.CHEMICAL,
                     () -> ChemicalTanksBuilder.builder()
                             .addBasic(tankCapacity)
@@ -133,6 +152,21 @@ public abstract class BEAbstractCompactSPS extends BEMultiScaledProgressMachine<
         return builder.build();
     }
 
+    @Override
+    protected @Nullable IInventorySlotHolder getInitialInventory(IContentsListener listener,
+            IContentsListener recipeCacheListener, IContentsListener recipeCacheUnpauseListener) {
+        InventorySlotHelper builder = InventorySlotHelper.forSideWithConfig(this);
+        builder.addSlot(inputSlot = ChemicalFillConvertOrSupplyingSlot
+                .create(inputTank, this::getLevel, recipeCacheListener, 5, 56))
+                .setSlotOverlay(SlotOverlay.MINUS);
+        builder.addSlot(outputSlot = ChemicalInventorySlot
+                .drain(inputTank, listener, 155, 56))
+                .setSlotOverlay(SlotOverlay.PLUS);
+        builder.addSlot(energySlot = EnergyInventorySlot
+                .fillOrConvert(energyContainer, this::getLevel, listener, 155, 14));
+        return builder.build();
+    }
+
     protected abstract long initTankCapacity();
 
     protected boolean containsRecipe(ChemicalStack input) {
@@ -170,12 +204,15 @@ public abstract class BEAbstractCompactSPS extends BEMultiScaledProgressMachine<
     }
 
     @Override
-    public @NotNull IMekUtRecipeTypeProvider<SingleChemicalRecipeInput, ChemicalToChemicalRecipe, MUSingleInputRecipeCache.MUSingleChemical<ChemicalToChemicalRecipe>> getRecipeType() {
+    public @NotNull IMekALRecipeTypeProvider<SingleChemicalRecipeInput, ChemicalToChemicalRecipe, MUSingleInputRecipeCache.MUSingleChemical<ChemicalToChemicalRecipe>> getRecipeType() {
         return MekUtRecipeTypes.SPS;
     }
 
     protected boolean onUpdateServer() {
         boolean v = super.onUpdateServer();
+        energySlot.fillContainerOrConvert();
+        inputSlot.fillTankOrConvert();
+        outputSlot.drainTank();
         clientEnergyUsed = recipeCacheLookupMonitor.updateAndProcess(energyContainer);
         return v;
     }
@@ -191,6 +228,11 @@ public abstract class BEAbstractCompactSPS extends BEMultiScaledProgressMachine<
 
     public IChemicalTank getOutputTank() {
         return outputTank;
+    }
+
+    @Override
+    public @Nullable IRecipeViewerRecipeType<ChemicalToChemicalRecipe> recipeViewerType() {
+        return MekUtRecipeViewerRecipeType.SPS;
     }
 
 }

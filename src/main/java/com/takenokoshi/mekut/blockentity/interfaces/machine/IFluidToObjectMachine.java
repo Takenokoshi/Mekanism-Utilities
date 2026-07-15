@@ -5,9 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
+import com.takenokoshi.mekaddonlib.recipe.lookup.IMekALRecipeTypedLookupHandler;
 import com.takenokoshi.mekut.recipe.inputcache.MUSingleInputRecipeCache;
-import com.takenokoshi.mekut.recipe.lookup.IMekUtRecipeTypedLookupHandler;
-
 import mekanism.api.fluid.IExtendedFluidTank;
 import mekanism.api.inventory.IInventorySlot;
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
@@ -28,7 +27,7 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.neoforged.neoforge.fluids.FluidStack;
 
 public interface IFluidToObjectMachine<RECIPE extends Recipe<?>> extends
-        IMekUtRecipeTypedLookupHandler<RECIPE, MUSingleInputRecipeCache.MUSingleFluid<RECIPE>> {
+        IMekALRecipeTypedLookupHandler<RECIPE, MUSingleInputRecipeCache.MUSingleFluid<RECIPE>> {
 
     public static final List<RecipeError> TRACKED_ERROR_TYPES = List.of(
             RecipeError.NOT_ENOUGH_ENERGY,
@@ -59,22 +58,10 @@ public interface IFluidToObjectMachine<RECIPE extends Recipe<?>> extends
                 new TransmissionType[] { TransmissionType.ITEM });
     }
 
-    public static void addContainersFluidToItem(ItemRegistryObject<?> item) {
-        item
-                .addAttachmentOnlyContainers(ContainerType.ITEM, () -> ItemSlotsBuilder.builder()
-                        .addFluidFillSlot(0)
-                        .addOutput(2)
-                        .addEnergy()
-                        .build())
-                .addAttachmentOnlyContainers(ContainerType.FLUID, () -> FluidTanksBuilder.builder()
-                        .addBasic(20000)
-                        .build());
-    }
-
     static Consumer<ItemRegistryObject<?>> getToItemContainerAdder(int tankCapacity) {
         return value -> {
             value.addAttachmentOnlyContainers(ContainerType.ITEM, () -> ItemSlotsBuilder.builder()
-                    .addFluidFillSlot(0)
+                    .addBasic(1)
                     .addOutput(2)
                     .addEnergy()
                     .build());

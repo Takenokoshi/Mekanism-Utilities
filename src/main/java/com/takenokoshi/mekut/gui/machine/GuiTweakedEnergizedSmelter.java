@@ -2,8 +2,9 @@ package com.takenokoshi.mekut.gui.machine;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.takenokoshi.mekut.blockentity.base.BlockEntityMekUtProgressMachine;
+import com.takenokoshi.mekaddonlib.blockentity.base.BlockEntityMekALProgressMachine;
 import com.takenokoshi.mekut.blockentity.interfaces.machine.ITweakedEnergizedSmelter;
+import com.takenokoshi.mekut.recipe_viewer.type.MekUtRecipeViewerRecipeType;
 
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
 import mekanism.client.gui.GuiConfigurableTile;
@@ -13,6 +14,7 @@ import mekanism.client.gui.element.bar.GuiVerticalPowerBar;
 import mekanism.client.gui.element.progress.GuiProgress;
 import mekanism.client.gui.element.progress.ProgressType;
 import mekanism.client.gui.element.tab.GuiEnergyTab;
+import mekanism.client.recipe_viewer.type.IRecipeViewerRecipeType;
 import mekanism.common.inventory.container.tile.MekanismTileContainer;
 import mekanism.common.inventory.warning.WarningTracker.WarningType;
 import net.minecraft.client.gui.GuiGraphics;
@@ -20,7 +22,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
 
-public class GuiTweakedEnergizedSmelter<BE extends BlockEntityMekUtProgressMachine<SmeltingRecipe> & ITweakedEnergizedSmelter>
+public class GuiTweakedEnergizedSmelter<BE extends BlockEntityMekALProgressMachine<SmeltingRecipe> & ITweakedEnergizedSmelter>
         extends GuiConfigurableTile<BE, MekanismTileContainer<BE>> {
 
     public GuiTweakedEnergizedSmelter(MekanismTileContainer<BE> container, Inventory inv, Component title) {
@@ -40,7 +42,10 @@ public class GuiTweakedEnergizedSmelter<BE extends BlockEntityMekUtProgressMachi
                 .warning(WarningType.NO_SPACE_IN_OUTPUT, tile.getWarningCheck(RecipeError.NOT_ENOUGH_OUTPUT_SPACE));
         addRenderableWidget(new GuiProgress(tile::getScaledProgress, ProgressType.BAR, this, 86, 38))
                 .warning(WarningType.INPUT_DOESNT_PRODUCE_OUTPUT,
-                        tile.getWarningCheck(RecipeError.INPUT_DOESNT_PRODUCE_OUTPUT));
+                        tile.getWarningCheck(RecipeError.INPUT_DOESNT_PRODUCE_OUTPUT))
+                .recipeViewerCategories(new IRecipeViewerRecipeType[] {
+                        MekUtRecipeViewerRecipeType.TWEAKED_SMELLTING,
+                });
     }
 
     @Override

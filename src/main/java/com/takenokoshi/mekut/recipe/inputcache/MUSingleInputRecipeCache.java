@@ -8,8 +8,8 @@ import java.util.function.Function;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import com.takenokoshi.mekaddonlib.recipe.type.MekALRecipeType;
 import com.takenokoshi.mekut.recipe.recipe.prefab.FluidToItemRecipe;
-import com.takenokoshi.mekut.recipe.type.MekUtRecipeType;
 
 import mekanism.api.chemical.Chemical;
 import mekanism.api.chemical.ChemicalStack;
@@ -27,7 +27,7 @@ public class MUSingleInputRecipeCache<RECIPE extends Recipe<?>, INPUT_TYPE> exte
     protected final Function<RECIPE, @NotNull List<INPUT_TYPE>> inputExtractor;
     protected final Map<INPUT_TYPE, RECIPE> recipeMap;
 
-    protected MUSingleInputRecipeCache(MekUtRecipeType<?, RECIPE, ?> recipeType,
+    protected MUSingleInputRecipeCache(MekALRecipeType<?, RECIPE, ?> recipeType,
             Function<RECIPE, @NotNull List<INPUT_TYPE>> inputExtractor) {
         super(recipeType);
         this.inputExtractor = inputExtractor;
@@ -53,7 +53,7 @@ public class MUSingleInputRecipeCache<RECIPE extends Recipe<?>, INPUT_TYPE> exte
 
     public static class MUSingleItem<RECIPE extends Recipe<?>> extends MUSingleInputRecipeCache<RECIPE, Item> {
 
-        public MUSingleItem(MekUtRecipeType<?, RECIPE, ?> recipeType,
+        public MUSingleItem(MekALRecipeType<?, RECIPE, ?> recipeType,
                 Function<RECIPE, @NotNull List<Item>> inputExtractor) {
             super(recipeType, inputExtractor);
         }
@@ -78,13 +78,13 @@ public class MUSingleInputRecipeCache<RECIPE extends Recipe<?>, INPUT_TYPE> exte
 
     public static class MUSingleFluid<RECIPE extends Recipe<?>> extends MUSingleInputRecipeCache<RECIPE, Fluid> {
 
-        public MUSingleFluid(MekUtRecipeType<?, RECIPE, ?> recipeType,
+        public MUSingleFluid(MekALRecipeType<?, RECIPE, ?> recipeType,
                 Function<RECIPE, @NotNull List<Fluid>> inputExtractor) {
             super(recipeType, inputExtractor);
         }
 
         public static <RECIPE extends FluidToItemRecipe> MUSingleFluid<RECIPE> toItem(
-                MekUtRecipeType<SingleFluidRecipeInput, RECIPE, ?> recipeType) {
+                MekALRecipeType<SingleFluidRecipeInput, RECIPE, ?> recipeType) {
             return new MUSingleFluid<>(recipeType,
                     recipe -> recipe.input.getRepresentations().stream().map(FluidStack::getFluid).toList());
         }
@@ -110,7 +110,7 @@ public class MUSingleInputRecipeCache<RECIPE extends Recipe<?>, INPUT_TYPE> exte
 
     public static class MUSingleChemical<RECIPE extends Recipe<?>> extends MUSingleInputRecipeCache<RECIPE, Chemical> {
 
-        public MUSingleChemical(MekUtRecipeType<?, RECIPE, ?> recipeType,
+        public MUSingleChemical(MekALRecipeType<?, RECIPE, ?> recipeType,
                 Function<RECIPE, @NotNull List<Chemical>> inputExtractor) {
             super(recipeType, inputExtractor);
         }

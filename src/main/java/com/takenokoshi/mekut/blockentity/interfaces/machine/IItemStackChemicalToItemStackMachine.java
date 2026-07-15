@@ -3,11 +3,10 @@ package com.takenokoshi.mekut.blockentity.interfaces.machine;
 import java.util.List;
 import java.util.function.Consumer;
 
+import com.takenokoshi.mekaddonlib.recipe.lookup.IMekALRecipeTypedLookupHandler;
 import com.takenokoshi.mekut.blockentity.interfaces.IHasInputChemicalTank;
 import com.takenokoshi.mekut.blockentity.interfaces.IScaledProgressProvider;
 import com.takenokoshi.mekut.recipe.inputcache.MekUtDoubleInputRecipeCache;
-import com.takenokoshi.mekut.recipe.lookup.IMekUtRecipeTypedLookupHandler;
-
 import mekanism.api.chemical.ChemicalStack;
 import mekanism.api.chemical.IChemicalTank;
 import mekanism.api.energy.IEnergyContainer;
@@ -26,7 +25,7 @@ import mekanism.common.tile.component.TileComponentEjector;
 import net.minecraft.world.item.ItemStack;
 
 public interface IItemStackChemicalToItemStackMachine extends
-        IMekUtRecipeTypedLookupHandler<ItemStackChemicalToItemStackRecipe, MekUtDoubleInputRecipeCache.MekUtItemChemical<ItemStackChemicalToItemStackRecipe>>,
+        IMekALRecipeTypedLookupHandler<ItemStackChemicalToItemStackRecipe, MekUtDoubleInputRecipeCache.MekUtItemChemical<ItemStackChemicalToItemStackRecipe>>,
         IHasInputChemicalTank, IScaledProgressProvider {
 
     public static final List<RecipeError> TRACKED_ERROR_TYPES = List.of(

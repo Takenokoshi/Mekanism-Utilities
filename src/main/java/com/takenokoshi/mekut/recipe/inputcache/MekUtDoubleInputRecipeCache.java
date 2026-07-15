@@ -8,8 +8,7 @@ import java.util.function.Function;
 
 import org.jetbrains.annotations.Nullable;
 
-import com.takenokoshi.mekut.recipe.type.MekUtRecipeType;
-
+import com.takenokoshi.mekaddonlib.recipe.type.MekALRecipeType;
 import mekanism.api.chemical.ChemicalStack;
 import mekanism.api.recipes.ItemStackChemicalToItemStackRecipe;
 import mekanism.api.recipes.MekanismRecipe;
@@ -35,7 +34,7 @@ public class MekUtDoubleInputRecipeCache<INPUT_A, INGREDIENT_A extends InputIngr
     private final CACHE_A cacheA;
     private final CACHE_B cacheB;
 
-    protected MekUtDoubleInputRecipeCache(MekUtRecipeType<?, RECIPE, ?> recipeType,
+    protected MekUtDoubleInputRecipeCache(MekALRecipeType<?, RECIPE, ?> recipeType,
             Function<RECIPE, INGREDIENT_A> inputAExtractor, CACHE_A cacheA,
             Function<RECIPE, INGREDIENT_B> inputBExtractor, CACHE_B cacheB) {
         super(recipeType);
@@ -217,14 +216,14 @@ public class MekUtDoubleInputRecipeCache<INPUT_A, INGREDIENT_A extends InputIngr
             extends
             MekUtDoubleInputRecipeCache<ItemStack, ItemStackIngredient, ChemicalStack, ChemicalStackIngredient, RECIPE, ItemInputCache<RECIPE>, ChemicalInputCache<RECIPE>> {
 
-        protected MekUtItemChemical(MekUtRecipeType<?, RECIPE, ?> recipeType,
+        protected MekUtItemChemical(MekALRecipeType<?, RECIPE, ?> recipeType,
                 Function<RECIPE, ItemStackIngredient> inputAExtractor,
                 Function<RECIPE, ChemicalStackIngredient> inputBExtractor) {
             super(recipeType, inputAExtractor, new ItemInputCache<>(), inputBExtractor, new ChemicalInputCache<>());
         }
 
         public static MekUtItemChemical<ItemStackChemicalToItemStackRecipe> toItem(
-                MekUtRecipeType<?, ItemStackChemicalToItemStackRecipe, ?> recipeType) {
+                MekALRecipeType<?, ItemStackChemicalToItemStackRecipe, ?> recipeType) {
             return new MekUtItemChemical<>(recipeType,
                     ItemStackChemicalToItemStackRecipe::getItemInput,
                     ItemStackChemicalToItemStackRecipe::getChemicalInput);

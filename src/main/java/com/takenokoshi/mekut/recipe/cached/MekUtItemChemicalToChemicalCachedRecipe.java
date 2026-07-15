@@ -3,6 +3,8 @@ package com.takenokoshi.mekut.recipe.cached;
 import java.util.function.BooleanSupplier;
 import java.util.function.LongUnaryOperator;
 
+import com.takenokoshi.mekaddonlib.recipe.cached.AbstractCachedRecipe;
+
 import mekanism.api.chemical.ChemicalStack;
 import mekanism.api.recipes.ItemStackChemicalToItemStackRecipe;
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker;

@@ -2,6 +2,7 @@ package com.takenokoshi.mekut.recipe.cached;
 
 import java.util.function.BooleanSupplier;
 
+import com.takenokoshi.mekaddonlib.recipe.cached.AbstractCachedRecipe;
 import com.takenokoshi.mekut.recipe.recipe.prefab.FluidToItemRecipe;
 
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker;

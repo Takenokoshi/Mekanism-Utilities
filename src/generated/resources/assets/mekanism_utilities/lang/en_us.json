@@ -95,6 +95,7 @@
   "item.mekanism_utilities.coal_clump": "Coal Clump",
   "item.mekanism_utilities.coal_crystal": "Coal Crystal",
   "item.mekanism_utilities.coal_shard": "Coal Shard",
+  "item.mekanism_utilities.cobblestone_supplier": "Cobblestone Supplier",
   "item.mekanism_utilities.comet_control_circuit": "Comet Control Circuit",
   "item.mekanism_utilities.composite_alloy": "Composite Alloy",
   "item.mekanism_utilities.convergent_alloy": "Convergent Alloy",
@@ -150,6 +151,8 @@
   "item.mekanism_utilities.refined_amethyst_ingot": "Refined Amethyst Ingot",
   "item.mekanism_utilities.standard_control_circuit": "Standard Control Circuit",
   "item.mekanism_utilities.stardust_alloy": "Stardust Alloy",
+  "item.mekanism_utilities.supplier_base": "Supplier Base",
+  "item.mekanism_utilities.water_supplier": "Water Supplier",
   "item.mekanism_utilities.xp_bucket": "Xp Bucket",
   "item.mekanism_utilities.xp_crystal": "Xp Crystal",
   "mod_name.mekanism_utilities": "Mekanism:Utilities"

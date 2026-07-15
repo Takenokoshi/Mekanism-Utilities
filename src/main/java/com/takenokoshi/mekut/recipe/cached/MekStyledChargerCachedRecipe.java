@@ -2,7 +2,8 @@ package com.takenokoshi.mekut.recipe.cached;
 
 import java.util.function.BooleanSupplier;
 
-import com.takenokoshi.mekut.recipe.input.IngredientInputHandler;
+import com.takenokoshi.mekaddonlib.recipe.cached.AbstractCachedRecipe;
+import com.takenokoshi.mekut.recipe.input.AdvancedIngredientInputHandler;
 import com.takenokoshi.mekut.recipe.output.ItemOutputHandler;
 
 import appeng.recipes.handlers.ChargerRecipe;
@@ -12,13 +13,13 @@ import net.minecraft.world.item.ItemStack;
 
 public class MekStyledChargerCachedRecipe extends AbstractCachedRecipe<ChargerRecipe> {
 
-    private final IngredientInputHandler inputHandler;
+    private final AdvancedIngredientInputHandler inputHandler;
     private final ItemOutputHandler outputHandler;
 
     private ItemStack recipeInput = ItemStack.EMPTY;
 
     public MekStyledChargerCachedRecipe(ChargerRecipe recipe, BooleanSupplier recheckAllErrors,
-            IngredientInputHandler inputHandler, ItemOutputHandler outputHandler) {
+            AdvancedIngredientInputHandler inputHandler, ItemOutputHandler outputHandler) {
         super(recipe, recheckAllErrors);
         this.inputHandler = inputHandler;
         this.outputHandler = outputHandler;

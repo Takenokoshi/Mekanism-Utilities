@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.jetbrains.annotations.Nullable;
 
+import com.takenokoshi.mekaddonlib.recipe.lookup.IMekALRecipeTypedLookupHandler;
+import com.takenokoshi.mekaddonlib.recipe.type.IMekALRecipeTypeProvider;
 import com.takenokoshi.mekut.blockentity.interfaces.IHasMachineEnergyContainer;
-import com.takenokoshi.mekut.recipe.input.IngredientInputHandler;
+import com.takenokoshi.mekut.recipe.input.AdvancedIngredientInputHandler;
 import com.takenokoshi.mekut.recipe.inputcache.MUSingleInputRecipeCache;
-import com.takenokoshi.mekut.recipe.lookup.IMekUtRecipeTypedLookupHandler;
-import com.takenokoshi.mekut.recipe.type.IMekUtRecipeTypeProvider;
 import com.takenokoshi.mekut.recipe.type.WrappedRecipeType;
 
 import appeng.recipes.handlers.ChargerRecipe;
@@ -17,7 +17,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeInput;
 
 public interface IMekStyledCharger
-        extends IMekUtRecipeTypedLookupHandler<ChargerRecipe, MUSingleInputRecipeCache.MUSingleItem<ChargerRecipe>> ,IHasMachineEnergyContainer{
+        extends IMekALRecipeTypedLookupHandler<ChargerRecipe, MUSingleInputRecipeCache.MUSingleItem<ChargerRecipe>> ,IHasMachineEnergyContainer{
 
     public static final List<RecipeError> TRACKED_ERROR_TYPES = List.of(
             RecipeError.NOT_ENOUGH_ENERGY,
@@ -25,7 +25,7 @@ public interface IMekStyledCharger
             RecipeError.NOT_ENOUGH_OUTPUT_SPACE,
             RecipeError.INPUT_DOESNT_PRODUCE_OUTPUT);
 
-    default IMekUtRecipeTypeProvider<RecipeInput, ChargerRecipe, MUSingleInputRecipeCache.MUSingleItem<ChargerRecipe>> getRecipeType() {
+    default IMekALRecipeTypeProvider<RecipeInput, ChargerRecipe, MUSingleInputRecipeCache.MUSingleItem<ChargerRecipe>> getRecipeType() {
         return WrappedRecipeType.AE2_CHARGER;
     }
 
@@ -33,7 +33,7 @@ public interface IMekStyledCharger
         return getRecipeType().getInputCache().containsInput(getLevel(), input);
     }
 
-    default @Nullable ChargerRecipe findFirstRecipe(IngredientInputHandler inputHandler){
+    default @Nullable ChargerRecipe findFirstRecipe(AdvancedIngredientInputHandler inputHandler){
         return getRecipeType().getInputCache().findFirstRecipe(getLevel(), inputHandler.getInput());
     }
 

@@ -30,9 +30,9 @@ public class MekUtEnglishLangProvider extends LanguageProvider {
             add(holder.get(), format(holder.getId().getPath()));
         });
         MekUtMachines.MACHINES.getMachines().forEach(machine -> {
-            add(machine.getBlockObject().get(), format(machine.getBlockObject().getId().getPath()));
-            add("container.mekanism_utilities." + machine.getBlockObject().getId().getPath(),
-                    format(machine.getBlockObject().getId().getPath()));
+            add(machine.getBlock().get(), format(machine.getBlock().getId().getPath()));
+            add("container.mekanism_utilities." + machine.getBlock().getId().getPath(),
+                    format(machine.getBlock().getId().getPath()));
         });
         MekUtFluids.FLUIDS.getBlockEntries().forEach(holder -> {
             add(holder.get(), format(holder.getId().getPath()));

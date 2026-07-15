@@ -12,8 +12,8 @@ import com.jerry.mekmm.Mekmm;
 import com.jerry.mekmm.common.content.blocktype.MoreMachineFactoryType;
 import com.jerry.mekmm.common.registries.MoreMachineBlocks;
 import com.jerry.mekmm.common.util.MoreMachineEnumUtils;
+import com.takenokoshi.mekaddonlib.registration.MachineRegistryObject;
 import com.takenokoshi.mekut.core.MekUtConstants;
-import com.takenokoshi.mekut.registration.MachineRegistryObject;
 import com.takenokoshi.mekut.registries.MekUtItems;
 import com.takenokoshi.mekut.registries.MekUtMachines;
 

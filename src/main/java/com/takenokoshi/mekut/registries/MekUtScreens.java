@@ -1,8 +1,8 @@
 package com.takenokoshi.mekut.registries;
 
+import com.takenokoshi.mekaddonlib.registration.MachineRegistryObject;
 import com.takenokoshi.mekut.blockentity.normalmachine.*;
 import com.takenokoshi.mekut.gui.machine.*;
-import com.takenokoshi.mekut.registration.MachineRegistryObject;
 
 import mekanism.client.ClientRegistrationUtil;
 import mekanism.common.inventory.container.tile.MekanismTileContainer;

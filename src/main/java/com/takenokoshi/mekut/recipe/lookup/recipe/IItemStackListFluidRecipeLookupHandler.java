@@ -2,17 +2,16 @@ package com.takenokoshi.mekut.recipe.lookup.recipe;
 
 import java.util.List;
 
+import com.takenokoshi.mekaddonlib.recipe.lookup.IMekALRecipeTypedLookupHandler;
 import com.takenokoshi.mekut.recipe.input.ItemStackListInputHandler;
 import com.takenokoshi.mekut.recipe.inputcache.ItemStackListFluidInputRecipeCache;
-import com.takenokoshi.mekut.recipe.lookup.IMekUtRecipeTypedLookupHandler;
-
 import mekanism.api.recipes.inputs.IInputHandler;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 import net.neoforged.neoforge.fluids.FluidStack;
 
 public interface IItemStackListFluidRecipeLookupHandler<RECIPE extends Recipe<?>>
-        extends IMekUtRecipeTypedLookupHandler<RECIPE, ItemStackListFluidInputRecipeCache<RECIPE>> {
+        extends IMekALRecipeTypedLookupHandler<RECIPE, ItemStackListFluidInputRecipeCache<RECIPE>> {
 
     default boolean containsRecipeItem(ItemStack stack, int slotIndex) {
         return getRecipeType().getInputCache().containsItem(getLevel(), stack, slotIndex);

@@ -6,18 +6,18 @@ import java.util.Map;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.takenokoshi.mekut.blockentity.base.BlockEntityMekUtRecipeMachine;
-import com.takenokoshi.mekut.blockentity.interfaces.IHasGuiSizeOffset;
+import com.takenokoshi.mekaddonlib.blockentity.base.BlockEntityMekALRecipeMachine;
+import com.takenokoshi.mekaddonlib.blockentity.component.EjectorComponentUtils;
+import com.takenokoshi.mekaddonlib.blockentity.interfaces.IHasGuiSizeOffset;
+import com.takenokoshi.mekaddonlib.recipe.cached.ICachedRecipe;
+import com.takenokoshi.mekaddonlib.recipe.lookup.IMekALRecipeTypedLookupHandler;
+import com.takenokoshi.mekaddonlib.recipe.type.IMekALRecipeTypeProvider;
 import com.takenokoshi.mekut.blockentity.packet.IBurnRatePacketAcceptor;
-import com.takenokoshi.mekut.core.EjectorComponentUtils;
 import com.takenokoshi.mekut.misc.CoolantHeatingLookupMonitor;
 import com.takenokoshi.mekut.recipe.cached.ChemicalToChemicalHeatCachedRecipe;
-import com.takenokoshi.mekut.recipe.cached.ICachedRecipe;
 import com.takenokoshi.mekut.recipe.inputcache.MUSingleInputRecipeCache;
-import com.takenokoshi.mekut.recipe.lookup.IMekUtRecipeTypedLookupHandler;
 import com.takenokoshi.mekut.recipe.output.HeatOutputHandler;
 import com.takenokoshi.mekut.recipe.recipe.prefab.ChemicalToChemicalHeatRecipe;
-import com.takenokoshi.mekut.recipe.type.IMekUtRecipeTypeProvider;
 import com.takenokoshi.mekut.registries.MekUtRecipeTypes;
 
 import mekanism.api.IContentsListener;
@@ -70,9 +70,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
 public abstract class BEAbstractCompactFissionReactor
-        extends BlockEntityMekUtRecipeMachine<ChemicalToChemicalHeatRecipe>
+        extends BlockEntityMekALRecipeMachine<ChemicalToChemicalHeatRecipe>
         implements IHasGuiSizeOffset, IBurnRatePacketAcceptor,
-        IMekUtRecipeTypedLookupHandler<ChemicalToChemicalHeatRecipe, MUSingleInputRecipeCache.MUSingleChemical<ChemicalToChemicalHeatRecipe>> {
+        IMekALRecipeTypedLookupHandler<ChemicalToChemicalHeatRecipe, MUSingleInputRecipeCache.MUSingleChemical<ChemicalToChemicalHeatRecipe>> {
 
     public static final RecipeError TOO_HOT = RecipeError.create();
 
@@ -285,7 +285,7 @@ public abstract class BEAbstractCompactFissionReactor
     }
 
     @Override
-    public @NotNull IMekUtRecipeTypeProvider<?, ChemicalToChemicalHeatRecipe, MUSingleInputRecipeCache.MUSingleChemical<ChemicalToChemicalHeatRecipe>> getRecipeType() {
+    public @NotNull IMekALRecipeTypeProvider<?, ChemicalToChemicalHeatRecipe, MUSingleInputRecipeCache.MUSingleChemical<ChemicalToChemicalHeatRecipe>> getRecipeType() {
         return MekUtRecipeTypes.FISSION_REACTOR;
     }
 

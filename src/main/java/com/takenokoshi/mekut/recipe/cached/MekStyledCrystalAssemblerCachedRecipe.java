@@ -5,6 +5,7 @@ import java.util.function.BooleanSupplier;
 
 import com.glodblock.github.extendedae.recipe.CrystalAssemblerRecipe;
 import com.glodblock.github.glodium.recipe.stack.IngredientStack;
+import com.takenokoshi.mekaddonlib.recipe.cached.AbstractCachedRecipe;
 import com.takenokoshi.mekut.recipe.input.ItemStackListInputHandler;
 import com.takenokoshi.mekut.recipe.output.ItemOutputHandler;
 

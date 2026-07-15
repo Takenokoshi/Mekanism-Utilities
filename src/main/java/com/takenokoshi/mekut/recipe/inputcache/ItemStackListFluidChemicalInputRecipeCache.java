@@ -9,8 +9,8 @@ import java.util.Set;
 
 import org.jetbrains.annotations.Nullable;
 
+import com.takenokoshi.mekaddonlib.recipe.type.MekALRecipeType;
 import com.takenokoshi.mekut.recipe.recipe.prefab.ItemStackListFluidChemicalToObjectsRecipe;
-import com.takenokoshi.mekut.recipe.type.MekUtRecipeType;
 import com.takenokoshi.mekut.utils.CacheTable;
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
@@ -33,7 +33,7 @@ public class ItemStackListFluidChemicalInputRecipeCache<RECIPE extends ItemStack
     protected final Map<Chemical, Set<RECIPE>> chemicalToRecipeCache = new HashMap<>();
     protected final CacheTable<Fluid, Chemical, Set<RECIPE>> fluidChemicalToRecipeCache = new CacheTable<>();
 
-    public ItemStackListFluidChemicalInputRecipeCache(MekUtRecipeType<?, RECIPE, ?> recipeType) {
+    public ItemStackListFluidChemicalInputRecipeCache(MekALRecipeType<?, RECIPE, ?> recipeType) {
         super(recipeType);
     }
 

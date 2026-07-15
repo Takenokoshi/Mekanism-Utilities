@@ -4,6 +4,7 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiPredicate;
+import java.util.function.Consumer;
 
 import com.takenokoshi.mekut.recipe.lookup.recipe.IEithersideChemicalRecipeLookupHandler;
 
@@ -40,8 +41,7 @@ public interface IBiChemicalToObjectRecipeMachine<RECIPE extends MekanismRecipe<
     public static void addContainersBiChemicalToItem(ItemRegistryObject<?> item) {
         item
                 .addAttachmentOnlyContainers(ContainerType.ITEM, () -> ItemSlotsBuilder.builder()
-                        .addChemicalFillOrConvertSlot(0)
-                        .addChemicalFillOrConvertSlot(1)
+                        .addBasic(2)
                         .addOutput(1)
                         .addEnergy()
                         .build())
@@ -54,8 +54,7 @@ public interface IBiChemicalToObjectRecipeMachine<RECIPE extends MekanismRecipe<
     public static void addContainersBiChemicalToChemical(ItemRegistryObject<?> item) {
         item
                 .addAttachmentOnlyContainers(ContainerType.ITEM, () -> ItemSlotsBuilder.builder()
-                        .addChemicalFillOrConvertSlot(0)
-                        .addChemicalFillOrConvertSlot(1)
+                        .addBasic(2)
                         .addChemicalDrainSlot(2)
                         .addEnergy()
                         .build())
@@ -64,6 +63,37 @@ public interface IBiChemicalToObjectRecipeMachine<RECIPE extends MekanismRecipe<
                         .addBasic(20000)
                         .addBasic(200000)
                         .build());
+    }
+
+    static Consumer<ItemRegistryObject<?>> getToItemContainerAdder(long tankCapacity) {
+        return value -> {
+            value
+                    .addAttachmentOnlyContainers(ContainerType.ITEM, () -> ItemSlotsBuilder.builder()
+                            .addBasic(2)
+                            .addOutput(1)
+                            .addEnergy()
+                            .build())
+                    .addAttachmentOnlyContainers(ContainerType.CHEMICAL, () -> ChemicalTanksBuilder.builder()
+                            .addBasic(tankCapacity)
+                            .addBasic(tankCapacity)
+                            .build());
+        };
+    }
+
+    static Consumer<ItemRegistryObject<?>> getToChemicalContainerAdder(long tankCapacity) {
+        return value -> {
+            value
+                    .addAttachmentOnlyContainers(ContainerType.ITEM, () -> ItemSlotsBuilder.builder()
+                            .addBasic(2)
+                            .addChemicalDrainSlot(2)
+                            .addEnergy()
+                            .build())
+                    .addAttachmentOnlyContainers(ContainerType.CHEMICAL, () -> ChemicalTanksBuilder.builder()
+                            .addBasic(tankCapacity)
+                            .addBasic(tankCapacity)
+                            .addBasic(tankCapacity)
+                            .build());
+        };
     }
 
     public static final AttachedSideConfig SIDE_CONFIG_TO_ITEM = Util.make(() -> {

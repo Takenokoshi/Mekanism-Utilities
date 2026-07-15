@@ -2,8 +2,9 @@ package com.takenokoshi.mekut.gui.machine;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.takenokoshi.mekaddonlib.blockentity.interfaces.IWarningSupporter;
 import com.takenokoshi.mekut.blockentity.interfaces.IHasMachineEnergyContainer;
-import com.takenokoshi.mekut.blockentity.interfaces.IWarningSupporter;
+import com.takenokoshi.mekut.blockentity.interfaces.IRecipeViewerTypeProvider;
 import com.takenokoshi.mekut.blockentity.interfaces.machine.IFluidToObjectMachine;
 
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
@@ -24,7 +25,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 
-public class GuiFluidToObjectMachine<BE extends TileEntityMekanism & ISideConfiguration & IFluidToObjectMachine<?> & IHasMachineEnergyContainer & IWarningSupporter>
+public class GuiFluidToObjectMachine<BE extends TileEntityMekanism & ISideConfiguration & IFluidToObjectMachine<?> & IHasMachineEnergyContainer & IWarningSupporter & IRecipeViewerTypeProvider>
         extends GuiConfigurableTile<BE, MekanismTileContainer<BE>> {
 
     public GuiFluidToObjectMachine(MekanismTileContainer<BE> container, Inventory inv, Component title) {

@@ -2,12 +2,11 @@ package com.takenokoshi.mekut.gui.machine;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.takenokoshi.mekaddonlib.blockentity.interfaces.IWarningSupporter;
 import com.takenokoshi.mekut.blockentity.interfaces.IHasInputChemicalTank;
 import com.takenokoshi.mekut.blockentity.interfaces.IHasMachineEnergyContainer;
 import com.takenokoshi.mekut.blockentity.interfaces.IRecipeViewerTypeProvider;
 import com.takenokoshi.mekut.blockentity.interfaces.IScaledProgressProvider;
-import com.takenokoshi.mekut.blockentity.interfaces.IWarningSupporter;
-
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
 import mekanism.client.gui.GuiConfigurableTile;
 import mekanism.client.gui.element.bar.GuiChemicalBar;

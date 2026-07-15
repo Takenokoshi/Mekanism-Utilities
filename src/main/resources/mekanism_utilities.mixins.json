@@ -3,10 +3,6 @@
     "package": "com.takenokoshi.mekut.mixin",
     "compatibilityLevel": "JAVA_21",
     "mixins": [
-        "mekanism.blockentity.component.TileComponentEjectorMixin",
-        "mekanism.recipe.CachedRecipeMixin",
-        "mekanism.recipe.OperationTrackerMixin",
-        "mekanism.ReloadListenerMixin",
         "minecraft.RecipeManagerMixin"
     ],
     "injectors": {

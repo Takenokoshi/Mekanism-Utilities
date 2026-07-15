@@ -7,7 +7,7 @@ import com.takenokoshi.mekut.recipe_viewer.type.MekUtRecipeViewerRecipeType;
 
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
 import mekanism.client.gui.GuiConfigurableTile;
-import mekanism.client.gui.element.bar.GuiVerticalPowerBar;
+import mekanism.client.gui.element.bar.GuiHorizontalPowerBar;
 import mekanism.client.gui.element.gauge.GaugeType;
 import mekanism.client.gui.element.gauge.GuiChemicalGauge;
 import mekanism.client.gui.element.progress.GuiProgress;
@@ -30,8 +30,8 @@ public class GuiCompactSPS<BE extends BEAbstractCompactSPS> extends GuiConfigura
     @Override
     protected void addGuiElements() {
         super.addGuiElements();
-        addRenderableWidget(new GuiVerticalPowerBar(this, tile.getEnergyContainer(), 164, 16))
-                .warning(WarningType.NOT_ENOUGH_ENERGY, tile.getWarningCheck(RecipeError.NOT_ENOUGH_ENERGY));
+        addRenderableWidget(new GuiHorizontalPowerBar(this, tile.getEnergyContainer(), 115, 75))
+                  .warning(WarningType.NOT_ENOUGH_ENERGY, tile.getWarningCheck(RecipeError.NOT_ENOUGH_ENERGY));
         addRenderableWidget(new GuiEnergyTab(this, tile.getEnergyContainer(), tile::getEnergyUsed));
         addRenderableWidget(new GuiChemicalGauge(() -> tile.getInputTank(), () -> tile.getChemicalTanks(null),
                 GaugeType.STANDARD, this, 25, 13))

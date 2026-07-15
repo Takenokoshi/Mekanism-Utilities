@@ -4,9 +4,8 @@ import java.util.function.BiPredicate;
 
 import org.jetbrains.annotations.Nullable;
 
+import com.takenokoshi.mekaddonlib.recipe.lookup.IMekALRecipeTypedLookupHandler;
 import com.takenokoshi.mekut.recipe.inputcache.MUEitherSideInputRecipeCache;
-import com.takenokoshi.mekut.recipe.lookup.IMekUtRecipeTypedLookupHandler;
-
 import mekanism.api.chemical.ChemicalStack;
 import mekanism.api.recipes.MekanismRecipe;
 import mekanism.api.recipes.ingredients.ChemicalStackIngredient;
@@ -16,7 +15,7 @@ import mekanism.common.recipe.lookup.cache.type.ChemicalInputCache;
 
 public interface IEithersideChemicalRecipeLookupHandler<RECIPE extends MekanismRecipe<BiChemicalRecipeInput> & BiPredicate<ChemicalStack, ChemicalStack>>
         extends
-        IMekUtRecipeTypedLookupHandler<RECIPE, MUEitherSideInputRecipeCache<ChemicalStack, ChemicalStackIngredient, RECIPE, ChemicalInputCache<RECIPE>>> {
+        IMekALRecipeTypedLookupHandler<RECIPE, MUEitherSideInputRecipeCache<ChemicalStack, ChemicalStackIngredient, RECIPE, ChemicalInputCache<RECIPE>>> {
 
     default boolean containsRecipe(ChemicalStack input) {
         return getRecipeType().getInputCache().containsInput(getLevel(), input);

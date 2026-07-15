@@ -5,8 +5,8 @@ import java.util.List;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import com.takenokoshi.mekaddonlib.inventory.container.MekALDynamicSizedContainer;
 import com.takenokoshi.mekut.blockentity.abs.BEAbstractCompactFissionReactor;
-import com.takenokoshi.mekut.inventory.container.MekUtDynamicSizedContainer;
 import com.takenokoshi.mekut.network.to_server.PacketGuiSetBurnRate;
 import com.takenokoshi.mekut.recipe_viewer.type.MekUtRecipeViewerRecipeType;
 
@@ -41,11 +41,11 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 
 public class GuiCompactFissionReactor<BE extends BEAbstractCompactFissionReactor>
-        extends GuiConfigurableTile<BE, MekUtDynamicSizedContainer<BE>> {
+        extends GuiConfigurableTile<BE, MekALDynamicSizedContainer<BE>> {
     private GuiDoubleGraph heatGraph;
     private GuiTextField rateLimitField;
 
-    public GuiCompactFissionReactor(MekUtDynamicSizedContainer<BE> container, Inventory inv, Component title) {
+    public GuiCompactFissionReactor(MekALDynamicSizedContainer<BE> container, Inventory inv, Component title) {
         super(container, inv, title);
         dynamicSlots = true;
         imageWidth += tile.getExtraWidth();

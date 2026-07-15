@@ -16,4 +16,9 @@ public class BEChemicalCutter extends BEAbstractChemicalCutter {
     protected long initChemicalTankCapacity() {
         return 200000;
     }
+
+    @Override
+    protected int initItemSlotCapacity() {
+        return 128;
+    }
 }

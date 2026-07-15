@@ -1,0 +1,25 @@
+{
+  "type": "mekanism_utilities:small_digital_assembler",
+  "chemical_input": {
+    "amount": 160,
+    "chemical": "mekanism:tin"
+  },
+  "fluid_input": {
+    "amount": 20000,
+    "tag": "c:lava"
+  },
+  "list_item_input": [
+    {
+      "count": 1,
+      "item": "mekanism_utilities:water_supplier"
+    },
+    {
+      "count": 1,
+      "item": "mekanism:ultimate_bin"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "mekanism_utilities:cobblestone_supplier"
+  }
+}

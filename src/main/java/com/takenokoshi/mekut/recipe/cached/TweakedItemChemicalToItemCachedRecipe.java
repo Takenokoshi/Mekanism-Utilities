@@ -2,6 +2,8 @@ package com.takenokoshi.mekut.recipe.cached;
 
 import java.util.function.BooleanSupplier;
 
+import com.takenokoshi.mekaddonlib.recipe.cached.ICachedRecipe;
+
 import mekanism.api.chemical.ChemicalStack;
 import mekanism.api.recipes.ItemStackChemicalToItemStackRecipe;
 import mekanism.api.recipes.cache.CachedRecipe;

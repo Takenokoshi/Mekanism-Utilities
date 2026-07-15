@@ -39,8 +39,7 @@ public interface IItemStackListFluidChemicalToItemRecipeMachine
         item
                 .addAttachmentOnlyContainers(ContainerType.ITEM, () -> ItemSlotsBuilder.builder()
                         .addInput(9)
-                        .addFluidFillSlot(0)
-                        .addChemicalFillOrConvertSlot(0)
+                        .addBasic(2)
                         .addOutput(2)
                         .addEnergy()
                         .build())

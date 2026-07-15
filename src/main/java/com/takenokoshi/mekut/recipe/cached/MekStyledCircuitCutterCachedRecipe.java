@@ -3,6 +3,7 @@ package com.takenokoshi.mekut.recipe.cached;
 import java.util.function.BooleanSupplier;
 
 import com.glodblock.github.extendedae.recipe.CircuitCutterRecipe;
+import com.takenokoshi.mekaddonlib.recipe.cached.AbstractCachedRecipe;
 
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker;
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;

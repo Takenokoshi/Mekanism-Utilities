@@ -2,6 +2,7 @@ package com.takenokoshi.mekut.recipe_viewer.jei;
 
 import java.util.List;
 
+import com.takenokoshi.mekaddonlib.recipe_viewer.jei.MekALRecipeRegistryHelper;
 import com.takenokoshi.mekut.core.MekUtConstants;
 import com.takenokoshi.mekut.recipe.type.WrappedRecipeType;
 import com.takenokoshi.mekut.recipe_viewer.jei.category.BiChemicalToItemRecipeCategory;
@@ -85,23 +86,23 @@ public class MekUtJEIPlugin implements IModPlugin {
         if (!shouldLoad()) {
             return;
         }
-        MekUtRecipeRegistryHelper.register(registry, MekUtRecipeViewerRecipeType.CHEMICAL_CUT,
+        MekALRecipeRegistryHelper.register(registry, MekUtRecipeViewerRecipeType.CHEMICAL_CUT,
                 MekUtRecipeTypes.CHEMICAL_CUT);
-        MekUtRecipeRegistryHelper.register(registry, MekUtRecipeViewerRecipeType.ICE_MAKING,
+        MekALRecipeRegistryHelper.register(registry, MekUtRecipeViewerRecipeType.ICE_MAKING,
                 MekUtRecipeTypes.ICE_MAKING);
-        MekUtRecipeRegistryHelper.register(registry, MekUtRecipeViewerRecipeType.LAZER_COMPRESS,
+        MekALRecipeRegistryHelper.register(registry, MekUtRecipeViewerRecipeType.LAZER_COMPRESS,
                 MekUtRecipeTypes.LAZER_COMPRESS);
-        MekUtRecipeRegistryHelper.register(registry, MekUtRecipeViewerRecipeType.SMALL_DIGITAL_ASSEMBLER,
+        MekALRecipeRegistryHelper.register(registry, MekUtRecipeViewerRecipeType.SMALL_DIGITAL_ASSEMBLER,
                 MekUtRecipeTypes.SMALL_DIGITAL_ASSEMBLER);
-        MekUtRecipeRegistryHelper.register(registry, MekUtRecipeViewerRecipeType.SMALL_DIGITAL_REACTION_CHAMBER,
+        MekALRecipeRegistryHelper.register(registry, MekUtRecipeViewerRecipeType.SMALL_DIGITAL_REACTION_CHAMBER,
                 MekUtRecipeTypes.SMALL_DIGITAL_REACTION_CHAMBER);
-        MekUtRecipeRegistryHelper.register(registry, MekUtRecipeViewerRecipeType.SPS,
+        MekALRecipeRegistryHelper.register(registry, MekUtRecipeViewerRecipeType.SPS,
                 MekUtRecipeTypes.SPS);
-        MekUtRecipeRegistryHelper.register(registry, MekUtRecipeViewerRecipeType.STELLAR_GENESIS,
+        MekALRecipeRegistryHelper.register(registry, MekUtRecipeViewerRecipeType.STELLAR_GENESIS,
                 MekUtRecipeTypes.STELLAR_GENESIS);
-        MekUtRecipeRegistryHelper.register(registry, MekUtRecipeViewerRecipeType.FISSION_REACTOR,
+        MekALRecipeRegistryHelper.register(registry, MekUtRecipeViewerRecipeType.FISSION_REACTOR,
                 MekUtRecipeTypes.FISSION_REACTOR);
-        MekUtRecipeRegistryHelper.register(registry, MekUtRecipeViewerRecipeType.TWEAKED_SMELLTING,
+        MekALRecipeRegistryHelper.register(registry, MekUtRecipeViewerRecipeType.TWEAKED_SMELLTING,
                 WrappedRecipeType.VANILLA_SMELTING);
     }
 

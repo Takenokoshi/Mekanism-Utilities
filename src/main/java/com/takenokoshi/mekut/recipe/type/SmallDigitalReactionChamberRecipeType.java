@@ -7,6 +7,7 @@ import java.util.List;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import com.takenokoshi.mekaddonlib.recipe.type.MekALRecipeType;
 import com.takenokoshi.mekut.recipe.inputcache.ItemStackListFluidChemicalInputRecipeCache;
 import com.takenokoshi.mekut.recipe.recipe.basic.BasicSmallDigitalReactionChamberRecipe;
 import com.takenokoshi.mekut.recipe.recipe.prefab.ItemStackListFluidChemicalToItemFluidChemicalRecipe;
@@ -20,7 +21,7 @@ import net.minecraft.world.item.crafting.RecipeManager;
 import net.pedroksl.advanced_ae.recipes.ReactionChamberRecipe;
 
 public class SmallDigitalReactionChamberRecipeType extends
-        MekUtRecipeType<RecipeInput, ItemStackListFluidChemicalToItemFluidChemicalRecipe, ItemStackListFluidChemicalInputRecipeCache<ItemStackListFluidChemicalToItemFluidChemicalRecipe>> {
+        MekALRecipeType<RecipeInput, ItemStackListFluidChemicalToItemFluidChemicalRecipe, ItemStackListFluidChemicalInputRecipeCache<ItemStackListFluidChemicalToItemFluidChemicalRecipe>> {
 
     public SmallDigitalReactionChamberRecipeType(ResourceLocation name) {
         super(name, ItemStackListFluidChemicalInputRecipeCache::new);

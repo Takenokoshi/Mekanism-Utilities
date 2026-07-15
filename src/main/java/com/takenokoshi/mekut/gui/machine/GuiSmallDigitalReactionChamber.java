@@ -2,11 +2,12 @@ package com.takenokoshi.mekut.gui.machine;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.takenokoshi.mekut.blockentity.interfaces.IHasGuiSizeOffset;
+import com.takenokoshi.mekaddonlib.blockentity.interfaces.IHasGuiSizeOffset;
+import com.takenokoshi.mekaddonlib.blockentity.interfaces.IWarningSupporter;
+import com.takenokoshi.mekaddonlib.inventory.container.MekALDynamicSizedContainer;
 import com.takenokoshi.mekut.blockentity.interfaces.IHasMachineEnergyContainer;
-import com.takenokoshi.mekut.blockentity.interfaces.IWarningSupporter;
+import com.takenokoshi.mekut.blockentity.interfaces.IRecipeViewerTypeProvider;
 import com.takenokoshi.mekut.blockentity.interfaces.machine.IItemStackListFluidChemicalToItemFluidChemicalRecipeMachine;
-import com.takenokoshi.mekut.inventory.container.MekUtDynamicSizedContainer;
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
 import mekanism.client.gui.GuiConfigurableTile;
 import mekanism.client.gui.element.GuiDownArrow;
@@ -25,10 +26,10 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 
-public class GuiSmallDigitalReactionChamber<BE extends TileEntityMekanism & ISideConfiguration & IItemStackListFluidChemicalToItemFluidChemicalRecipeMachine & IHasMachineEnergyContainer & IHasGuiSizeOffset & IWarningSupporter>
-        extends GuiConfigurableTile<BE, MekUtDynamicSizedContainer<BE>> {
+public class GuiSmallDigitalReactionChamber<BE extends TileEntityMekanism & ISideConfiguration & IItemStackListFluidChemicalToItemFluidChemicalRecipeMachine & IHasMachineEnergyContainer & IHasGuiSizeOffset & IWarningSupporter & IRecipeViewerTypeProvider>
+        extends GuiConfigurableTile<BE, MekALDynamicSizedContainer<BE>> {
 
-    public GuiSmallDigitalReactionChamber(MekUtDynamicSizedContainer<BE> container, Inventory inv, Component title) {
+    public GuiSmallDigitalReactionChamber(MekALDynamicSizedContainer<BE> container, Inventory inv, Component title) {
         super(container, inv, title);
         dynamicSlots = true;
         int extraWidth = tile.getExtraWidth();

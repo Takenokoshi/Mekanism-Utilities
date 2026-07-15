@@ -2,7 +2,8 @@ package com.takenokoshi.mekut.recipe.cached;
 
 import java.util.function.BooleanSupplier;
 
-import com.takenokoshi.mekut.recipe.input.IngredientInputHandler;
+import com.takenokoshi.mekaddonlib.recipe.cached.AbstractCachedRecipe;
+import com.takenokoshi.mekut.recipe.input.AdvancedIngredientInputHandler;
 import com.takenokoshi.mekut.recipe.output.ChemicalOutputHandler;
 import com.takenokoshi.mekut.recipe.output.ItemOutputHandler;
 import com.takenokoshi.mekut.registries.MekUtChemicals;
@@ -16,7 +17,7 @@ import net.minecraft.world.item.crafting.SmeltingRecipe;
 
 public class TweakedSmeltingCachedRecipe extends AbstractCachedRecipe<SmeltingRecipe> {
 
-    private final IngredientInputHandler inputHandler;
+    private final AdvancedIngredientInputHandler inputHandler;
     private final ItemOutputHandler outputHandler;
     private final ChemicalOutputHandler xpOutputHandler;
 
@@ -26,7 +27,7 @@ public class TweakedSmeltingCachedRecipe extends AbstractCachedRecipe<SmeltingRe
     private final ChemicalStack xpOutput;
 
     public TweakedSmeltingCachedRecipe(SmeltingRecipe recipe, BooleanSupplier recheckAllErrors,
-            IngredientInputHandler inputHandler, ItemOutputHandler outputHandler,
+            AdvancedIngredientInputHandler inputHandler, ItemOutputHandler outputHandler,
             ChemicalOutputHandler xpOutputHandler) {
         super(recipe, recheckAllErrors);
         this.inputHandler = inputHandler;

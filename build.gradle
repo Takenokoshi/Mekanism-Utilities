@@ -122,10 +122,12 @@ dependencies {
     implementation "curse.maven:mekanism-tools-268567:7904062"
 
     //Addons of Mekanism
+    implementation "curse.maven:mekanism-addon-library-1607060:8416535"
     implementation "curse.maven:mekanism-empowered-1256390:8064666"
     implementation "curse.maven:mekanism-empowered-core-1256399:8064667"
     implementation "curse.maven:kotlin-for-forge-351264:7471280"
     implementation "curse.maven:mekanism-elements-1103224:7696139"
+    implementation "curse.maven:mekanism-more-machine-1275257:7919872"
 
     //AE2 and its addons
     implementation "curse.maven:ae2addonlib-1366135:7222312"
@@ -145,7 +147,6 @@ dependencies {
     //Datagen only
     datagenImplementation "curse.maven:applied-flux-965012:8204513"
     datagenImplementation "curse.maven:mekanism-extras-1026040:7921191"
-    datagenImplementation "curse.maven:mekanism-more-machine-1275257:7919872"
     datagenImplementation "curse.maven:evolved-mekanism-1230085:7599592"
     datagenImplementation "curse.maven:iglee-library-541199:7000755"
 

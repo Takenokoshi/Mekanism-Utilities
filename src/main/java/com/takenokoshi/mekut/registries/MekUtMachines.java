@@ -1,7 +1,11 @@
 package com.takenokoshi.mekut.registries;
 
+import com.takenokoshi.mekaddonlib.registration.GuiSizedMachineRegistryObject;
+import com.takenokoshi.mekaddonlib.registration.MachineDeferredRegister;
+import com.takenokoshi.mekaddonlib.registration.SimpleMachineRegistryObject;
 import com.takenokoshi.mekut.blockentity.abs.BEAbstractCompactFissionReactor;
 import com.takenokoshi.mekut.blockentity.abs.BEAbstractCompactSPS;
+import com.takenokoshi.mekut.blockentity.abs.BEAbstractEnergizedSmelter;
 import com.takenokoshi.mekut.blockentity.interfaces.machine.IBiChemicalToObjectRecipeMachine;
 import com.takenokoshi.mekut.blockentity.interfaces.machine.IFluidToObjectMachine;
 import com.takenokoshi.mekut.blockentity.interfaces.machine.IItemStackChemicalToItemStackMachine;
@@ -21,9 +25,6 @@ import com.takenokoshi.mekut.blockentity.normalmachine.BETweakedEnergizedSmelter
 import com.takenokoshi.mekut.core.MekUtConstants;
 import com.takenokoshi.mekut.core.MekUtMathUtils;
 import com.takenokoshi.mekut.lang.MekUtDescription;
-import com.takenokoshi.mekut.registration.GuiSizedMachineRegistryObject;
-import com.takenokoshi.mekut.registration.MachineDeferredRegister;
-import com.takenokoshi.mekut.registration.SimpleMachineRegistryObject;
 
 import mekanism.api.Upgrade;
 import mekanism.common.attachments.component.AttachedSideConfig;
@@ -69,7 +70,7 @@ public class MekUtMachines {
 
     public static final SimpleMachineRegistryObject<BECompactSPS> COMPACT_SUPERCRITICAL_PHASE_SHIFTER = MACHINES
             .registerSimple("compact_supercritical_phase_shifter",
-                    BEAbstractCompactSPS.SIDE_CONFIG,
+                    AttachedSideConfig.CENTRIFUGE,
                     BEAbstractCompactSPS.getContainerAdder(2000)::accept,
                     BECompactSPS::new,
                     BECompactSPS.class,
@@ -103,7 +104,7 @@ public class MekUtMachines {
     public static final SimpleMachineRegistryObject<BELazerCompressNucleoSynthesizer> LAZER_COMPRESS_NUCLEO_SYNTHESIZER = MACHINES
             .registerSimple("lazer_compress_nucleo_synthesizer",
                     AttachedSideConfig.CHEMICAL_INFUSING,
-                    IBiChemicalToObjectRecipeMachine::addContainersBiChemicalToChemical,
+                    IBiChemicalToObjectRecipeMachine.getToChemicalContainerAdder(20000000l)::accept,
                     BELazerCompressNucleoSynthesizer::new,
                     BELazerCompressNucleoSynthesizer.class,
                     builder -> builder
@@ -163,7 +164,7 @@ public class MekUtMachines {
     public static final SimpleMachineRegistryObject<BEStellarGenesisChamber> STELLAR_GENESIS_CHAMBER = MACHINES
             .registerSimple("stellar_genesis_chamber",
                     IBiChemicalToObjectRecipeMachine.SIDE_CONFIG_TO_ITEM,
-                    IBiChemicalToObjectRecipeMachine::addContainersBiChemicalToItem,
+                    IBiChemicalToObjectRecipeMachine.getToItemContainerAdder(Long.MAX_VALUE)::accept,
                     BEStellarGenesisChamber::new,
                     BEStellarGenesisChamber.class,
                     builder -> builder
@@ -200,15 +201,7 @@ public class MekUtMachines {
     public static final SimpleMachineRegistryObject<BETweakedEnergizedSmelter> TWEAKED_ENERGIZED_SMELTER = MACHINES
             .registerSimple("tweaked_energized_smelter",
                     AttachedSideConfig.CHEMICAL_OUT_MACHINE,
-                    holder -> holder
-                            .addAttachmentOnlyContainers(ContainerType.ITEM, () -> ItemSlotsBuilder.builder()
-                                    .addInput(1)
-                                    .addOutput()
-                                    .addEnergy()
-                                    .build())
-                            .addAttachmentOnlyContainers(ContainerType.CHEMICAL, () -> ChemicalTanksBuilder.builder()
-                                    .addBasic(Long.MAX_VALUE)
-                                    .build()),
+                    BEAbstractEnergizedSmelter::addContainersToItem,
                     BETweakedEnergizedSmelter::new,
                     BETweakedEnergizedSmelter.class,
                     builder -> builder

@@ -3,6 +3,7 @@ package com.takenokoshi.mekut.recipe.cached;
 import java.util.List;
 import java.util.function.BooleanSupplier;
 
+import com.takenokoshi.mekaddonlib.recipe.cached.AbstractCachedRecipe;
 import com.takenokoshi.mekut.recipe.input.ItemStackListInputHandler;
 import com.takenokoshi.mekut.recipe.output.ItemOutputHandler;
 

@@ -9,6 +9,7 @@ import org.jetbrains.annotations.Nullable;
 
 import com.glodblock.github.extendedae.recipe.CircuitCutterRecipe;
 import com.glodblock.github.extendedae.recipe.CrystalAssemblerRecipe;
+import com.takenokoshi.mekaddonlib.recipe.type.MekALRecipeType;
 import com.takenokoshi.mekut.recipe.inputcache.ItemStackListFluidInputRecipeCache;
 import com.takenokoshi.mekut.recipe.inputcache.MUSingleInputRecipeCache;
 import appeng.core.AppEng;
@@ -31,12 +32,12 @@ import net.pedroksl.advanced_ae.recipes.ReactionChamberRecipe;
 
 // For already registered recipetype such as smelting(vanilla) or charging(AE2).
 public class WrappedRecipeType<VANILLA_INPUT extends RecipeInput, RECIPE extends Recipe<VANILLA_INPUT>, INPUT_CACHE extends IInputRecipeCache>
-        extends MekUtRecipeType<VANILLA_INPUT, RECIPE, INPUT_CACHE> {
+        extends MekALRecipeType<VANILLA_INPUT, RECIPE, INPUT_CACHE> {
 
     protected final RecipeType<RECIPE> wrappedType;
 
     public WrappedRecipeType(ResourceLocation name,
-            Function<MekUtRecipeType<VANILLA_INPUT, RECIPE, INPUT_CACHE>, INPUT_CACHE> inputCacheCreator,
+            Function<MekALRecipeType<VANILLA_INPUT, RECIPE, INPUT_CACHE>, INPUT_CACHE> inputCacheCreator,
             RecipeType<RECIPE> wrappedType) {
         super(name, inputCacheCreator);
         this.wrappedType = wrappedType;
