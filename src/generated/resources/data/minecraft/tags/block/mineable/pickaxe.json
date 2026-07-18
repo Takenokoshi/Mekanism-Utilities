@@ -1,8 +1,11 @@
 {
   "values": [
     "mekanism_utilities:chemical_cutter",
+    "mekanism_utilities:compact_boiler",
     "mekanism_utilities:compact_fission_reactor",
+    "mekanism_utilities:compact_industrial_turbine",
     "mekanism_utilities:compact_supercritical_phase_shifter",
+    "mekanism_utilities:compact_thermal_evaporation_plant",
     "mekanism_utilities:ice_maker",
     "mekanism_utilities:lazer_compress_nucleo_synthesizer",
     "mekanism_utilities:mekstyled_charger",

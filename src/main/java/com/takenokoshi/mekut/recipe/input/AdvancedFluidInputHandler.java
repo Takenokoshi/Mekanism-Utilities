@@ -8,17 +8,17 @@ import mekanism.api.recipes.inputs.IInputHandler;
 import mekanism.api.recipes.inputs.InputHelper;
 import net.neoforged.neoforge.fluids.FluidStack;
 
-public class AdvancedFluidInputHadler implements IInputHandler<FluidStack> {
+public class AdvancedFluidInputHandler implements IInputHandler<FluidStack> {
 
     protected final IInputHandler<FluidStack> delegate;
     private FluidStack suppliedStack = FluidStack.EMPTY;
 
-    public AdvancedFluidInputHadler(IInputHandler<FluidStack> delegate) {
+    public AdvancedFluidInputHandler(IInputHandler<FluidStack> delegate) {
         this.delegate = delegate;
     }
 
-    public static AdvancedFluidInputHadler create(IExtendedFluidTank fluidTank, RecipeError notEnoughError) {
-        return new AdvancedFluidInputHadler(InputHelper.getInputHandler(fluidTank, notEnoughError));
+    public static AdvancedFluidInputHandler create(IExtendedFluidTank fluidTank, RecipeError notEnoughError) {
+        return new AdvancedFluidInputHandler(InputHelper.getInputHandler(fluidTank, notEnoughError));
     }
 
     @Override

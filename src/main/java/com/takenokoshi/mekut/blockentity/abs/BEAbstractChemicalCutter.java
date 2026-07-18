@@ -12,7 +12,7 @@ import com.takenokoshi.mekut.blockentity.interfaces.IRecipeViewerTypeProvider;
 import com.takenokoshi.mekut.blockentity.interfaces.machine.IItemStackChemicalToItemStackMachine;
 import com.takenokoshi.mekut.inventory.slot.ChemicalFillConvertOrSupplyingSlot;
 import com.takenokoshi.mekut.inventory.slot.InputOrSupplyingSlot;
-import com.takenokoshi.mekut.recipe.cached.MekUtItemChemicalToChemicalCachedRecipe;
+import com.takenokoshi.mekut.recipe.cached.AdvancedItemStackChemicalToItemStackCachedRecipe;
 import com.takenokoshi.mekut.recipe.input.AdvancedChemicalInputHandler;
 import com.takenokoshi.mekut.recipe.input.AdvancedItemInputHandler;
 import com.takenokoshi.mekut.recipe.inputcache.MekUtDoubleInputRecipeCache.MekUtItemChemical;
@@ -103,13 +103,15 @@ public abstract class BEAbstractChemicalCutter extends BEMultiScaledProgressMach
     protected IInventorySlotHolder getInitialInventory(IContentsListener listener,
             IContentsListener recipeCacheListener, IContentsListener recipeCacheUnpauseListener) {
         InventorySlotHelper builder = InventorySlotHelper.forSideWithConfig(this);
-        builder.addSlot(inputSlot = InputOrSupplyingSlot.at(item -> containsRecipeAB(item, chemicalInputHandler.getInput()),
-                this::containsRecipeA, recipeCacheListener, 64, 17,initItemSlotCapacity()))
+        builder.addSlot(
+                inputSlot = InputOrSupplyingSlot.at(item -> containsRecipeAB(item, chemicalInputHandler.getInput()),
+                        this::containsRecipeA, recipeCacheListener, 64, 17, initItemSlotCapacity()))
                 .tracksWarnings(slot -> slot.warning(WarningType.NO_MATCHING_RECIPE,
                         getWarningCheck(RecipeError.NOT_ENOUGH_INPUT)));
         builder.addSlot(secondarySlot = ChemicalFillConvertOrSupplyingSlot.create(chemicalTank, this::getLevel,
                 recipeCacheListener, 64, 53));
-        builder.addSlot(outputSlot = LimitChangedOutputInventorySlot.at(recipeCacheUnpauseListener, 116, 35,initItemSlotCapacity()))
+        builder.addSlot(outputSlot = LimitChangedOutputInventorySlot.at(recipeCacheUnpauseListener, 116, 35,
+                initItemSlotCapacity()))
                 .tracksWarnings(slot -> slot.warning(WarningType.NO_SPACE_IN_OUTPUT,
                         getWarningCheck(RecipeError.NOT_ENOUGH_OUTPUT_SPACE)));
         builder.addSlot(
@@ -141,7 +143,8 @@ public abstract class BEAbstractChemicalCutter extends BEMultiScaledProgressMach
     @Override
     public @NotNull ICachedRecipe<ItemStackChemicalToItemStackRecipe> createNewCachedRecipe(
             @NotNull ItemStackChemicalToItemStackRecipe recipe, int cacheIndex) {
-        return new MekUtItemChemicalToChemicalCachedRecipe(recipe, recheckAllRecipeErrors, itemInputHandler,
+        return new AdvancedItemStackChemicalToItemStackCachedRecipe(
+                recipe, recheckAllRecipeErrors, itemInputHandler,
                 chemicalInputHandler, outputHandler, this::getChemicalUsage)
                 .setErrorsChanged(this::onErrorsChanged)
                 .setCanHolderFunction(this::canFunction)

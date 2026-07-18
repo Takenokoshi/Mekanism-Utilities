@@ -1,0 +1,37 @@
+{
+  "type": "mekanism_utilities:small_digital_assembler",
+  "chemical_input": {
+    "amount": 2560,
+    "chemical": "mekanism:gold"
+  },
+  "fluid_input": {
+    "amount": 2000,
+    "tag": "c:water"
+  },
+  "list_item_input": [
+    {
+      "count": 200,
+      "item": "mekanism:boiler_casing"
+    },
+    {
+      "count": 4,
+      "item": "mekanism:boiler_valve"
+    },
+    {
+      "count": 1532,
+      "item": "mekanism:structural_glass"
+    },
+    {
+      "count": 256,
+      "item": "mekanism:pressure_disperser"
+    },
+    {
+      "count": 128,
+      "item": "mekanism:superheating_element"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "mekanism_utilities:compact_boiler"
+  }
+}

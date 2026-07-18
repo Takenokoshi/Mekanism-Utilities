@@ -13,6 +13,7 @@ import com.takenokoshi.mekaddonlib.recipe.cached.ICachedRecipe;
 import com.takenokoshi.mekaddonlib.recipe.lookup.IMekALRecipeTypedLookupHandler;
 import com.takenokoshi.mekaddonlib.recipe.type.IMekALRecipeTypeProvider;
 import com.takenokoshi.mekut.blockentity.packet.IBurnRatePacketAcceptor;
+import com.takenokoshi.mekut.enums.MekUtDataType;
 import com.takenokoshi.mekut.misc.CoolantHeatingLookupMonitor;
 import com.takenokoshi.mekut.recipe.cached.ChemicalToChemicalHeatCachedRecipe;
 import com.takenokoshi.mekut.recipe.inputcache.MUSingleInputRecipeCache;
@@ -134,8 +135,10 @@ public abstract class BEAbstractCompactFissionReactor
                 new ChemicalSlotInfo(true, false, List.of(coolantTank.getChemicalTank())));
         chemicalConfig.addSlotInfo(DataType.OUTPUT_1, new ChemicalSlotInfo(false, true, List.of(outputTank)));
         chemicalConfig.addSlotInfo(DataType.OUTPUT_2, new ChemicalSlotInfo(false, true, List.of(heatedCoolantTank)));
-        chemicalConfig.addSlotInfo(DataType.INPUT_OUTPUT, new ChemicalSlotInfo(true, true,
-                List.of(inputTank, coolantTank.getChemicalTank(), outputTank, heatedCoolantTank)));
+        chemicalConfig.addSlotInfo(MekUtDataType.INPUT1_OUTPUT1.getValue(), new ChemicalSlotInfo(true, true,
+                List.of(inputTank, outputTank)));
+        chemicalConfig.addSlotInfo(MekUtDataType.INPUT2_OUTPUT2.getValue(), new ChemicalSlotInfo(true, true,
+                List.of(coolantTank.getChemicalTank(), heatedCoolantTank)));
         chemicalConfig.setDataType(DataType.INPUT_1, RelativeSide.LEFT);
         chemicalConfig.setDataType(DataType.INPUT_1, RelativeSide.FRONT);
         chemicalConfig.setDataType(DataType.INPUT_1, RelativeSide.BACK);
@@ -149,14 +152,11 @@ public abstract class BEAbstractCompactFissionReactor
         ejectorComponent = new TileComponentEjector(this, () -> Long.MAX_VALUE).setOutputData(configComponent,
                 TransmissionType.CHEMICAL);
         EjectorComponentUtils.setCanChemicalTankEject(ejectorComponent, (type, tank) -> {
-            if (type == DataType.OUTPUT_1) {
+            if (type == DataType.OUTPUT_1 || MekUtDataType.INPUT1_OUTPUT1.is(type)) {
                 return tank == outputTank;
             }
-            if (type == DataType.OUTPUT_2) {
+            if (type == DataType.OUTPUT_2 || MekUtDataType.INPUT2_OUTPUT2.is(type)) {
                 return tank == heatedCoolantTank;
-            }
-            if (type == DataType.INPUT_OUTPUT) {
-                return tank == outputTank || tank == heatedCoolantTank;
             }
             return false;
         });

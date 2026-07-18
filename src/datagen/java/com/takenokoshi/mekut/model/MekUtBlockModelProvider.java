@@ -49,14 +49,26 @@ public class MekUtBlockModelProvider extends BlockStateProvider {
                 true,
                 "standard",
                 "chemical_cutter");
+        mekUtSimpleMachine(MekUtMachines.COMPACT_BOILER,
+                false,
+                "digital",
+                "boiler");
         mekUtSimpleMachine(MekUtMachines.COMPACT_FISSION_REACTOR,
                 false,
                 "standard",
                 "fission_reactor");
+        mekUtSimpleMachine(MekUtMachines.COMPACT_INDUSTRIAL_TURBINE,
+                true,
+                "digital",
+                "industrial_turbine");
         mekUtSimpleMachine(MekUtMachines.COMPACT_SUPERCRITICAL_PHASE_SHIFTER,
                 true,
                 "augment",
                 "sps");
+        mekUtSimpleMachine(MekUtMachines.COMPACT_THERMAL_EVAPOLATION_PLANT,
+                false,
+                "digital",
+                "tep");
         mekUtSimpleMachine(MekUtMachines.ICE_MAKER,
                 true,
                 "digital",

@@ -3,8 +3,11 @@ package com.takenokoshi.mekut.registries;
 import com.takenokoshi.mekaddonlib.registration.GuiSizedMachineRegistryObject;
 import com.takenokoshi.mekaddonlib.registration.MachineDeferredRegister;
 import com.takenokoshi.mekaddonlib.registration.SimpleMachineRegistryObject;
+import com.takenokoshi.mekut.blockentity.abs.BEAbstractCompactBoiler;
 import com.takenokoshi.mekut.blockentity.abs.BEAbstractCompactFissionReactor;
+import com.takenokoshi.mekut.blockentity.abs.BEAbstractCompactIndustrialTurbine;
 import com.takenokoshi.mekut.blockentity.abs.BEAbstractCompactSPS;
+import com.takenokoshi.mekut.blockentity.abs.BEAbstractCompactThermalEvaporationPlant;
 import com.takenokoshi.mekut.blockentity.abs.BEAbstractEnergizedSmelter;
 import com.takenokoshi.mekut.blockentity.interfaces.machine.IBiChemicalToObjectRecipeMachine;
 import com.takenokoshi.mekut.blockentity.interfaces.machine.IFluidToObjectMachine;
@@ -12,7 +15,10 @@ import com.takenokoshi.mekut.blockentity.interfaces.machine.IItemStackChemicalTo
 import com.takenokoshi.mekut.blockentity.interfaces.machine.IItemStackListFluidChemicalToItemFluidChemicalRecipeMachine;
 import com.takenokoshi.mekut.blockentity.interfaces.machine.IItemStackListFluidChemicalToItemRecipeMachine;
 import com.takenokoshi.mekut.blockentity.normalmachine.BEChemicalCutter;
+import com.takenokoshi.mekut.blockentity.normalmachine.BECompactThermalEvaporationPlant;
+import com.takenokoshi.mekut.blockentity.normalmachine.BECompactBoiler;
 import com.takenokoshi.mekut.blockentity.normalmachine.BECompactFissionReactor;
+import com.takenokoshi.mekut.blockentity.normalmachine.BECompactIndustrialTurbine;
 import com.takenokoshi.mekut.blockentity.normalmachine.BECompactSPS;
 import com.takenokoshi.mekut.blockentity.normalmachine.BEIceMaker;
 import com.takenokoshi.mekut.blockentity.normalmachine.BELazerCompressNucleoSynthesizer;
@@ -24,8 +30,6 @@ import com.takenokoshi.mekut.blockentity.normalmachine.BESubMaterialConverter;
 import com.takenokoshi.mekut.blockentity.normalmachine.BETweakedEnergizedSmelter;
 import com.takenokoshi.mekut.core.MekUtConstants;
 import com.takenokoshi.mekut.core.MekUtMathUtils;
-import com.takenokoshi.mekut.lang.MekUtDescription;
-
 import mekanism.api.Upgrade;
 import mekanism.common.attachments.component.AttachedSideConfig;
 import mekanism.common.attachments.containers.ContainerType;
@@ -52,6 +56,18 @@ public class MekUtMachines {
                                     MekanismConfig.storage.chemicalCrystallizer)
                             .withSupportedUpgrades(Upgrade.SPEED, Upgrade.ENERGY, Upgrade.CHEMICAL));
 
+    public static final GuiSizedMachineRegistryObject<BECompactBoiler> COMPACT_BOILER = MACHINES
+            .registerGuiSized("compact_boiler",
+                    BEAbstractCompactBoiler.SIDE_CONFIG,
+                    BEAbstractCompactBoiler.getContainerAdder(962_560_000L, 259_200_000L, 414_720_000L,
+                            60_160_000)::accept,
+                    BECompactBoiler::new,
+                    BECompactBoiler.class,
+                    builder -> builder
+                            .withSideConfig(TransmissionType.CHEMICAL, TransmissionType.FLUID, TransmissionType.HEAT)
+                            .withSound(MekanismSounds.CHARGEPAD)
+                            .withSupportedUpgrades(Upgrade.MUFFLING));
+
     public static final GuiSizedMachineRegistryObject<BECompactFissionReactor> COMPACT_FISSION_REACTOR = MACHINES
             .registerGuiSized("compact_fission_reactor",
                     BEAbstractCompactFissionReactor.SIDE_CONFIG,
@@ -68,13 +84,23 @@ public class MekUtMachines {
                             .withSound(GeneratorsSounds.FISSION_REACTOR)
                             .withSupportedUpgrades(Upgrade.MUFFLING));
 
+    public static final SimpleMachineRegistryObject<BECompactIndustrialTurbine> COMPACT_INDUSTRIAL_TURBINE = MACHINES
+            .registerSimple("compact_industrial_turbine",
+                    BEAbstractCompactIndustrialTurbine.SIDE_CONFIG,
+                    BEAbstractCompactIndustrialTurbine.getContainerAdder(186_368_000L, 12_992_000)::accept,
+                    BECompactIndustrialTurbine::new,
+                    BECompactIndustrialTurbine.class,
+                    builder -> builder
+                            .withSideConfig(TransmissionType.CHEMICAL, TransmissionType.ENERGY, TransmissionType.FLUID,
+                                    TransmissionType.ITEM)
+                            .withSupportedUpgrades(Upgrade.FILTER));
+
     public static final SimpleMachineRegistryObject<BECompactSPS> COMPACT_SUPERCRITICAL_PHASE_SHIFTER = MACHINES
             .registerSimple("compact_supercritical_phase_shifter",
                     AttachedSideConfig.CENTRIFUGE,
                     BEAbstractCompactSPS.getContainerAdder(2000)::accept,
                     BECompactSPS::new,
                     BECompactSPS.class,
-                    MekUtDescription.COMPACT_SPS,
                     builder -> builder
                             .withSideConfig(TransmissionType.CHEMICAL, TransmissionType.ENERGY)
                             .withEnergyConfig(
@@ -86,6 +112,16 @@ public class MekUtMachines {
                                             MekanismConfig.general.spsInputPerAntimatter,
                                             MekanismConfig.general.spsOutputTankCapacity))
                             .withSound(MekanismSounds.SPS)
+                            .withSupportedUpgrades(Upgrade.MUFFLING));
+
+    public static final GuiSizedMachineRegistryObject<BECompactThermalEvaporationPlant> COMPACT_THERMAL_EVAPOLATION_PLANT = MACHINES
+            .registerGuiSized("compact_thermal_evaporation_plant",
+                    BEAbstractCompactThermalEvaporationPlant.SIDE_CONFIG,
+                    BEAbstractCompactThermalEvaporationPlant.getContainerAdder(4_608_000)::accept,
+                    BECompactThermalEvaporationPlant::new,
+                    BECompactThermalEvaporationPlant.class,
+                    builder -> builder
+                            .withSideConfig(TransmissionType.FLUID, TransmissionType.ITEM, TransmissionType.HEAT)
                             .withSupportedUpgrades(Upgrade.MUFFLING));
 
     public static final SimpleMachineRegistryObject<BEIceMaker> ICE_MAKER = MACHINES

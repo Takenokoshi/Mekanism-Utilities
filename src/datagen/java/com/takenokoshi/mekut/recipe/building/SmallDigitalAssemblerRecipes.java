@@ -17,11 +17,13 @@ import mekanism.common.registries.MekanismBlocks;
 import mekanism.common.registries.MekanismChemicals;
 import mekanism.common.registries.MekanismFluids;
 import mekanism.common.registries.MekanismItems;
+import mekanism.common.tags.MekanismTags;
 import mekanism.generators.common.registries.GeneratorsBlocks;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 import net.pedroksl.advanced_ae.common.definitions.AAEItems;
@@ -89,7 +91,7 @@ public class SmallDigitalAssemblerRecipes {
                 .addItemInput(MekUtItems.COMPISITE_ALLOY.asStack(16))
                 .setFluidInput(MekanismFluids.HEAVY_WATER.asStack(1000))
                 .setChemicalInput(MekanismChemicals.TIN.asStack(2000))
-                .build(output, MekUtConstants.rl("small_digitalassembler/compact_sps"));
+                .build(output, MekUtConstants.rl("small_digital_assembler/compact_sps"));
         ItemStackListFluidChemicalToItemRecipeBuilder
                 .smallDigitalAssembler(new ItemStack(MekUtMachines.COMPACT_FISSION_REACTOR))
                 .addItemInput(GeneratorsBlocks.FISSION_REACTOR_CASING, 456)
@@ -102,7 +104,7 @@ public class SmallDigitalAssemblerRecipes {
                 .addItemInput(MekUtItems.CONVERGENT_ALLOY.asStack(8))
                 .setFluidInput(MekanismFluids.HEAVY_WATER.asStack(100))
                 .setChemicalInput(MekanismChemicals.REDSTONE.asStack(160))
-                .build(output, MekUtConstants.rl("small_digitalassembler/compact_fission_reactor"));
+                .build(output, MekUtConstants.rl("small_digital_assembler/compact_fission_reactor"));
         ItemStackListFluidChemicalToItemRecipeBuilder
                 .smallDigitalAssembler(MekUtItems.SUPPLIER_BASE.asStack(4))
                 .addItemInput(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "ingots/bronze")), 4)
@@ -110,20 +112,55 @@ public class SmallDigitalAssemblerRecipes {
                 .addItemInput(MekanismItems.ENRICHED_IRON.asStack(2))
                 .setChemicalInput(MekanismChemicals.CARBON.asStack(1600))
                 .setFluidInput(MekanismFluids.HEAVY_WATER.asStack(2000))
-                .build(output, MekUtConstants.rl("small_digitalassembler/supplier_base"));
+                .build(output, MekUtConstants.rl("small_digital_assembler/supplier_base"));
         ItemStackListFluidChemicalToItemRecipeBuilder
                 .smallDigitalAssembler(MekUtItems.WATER_SUPPLIER.asStack(1))
                 .addItemInput(MekUtItems.SUPPLIER_BASE.asStack(1))
                 .addItemInput(new ItemStack(MekanismBlocks.DYNAMIC_TANK, 32))
                 .setFluidInput(Tags.Fluids.WATER, 20000)
                 .setChemicalInput(MekanismChemicals.GOLD.asStack(160))
-                .build(output, MekUtConstants.rl("small_digitalassembler/water_supplier"));
+                .build(output, MekUtConstants.rl("small_digital_assembler/water_supplier"));
         ItemStackListFluidChemicalToItemRecipeBuilder
                 .smallDigitalAssembler(MekUtItems.COBBLESTONE_SUPPLIER.asStack(1))
                 .addItemInput(MekUtItems.WATER_SUPPLIER.asStack(1))
                 .addItemInput(new ItemStack(MekanismBlocks.ULTIMATE_BIN, 1))
                 .setFluidInput(Tags.Fluids.LAVA, 20000)
                 .setChemicalInput(MekanismChemicals.TIN.asStack(160))
-                .build(output, MekUtConstants.rl("small_digitalassembler/cobblestone_supplier"));
+                .build(output, MekUtConstants.rl("small_digital_assembler/cobblestone_supplier"));
+        ItemStackListFluidChemicalToItemRecipeBuilder
+                .smallDigitalAssembler(new ItemStack(MekUtMachines.COMPACT_INDUSTRIAL_TURBINE, 1))
+                .addItemInput(GeneratorsBlocks.TURBINE_CASING, 1002)
+                .addItemInput(Items.IRON_BARS, 1098)
+                .addItemInput(MekanismTags.Items.INGOTS_STEEL, 1082)
+                .addItemInput(MekanismItems.ADVANCED_CONTROL_CIRCUIT, 4)
+                .addItemInput(MekanismItems.INFUSED_ALLOY, 292)
+                .addItemInput(GeneratorsBlocks.SATURATING_CONDENSER, 203)
+                .addItemInput(MekanismBlocks.STRUCTURAL_GLASS, 1001)
+                .addItemInput(GeneratorsBlocks.ELECTROMAGNETIC_COIL, 7)
+                .addItemInput(MekUtItems.DIGITAL_CONTROL_CIRCUIT, 16)
+                .setChemicalInput(MekanismChemicals.TIN.asStack(1280))
+                .setFluidInput(Tags.Fluids.WATER, 1000)
+                .build(output, MekUtConstants.rl("small_digital_assembler/compact_industrial_turbine"));
+        ItemStackListFluidChemicalToItemRecipeBuilder
+                .smallDigitalAssembler(new ItemStack(MekUtMachines.COMPACT_BOILER, 1))
+                .addItemInput(MekanismBlocks.BOILER_CASING, 200)
+                .addItemInput(MekanismBlocks.BOILER_VALVE, 4)
+                .addItemInput(MekanismBlocks.STRUCTURAL_GLASS, 1532)
+                .addItemInput(MekanismBlocks.PRESSURE_DISPERSER, 256)
+                .addItemInput(MekanismBlocks.SUPERHEATING_ELEMENT, 128)
+                .setFluidInput(Tags.Fluids.WATER, 2000)
+                .setChemicalInput(MekanismChemicals.GOLD.asStack(2560))
+                .build(output, MekUtConstants.rl("small_digital_assembler/compact_boiler"));
+        ItemStackListFluidChemicalToItemRecipeBuilder
+                .smallDigitalAssembler(new ItemStack(MekUtMachines.COMPACT_THERMAL_EVAPOLATION_PLANT, 1))
+                .addItemInput(MekanismBlocks.THERMAL_EVAPORATION_BLOCK, 92)
+                .addItemInput(MekanismBlocks.THERMAL_EVAPORATION_CONTROLLER, 1)
+                .addItemInput(MekanismBlocks.THERMAL_EVAPORATION_VALVE, 2)
+                .addItemInput(MekanismBlocks.STRUCTURAL_GLASS, 125)
+                .addItemInput(MekUtItems.DIGITAL_CONTROL_CIRCUIT, 2)
+                .addItemInput(MekUtItems.ELASTIC_ALLOY, 4)
+                .setFluidInput(Tags.Fluids.LAVA, 1000)
+                .setChemicalInput(MekanismChemicals.GOLD.asStack(160))
+                .build(output, MekUtConstants.rl("small_digital_assembler/compact_tep"));
     }
 }

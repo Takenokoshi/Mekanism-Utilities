@@ -128,6 +128,12 @@ public class MekUtJEIPlugin implements IModPlugin {
                 MekanismJEI.genericRecipeType(RecipeViewerRecipeType.CHEMICAL_CONVERSION),
                 List.of(MekUtMachines.SUBMATERIAL_CONVERTER));
         CatalystRegistryHelper.register(registry,
+                MekanismJEI.genericRecipeType(RecipeViewerRecipeType.BOILER),
+                List.of(MekUtMachines.COMPACT_BOILER));
+        CatalystRegistryHelper.register(registry,
+                MekanismJEI.genericRecipeType(RecipeViewerRecipeType.EVAPORATING),
+                List.of(MekUtMachines.COMPACT_THERMAL_EVAPOLATION_PLANT));
+        CatalystRegistryHelper.register(registry,
                 MekanismJEI.genericRecipeType(GeneratorsRVRecipeType.FISSION),
                 List.of(MekUtMachines.COMPACT_FISSION_REACTOR));
     }

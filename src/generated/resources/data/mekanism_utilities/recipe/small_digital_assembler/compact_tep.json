@@ -1,0 +1,41 @@
+{
+  "type": "mekanism_utilities:small_digital_assembler",
+  "chemical_input": {
+    "amount": 160,
+    "chemical": "mekanism:gold"
+  },
+  "fluid_input": {
+    "amount": 1000,
+    "tag": "c:lava"
+  },
+  "list_item_input": [
+    {
+      "count": 92,
+      "item": "mekanism:thermal_evaporation_block"
+    },
+    {
+      "count": 1,
+      "item": "mekanism:thermal_evaporation_controller"
+    },
+    {
+      "count": 2,
+      "item": "mekanism:thermal_evaporation_valve"
+    },
+    {
+      "count": 125,
+      "item": "mekanism:structural_glass"
+    },
+    {
+      "count": 2,
+      "item": "mekanism_utilities:digital_control_circuit"
+    },
+    {
+      "count": 4,
+      "item": "mekanism_utilities:elastic_alloy"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "mekanism_utilities:compact_thermal_evaporation_plant"
+  }
+}

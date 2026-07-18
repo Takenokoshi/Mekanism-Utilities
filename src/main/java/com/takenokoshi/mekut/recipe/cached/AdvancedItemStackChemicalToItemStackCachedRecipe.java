@@ -1,31 +1,31 @@
 package com.takenokoshi.mekut.recipe.cached;
 
 import java.util.function.BooleanSupplier;
+import java.util.function.IntSupplier;
 import java.util.function.LongUnaryOperator;
-
-import com.takenokoshi.mekaddonlib.recipe.cached.AbstractCachedRecipe;
 
 import mekanism.api.chemical.ChemicalStack;
 import mekanism.api.recipes.ItemStackChemicalToItemStackRecipe;
-import mekanism.api.recipes.cache.CachedRecipe.OperationTracker;
 import mekanism.api.recipes.inputs.IInputHandler;
 import mekanism.api.recipes.outputs.IOutputHandler;
 import net.minecraft.world.item.ItemStack;
 
-public class MekUtItemChemicalToChemicalCachedRecipe extends AbstractCachedRecipe<ItemStackChemicalToItemStackRecipe> {
+public class AdvancedItemStackChemicalToItemStackCachedRecipe
+        extends BasicCachedRecipe<ItemStackChemicalToItemStackRecipe> {
 
     private final IInputHandler<ItemStack> itemInputHandler;
     private final IInputHandler<ChemicalStack> chemicalInputHandler;
     private final IOutputHandler<ItemStack> outputHandler;
     private final LongUnaryOperator chemicalUsageModifier;
 
+    private IntSupplier requiredTicks;
     private long perTickUsage;
     private long lastTickUsage;
     private ItemStack inputItem = ItemStack.EMPTY;
     private ChemicalStack inputChemical = ChemicalStack.EMPTY;
     private ItemStack output = ItemStack.EMPTY;
 
-    public MekUtItemChemicalToChemicalCachedRecipe(ItemStackChemicalToItemStackRecipe recipe,
+    public AdvancedItemStackChemicalToItemStackCachedRecipe(ItemStackChemicalToItemStackRecipe recipe,
             BooleanSupplier recheckAllErrors,
             IInputHandler<ItemStack> itemInputHandler,
             IInputHandler<ChemicalStack> chemicalInputHandler,
@@ -35,6 +35,7 @@ public class MekUtItemChemicalToChemicalCachedRecipe extends AbstractCachedRecip
         this.chemicalInputHandler = chemicalInputHandler;
         this.outputHandler = outputHandler;
         this.chemicalUsageModifier = chemicalUsageModifier;
+        this.requiredTicks = () -> 1;
     }
 
     @Override
@@ -79,6 +80,12 @@ public class MekUtItemChemicalToChemicalCachedRecipe extends AbstractCachedRecip
         itemInputHandler.use(inputItem, operations);
         chemicalInputHandler.use(inputChemical.copyWithAmount(lastTickUsage), operations);
         outputHandler.handleOutput(output, operations);
+    }
+
+    public BasicCachedRecipe<ItemStackChemicalToItemStackRecipe> setRequiredTicks(IntSupplier requiredTicks) {
+        super.setRequiredTicks(requiredTicks);
+        this.requiredTicks = requiredTicks;
+        return this;
     }
 
 }

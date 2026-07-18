@@ -18,9 +18,13 @@ import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 public class MekUtScreens {
     public static void registerScreens(RegisterMenuScreensEvent event) {
         registerMachineGui(event, MekUtMachines.CHEMICAL_CUTTER, GuiChemicalCutter<BEChemicalCutter>::new);
+        registerMachineGui(event, MekUtMachines.COMPACT_BOILER, GuiCompactBoiler<BECompactBoiler>::new);
         registerMachineGui(event, MekUtMachines.COMPACT_FISSION_REACTOR,
                 GuiCompactFissionReactor<BECompactFissionReactor>::new);
+        registerMachineGui(event, MekUtMachines.COMPACT_INDUSTRIAL_TURBINE,
+                GuiCompactIndustrialTurbine<BECompactIndustrialTurbine>::new);
         registerMachineGui(event, MekUtMachines.COMPACT_SUPERCRITICAL_PHASE_SHIFTER, GuiCompactSPS<BECompactSPS>::new);
+        registerMachineGui(event, MekUtMachines.COMPACT_THERMAL_EVAPOLATION_PLANT, GuiCompactThermalEvaporationPlant<BECompactThermalEvaporationPlant>::new);
         registerMachineGui(event, MekUtMachines.ICE_MAKER, GuiFluidToObjectMachine<BEIceMaker>::new);
         registerMachineGui(event, MekUtMachines.LAZER_COMPRESS_NUCLEO_SYNTHESIZER,
                 GuiBiChemicalToChemicalMachine<BELazerCompressNucleoSynthesizer>::new);

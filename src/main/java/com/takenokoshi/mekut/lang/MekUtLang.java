@@ -13,7 +13,7 @@ public class MekUtLang implements ILangEntry {
         this.key = key;
     }
 
-    protected MekUtLang(String type, String path) {
+    public MekUtLang(String type, String path) {
         this(Util.makeDescriptionId(type, MekUtConstants.rl(path)));
     }
 

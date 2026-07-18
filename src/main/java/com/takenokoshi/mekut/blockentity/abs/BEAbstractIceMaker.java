@@ -12,7 +12,7 @@ import com.takenokoshi.mekut.blockentity.interfaces.IRecipeViewerTypeProvider;
 import com.takenokoshi.mekut.blockentity.interfaces.machine.IFluidToObjectMachine;
 import com.takenokoshi.mekut.inventory.slot.FluidFillOrSupplierSlot;
 import com.takenokoshi.mekut.recipe.cached.FluidToItemCachedRecipe;
-import com.takenokoshi.mekut.recipe.input.AdvancedFluidInputHadler;
+import com.takenokoshi.mekut.recipe.input.AdvancedFluidInputHandler;
 import com.takenokoshi.mekut.recipe.inputcache.MUSingleInputRecipeCache;
 import com.takenokoshi.mekut.recipe.recipe.prefab.FluidToItemRecipe;
 import com.takenokoshi.mekut.recipe_viewer.type.MekUtRecipeViewerRecipeType;
@@ -53,14 +53,14 @@ public abstract class BEAbstractIceMaker extends BEMultiScaledProgressMachine<Fl
     private IExtendedFluidTank inputTank;
     private MachineEnergyContainer<?> energyContainer;
 
-    private final AdvancedFluidInputHadler inputHandler;
+    private final AdvancedFluidInputHandler inputHandler;
     private final IOutputHandler<ItemStack> outputHandler;
 
     protected BEAbstractIceMaker(Holder<Block> blockProvider, BlockPos pos, BlockState state, int baselineMaxOperations) {
         super(blockProvider, pos, state, TRACKED_ERROR_TYPES, baselineMaxOperations, r -> 200);
         ejectorComponent = IFluidToObjectMachine.setUpToItemConfig(this, configComponent, inputSlot, outputSlot,
                 fluidReturnSlot, energySlot, inputTank, energyContainer);
-        this.inputHandler = AdvancedFluidInputHadler.create(inputTank, RecipeError.NOT_ENOUGH_INPUT);
+        this.inputHandler = AdvancedFluidInputHandler.create(inputTank, RecipeError.NOT_ENOUGH_INPUT);
         this.outputHandler = OutputHelper.getOutputHandler(outputSlot, RecipeError.NOT_ENOUGH_OUTPUT_SPACE);
         inputSlot.setSupplyingStackSetter(inputHandler::setSuppliedStack);
     }

@@ -20,7 +20,7 @@ import com.takenokoshi.mekut.inventory.slot.ChemicalFillConvertOrSupplyingSlot;
 import com.takenokoshi.mekut.inventory.slot.FluidFillOrSupplierSlot;
 import com.takenokoshi.mekut.recipe.cached.ItemStackListFluidChemicalToItemCachedRecipe;
 import com.takenokoshi.mekut.recipe.input.AdvancedChemicalInputHandler;
-import com.takenokoshi.mekut.recipe.input.AdvancedFluidInputHadler;
+import com.takenokoshi.mekut.recipe.input.AdvancedFluidInputHandler;
 import com.takenokoshi.mekut.recipe.input.ItemStackListInputHandler;
 import com.takenokoshi.mekut.recipe.inputcache.ItemStackListFluidChemicalInputRecipeCache;
 import com.takenokoshi.mekut.recipe.output.ItemOutputHandler;
@@ -81,7 +81,7 @@ public abstract class BEAbstractSmallDigitalAssembler
     private MachineEnergyContainer<?> energyContainer;
 
     private final ItemStackListInputHandler itemInputHandler;
-    private final AdvancedFluidInputHadler fluidInputHandler;
+    private final AdvancedFluidInputHandler fluidInputHandler;
     private final AdvancedChemicalInputHandler chemicalInputHandler;
     private final IOutputHandler<ItemStack> outputHandler;
 
@@ -98,7 +98,7 @@ public abstract class BEAbstractSmallDigitalAssembler
         ejectorComponent = new TileComponentEjector(this).setOutputData(configComponent,
                 new TransmissionType[] { TransmissionType.ITEM });
         this.itemInputHandler = new ItemStackListInputHandler(List.of(inputSlots), RecipeError.NOT_ENOUGH_INPUT);
-        this.fluidInputHandler = AdvancedFluidInputHadler.create(inputFluidTank, RecipeError.NOT_ENOUGH_INPUT);
+        this.fluidInputHandler = AdvancedFluidInputHandler.create(inputFluidTank, RecipeError.NOT_ENOUGH_INPUT);
         this.chemicalInputHandler = AdvancedChemicalInputHandler.create(inputChemicalTank,
                 RecipeError.NOT_ENOUGH_INPUT);
         this.outputHandler = new ItemOutputHandler(outputSlot, RecipeError.NOT_ENOUGH_OUTPUT_SPACE);

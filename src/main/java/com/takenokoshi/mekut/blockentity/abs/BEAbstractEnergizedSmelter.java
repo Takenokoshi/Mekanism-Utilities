@@ -4,6 +4,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.takenokoshi.mekaddonlib.blockentity.base.BEMultiScaledProgressMachine;
+import com.takenokoshi.mekaddonlib.inventory.slot.LimitChangedOutputInventorySlot;
 import com.takenokoshi.mekaddonlib.recipe.cached.AbstractCachedRecipe;
 import com.takenokoshi.mekut.blockentity.interfaces.machine.ITweakedEnergizedSmelter;
 import com.takenokoshi.mekut.inventory.slot.InputOrSupplyingSlot;
@@ -28,7 +29,6 @@ import mekanism.common.capabilities.holder.energy.IEnergyContainerHolder;
 import mekanism.common.capabilities.holder.slot.IInventorySlotHolder;
 import mekanism.common.capabilities.holder.slot.InventorySlotHelper;
 import mekanism.common.inventory.slot.EnergyInventorySlot;
-import mekanism.common.inventory.slot.OutputInventorySlot;
 import mekanism.common.inventory.warning.WarningTracker.WarningType;
 import mekanism.common.lib.transmitter.TransmissionType;
 import mekanism.common.registration.impl.ItemRegistryObject;
@@ -44,7 +44,7 @@ public abstract class BEAbstractEnergizedSmelter extends BEMultiScaledProgressMa
         implements ITweakedEnergizedSmelter {
 
     private InputOrSupplyingSlot inputSlot;
-    private OutputInventorySlot outputSlot;
+    private LimitChangedOutputInventorySlot outputSlot;
     private EnergyInventorySlot energySlot;
     private MachineEnergyContainer<?> energyContainer;
     private IChemicalTank xpTank;
@@ -93,7 +93,8 @@ public abstract class BEAbstractEnergizedSmelter extends BEMultiScaledProgressMa
                 initItemSlotCapacity()))
                 .tracksWarnings(slot -> slot.warning(WarningType.NO_MATCHING_RECIPE,
                         getWarningCheck(RecipeError.NOT_ENOUGH_INPUT)));
-        builder.addSlot(outputSlot = OutputInventorySlot.at(recipeCacheUnpauseListener, 116, 35))
+        builder.addSlot(outputSlot = LimitChangedOutputInventorySlot.at(recipeCacheUnpauseListener, 116, 35,
+                initItemSlotCapacity()))
                 .tracksWarnings(slot -> slot.warning(WarningType.NO_SPACE_IN_OUTPUT,
                         getWarningCheck(RecipeError.NOT_ENOUGH_OUTPUT_SPACE)));
         builder.addSlot(

@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 import com.takenokoshi.mekut.core.MekUtConstants;
+import com.takenokoshi.mekut.enums.MekUtDataType;
 import com.takenokoshi.mekut.registries.MekUtBlocks;
 import com.takenokoshi.mekut.registries.MekUtChemicals;
 import com.takenokoshi.mekut.registries.MekUtFluids;
@@ -67,6 +68,12 @@ public class MekUtEnglishLangProvider extends LanguageProvider {
         addLang(MekUtDescription.NETHERITE_ORE,
                 "Ore that was likely mined by the former Piglin civilization.\\nNot found in nature.");
 
+        addLang(MekUtMachines.COMPACT_BOILER.descriptionEntry, "Thermoelectric boiler in a single block size");
+        addLang(MekUtMachines.COMPACT_FISSION_REACTOR.descriptionEntry, "Fission Reactor in a single block size");
+        addLang(MekUtMachines.COMPACT_INDUSTRIAL_TURBINE.descriptionEntry, "Industrial Turbine in a single block size");
+        addLang(MekUtMachines.COMPACT_SUPERCRITICAL_PHASE_SHIFTER.descriptionEntry, "SPS in a single block size");
+        addLang(MekUtMachines.COMPACT_THERMAL_EVAPOLATION_PLANT.descriptionEntry,
+                "Thermal Evaporation Plant in a single block size");
         addLang(MekUtMachines.MEKSTYLED_CHARGER.descriptionEntry,
                 "This is a machine that reconstructs the AE2 Charger in the style of Mekanism.\\nThe reaction chamber of the AdvancedAE is probably more convenient.");
         addLang(MekUtMachines.CHEMICAL_CUTTER.descriptionEntry,
@@ -85,6 +92,9 @@ public class MekUtEnglishLangProvider extends LanguageProvider {
                 "This Machine can Convert Submaterial for Metallurgic Infuser & Osmium Compressor.");
         addLang(MekUtMachines.TWEAKED_ENERGIZED_SMELTER.descriptionEntry,
                 "This is an energized smelter machine that allows you to gain xp through smelting.");
+
+        addLang(MekUtDataType.INPUT1_OUTPUT1, "Input(1)・Output(1)");
+        addLang(MekUtDataType.INPUT2_OUTPUT2, "Input(2)・Output(2)");
     }
 
     private String format(String name) {

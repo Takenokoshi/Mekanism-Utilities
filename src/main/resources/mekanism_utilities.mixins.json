@@ -3,6 +3,7 @@
     "package": "com.takenokoshi.mekut.mixin",
     "compatibilityLevel": "JAVA_21",
     "mixins": [
+        "mekanism.DataTypeMixin",
         "minecraft.RecipeManagerMixin"
     ],
     "injectors": {

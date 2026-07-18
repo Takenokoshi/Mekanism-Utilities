@@ -1,0 +1,53 @@
+{
+  "type": "mekanism_utilities:small_digital_assembler",
+  "chemical_input": {
+    "amount": 1280,
+    "chemical": "mekanism:tin"
+  },
+  "fluid_input": {
+    "amount": 1000,
+    "tag": "c:water"
+  },
+  "list_item_input": [
+    {
+      "count": 1002,
+      "item": "mekanismgenerators:turbine_casing"
+    },
+    {
+      "count": 1098,
+      "item": "minecraft:iron_bars"
+    },
+    {
+      "count": 1082,
+      "tag": "c:ingots/steel"
+    },
+    {
+      "count": 4,
+      "item": "mekanism:advanced_control_circuit"
+    },
+    {
+      "count": 292,
+      "item": "mekanism:alloy_infused"
+    },
+    {
+      "count": 203,
+      "item": "mekanismgenerators:saturating_condenser"
+    },
+    {
+      "count": 1001,
+      "item": "mekanism:structural_glass"
+    },
+    {
+      "count": 7,
+      "item": "mekanismgenerators:electromagnetic_coil"
+    },
+    {
+      "count": 16,
+      "item": "mekanism_utilities:digital_control_circuit"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "mekanism_utilities:compact_industrial_turbine"
+  }
+}
