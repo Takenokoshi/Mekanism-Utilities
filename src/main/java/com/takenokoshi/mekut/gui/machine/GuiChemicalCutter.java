@@ -36,7 +36,7 @@ public class GuiChemicalCutter<BE extends TileEntityMekanism & ISideConfiguratio
         super.addGuiElements();
         addRenderableWidget(new GuiVerticalPowerBar(this, tile.getEnergyContainer(), 164, 16))
                 .warning(WarningType.NOT_ENOUGH_ENERGY, tile.getWarningCheck(RecipeError.NOT_ENOUGH_ENERGY));
-        addRenderableWidget(new GuiEnergyTab(this, tile.getEnergyContainer(), tile::getActive));
+        addRenderableWidget(new GuiEnergyTab(this, tile.getEnergyContainer(), tile::getEnergyUsed));
         addRenderableWidget(new GuiProgress(tile::getScaledProgress, ProgressType.BAR, this, 86, 38))
                 .recipeViewerCategories(new IRecipeViewerRecipeType[] { tile.recipeViewerType() })
                 .warning(WarningType.INPUT_DOESNT_PRODUCE_OUTPUT,

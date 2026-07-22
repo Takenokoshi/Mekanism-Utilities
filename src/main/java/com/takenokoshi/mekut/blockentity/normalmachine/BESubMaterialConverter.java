@@ -7,6 +7,9 @@ import java.util.Map;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import com.takenokoshi.mekut.inventory.slot.InputOrSupplyingSlot;
+import com.takenokoshi.mekut.recipe.input.AdvancedItemInputHandler;
+
 import mekanism.api.IContentsListener;
 import mekanism.api.RelativeSide;
 import mekanism.api.chemical.BasicChemicalTank;
@@ -16,8 +19,6 @@ import mekanism.api.recipes.ItemStackToChemicalRecipe;
 import mekanism.api.recipes.cache.CachedRecipe;
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
 import mekanism.api.recipes.cache.OneInputCachedRecipe;
-import mekanism.api.recipes.inputs.IInputHandler;
-import mekanism.api.recipes.inputs.InputHelper;
 import mekanism.api.recipes.outputs.IOutputHandler;
 import mekanism.api.recipes.outputs.OutputHelper;
 import mekanism.client.recipe_viewer.type.IRecipeViewerRecipeType;
@@ -32,7 +33,6 @@ import mekanism.common.integration.computer.SpecialComputerMethodWrapper.Compute
 import mekanism.common.integration.computer.SpecialComputerMethodWrapper.ComputerIInventorySlotWrapper;
 import mekanism.common.integration.computer.annotation.WrappingComputerMethod;
 import mekanism.common.inventory.container.slot.SlotOverlay;
-import mekanism.common.inventory.slot.InputInventorySlot;
 import mekanism.common.inventory.slot.chemical.ChemicalInventorySlot;
 import mekanism.common.inventory.warning.WarningTracker.WarningType;
 import mekanism.common.lib.transmitter.TransmissionType;
@@ -50,7 +50,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class BESubMaterialConverter extends TileEntityRecipeMachine<ItemStackToChemicalRecipe>
-        implements ISingleRecipeLookupHandler<ItemStack,ItemStackToChemicalRecipe,InputRecipeCache.SingleItem<ItemStackToChemicalRecipe>> {
+        implements
+        ISingleRecipeLookupHandler<ItemStack, ItemStackToChemicalRecipe, InputRecipeCache.SingleItem<ItemStackToChemicalRecipe>> {
 
     private static final List<RecipeError> TRACKED_ERROR_TYPES = List.of(
             RecipeError.NOT_ENOUGH_ENERGY,
@@ -65,9 +66,9 @@ public class BESubMaterialConverter extends TileEntityRecipeMachine<ItemStackToC
     public IChemicalTank gasTank;
 
     private final IOutputHandler<@NotNull ChemicalStack> outputHandler;
-    private final IInputHandler<@NotNull ItemStack> inputHandler;
+    private final AdvancedItemInputHandler inputHandler;
     @WrappingComputerMethod(wrapper = ComputerIInventorySlotWrapper.class, methodNames = "getInput", docPlaceholder = "input slot")
-    InputInventorySlot inputSlot;
+    InputOrSupplyingSlot inputSlot;
     @WrappingComputerMethod(wrapper = ComputerIInventorySlotWrapper.class, methodNames = "getOutputItem", docPlaceholder = "output item slot")
     ChemicalInventorySlot outputSlot;
 
@@ -78,8 +79,9 @@ public class BESubMaterialConverter extends TileEntityRecipeMachine<ItemStackToC
         ejectorComponent = new TileComponentEjector(this, () -> Long.MAX_VALUE);
         ejectorComponent.setOutputData(configComponent, TransmissionType.CHEMICAL);
 
-        inputHandler = InputHelper.getInputHandler(inputSlot, RecipeError.NOT_ENOUGH_INPUT);
+        inputHandler = AdvancedItemInputHandler.create(inputSlot, RecipeError.NOT_ENOUGH_INPUT);
         outputHandler = OutputHelper.getOutputHandler(gasTank, RecipeError.NOT_ENOUGH_OUTPUT_SPACE);
+        inputSlot.setSupplyingStackSetter(inputHandler::setSuppliedStack);
     }
 
     @NotNull
@@ -96,7 +98,8 @@ public class BESubMaterialConverter extends TileEntityRecipeMachine<ItemStackToC
     protected IInventorySlotHolder getInitialInventory(IContentsListener listener,
             IContentsListener recipeCacheListener, IContentsListener recipeCacheUnpauseListener) {
         InventorySlotHelper builder = InventorySlotHelper.forSideWithConfig(this);
-        builder.addSlot(inputSlot = InputInventorySlot.at(this::containsRecipe, recipeCacheListener, 26, 36))
+        builder.addSlot(inputSlot = InputOrSupplyingSlot.at(this::containsRecipe, this::containsRecipe,
+                recipeCacheListener, 26, 36, 0x3fffffff))
                 .tracksWarnings(slot -> slot.warning(WarningType.NO_MATCHING_RECIPE,
                         getWarningCheck(RecipeError.NOT_ENOUGH_INPUT)));
         builder.addSlot(outputSlot = ChemicalInventorySlot.drain(gasTank, listener, 152, 55));
@@ -136,7 +139,7 @@ public class BESubMaterialConverter extends TileEntityRecipeMachine<ItemStackToC
     }
 
     @Override
-    public @NotNull IMekanismRecipeTypeProvider<?,ItemStackToChemicalRecipe,InputRecipeCache.SingleItem<ItemStackToChemicalRecipe>> getRecipeType() {
+    public @NotNull IMekanismRecipeTypeProvider<?, ItemStackToChemicalRecipe, InputRecipeCache.SingleItem<ItemStackToChemicalRecipe>> getRecipeType() {
         return MekanismRecipeType.CHEMICAL_CONVERSION;
     }
 

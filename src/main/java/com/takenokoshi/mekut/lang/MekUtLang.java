@@ -23,4 +23,5 @@ public class MekUtLang implements ILangEntry {
     }
 
     public static final MekUtLang MOD_NAME = new MekUtLang("mod_name.mekanism_utilities");
+    public static final MekUtLang CREATIVE_TAB = new MekUtLang("creative_tab", "main");
 }

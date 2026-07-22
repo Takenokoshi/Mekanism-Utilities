@@ -122,9 +122,6 @@ public class FluidFillOrSupplierSlot extends BasicInventorySlot
 
     @Override
     public boolean fillTank() {
-        if (!isSupplying) {
-            return IFluidHandlerSlot.super.fillTank();
-        }
         return false;
     }
 

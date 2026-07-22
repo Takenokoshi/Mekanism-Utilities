@@ -165,5 +165,6 @@
     "item.mekanism_utilities.dirty_redstone_dust": "汚れたレッドストーンの粉",
     "datatype.mekanism_utilities.input1_output1": "搬入(1)・搬出(1)",
     "datatype.mekanism_utilities.input2_output2": "搬入(2)・搬出(2)",
-    "mod_name.mekanism_utilities": "Mekanism:Utilities"
+    "mod_name.mekanism_utilities": "Mekanism: Utilities",
+    "creative_tab.mekanism_utilities.main": "Mekanism: Utilities"
 }

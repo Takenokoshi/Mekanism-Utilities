@@ -59,6 +59,7 @@ public class MekUtEnglishLangProvider extends LanguageProvider {
         addChemical(MekUtChemicals.IRIDIUM);
         addChemical(MekUtChemicals.NETHERITE);
         addLang(MekUtLang.MOD_NAME, "Mekanism:Utilities");
+        addLang(MekUtLang.CREATIVE_TAB, "Mekanism:Utilities");
         addLang(MekUtDescription.AMETHYST_ORE,
                 "Unrecorded ore that should only form in places outside the laws of this world.\\nNot found in nature.");
         addLang(MekUtDescription.CERTUS_QUARTZ_ORE,
