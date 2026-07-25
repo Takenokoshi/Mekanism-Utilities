@@ -294,6 +294,7 @@ public abstract class BEAbstractCompactThermalEvaporationPlant extends TileEntit
     public void loadAdditional(@NotNull CompoundTag nbt, HolderLookup.@NotNull Provider provider) {
         super.loadAdditional(nbt, provider);
         this.operatingTicks = nbt.getInt(SerializationConstants.PROGRESS);
+        caluculateOperationsPerTick();
     }
 
     public void saveAdditional(@NotNull CompoundTag nbtTags, HolderLookup.@NotNull Provider provider) {
