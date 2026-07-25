@@ -121,6 +121,9 @@ dependencies {
     implementation "curse.maven:mekanism-additions-345425:7904060"
     implementation "curse.maven:mekanism-tools-268567:7904062"
 
+    //MWGR
+    implementation "curse.maven:mekanism-water-generator-rebuild-1396471:8492800"
+
     //Addons of Mekanism
     implementation "curse.maven:mekanism-addon-library-1607060:8443279"
     implementation "curse.maven:mekanism-empowered-1256390:8064666"

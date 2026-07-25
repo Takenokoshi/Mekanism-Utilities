@@ -24,8 +24,6 @@ public class MekUtChemicals {
     public static final DeferredChemical<?> IRIDIUM = CHEMICALS.register("iridium", 0xC4CCD8);
     public static final DeferredChemical<?> NETHERITE = CHEMICALS.register("netherite", 0x5A4E52);
 
-    public static final DeferredChemical<?> HEAVY_WATER_STEAM = CHEMICALS.register("heavy_water_steam", 0xFF0D1455);
-
     public static final Map<MUMaterial, DeferredChemical<?>> MU_MATERIALS_CLEAN_SLURRY = registerMaterials(
             m -> "clean_" + m.name + "_slurry",
             m -> new Chemical(ChemicalBuilder.cleanSlurry().tint(0x7f000000 + m.rgbColor)));

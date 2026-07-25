@@ -7,7 +7,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.fluids.FluidStack;
 
-public class FluidSupplierItem extends Item {
+public class FluidSupplierItem extends Item implements IFluidSupplier {
 
     private final Supplier<Fluid> supplier;
 
@@ -20,7 +20,7 @@ public class FluidSupplierItem extends Item {
         return props -> new FluidSupplierItem(props, supplier);
     }
 
-    public final FluidStack getStack() {
+    public final FluidStack getSupplyingFluidStack() {
         return new FluidStack(supplier.get(), 0x7fffffff);
     }
 

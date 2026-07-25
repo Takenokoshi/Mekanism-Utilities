@@ -8,7 +8,6 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import com.takenokoshi.mekut.core.MekUtConstants;
 import com.takenokoshi.mekut.enums.MUMaterial;
-import com.takenokoshi.mekut.item.FluidSupplierItem;
 import com.takenokoshi.mekut.item.ItemSupplierItem;
 import com.takenokoshi.mekut.item.XpCrystalItem;
 import com.takenokoshi.mekut.item.cell.bulk.MUBulkCellItem;
@@ -19,7 +18,6 @@ import mekanism.common.registration.impl.ItemRegistryObject;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.material.Fluids;
 
 public class MekUtItems {
     public static final ItemDeferredRegister ITEMS = new ItemDeferredRegister(MekUtConstants.MODID);
@@ -68,8 +66,6 @@ public class MekUtItems {
             .registerItem("mega_bulk_chemical_storage_cell", MUBulkCellItem::chemical);
 
     public static final ItemRegistryObject<Item> SUPPLIER_BASE = ITEMS.register("supplier_base");
-    public static final ItemRegistryObject<FluidSupplierItem> WATER_SUPPLIER = ITEMS.registerItem("water_supplier",
-            FluidSupplierItem.getCreator(() -> Fluids.WATER));
     public static final ItemRegistryObject<ItemSupplierItem> COBBLESTONE_SUPPLIER = ITEMS.registerItem(
             "cobblestone_supplier",
             ItemSupplierItem.getCreator(Items.COBBLESTONE));

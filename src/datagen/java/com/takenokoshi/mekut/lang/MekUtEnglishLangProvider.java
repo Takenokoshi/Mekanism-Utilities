@@ -53,7 +53,6 @@ public class MekUtEnglishLangProvider extends LanguageProvider {
         addChemical(MekUtChemicals.SINGULARITY);
         addChemical(MekUtChemicals.ENRICHED_XP);
         addChemical(MekUtChemicals.XP);
-        addChemical(MekUtChemicals.HEAVY_WATER_STEAM);
         addChemical(MekUtChemicals.FLUIX);
         addChemical(MekUtChemicals.ASTRAL_ETHER);
         addChemical(MekUtChemicals.IRIDIUM);

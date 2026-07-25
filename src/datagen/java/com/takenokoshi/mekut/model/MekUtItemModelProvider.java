@@ -85,8 +85,6 @@ public class MekUtItemModelProvider extends ItemModelProvider {
 
         simpleItem(MekUtItems.SUPPLIER_BASE.get())
                 .texture("layer0", MekUtConstants.rl("item/supplier/base"));
-        simpleItem(MekUtItems.WATER_SUPPLIER.get())
-                .texture("layer0", MekUtConstants.rl("item/supplier/water"));
         simpleItem(MekUtItems.COBBLESTONE_SUPPLIER.get())
                 .texture("layer0", MekUtConstants.rl("item/supplier/cobblestone"));
     }

@@ -4,7 +4,8 @@
     "compatibilityLevel": "JAVA_21",
     "mixins": [
         "mekanism.DataTypeMixin",
-        "minecraft.RecipeManagerMixin"
+        "minecraft.RecipeManagerMixin",
+        "mwgr.InfiniteFluidHandlerItemMixin"
     ],
     "injectors": {
         "defaultRequire": 1

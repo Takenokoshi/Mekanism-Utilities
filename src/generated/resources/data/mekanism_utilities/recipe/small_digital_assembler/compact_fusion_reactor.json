@@ -1,0 +1,49 @@
+{
+  "type": "mekanism_utilities:small_digital_assembler",
+  "chemical_input": {
+    "amount": 1600,
+    "chemical": "mekanism:osmium"
+  },
+  "fluid_input": {
+    "amount": 1000,
+    "tag": "c:lava"
+  },
+  "list_item_input": [
+    {
+      "count": 1,
+      "item": "mekanismgenerators:fusion_reactor_controller"
+    },
+    {
+      "count": 36,
+      "item": "mekanismgenerators:fusion_reactor_frame"
+    },
+    {
+      "count": 25,
+      "item": "mekanismgenerators:reactor_glass"
+    },
+    {
+      "count": 4,
+      "item": "mekanismgenerators:fusion_reactor_port"
+    },
+    {
+      "count": 2,
+      "item": "mekanism:ultimate_control_circuit"
+    },
+    {
+      "count": 4,
+      "item": "mekanism:alloy_atomic"
+    },
+    {
+      "count": 8,
+      "item": "mekanism_utilities:augment_control_circuit"
+    },
+    {
+      "count": 16,
+      "item": "mekanism_utilities:composite_alloy"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "mekanism_utilities:compact_fusion_reactor"
+  }
+}

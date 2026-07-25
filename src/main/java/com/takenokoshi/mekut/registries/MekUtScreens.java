@@ -21,10 +21,13 @@ public class MekUtScreens {
         registerMachineGui(event, MekUtMachines.COMPACT_BOILER, GuiCompactBoiler<BECompactBoiler>::new);
         registerMachineGui(event, MekUtMachines.COMPACT_FISSION_REACTOR,
                 GuiCompactFissionReactor<BECompactFissionReactor>::new);
+        registerMachineGui(event, MekUtMachines.COMPACT_FUSION_REACTOR,
+                GuiCompactFusionReactor<BECompactFusionReactor>::new);
         registerMachineGui(event, MekUtMachines.COMPACT_INDUSTRIAL_TURBINE,
                 GuiCompactIndustrialTurbine<BECompactIndustrialTurbine>::new);
         registerMachineGui(event, MekUtMachines.COMPACT_SUPERCRITICAL_PHASE_SHIFTER, GuiCompactSPS<BECompactSPS>::new);
-        registerMachineGui(event, MekUtMachines.COMPACT_THERMAL_EVAPOLATION_PLANT, GuiCompactThermalEvaporationPlant<BECompactThermalEvaporationPlant>::new);
+        registerMachineGui(event, MekUtMachines.COMPACT_THERMAL_EVAPOLATION_PLANT,
+                GuiCompactThermalEvaporationPlant<BECompactThermalEvaporationPlant>::new);
         registerMachineGui(event, MekUtMachines.ICE_MAKER, GuiFluidToObjectMachine<BEIceMaker>::new);
         registerMachineGui(event, MekUtMachines.LAZER_COMPRESS_NUCLEO_SYNTHESIZER,
                 GuiBiChemicalToChemicalMachine<BELazerCompressNucleoSynthesizer>::new);

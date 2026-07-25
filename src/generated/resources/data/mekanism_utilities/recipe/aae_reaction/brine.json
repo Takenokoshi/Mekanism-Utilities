@@ -1,0 +1,23 @@
+{
+  "type": "advanced_ae:reaction",
+  "input_energy": 100,
+  "input_fluid": {
+    "amount": 100,
+    "ingredient": {
+      "tag": "c:water"
+    }
+  },
+  "input_items": [
+    {
+      "amount": 10,
+      "ingredient": {
+        "item": "mekanism:salt"
+      }
+    }
+  ],
+  "output": {
+    "#": 150,
+    "#t": "ae2:f",
+    "id": "mekanism:brine"
+  }
+}

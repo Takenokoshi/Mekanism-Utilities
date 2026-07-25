@@ -8,7 +8,6 @@ import mekanism.api.datagen.recipe.builder.RotaryRecipeBuilder;
 import mekanism.api.recipes.ingredients.creator.IChemicalStackIngredientCreator;
 import mekanism.api.recipes.ingredients.creator.IFluidStackIngredientCreator;
 import mekanism.api.recipes.ingredients.creator.IngredientCreatorAccess;
-import mekanism.common.registries.MekanismFluids;
 import net.minecraft.data.recipes.RecipeOutput;
 
 public class RotaryRecipes {
@@ -23,12 +22,5 @@ public class RotaryRecipes {
                         MekUtChemicals.XP.asStack(100),
                         MekUtFluids.XP.asStack(1))
                 .build(output, MekUtConstants.rl("rotary/xp"));
-        RotaryRecipeBuilder
-                .rotary(
-                        creatorF.from(MekanismFluids.HEAVY_WATER.asStack(10)),
-                        creatorC.from(MekUtChemicals.HEAVY_WATER_STEAM.asStack(10)),
-                        MekUtChemicals.HEAVY_WATER_STEAM.asStack(10),
-                        MekanismFluids.HEAVY_WATER.asStack(10))
-                .build(output, MekUtConstants.rl("rotary/heavy_water"));
     }
 }

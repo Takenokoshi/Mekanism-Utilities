@@ -1,0 +1,25 @@
+{
+  "type": "mekanism_utilities:small_digital_assembler",
+  "chemical_input": {
+    "amount": 6400,
+    "chemical": "mekanism:osmium"
+  },
+  "fluid_input": {
+    "amount": 2000,
+    "tag": "c:water"
+  },
+  "list_item_input": [
+    {
+      "count": 32,
+      "tag": "c:ingots/steel"
+    },
+    {
+      "count": 32,
+      "tag": "c:glass_blocks"
+    }
+  ],
+  "output": {
+    "count": 64,
+    "id": "mwgr:water_generator"
+  }
+}

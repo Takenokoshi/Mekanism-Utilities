@@ -57,6 +57,10 @@ public class MekUtBlockModelProvider extends BlockStateProvider {
                 false,
                 "standard",
                 "fission_reactor");
+        mekUtSimpleMachine(MekUtMachines.COMPACT_FUSION_REACTOR,
+                true,
+                "augment",
+                "fusion_reactor");
         mekUtSimpleMachine(MekUtMachines.COMPACT_INDUSTRIAL_TURBINE,
                 true,
                 "digital",

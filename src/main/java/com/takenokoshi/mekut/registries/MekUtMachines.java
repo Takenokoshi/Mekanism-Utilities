@@ -5,6 +5,7 @@ import com.takenokoshi.mekaddonlib.registration.MachineDeferredRegister;
 import com.takenokoshi.mekaddonlib.registration.SimpleMachineRegistryObject;
 import com.takenokoshi.mekut.blockentity.abs.BEAbstractCompactBoiler;
 import com.takenokoshi.mekut.blockentity.abs.BEAbstractCompactFissionReactor;
+import com.takenokoshi.mekut.blockentity.abs.BEAbstractCompactFusionReactor;
 import com.takenokoshi.mekut.blockentity.abs.BEAbstractCompactIndustrialTurbine;
 import com.takenokoshi.mekut.blockentity.abs.BEAbstractCompactSPS;
 import com.takenokoshi.mekut.blockentity.abs.BEAbstractCompactThermalEvaporationPlant;
@@ -18,6 +19,7 @@ import com.takenokoshi.mekut.blockentity.normalmachine.BEChemicalCutter;
 import com.takenokoshi.mekut.blockentity.normalmachine.BECompactThermalEvaporationPlant;
 import com.takenokoshi.mekut.blockentity.normalmachine.BECompactBoiler;
 import com.takenokoshi.mekut.blockentity.normalmachine.BECompactFissionReactor;
+import com.takenokoshi.mekut.blockentity.normalmachine.BECompactFusionReactor;
 import com.takenokoshi.mekut.blockentity.normalmachine.BECompactIndustrialTurbine;
 import com.takenokoshi.mekut.blockentity.normalmachine.BECompactSPS;
 import com.takenokoshi.mekut.blockentity.normalmachine.BEIceMaker;
@@ -82,6 +84,17 @@ public class MekUtMachines {
                     builder -> builder
                             .withSideConfig(TransmissionType.CHEMICAL, TransmissionType.FLUID, TransmissionType.HEAT)
                             .withSound(GeneratorsSounds.FISSION_REACTOR)
+                            .withSupportedUpgrades(Upgrade.MUFFLING));
+
+    public static final GuiSizedMachineRegistryObject<BECompactFusionReactor> COMPACT_FUSION_REACTOR = MACHINES
+            .registerGuiSized("compact_fusion_reactor",
+                    BEAbstractCompactFusionReactor.SIDE_CONFIG,
+                    BEAbstractCompactFusionReactor.getContainerAdder(1000L)::accept,
+                    BECompactFusionReactor::new,
+                    BECompactFusionReactor.class,
+                    builder -> builder
+                            .withSideConfig(TransmissionType.values())
+                            .withSound(GeneratorsSounds.FUSION_REACTOR)
                             .withSupportedUpgrades(Upgrade.MUFFLING));
 
     public static final SimpleMachineRegistryObject<BECompactIndustrialTurbine> COMPACT_INDUSTRIAL_TURBINE = MACHINES
