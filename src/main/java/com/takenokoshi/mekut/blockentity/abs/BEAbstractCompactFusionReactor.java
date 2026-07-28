@@ -27,6 +27,7 @@ import mekanism.api.fluid.IExtendedFluidTank;
 import mekanism.api.heat.HeatAPI;
 import mekanism.api.heat.HeatAPI.HeatTransfer;
 import mekanism.api.heat.IHeatCapacitor;
+import mekanism.api.lasers.ILaserReceptor;
 import mekanism.api.math.MathUtils;
 import mekanism.common.attachments.component.AttachedSideConfig;
 import mekanism.common.attachments.component.AttachedSideConfig.LightConfigInfo;
@@ -55,6 +56,7 @@ import mekanism.common.config.value.CachedLongValue;
 import mekanism.common.inventory.container.MekanismContainer;
 import mekanism.common.inventory.container.slot.SlotOverlay;
 import mekanism.common.inventory.container.sync.SyncableDouble;
+import mekanism.common.inventory.container.sync.SyncableInt;
 import mekanism.common.inventory.container.sync.SyncableLong;
 import mekanism.common.inventory.slot.BasicInventorySlot;
 import mekanism.common.inventory.slot.EnergyInventorySlot;
@@ -85,7 +87,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.common.Tags;
 
 public abstract class BEAbstractCompactFusionReactor extends TileEntityConfigurableMachine
-        implements IHasGuiSizeOffset, IBurnRatePacketAcceptor {
+        implements IHasGuiSizeOffset, IBurnRatePacketAcceptor, ILaserReceptor {
 
     protected static final double BURN_RATIO = 1.0d;
     // Thermal characteristics
@@ -504,6 +506,8 @@ public abstract class BEAbstractCompactFusionReactor extends TileEntityConfigura
         container.track(SyncableDouble.create(() -> lastTransferLoss, v -> lastTransferLoss = v));
         container.track(SyncableLong.create(this::getInjectionRate, v -> injectionRate = v));
         container.track(SyncableLong.create(this::getLastEnergyGenerated, v -> lastEnergyGenerated = v));
+        container.track(SyncableLong.create(this::getMaxSteam, v -> maxSteam = v));
+        container.track(SyncableInt.create(this::getMaxWater, v -> maxWater = v));
     }
 
     public IChemicalTank getLeftFuelTank() {
@@ -533,6 +537,20 @@ public abstract class BEAbstractCompactFusionReactor extends TileEntityConfigura
     @Override
     public void setBurnRate(long rate) {
         setInjectionRate(rate);
+    }
+
+    @Override
+    public void receiveLaserEnergy(long energyAdded) {
+        if (getActive()) {
+            setPlasmaTemp(getPlasmaTemp() + ((double) energyAdded / PLASMA_HEAT_CAPACITY));
+        } else {
+            setPlasmaTemp(getPlasmaTemp() + ((double) energyAdded / PLASMA_HEAT_CAPACITY) * 10.0d);
+        }
+    }
+
+    @Override
+    public boolean canLasersDig() {
+        return false;
     }
 
 }

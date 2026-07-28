@@ -18,8 +18,12 @@
       "item": "mekanismgenerators:fusion_reactor_frame"
     },
     {
-      "count": 25,
+      "count": 24,
       "item": "mekanismgenerators:reactor_glass"
+    },
+    {
+      "count": 1,
+      "item": "mekanismgenerators:laser_focus_matrix"
     },
     {
       "count": 4,

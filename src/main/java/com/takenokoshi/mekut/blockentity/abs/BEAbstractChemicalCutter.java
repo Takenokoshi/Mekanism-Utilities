@@ -16,6 +16,7 @@ import com.takenokoshi.mekut.recipe.cached.AdvancedItemStackChemicalToItemStackC
 import com.takenokoshi.mekut.recipe.input.AdvancedChemicalInputHandler;
 import com.takenokoshi.mekut.recipe.input.AdvancedItemInputHandler;
 import com.takenokoshi.mekut.recipe.inputcache.MekUtDoubleInputRecipeCache.MekUtItemChemical;
+import com.takenokoshi.mekut.recipe.output.ItemOutputHandler;
 import com.takenokoshi.mekut.recipe_viewer.type.MekUtRecipeViewerRecipeType;
 import com.takenokoshi.mekut.registries.MekUtRecipeTypes;
 
@@ -28,7 +29,6 @@ import mekanism.api.math.MathUtils;
 import mekanism.api.recipes.ItemStackChemicalToItemStackRecipe;
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
 import mekanism.api.recipes.outputs.IOutputHandler;
-import mekanism.api.recipes.outputs.OutputHelper;
 import mekanism.client.recipe_viewer.type.IRecipeViewerRecipeType;
 import mekanism.common.capabilities.energy.MachineEnergyContainer;
 import mekanism.common.capabilities.holder.chemical.ChemicalTankHelper;
@@ -71,7 +71,7 @@ public abstract class BEAbstractChemicalCutter extends BEMultiScaledProgressMach
         itemInputHandler = AdvancedItemInputHandler.create(inputSlot, RecipeError.NOT_ENOUGH_INPUT);
         chemicalInputHandler = AdvancedChemicalInputHandler.create(chemicalTank,
                 RecipeError.NOT_ENOUGH_SECONDARY_INPUT);
-        outputHandler = OutputHelper.getOutputHandler(outputSlot, RecipeError.NOT_ENOUGH_OUTPUT_SPACE);
+        outputHandler = new ItemOutputHandler(outputSlot, RecipeError.NOT_ENOUGH_OUTPUT_SPACE);
         inputSlot.setSupplyingStackSetter(itemInputHandler::setSuppliedStack);
         secondarySlot.setSupplyingStackSetter(chemicalInputHandler::setSuppliedStack);
     }

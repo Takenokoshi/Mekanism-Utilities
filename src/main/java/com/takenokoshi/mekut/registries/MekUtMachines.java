@@ -30,6 +30,7 @@ import com.takenokoshi.mekut.blockentity.normalmachine.BESmallDigitalReactionCha
 import com.takenokoshi.mekut.blockentity.normalmachine.BEStellarGenesisChamber;
 import com.takenokoshi.mekut.blockentity.normalmachine.BESubMaterialConverter;
 import com.takenokoshi.mekut.blockentity.normalmachine.BETweakedEnergizedSmelter;
+import com.takenokoshi.mekut.blockentity.normalmachine.BlockEntityXpTank;
 import com.takenokoshi.mekut.core.MekUtConstants;
 import com.takenokoshi.mekut.core.MekUtMathUtils;
 import mekanism.api.Upgrade;
@@ -37,6 +38,7 @@ import mekanism.common.attachments.component.AttachedSideConfig;
 import mekanism.common.attachments.containers.ContainerType;
 import mekanism.common.attachments.containers.chemical.ChemicalTanksBuilder;
 import mekanism.common.attachments.containers.item.ItemSlotsBuilder;
+import mekanism.common.capabilities.Capabilities;
 import mekanism.common.config.MekanismConfig;
 import mekanism.common.lib.transmitter.TransmissionType;
 import mekanism.common.registries.MekanismSounds;
@@ -91,6 +93,8 @@ public class MekUtMachines {
                     BEAbstractCompactFusionReactor.SIDE_CONFIG,
                     BEAbstractCompactFusionReactor.getContainerAdder(1000L)::accept,
                     BECompactFusionReactor::new,
+                    builder -> builder
+                            .withSimple(Capabilities.LASER_RECEPTOR),
                     BECompactFusionReactor.class,
                     builder -> builder
                             .withSideConfig(TransmissionType.values())
@@ -259,4 +263,12 @@ public class MekUtMachines {
                                     MekanismConfig.storage.energizedSmelter)
                             .withSound(MekanismSounds.ENERGIZED_SMELTER)
                             .withSupportedUpgrades(Upgrade.ENERGY, Upgrade.SPEED, Upgrade.MUFFLING));
+
+    public static final SimpleMachineRegistryObject<BlockEntityXpTank> XP_TANK = MACHINES
+            .registerSimple("xp_tank",
+                    BlockEntityXpTank.SIDE_CONFIG,
+                    BlockEntityXpTank::addContainersToItem,
+                    BlockEntityXpTank::new,
+                    BlockEntityXpTank.class,
+                    builder -> builder.withSideConfig(TransmissionType.CHEMICAL));
 }

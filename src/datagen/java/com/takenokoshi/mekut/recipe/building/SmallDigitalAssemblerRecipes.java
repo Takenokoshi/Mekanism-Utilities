@@ -168,7 +168,8 @@ public class SmallDigitalAssemblerRecipes {
                 .smallDigitalAssembler(new ItemStack(MekUtMachines.COMPACT_FUSION_REACTOR, 1))
                 .addItemInput(GeneratorsBlocks.FUSION_REACTOR_CONTROLLER, 1)
                 .addItemInput(GeneratorsBlocks.FUSION_REACTOR_FRAME, 36)
-                .addItemInput(GeneratorsBlocks.REACTOR_GLASS, 25)
+                .addItemInput(GeneratorsBlocks.REACTOR_GLASS, 24)
+                .addItemInput(GeneratorsBlocks.LASER_FOCUS_MATRIX, 1)
                 .addItemInput(GeneratorsBlocks.FUSION_REACTOR_PORT, 4)
                 .addItemInput(MekanismItems.ULTIMATE_CONTROL_CIRCUIT, 2)
                 .addItemInput(MekanismItems.ATOMIC_ALLOY, 4)
@@ -177,5 +178,12 @@ public class SmallDigitalAssemblerRecipes {
                 .setFluidInput(Tags.Fluids.LAVA, 1000)
                 .setChemicalInput(MekanismChemicals.OSMIUM.asStack(1600))
                 .build(output, MekUtConstants.rl("small_digital_assembler/compact_fusion_reactor"));
+        ItemStackListFluidChemicalToItemRecipeBuilder
+                .smallDigitalAssembler(new ItemStack(MekUtMachines.XP_TANK, 1))
+                .addItemInput(MekanismBlocks.STEEL_CASING, 1)
+                .addItemInput(MekanismBlocks.DYNAMIC_TANK, 4)
+                .setFluidInput(Tags.Fluids.WATER, 100)
+                .setChemicalInput(MekUtChemicals.XP.asStack(100))
+                .build(output, MekUtConstants.rl("small_digital_assembler/xp_tank"));
     }
 }

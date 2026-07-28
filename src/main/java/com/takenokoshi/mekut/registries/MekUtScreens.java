@@ -41,6 +41,7 @@ public class MekUtScreens {
         registerMachineGui(event, MekUtMachines.SUBMATERIAL_CONVERTER, GuiSubMaterialConverter::new);
         registerMachineGui(event, MekUtMachines.TWEAKED_ENERGIZED_SMELTER,
                 GuiTweakedEnergizedSmelter<BETweakedEnergizedSmelter>::new);
+        registerMachineGui(event, MekUtMachines.XP_TANK, GuiXpTank::new);
     }
 
     public static <BE extends TileEntityMekanism, CONTAINER extends MekanismTileContainer<BE>, GUI extends Screen & MenuAccess<CONTAINER>> void registerMachineGui(

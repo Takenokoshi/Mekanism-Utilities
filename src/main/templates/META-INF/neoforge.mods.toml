@@ -127,7 +127,7 @@ config="${mod_id}.mixins.json"
 [[dependencies.${mod_id}]]
     modId="mek_addon_lib"
     type="required"
-    versionRange="[1.0.1,)"
+    versionRange="[1.0.3,)"
     ordering="NONE"
     side="BOTH"
 

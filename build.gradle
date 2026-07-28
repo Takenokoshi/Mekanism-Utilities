@@ -125,7 +125,7 @@ dependencies {
     implementation "curse.maven:mekanism-water-generator-rebuild-1396471:8492800"
 
     //Addons of Mekanism
-    implementation "curse.maven:mekanism-addon-library-1607060:8443279"
+    implementation "curse.maven:mekanism-addon-library-1607060:8527277"
     implementation "curse.maven:mekanism-empowered-1256390:8064666"
     implementation "curse.maven:mekanism-empowered-core-1256399:8064667"
     implementation "curse.maven:kotlin-for-forge-351264:7471280"

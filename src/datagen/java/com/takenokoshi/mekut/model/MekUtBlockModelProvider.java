@@ -101,6 +101,10 @@ public class MekUtBlockModelProvider extends BlockStateProvider {
                 false,
                 "digital",
                 "submaterial_converter");
+        mekUtSimpleMachine(MekUtMachines.XP_TANK,
+                false,
+                "digital",
+                "xp_tank");
 
         mekanismMachine(MekUtMachines.TWEAKED_ENERGIZED_SMELTER.getBlock(),
                 Mekanism.rl("block/energized_smelter"),

@@ -70,6 +70,7 @@ public class MekUtEnglishLangProvider extends LanguageProvider {
 
         addLang(MekUtMachines.COMPACT_BOILER.descriptionEntry, "Thermoelectric boiler in a single block size");
         addLang(MekUtMachines.COMPACT_FISSION_REACTOR.descriptionEntry, "Fission Reactor in a single block size");
+        addLang(MekUtMachines.COMPACT_FUSION_REACTOR.descriptionEntry, "Fusion Reactor in a single block size");
         addLang(MekUtMachines.COMPACT_INDUSTRIAL_TURBINE.descriptionEntry, "Industrial Turbine in a single block size");
         addLang(MekUtMachines.COMPACT_SUPERCRITICAL_PHASE_SHIFTER.descriptionEntry, "SPS in a single block size");
         addLang(MekUtMachines.COMPACT_THERMAL_EVAPOLATION_PLANT.descriptionEntry,
@@ -92,6 +93,7 @@ public class MekUtEnglishLangProvider extends LanguageProvider {
                 "This Machine can Convert Submaterial for Metallurgic Infuser & Osmium Compressor.");
         addLang(MekUtMachines.TWEAKED_ENERGIZED_SMELTER.descriptionEntry,
                 "This is an energized smelter machine that allows you to gain xp through smelting.");
+        addLang(MekUtMachines.XP_TANK.descriptionEntry, "Tank for xp. You can convert chemical xp to player xp.");
 
         addLang(MekUtDataType.INPUT1_OUTPUT1, "Input(1)・Output(1)");
         addLang(MekUtDataType.INPUT2_OUTPUT2, "Input(2)・Output(2)");
