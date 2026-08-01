@@ -1,5 +1,6 @@
 package com.takenokoshi.mekut.recipe.building;
 
+import java.util.List;
 import java.util.function.Function;
 
 import com.jerry.mekextras.MekanismExtras;
@@ -222,6 +223,16 @@ public class MUMaterialProcessRecipes {
                 .setFluidInput(Tags.Fluids.LAVA, 100)
                 .setChemicalInput(MekUtChemicals.XP.asStack(1000))
                 .build(output, MekUtConstants.rl("processing/netherite/raw_from_ancient_debris"));
+        ItemStackListFluidChemicalToItemFluidChemicalRecipeBuilder
+                .smallDigitalReactionChamber(MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.SILICON).asStack(24),
+                        FluidStack.EMPTY, ChemicalStack.EMPTY)
+                .addItemInput(IngredientCreatorAccess.item().from(1, List.of(
+                        ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "raw_materials/quartz")),
+                        ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "raw_materials/certus_quartz")))))
+                .addItemInput(Items.SAND, 6)
+                .setFluidInput(Tags.Fluids.LAVA, 100)
+                .setChemicalInput(MekanismChemicals.CARBON.asStack(160))
+                .build(output, MekUtConstants.rl("processing/silicon/raw_from_raw_quartz"));
 
         ItemStackToItemStackRecipeBuilder
                 .crushing(

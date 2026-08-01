@@ -12,6 +12,7 @@ public enum MUMaterial {
     FLUORITE("fluorite", 0x78FFBE, true),
     COAL("coal", 0x2D2D2D, true),
     NETHERITE("netherite", 0x433D47, false),
+    SILICON("silicon", 0x858585, true),
     ;
 
     public final String name;

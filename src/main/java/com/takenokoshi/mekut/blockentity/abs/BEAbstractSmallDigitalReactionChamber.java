@@ -1,7 +1,5 @@
 package com.takenokoshi.mekut.blockentity.abs;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.jetbrains.annotations.NotNull;
@@ -10,7 +8,6 @@ import org.jetbrains.annotations.Nullable;
 import com.takenokoshi.mekaddonlib.blockentity.base.BEMultiScaledProgressMachine;
 import com.takenokoshi.mekaddonlib.blockentity.component.EjectorComponentUtils;
 import com.takenokoshi.mekaddonlib.blockentity.interfaces.IHasGuiSizeOffset;
-import com.takenokoshi.mekaddonlib.inventory.slot.LimitChangedInputInventorySlot;
 import com.takenokoshi.mekaddonlib.inventory.slot.LimitChangedOutputInventorySlot;
 import com.takenokoshi.mekaddonlib.recipe.cached.ICachedRecipe;
 import com.takenokoshi.mekaddonlib.recipe.type.IMekALRecipeTypeProvider;
@@ -20,6 +17,7 @@ import com.takenokoshi.mekut.blockentity.interfaces.machine.IItemStackListFluidC
 import com.takenokoshi.mekut.capabilities.energy.VariableUsageMachineEnergyContainer;
 import com.takenokoshi.mekut.inventory.slot.ChemicalFillConvertOrSupplyingSlot;
 import com.takenokoshi.mekut.inventory.slot.FluidFillOrSupplierSlot;
+import com.takenokoshi.mekut.inventory.slot.InputOrSupplyingSlot;
 import com.takenokoshi.mekut.recipe.cached.ItemStackListFluidChemicalToItemFluidChemicalCachedRecipe;
 import com.takenokoshi.mekut.recipe.input.AdvancedChemicalInputHandler;
 import com.takenokoshi.mekut.recipe.input.AdvancedFluidInputHandler;
@@ -56,7 +54,6 @@ import mekanism.common.capabilities.holder.slot.InventorySlotHelper;
 import mekanism.common.inventory.container.slot.SlotOverlay;
 import mekanism.common.inventory.slot.EnergyInventorySlot;
 import mekanism.common.inventory.slot.FluidInventorySlot;
-import mekanism.common.inventory.slot.InputInventorySlot;
 import mekanism.common.inventory.slot.OutputInventorySlot;
 import mekanism.common.inventory.slot.chemical.ChemicalInventorySlot;
 import mekanism.common.inventory.warning.WarningTracker.WarningType;
@@ -76,7 +73,7 @@ public abstract class BEAbstractSmallDigitalReactionChamber
         implements IItemStackListFluidChemicalToItemFluidChemicalRecipeMachine, IHasMachineEnergyContainer,
         IHasGuiSizeOffset, IRecipeViewerTypeProvider {
 
-    private InputInventorySlot[] inputSlots;
+    private InputOrSupplyingSlot[] inputSlots;
     private LimitChangedOutputInventorySlot outputSlot;
     private EnergyInventorySlot energySlot;
 
@@ -128,6 +125,10 @@ public abstract class BEAbstractSmallDigitalReactionChamber
         this.fluidOutputHandler = OutputHelper.getOutputHandler(outputFluidTank, RecipeError.NOT_ENOUGH_OUTPUT_SPACE);
         this.chemicalOutputHandler = OutputHelper.getOutputHandler(outputChemicalTank,
                 RecipeError.NOT_ENOUGH_OUTPUT_SPACE);
+        for (int i = 0; i < inputSlots.length; i++) {
+            int index = i;
+            inputSlots[i].setSupplyingStackSetter(stack -> itemInputHandler.setSuppliedStack(stack, index));
+        }
         fluidInputSlot.setSupplyingStackSetter(fluidInputHandler::setSuppliedStack);
         chemicalInputSlot.setSupplyingStackSetter(chemicalInputHandler::setSuppliedStack);
     }
@@ -145,11 +146,11 @@ public abstract class BEAbstractSmallDigitalReactionChamber
     protected @NotNull IInventorySlotHolder getInitialInventory(IContentsListener listener,
             IContentsListener recipeCacheListener, IContentsListener recipeCacheUnpauseListener) {
         InventorySlotHelper builder = InventorySlotHelper.forSideWithConfig(this);
-        inputSlots = new InputInventorySlot[9];
+        inputSlots = new InputOrSupplyingSlot[9];
         for (int index = 0; index < 9; index++) {
             int value = index;
-            builder.addSlot(inputSlots[index] = LimitChangedInputInventorySlot.at(
-                    stack -> containsRecipeItemOther(stack, value, getItemsInOtherSlots(value),
+            builder.addSlot(inputSlots[index] = InputOrSupplyingSlot.at(
+                    stack -> containsRecipeItemOther(stack, value, itemInputHandler.getOtherSlotInput(value),
                             fluidInputHandler.getInput(), chemicalInputHandler.getInput()),
                     stack -> containsRecipeItem(stack, value),
                     recipeCacheListener, 54 + index % 3 * 18, 22 + index / 3 * 18, initItemSlotCapacity()))
@@ -179,29 +180,12 @@ public abstract class BEAbstractSmallDigitalReactionChamber
 
     protected abstract int initItemSlotCapacity();
 
-    private List<ItemStack> getItemsInOtherSlots(int slotIndex) {
-        List<ItemStack> result = new ArrayList<>();
-        for (int index = 0; index < 9; index++) {
-            if (index != slotIndex) {
-                ItemStack stack = inputSlots[index].getStack();
-                if (!stack.isEmpty()) {
-                    result.add(stack);
-                }
-            }
-        }
-        return result;
-    }
-
-    private List<ItemStack> getItems() {
-        return Arrays.stream(inputSlots).map(IInventorySlot::getStack).filter(stack -> !stack.isEmpty()).toList();
-    }
-
     @Override
     protected @NotNull IFluidTankHolder getInitialFluidTanks(IContentsListener listener,
             IContentsListener recipeCacheListener, IContentsListener recipeCacheUnpauseListener) {
         FluidTankHelper builder = FluidTankHelper.forSideWithConfig(this);
         builder.addTank(inputFluidTank = BasicFluidTank.input(initFluidTankCapacity(),
-                stack -> containsRecipeFluidOther(getItems(), stack, chemicalInputHandler.getInput()),
+                stack -> containsRecipeFluidOther(itemInputHandler.getInput(), stack, chemicalInputHandler.getInput()),
                 this::containsRecipeFluid, recipeCacheListener));
         builder.addTank(outputFluidTank = BasicFluidTank.output(initFluidTankCapacity(), recipeCacheUnpauseListener));
         return builder.build();
@@ -215,7 +199,7 @@ public abstract class BEAbstractSmallDigitalReactionChamber
         ChemicalTankHelper builder = ChemicalTankHelper.forSideWithConfig(this);
         builder.addTank(inputChemicalTank = BasicChemicalTank.create(initChemicalTankCapacity(),
                 (stack, type) -> type != AutomationType.EXTERNAL,
-                (stack, type) -> containsRecipeChemicalOther(getItems(), fluidInputHandler.getInput(), stack.getStack(1)),
+                (stack, type) -> containsRecipeChemicalOther(itemInputHandler.getInput(), fluidInputHandler.getInput(), stack.getStack(1)),
                 chemical -> containsRecipeChemical(chemical.getStack(1)),
                 ChemicalAttributeValidator.ALWAYS_ALLOW,
                 recipeCacheListener));

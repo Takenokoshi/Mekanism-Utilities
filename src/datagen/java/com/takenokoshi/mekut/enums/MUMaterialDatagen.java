@@ -30,6 +30,7 @@ public class MUMaterialDatagen {
         FINAL_ITEMS_MAP.put(MUMaterial.NETHERITE, new ItemStack(MekanismItems.NETHERITE_DUST.asItem()));
         FINAL_ITEMS_MAP.put(MUMaterial.QUARTZ, new ItemStack(Items.QUARTZ));
         FINAL_ITEMS_MAP.put(MUMaterial.REDSTONE, new ItemStack(Items.REDSTONE));
+        FINAL_ITEMS_MAP.put(MUMaterial.SILICON, AEItems.SILICON.stack(1));
 
         ORE_MAP = new EnumMap<>(MUMaterial.class);
         ORE_MAP.put(MUMaterial.AMETHYST, new OreData(
@@ -58,6 +59,9 @@ public class MUMaterialDatagen {
         ORE_MAP.put(MUMaterial.REDSTONE, new OreData(
                 new ItemStack(Items.REDSTONE_ORE),
                 new ItemStack(Items.DEEPSLATE_REDSTONE_ORE), null));
+        ORE_MAP.put(MUMaterial.SILICON, new OreData(
+                null,
+                null, null));
     }
 
     public static record OreData(ItemStack stone, ItemStack deepslate, ItemStack netherrack) {

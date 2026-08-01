@@ -1,0 +1,34 @@
+{
+  "type": "mekanism_utilities:small_digital_reaction_chamber",
+  "chemical_input": {
+    "amount": 160,
+    "chemical": "mekanism:carbon"
+  },
+  "duration": 100,
+  "fluid_input": {
+    "amount": 100,
+    "tag": "c:lava"
+  },
+  "item_output": {
+    "count": 24,
+    "id": "mekanism_utilities:raw_silicon"
+  },
+  "list_item_input": [
+    {
+      "type": "neoforge:compound",
+      "children": [
+        {
+          "tag": "c:raw_materials/quartz"
+        },
+        {
+          "tag": "c:raw_materials/certus_quartz"
+        }
+      ],
+      "count": 1
+    },
+    {
+      "count": 6,
+      "item": "minecraft:sand"
+    }
+  ]
+}
