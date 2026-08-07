@@ -41,7 +41,7 @@ public class ChemicalFillConvertOrSupplyingSlot extends BasicInventorySlot
 
     public static final RecipeError FAKE_ERROR = RecipeError.create();
 
-    private static Predicate<@NotNull ItemStack> getExtractPredicate(IChemicalTank chemicalTank,
+    private static Predicate<ItemStack> getExtractPredicate(IChemicalTank chemicalTank,
             Supplier<Level> levelSupplier) {
         return stack -> {
             if (stack.getItem() instanceof ChemicalSupplierItem) {
@@ -61,7 +61,7 @@ public class ChemicalFillConvertOrSupplyingSlot extends BasicInventorySlot
         };
     }
 
-    private static Predicate<@NotNull ItemStack> getInsertPredicate(IChemicalTank chemicalTank,
+    private static Predicate<ItemStack> getInsertPredicate(IChemicalTank chemicalTank,
             Supplier<Level> levelSupplier) {
         return stack -> {
             if (stack.getItem() instanceof ChemicalSupplierItem supplierItem) {

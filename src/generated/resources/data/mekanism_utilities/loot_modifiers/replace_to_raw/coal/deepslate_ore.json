@@ -1,0 +1,11 @@
+{
+  "type": "mekanism_utilities:item_replace",
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "minecraft:blocks/deepslate_coal_ore"
+    }
+  ],
+  "from": "minecraft:coal",
+  "to": "mekanism_utilities:raw_coal"
+}

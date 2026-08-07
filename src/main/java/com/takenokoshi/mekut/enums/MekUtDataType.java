@@ -9,6 +9,8 @@ import mekanism.common.tile.component.config.DataType;
 public enum MekUtDataType implements IHasTranslationKey {
     INPUT1_OUTPUT1("input1_output1"),
     INPUT2_OUTPUT2("input2_output2"),
+    INPUT_OUTPUT1("input_output1"),
+    INPUT_OUTPUT2("input_output2"),
     ;
 
     private MekUtDataType(ILangEntry descKey) {

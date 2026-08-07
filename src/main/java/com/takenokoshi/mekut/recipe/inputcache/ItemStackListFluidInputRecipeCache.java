@@ -10,7 +10,6 @@ import java.util.function.BiPredicate;
 import java.util.function.Function;
 import java.util.function.ToIntFunction;
 
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.takenokoshi.mekaddonlib.recipe.type.MekALRecipeType;
@@ -28,9 +27,9 @@ import net.neoforged.neoforge.fluids.FluidStack;
 
 public class ItemStackListFluidInputRecipeCache<RECIPE extends Recipe<?>> extends MUAbstractInputRecipeCache<RECIPE> {
 
-    protected final Function<RECIPE, @NotNull List<Item>> itemInputExtractor;
+    protected final Function<RECIPE, List<Item>> itemInputExtractor;
     //should return List.of(Fluids.EMPTY) when recipe won't require fluid.
-    protected final Function<RECIPE, @NotNull List<Fluid>> fluidInputExtractor;
+    protected final Function<RECIPE, List<Fluid>> fluidInputExtractor;
     protected final ToIntFunction<RECIPE> listSizeExtractor;
     protected final BiPredicate<RECIPE, List<ItemStack>> testPredicate;
     protected final Map<Item, Set<RECIPE>> itemToRecipeCache = new HashMap<>();

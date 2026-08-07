@@ -1,0 +1,11 @@
+{
+  "type": "mekanism_utilities:item_replace",
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "minecraft:blocks/deepslate_redstone_ore"
+    }
+  ],
+  "from": "minecraft:redstone",
+  "to": "mekanism_utilities:raw_redstone"
+}

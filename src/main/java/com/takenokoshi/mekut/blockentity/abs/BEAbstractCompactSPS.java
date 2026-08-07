@@ -108,7 +108,7 @@ public abstract class BEAbstractCompactSPS extends BEMultiScaledProgressMachine<
         return value -> {
             value.addAttachmentOnlyContainers(ContainerType.ITEM, () -> ItemSlotsBuilder.builder()
                     .addBasic(1)
-                    .addOutput(2)
+                    .addOutput(1)
                     .addEnergy()
                     .build());
             value.addAttachmentOnlyContainers(ContainerType.CHEMICAL,

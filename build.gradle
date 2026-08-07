@@ -130,7 +130,6 @@ dependencies {
     implementation "curse.maven:mekanism-empowered-core-1256399:8064667"
     implementation "curse.maven:kotlin-for-forge-351264:7471280"
     implementation "curse.maven:mekanism-elements-1103224:7696139"
-    implementation "curse.maven:mekanism-more-machine-1275257:7919872"
 
     //AE2 and its addons
     implementation "curse.maven:ae2addonlib-1366135:7222312"
@@ -152,6 +151,9 @@ dependencies {
     datagenImplementation "curse.maven:mekanism-extras-1026040:7921191"
     datagenImplementation "curse.maven:evolved-mekanism-1230085:7599592"
     datagenImplementation "curse.maven:iglee-library-541199:7000755"
+    datagenImplementation "curse.maven:ae2-lightning-tech-1527395:8575479"
+    datagenImplementation "curse.maven:thunderbolt-core-1631756:8592271"
+    datagenImplementation "curse.maven:mekanism-more-machine-1275257:7919872"
 
 
 }

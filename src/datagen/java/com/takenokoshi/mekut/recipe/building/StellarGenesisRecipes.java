@@ -8,6 +8,7 @@ import com.takenokoshi.mekut.registries.MekUtItems;
 import mekanism.api.recipes.ingredients.creator.IChemicalStackIngredientCreator;
 import mekanism.api.recipes.ingredients.creator.IngredientCreatorAccess;
 import mekanism.common.registries.MekanismChemicals;
+import mekanism.generators.common.registries.GeneratorsChemicals;
 import net.minecraft.data.recipes.RecipeOutput;
 
 public class StellarGenesisRecipes {
@@ -18,5 +19,10 @@ public class StellarGenesisRecipes {
                 creatorC.from(MSGases.HELIUM.asStack(200000)),
                 MekUtItems.ARTIFICIAL_STAR.asStack())
                 .build(output, MekUtConstants.rl("stellar_genesis/artificial_star"));
+        BiChemicalToItemRecipeBuilder.stellarGenesis(
+                creatorC.from(MekanismChemicals.HYDROGEN.asStack(10000000)),
+                creatorC.from(GeneratorsChemicals.DEUTERIUM.asStack(8000000)),
+                MekUtItems.ARTIFICIAL_STAR.asStack())
+                .build(output, MekUtConstants.rl("stellar_genesis/artificial_star_2"));
     }
 }

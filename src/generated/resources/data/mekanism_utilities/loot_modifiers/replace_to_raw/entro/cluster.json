@@ -1,0 +1,11 @@
+{
+  "type": "mekanism_utilities:item_replace",
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "extendedae:blocks/entro_cluster"
+    }
+  ],
+  "from": "extendedae:entro_crystal",
+  "to": "mekanism_utilities:raw_entro"
+}

@@ -95,8 +95,15 @@ public class MekUtEnglishLangProvider extends LanguageProvider {
                 "This is an energized smelter machine that allows you to gain xp through smelting.");
         addLang(MekUtMachines.XP_TANK.descriptionEntry, "Tank for xp. You can convert chemical xp to player xp.");
 
+        
+        addLang(MekUtMachines.ITEM_RATIO_SPLITTER.descriptionEntry, "Splits input items into two outputs according to a configurable ratio.");
+        addLang(MekUtMachines.FLUID_RATIO_SPLITTER.descriptionEntry, "Splits input fluid into two outputs according to a configurable ratio.");
+        addLang(MekUtMachines.CHEMICAL_RATIO_SPLITTER.descriptionEntry, "Splits input chemical into two outputs according to a configurable ratio.");
+
         addLang(MekUtDataType.INPUT1_OUTPUT1, "Input(1)・Output(1)");
         addLang(MekUtDataType.INPUT2_OUTPUT2, "Input(2)・Output(2)");
+        addLang(MekUtDataType.INPUT_OUTPUT1, "Input・Output(1)");
+        addLang(MekUtDataType.INPUT_OUTPUT2, "Input・Output(2)");
     }
 
     private String format(String name) {

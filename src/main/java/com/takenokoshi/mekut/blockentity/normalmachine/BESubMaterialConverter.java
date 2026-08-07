@@ -65,7 +65,7 @@ public class BESubMaterialConverter extends TileEntityRecipeMachine<ItemStackToC
             "getOutputFilledPercentage" }, docPlaceholder = "output tank")
     public IChemicalTank gasTank;
 
-    private final IOutputHandler<@NotNull ChemicalStack> outputHandler;
+    private final IOutputHandler<ChemicalStack> outputHandler;
     private final AdvancedItemInputHandler inputHandler;
     @WrappingComputerMethod(wrapper = ComputerIInventorySlotWrapper.class, methodNames = "getInput", docPlaceholder = "input slot")
     InputOrSupplyingSlot inputSlot;

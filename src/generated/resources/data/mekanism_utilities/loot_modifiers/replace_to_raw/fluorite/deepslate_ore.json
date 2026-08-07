@@ -1,0 +1,11 @@
+{
+  "type": "mekanism_utilities:item_replace",
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "mekanism:blocks/deepslate_fluorite_ore"
+    }
+  ],
+  "from": "mekanism:fluorite_gem",
+  "to": "mekanism_utilities:raw_fluorite"
+}

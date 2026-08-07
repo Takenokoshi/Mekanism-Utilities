@@ -59,7 +59,7 @@ public abstract class BEAbstractChemicalCutter extends BEMultiScaledProgressMach
     private MachineEnergyContainer<?> energyContainer;
     private double chemicalUsageModifier = 1.0d;
 
-    protected final IOutputHandler<@NotNull ItemStack> outputHandler;
+    protected final IOutputHandler<ItemStack> outputHandler;
     protected final AdvancedItemInputHandler itemInputHandler;
     protected final AdvancedChemicalInputHandler chemicalInputHandler;
 

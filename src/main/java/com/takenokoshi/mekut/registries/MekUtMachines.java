@@ -15,6 +15,9 @@ import com.takenokoshi.mekut.blockentity.interfaces.machine.IFluidToObjectMachin
 import com.takenokoshi.mekut.blockentity.interfaces.machine.IItemStackChemicalToItemStackMachine;
 import com.takenokoshi.mekut.blockentity.interfaces.machine.IItemStackListFluidChemicalToItemFluidChemicalRecipeMachine;
 import com.takenokoshi.mekut.blockentity.interfaces.machine.IItemStackListFluidChemicalToItemRecipeMachine;
+import com.takenokoshi.mekut.blockentity.misc.BEChemicalRatioSplitter;
+import com.takenokoshi.mekut.blockentity.misc.BEFluidRatioSplitter;
+import com.takenokoshi.mekut.blockentity.misc.BEItemRatioSplitter;
 import com.takenokoshi.mekut.blockentity.normalmachine.BEChemicalCutter;
 import com.takenokoshi.mekut.blockentity.normalmachine.BECompactThermalEvaporationPlant;
 import com.takenokoshi.mekut.blockentity.normalmachine.BECompactBoiler;
@@ -270,5 +273,29 @@ public class MekUtMachines {
                     BlockEntityXpTank::addContainersToItem,
                     BlockEntityXpTank::new,
                     BlockEntityXpTank.class,
+                    builder -> builder.withSideConfig(TransmissionType.CHEMICAL));
+
+    public static final SimpleMachineRegistryObject<BEItemRatioSplitter> ITEM_RATIO_SPLITTER = MACHINES
+            .registerSimple("item_ratio_splitter",
+                    BEItemRatioSplitter.SIDE_CONFIG,
+                    BEItemRatioSplitter::addContainersToItem,
+                    BEItemRatioSplitter::new,
+                    BEItemRatioSplitter.class,
+                    builder -> builder.withSideConfig(TransmissionType.ITEM));
+
+    public static final SimpleMachineRegistryObject<BEFluidRatioSplitter> FLUID_RATIO_SPLITTER = MACHINES
+            .registerSimple("fluid_ratio_splitter",
+                    BEFluidRatioSplitter.SIDE_CONFIG,
+                    BEFluidRatioSplitter::addContainersToItem,
+                    BEFluidRatioSplitter::new,
+                    BEFluidRatioSplitter.class,
+                    builder -> builder.withSideConfig(TransmissionType.FLUID));
+
+    public static final SimpleMachineRegistryObject<BEChemicalRatioSplitter> CHEMICAL_RATIO_SPLITTER = MACHINES
+            .registerSimple("chemical_ratio_splitter",
+                    BEChemicalRatioSplitter.SIDE_CONFIG,
+                    BEChemicalRatioSplitter::addContainersToItem,
+                    BEChemicalRatioSplitter::new,
+                    BEChemicalRatioSplitter.class,
                     builder -> builder.withSideConfig(TransmissionType.CHEMICAL));
 }

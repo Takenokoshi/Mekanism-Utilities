@@ -61,7 +61,7 @@ public class ItemStackListInputHandler {
     }
 
     public List<ItemStack> getRecipeInput(List<ItemStackIngredient> ingredients,
-            Consumer<@NotNull int[]> slotIndexCacheSaver) {
+            Consumer<int[]> slotIndexCacheSaver) {
         List<ItemStack> list = new ArrayList<>();
         int[] slotIndexCache = new int[ingredients.size()];
         boolean[] usedSlots = new boolean[slots.size()];

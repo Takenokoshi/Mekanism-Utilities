@@ -106,6 +106,20 @@ public class MekUtBlockModelProvider extends BlockStateProvider {
                 "digital",
                 "xp_tank");
 
+        
+        mekUtSimpleMachine(MekUtMachines.ITEM_RATIO_SPLITTER,
+                false,
+                "digital",
+                "item_ratio_splitter");
+        mekUtSimpleMachine(MekUtMachines.FLUID_RATIO_SPLITTER,
+                false,
+                "digital",
+                "fluid_ratio_splitter");
+        mekUtSimpleMachine(MekUtMachines.CHEMICAL_RATIO_SPLITTER,
+                false,
+                "digital",
+                "chemical_ratio_splitter");
+
         mekanismMachine(MekUtMachines.TWEAKED_ENERGIZED_SMELTER.getBlock(),
                 Mekanism.rl("block/energized_smelter"),
                 Mekanism.rl("block/energized_smelter_active"));

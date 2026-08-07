@@ -3,6 +3,7 @@ package com.takenokoshi.mekut.registries;
 import com.takenokoshi.mekaddonlib.registration.MachineRegistryObject;
 import com.takenokoshi.mekut.blockentity.normalmachine.*;
 import com.takenokoshi.mekut.gui.machine.*;
+import com.takenokoshi.mekut.gui.misc.*;
 
 import mekanism.client.ClientRegistrationUtil;
 import mekanism.common.inventory.container.tile.MekanismTileContainer;
@@ -42,6 +43,10 @@ public class MekUtScreens {
         registerMachineGui(event, MekUtMachines.TWEAKED_ENERGIZED_SMELTER,
                 GuiTweakedEnergizedSmelter<BETweakedEnergizedSmelter>::new);
         registerMachineGui(event, MekUtMachines.XP_TANK, GuiXpTank::new);
+
+        registerMachineGui(event, MekUtMachines.ITEM_RATIO_SPLITTER, GuiItemRatioSplitter::new);
+        registerMachineGui(event, MekUtMachines.FLUID_RATIO_SPLITTER, GuiFluidRatioSplitter::new);
+        registerMachineGui(event, MekUtMachines.CHEMICAL_RATIO_SPLITTER, GuiChemicalRatioSplitter::new);
     }
 
     public static <BE extends TileEntityMekanism, CONTAINER extends MekanismTileContainer<BE>, GUI extends Screen & MenuAccess<CONTAINER>> void registerMachineGui(

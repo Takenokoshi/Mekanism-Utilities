@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.takenokoshi.mekaddonlib.recipe.type.MekALRecipeType;
@@ -24,11 +23,11 @@ import net.neoforged.neoforge.fluids.FluidStack;
 
 public class MUSingleInputRecipeCache<RECIPE extends Recipe<?>, INPUT_TYPE> extends MUAbstractInputRecipeCache<RECIPE> {
 
-    protected final Function<RECIPE, @NotNull List<INPUT_TYPE>> inputExtractor;
+    protected final Function<RECIPE, List<INPUT_TYPE>> inputExtractor;
     protected final Map<INPUT_TYPE, RECIPE> recipeMap;
 
     protected MUSingleInputRecipeCache(MekALRecipeType<?, RECIPE, ?> recipeType,
-            Function<RECIPE, @NotNull List<INPUT_TYPE>> inputExtractor) {
+            Function<RECIPE, List<INPUT_TYPE>> inputExtractor) {
         super(recipeType);
         this.inputExtractor = inputExtractor;
         this.recipeMap = new HashMap<>();
@@ -54,7 +53,7 @@ public class MUSingleInputRecipeCache<RECIPE extends Recipe<?>, INPUT_TYPE> exte
     public static class MUSingleItem<RECIPE extends Recipe<?>> extends MUSingleInputRecipeCache<RECIPE, Item> {
 
         public MUSingleItem(MekALRecipeType<?, RECIPE, ?> recipeType,
-                Function<RECIPE, @NotNull List<Item>> inputExtractor) {
+                Function<RECIPE, List<Item>> inputExtractor) {
             super(recipeType, inputExtractor);
         }
 
@@ -79,7 +78,7 @@ public class MUSingleInputRecipeCache<RECIPE extends Recipe<?>, INPUT_TYPE> exte
     public static class MUSingleFluid<RECIPE extends Recipe<?>> extends MUSingleInputRecipeCache<RECIPE, Fluid> {
 
         public MUSingleFluid(MekALRecipeType<?, RECIPE, ?> recipeType,
-                Function<RECIPE, @NotNull List<Fluid>> inputExtractor) {
+                Function<RECIPE, List<Fluid>> inputExtractor) {
             super(recipeType, inputExtractor);
         }
 
@@ -111,7 +110,7 @@ public class MUSingleInputRecipeCache<RECIPE extends Recipe<?>, INPUT_TYPE> exte
     public static class MUSingleChemical<RECIPE extends Recipe<?>> extends MUSingleInputRecipeCache<RECIPE, Chemical> {
 
         public MUSingleChemical(MekALRecipeType<?, RECIPE, ?> recipeType,
-                Function<RECIPE, @NotNull List<Chemical>> inputExtractor) {
+                Function<RECIPE, List<Chemical>> inputExtractor) {
             super(recipeType, inputExtractor);
         }
 

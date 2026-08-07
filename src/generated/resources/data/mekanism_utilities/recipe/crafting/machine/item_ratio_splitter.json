@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "A": {
+      "item": "mekanism_utilities:elastic_alloy"
+    },
+    "B": {
+      "tag": "mekanism:personal_storage"
+    },
+    "I": {
+      "tag": "c:ingots/bronze"
+    }
+  },
+  "pattern": [
+    "AIA",
+    "IBI",
+    "AIA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "mekanism_utilities:item_ratio_splitter"
+  }
+}

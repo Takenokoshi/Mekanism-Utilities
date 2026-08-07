@@ -1,5 +1,6 @@
 package com.takenokoshi.mekut.network;
 
+import com.takenokoshi.mekut.network.to_server.PacketGuiRatioSplitter;
 import com.takenokoshi.mekut.network.to_server.PacketGuiSetBurnRate;
 import com.takenokoshi.mekut.network.to_server.PacketGuiXpTank;
 
@@ -17,6 +18,7 @@ public class MekUtPacketHandler extends BasePacketHandler {
     protected void registerClientToServer(PacketRegistrar registrar) {
         registrar.play(PacketGuiSetBurnRate.TYPE, PacketGuiSetBurnRate.STREAM_CODEC);
         registrar.play(PacketGuiXpTank.TYPE, PacketGuiXpTank.STREAM_CODEC);
+        registrar.play(PacketGuiRatioSplitter.TYPE, PacketGuiRatioSplitter.STREAM_CODEC);
     }
 
     @Override

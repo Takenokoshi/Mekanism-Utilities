@@ -1,0 +1,26 @@
+{
+  "entries": [
+    "mekanism_utilities:replace_to_raw/amethyst/cluster",
+    "mekanism_utilities:replace_to_raw/coal/ore",
+    "mekanism_utilities:replace_to_raw/coal/deepslate_ore",
+    "mekanism_utilities:replace_to_raw/certus_quartz/cluster",
+    "mekanism_utilities:replace_to_raw/diamond/ore",
+    "mekanism_utilities:replace_to_raw/diamond/deepslate_ore",
+    "mekanism_utilities:replace_to_raw/emerald/ore",
+    "mekanism_utilities:replace_to_raw/emerald/deepslate_ore",
+    "mekanism_utilities:replace_to_raw/entro/cluster",
+    "mekanism_utilities:replace_to_raw/fluorite/ore",
+    "mekanism_utilities:replace_to_raw/fluorite/deepslate_ore",
+    "mekanism_utilities:replace_to_raw/fluorite/depthrock_ore",
+    "mekanism_utilities:replace_to_raw/fluorite/endstone_ore",
+    "mekanism_utilities:replace_to_raw/fluorite/holystone_ore",
+    "mekanism_utilities:replace_to_raw/fluorite/netherrack_ore",
+    "mekanism_utilities:replace_to_raw/fluorite/shiverstone_ore",
+    "mekanism_utilities:replace_to_raw/lapis_lazuli/ore",
+    "mekanism_utilities:replace_to_raw/lapis_lazuli/deepslate_ore",
+    "mekanism_utilities:replace_to_raw/quartz/nether_ore",
+    "mekanism_utilities:replace_to_raw/redstone/ore",
+    "mekanism_utilities:replace_to_raw/redstone/deepslate_ore"
+  ],
+  "replace": false
+}

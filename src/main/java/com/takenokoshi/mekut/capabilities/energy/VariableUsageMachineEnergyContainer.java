@@ -2,7 +2,6 @@ package com.takenokoshi.mekut.capabilities.energy;
 
 import java.util.function.Predicate;
 
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import mekanism.api.AutomationType;
@@ -26,7 +25,7 @@ public class VariableUsageMachineEnergyContainer<BE extends TileEntityMekanism> 
     }
 
     private VariableUsageMachineEnergyContainer(long maxEnergy, long energyPerTick,
-            Predicate<@NotNull AutomationType> canExtract, Predicate<@NotNull AutomationType> canInsert, BE tile,
+            Predicate<AutomationType> canExtract, Predicate<AutomationType> canInsert, BE tile,
             @Nullable IContentsListener listener) {
         super(maxEnergy, energyPerTick, canExtract, canInsert, tile, listener);
     }

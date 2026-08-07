@@ -71,6 +71,8 @@ public class DataTypeMixin {
     private static void mekanism_utilities$clinitInject(CallbackInfo ci) {
         mekanism_utilities$createNew(MekUtDataType.INPUT1_OUTPUT1, EnumColor.PURPLE);
         mekanism_utilities$createNew(MekUtDataType.INPUT2_OUTPUT2, EnumColor.BRIGHT_GREEN);
+        mekanism_utilities$createNew(MekUtDataType.INPUT_OUTPUT1, EnumColor.PURPLE);
+        mekanism_utilities$createNew(MekUtDataType.INPUT_OUTPUT2, EnumColor.BROWN);
         CODEC = StringRepresentable.fromEnum(DataType::values);
         BY_ID = ByIdMap.continuous(Enum::ordinal, DataType.values(), OutOfBoundsStrategy.WRAP);
         STREAM_CODEC = ByteBufCodecs.idMapper(BY_ID, Enum::ordinal);
@@ -79,7 +81,8 @@ public class DataTypeMixin {
     @ModifyReturnValue(at = { @At("RETURN") }, method = { "canOutput" })
     private boolean mekanism_utilities$modifyCanOutput(boolean original) {
         DataType self = (DataType) (Object) this;
-        return original || MekUtDataType.INPUT1_OUTPUT1.is(self) || MekUtDataType.INPUT2_OUTPUT2.is(self);
+        return original || MekUtDataType.INPUT1_OUTPUT1.is(self) || MekUtDataType.INPUT2_OUTPUT2.is(self)
+                || MekUtDataType.INPUT_OUTPUT1.is(self) || MekUtDataType.INPUT_OUTPUT2.is(self);
     }
 
 }

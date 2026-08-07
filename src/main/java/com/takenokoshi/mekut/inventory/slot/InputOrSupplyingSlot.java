@@ -25,8 +25,8 @@ public class InputOrSupplyingSlot extends LimitChangedInputInventorySlot {
         };
     }
 
-    public static InputOrSupplyingSlot at(Predicate<@NotNull ItemStack> insertPredicate,
-            Predicate<@NotNull ItemStack> isItemValid, @NotNull IContentsListener recipeCacheListener, int x, int y,
+    public static InputOrSupplyingSlot at(Predicate<ItemStack> insertPredicate,
+            Predicate<ItemStack> isItemValid, @NotNull IContentsListener recipeCacheListener, int x, int y,
             int limit) {
         return new InputOrSupplyingSlot(insertPredicate, isItemValid, recipeCacheListener, x, y, limit);
     }
@@ -34,8 +34,8 @@ public class InputOrSupplyingSlot extends LimitChangedInputInventorySlot {
     private Consumer<ItemStack> supplyingStackSetter = (stack) -> {
     };
 
-    protected InputOrSupplyingSlot(Predicate<@NotNull ItemStack> insertPredicate,
-            Predicate<@NotNull ItemStack> isItemValid, @NotNull IContentsListener recipeCacheListener, int x, int y,
+    protected InputOrSupplyingSlot(Predicate<ItemStack> insertPredicate,
+            Predicate<ItemStack> isItemValid, @NotNull IContentsListener recipeCacheListener, int x, int y,
             int limit) {
         super(getModifiedPredicate(insertPredicate), getModifiedPredicate(isItemValid), recipeCacheListener, x, y,
                 limit);

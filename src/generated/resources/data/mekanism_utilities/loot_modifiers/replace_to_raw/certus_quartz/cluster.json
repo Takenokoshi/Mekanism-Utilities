@@ -1,0 +1,11 @@
+{
+  "type": "mekanism_utilities:item_replace",
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "ae2:blocks/quartz_cluster"
+    }
+  ],
+  "from": "ae2:certus_quartz_crystal",
+  "to": "mekanism_utilities:raw_certus_quartz"
+}

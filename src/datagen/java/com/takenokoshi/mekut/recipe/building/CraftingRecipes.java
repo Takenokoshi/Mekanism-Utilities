@@ -27,6 +27,7 @@ import fr.iglee42.evolvedmekanism.tiers.EMFactoryTier;
 import mekanism.common.content.blocktype.FactoryType;
 import mekanism.common.registries.MekanismBlocks;
 import mekanism.common.registries.MekanismItems;
+import mekanism.common.tags.MekanismTags;
 import mekanism.common.util.EnumUtils;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
@@ -36,6 +37,7 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
@@ -184,6 +186,38 @@ public class CraftingRecipes {
                 .requires(MekUtItems.DARK_RED_DYE, 1)
                 .unlockedBy("unlock", has.apply(MekUtItems.DARK_RED_DYE))
                 .save(output, MekUtConstants.rl("crafting/hq_concreate/dark_red_powder"));
+
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.REDSTONE, new ItemStack(MekUtMachines.ITEM_RATIO_SPLITTER, 1))
+                .define('A', MekUtItems.ELASTIC_ALLOY)
+                .define('I', MekanismTags.Items.INGOTS_BRONZE)
+                .define('B', MekanismTags.Items.PERSONAL_STORAGE)
+                .pattern("AIA")
+                .pattern("IBI")
+                .pattern("AIA")
+                .unlockedBy("unlock", has.apply(MekUtItems.ELASTIC_ALLOY))
+                .save(output, MekUtConstants.rl("crafting/machine/item_ratio_splitter"));
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.REDSTONE, new ItemStack(MekUtMachines.FLUID_RATIO_SPLITTER, 1))
+                .define('A', MekUtItems.ELASTIC_ALLOY)
+                .define('I', MekanismTags.Items.INGOTS_BRONZE)
+                .define('B', MekanismBlocks.BASIC_FLUID_TANK)
+                .pattern("AIA")
+                .pattern("IBI")
+                .pattern("AIA")
+                .unlockedBy("unlock", has.apply(MekUtItems.ELASTIC_ALLOY))
+                .save(output, MekUtConstants.rl("crafting/machine/fluid_ratio_splitter"));
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.REDSTONE, new ItemStack(MekUtMachines.CHEMICAL_RATIO_SPLITTER, 1))
+                .define('A', MekUtItems.ELASTIC_ALLOY)
+                .define('I', MekanismTags.Items.INGOTS_BRONZE)
+                .define('B', MekanismBlocks.BASIC_CHEMICAL_TANK)
+                .pattern("AIA")
+                .pattern("IBI")
+                .pattern("AIA")
+                .unlockedBy("unlock", has.apply(MekUtItems.ELASTIC_ALLOY))
+                .save(output, MekUtConstants.rl("crafting/machine/chemical_ratio_splitter"));
+
         NORMAL_MACHINES.forEach(data -> {
             ShapedRecipeBuilder
                     .shaped(RecipeCategory.REDSTONE, data.output)

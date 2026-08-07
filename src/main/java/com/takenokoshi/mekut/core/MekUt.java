@@ -50,6 +50,7 @@ public class MekUt {
         MekUtRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
         MekUtRecipeTypes.RECIPE_TYPES.register(modEventBus);
         MekUtCreativeTabs.CREATIVE_TABS.register(modEventBus);
+        MekUtLootModifiers.LOOT_MODIFIERS.register(modEventBus);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {

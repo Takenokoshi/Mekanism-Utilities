@@ -1,0 +1,31 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "ae2lt"
+    }
+  ],
+  "type": "ae2lt:lightning_simulation",
+  "priority": 0,
+  "inputs": [
+    {
+      "ingredient": {
+        "item": "ae2:singularity"
+      },
+      "count": 512
+    },
+    {
+      "ingredient": {
+        "item": "mekanism_utilities:artificial_star"
+      },
+      "count": 1
+    }
+  ],
+  "result": {
+    "id": "ae2lt:overload_singularity",
+    "count": 1
+  },
+  "totalEnergy": 1000000,
+  "lightningCost": 8,
+  "lightningTier": "high_voltage"
+}

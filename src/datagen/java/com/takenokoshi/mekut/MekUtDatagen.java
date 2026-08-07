@@ -14,6 +14,7 @@ import com.electronwill.nightconfig.core.InMemoryCommentedFormat;
 import com.electronwill.nightconfig.core.concurrent.SynchronizedConfig;
 import com.takenokoshi.mekut.core.MekUtConstants;
 import com.takenokoshi.mekut.lang.MekUtEnglishLangProvider;
+import com.takenokoshi.mekut.lootmodifier.MekUtGLMProvider;
 import com.takenokoshi.mekut.loottable.MekUtLootTableProvider;
 import com.takenokoshi.mekut.model.MekUtBlockModelProvider;
 import com.takenokoshi.mekut.model.MekUtItemModelProvider;
@@ -73,6 +74,7 @@ public class MekUtDatagen {
                 CompletableFuture.completedFuture(TagLookup.empty()), blockTagProvider.contentsGetter(),
                 event.getExistingFileHelper()));
         generator.addProvider(true, new MekUtRecipeProvider(output, lookupProvider));
+        generator.addProvider(true, new MekUtGLMProvider(output, lookupProvider));
         generator.addProvider(true, MekUtLootTableProvider.createBlockLoot(output, lookupProvider));
 
         generator.addProvider(true, new MekUtEnglishLangProvider(output));

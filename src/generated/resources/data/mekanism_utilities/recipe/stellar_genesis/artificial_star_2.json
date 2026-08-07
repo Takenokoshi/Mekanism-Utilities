@@ -1,0 +1,15 @@
+{
+  "type": "mekanism_utilities:stellar_genesis",
+  "left_input": {
+    "amount": 10000000,
+    "chemical": "mekanism:hydrogen"
+  },
+  "output": {
+    "count": 1,
+    "id": "mekanism_utilities:artificial_star"
+  },
+  "right_input": {
+    "amount": 8000000,
+    "chemical": "mekanismgenerators:deuterium"
+  }
+}

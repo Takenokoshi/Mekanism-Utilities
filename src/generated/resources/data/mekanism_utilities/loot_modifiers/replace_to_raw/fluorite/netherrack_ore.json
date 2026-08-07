@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "evolvedmekanism"
+    }
+  ],
+  "type": "mekanism_utilities:item_replace",
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "evolvedmekanism:blocks/netherrack_fluorite_ore"
+    }
+  ],
+  "from": "mekanism:fluorite_gem",
+  "to": "mekanism_utilities:raw_fluorite"
+}
