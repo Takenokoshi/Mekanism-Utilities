@@ -1,12 +1,15 @@
 package com.takenokoshi.mekut.lang;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import com.takenokoshi.mekut.core.MekUtConstants;
 import com.takenokoshi.mekut.enums.MekUtDataType;
 import com.takenokoshi.mekut.registries.MekUtBlocks;
 import com.takenokoshi.mekut.registries.MekUtChemicals;
+import com.takenokoshi.mekut.registries.MekUtEvolvedMachines;
+import com.takenokoshi.mekut.registries.MekUtExtrasMachines;
 import com.takenokoshi.mekut.registries.MekUtFluids;
 import com.takenokoshi.mekut.registries.MekUtItems;
 import com.takenokoshi.mekut.registries.MekUtMachines;
@@ -44,6 +47,34 @@ public class MekUtEnglishLangProvider extends LanguageProvider {
         MekUtFluids.FLUIDS.getFluidEntries().forEach(holder -> {
             add("fluid.mekanism_utilities." + holder.getId().getPath(), format(holder.getId().getPath()));
         });
+        List.of(new DeferredChemical[] {
+                MekUtChemicals.CLEAN_AMETHYST_SLURRY,
+                MekUtChemicals.CLEAN_CERTUS_QUARTZ_SLURRY,
+                MekUtChemicals.CLEAN_COAL_SLURRY,
+                MekUtChemicals.CLEAN_DIAMOND_SLURRY,
+                MekUtChemicals.CLEAN_EMERALD_SLURRY,
+                MekUtChemicals.CLEAN_ENTRO_SLURRY,
+                MekUtChemicals.CLEAN_FLUORITE_SLURRY,
+                MekUtChemicals.CLEAN_LAPIS_LAZULI_SLURRY,
+                MekUtChemicals.CLEAN_NETHERITE_SLURRY,
+                MekUtChemicals.CLEAN_OVERLOAD_SLURRY,
+                MekUtChemicals.CLEAN_QUARTZ_SLURRY,
+                MekUtChemicals.CLEAN_REDSTONE_SLURRY,
+                MekUtChemicals.CLEAN_SILICON_SLURRY,
+                MekUtChemicals.DIRTY_AMETHYST_SLURRY,
+                MekUtChemicals.DIRTY_CERTUS_QUARTZ_SLURRY,
+                MekUtChemicals.DIRTY_COAL_SLURRY,
+                MekUtChemicals.DIRTY_DIAMOND_SLURRY,
+                MekUtChemicals.DIRTY_EMERALD_SLURRY,
+                MekUtChemicals.DIRTY_ENTRO_SLURRY,
+                MekUtChemicals.DIRTY_FLUORITE_SLURRY,
+                MekUtChemicals.DIRTY_LAPIS_LAZULI_SLURRY,
+                MekUtChemicals.DIRTY_NETHERITE_SLURRY,
+                MekUtChemicals.DIRTY_OVERLOAD_SLURRY,
+                MekUtChemicals.DIRTY_QUARTZ_SLURRY,
+                MekUtChemicals.DIRTY_REDSTONE_SLURRY,
+                MekUtChemicals.DIRTY_SILICON_SLURRY,
+        }).forEach(this::addChemical);
         addChemical(MekUtChemicals.SINGULARITY);
         addChemical(MekUtChemicals.ENRICHED_XP);
         addChemical(MekUtChemicals.XP);
@@ -87,10 +118,16 @@ public class MekUtEnglishLangProvider extends LanguageProvider {
                 "This is an energized smelter machine that allows you to gain xp through smelting.");
         addLang(MekUtMachines.XP_TANK.descriptionEntry, "Tank for xp. You can convert chemical xp to player xp.");
 
+        addLang(MekUtMachines.ITEM_RATIO_SPLITTER.descriptionEntry,
+                "Splits input items into two outputs according to a configurable ratio.");
+        addLang(MekUtMachines.FLUID_RATIO_SPLITTER.descriptionEntry,
+                "Splits input fluid into two outputs according to a configurable ratio.");
+        addLang(MekUtMachines.CHEMICAL_RATIO_SPLITTER.descriptionEntry,
+                "Splits input chemical into two outputs according to a configurable ratio.");
+
         
-        addLang(MekUtMachines.ITEM_RATIO_SPLITTER.descriptionEntry, "Splits input items into two outputs according to a configurable ratio.");
-        addLang(MekUtMachines.FLUID_RATIO_SPLITTER.descriptionEntry, "Splits input fluid into two outputs according to a configurable ratio.");
-        addLang(MekUtMachines.CHEMICAL_RATIO_SPLITTER.descriptionEntry, "Splits input chemical into two outputs according to a configurable ratio.");
+        addLang(MekUtEvolvedMachines.COMPACT_ANTIMATTER_PROTOMOLECULAR_TRANSMUTATOR.descriptionEntry, "APT in a single block size");
+        addLang(MekUtExtrasMachines.COMPACT_NAQUADAH_REACTOR.descriptionEntry, "Naquadah reactor in a single block size");
 
         addLang(MekUtDataType.INPUT1_OUTPUT1, "Input(1)・Output(1)");
         addLang(MekUtDataType.INPUT2_OUTPUT2, "Input(2)・Output(2)");
