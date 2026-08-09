@@ -1,0 +1,25 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ores/emerald"
+      }
+    }
+  ],
+  "type": "mekanism:dissolution",
+  "chemical_input": {
+    "amount": 1,
+    "chemical": "mekanism:sulfuric_acid"
+  },
+  "item_input": {
+    "count": 1,
+    "tag": "c:ores/emerald"
+  },
+  "output": {
+    "amount": 1000,
+    "id": "mekanism_utilities:dirty_emerald_slurry"
+  },
+  "per_tick_usage": true
+}

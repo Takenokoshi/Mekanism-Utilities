@@ -4,8 +4,9 @@ import java.util.concurrent.CompletableFuture;
 
 import com.glodblock.github.extendedae.ExtendedAE;
 import com.glodblock.github.extendedae.common.EAESingletons;
+import com.moakiee.ae2lt.AE2LightningTech;
+import com.moakiee.ae2lt.registry.ModItems;
 import com.takenokoshi.mekut.core.MekUtConstants;
-import com.takenokoshi.mekut.enums.MUMaterial;
 import com.takenokoshi.mekut.registries.MekUtItems;
 
 import appeng.core.AppEng;
@@ -39,7 +40,7 @@ public class MekUtGLMProvider extends GlobalLootModifierProvider {
                                         .build()
                         },
                         Items.AMETHYST_SHARD.builtInRegistryHolder(),
-                        MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.AMETHYST)),
+                        MekUtItems.RAW_AMETHYST),
                 new ICondition[] {});
         add("replace_to_raw/coal/ore",
                 new ItemReplaceLootModifier(
@@ -49,7 +50,7 @@ public class MekUtGLMProvider extends GlobalLootModifierProvider {
                                         .build()
                         },
                         Items.COAL.builtInRegistryHolder(),
-                        MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.COAL)),
+                        MekUtItems.RAW_COAL),
                 new ICondition[] {});
         add("replace_to_raw/coal/deepslate_ore",
                 new ItemReplaceLootModifier(
@@ -59,7 +60,7 @@ public class MekUtGLMProvider extends GlobalLootModifierProvider {
                                         .build()
                         },
                         Items.COAL.builtInRegistryHolder(),
-                        MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.COAL)),
+                        MekUtItems.RAW_COAL),
                 new ICondition[] {});
         add("replace_to_raw/certus_quartz/cluster",
                 new ItemReplaceLootModifier(
@@ -69,8 +70,10 @@ public class MekUtGLMProvider extends GlobalLootModifierProvider {
                                         .build()
                         },
                         AEItems.CERTUS_QUARTZ_CRYSTAL.holder(),
-                        MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.CERTUS_QUARTZ)),
-                new ICondition[] {});
+                        MekUtItems.RAW_CERTUS_QUARTZ),
+                new ICondition[] {
+                        new ModLoadedCondition(AppEng.MOD_ID),
+                });
         add("replace_to_raw/diamond/ore",
                 new ItemReplaceLootModifier(
                         new LootItemCondition[] {
@@ -79,7 +82,7 @@ public class MekUtGLMProvider extends GlobalLootModifierProvider {
                                         .build()
                         },
                         Items.DIAMOND.builtInRegistryHolder(),
-                        MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.DIAMOND)),
+                        MekUtItems.RAW_DIAMOND),
                 new ICondition[] {});
         add("replace_to_raw/diamond/deepslate_ore",
                 new ItemReplaceLootModifier(
@@ -89,7 +92,7 @@ public class MekUtGLMProvider extends GlobalLootModifierProvider {
                                         .build()
                         },
                         Items.DIAMOND.builtInRegistryHolder(),
-                        MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.DIAMOND)),
+                        MekUtItems.RAW_DIAMOND),
                 new ICondition[] {});
         add("replace_to_raw/emerald/ore",
                 new ItemReplaceLootModifier(
@@ -99,7 +102,7 @@ public class MekUtGLMProvider extends GlobalLootModifierProvider {
                                         .build()
                         },
                         Items.EMERALD.builtInRegistryHolder(),
-                        MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.EMERALD)),
+                        MekUtItems.RAW_EMERALD),
                 new ICondition[] {});
         add("replace_to_raw/emerald/deepslate_ore",
                 new ItemReplaceLootModifier(
@@ -109,7 +112,7 @@ public class MekUtGLMProvider extends GlobalLootModifierProvider {
                                         .build()
                         },
                         Items.EMERALD.builtInRegistryHolder(),
-                        MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.EMERALD)),
+                        MekUtItems.RAW_EMERALD),
                 new ICondition[] {});
         add("replace_to_raw/entro/cluster",
                 new ItemReplaceLootModifier(
@@ -119,8 +122,10 @@ public class MekUtGLMProvider extends GlobalLootModifierProvider {
                                         .build()
                         },
                         EAESingletons.ENTRO_CRYSTAL.builtInRegistryHolder(),
-                        MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.ENTRO)),
-                new ICondition[] {});
+                        MekUtItems.RAW_ENTRO),
+                new ICondition[] {
+                        new ModLoadedCondition(ExtendedAE.MODID),
+                });
         add("replace_to_raw/fluorite/ore",
                 new ItemReplaceLootModifier(
                         new LootItemCondition[] {
@@ -129,7 +134,7 @@ public class MekUtGLMProvider extends GlobalLootModifierProvider {
                                         .build()
                         },
                         MekanismItems.FLUORITE_GEM,
-                        MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.FLUORITE)),
+                        MekUtItems.RAW_FLUORITE),
                 new ICondition[] {});
         add("replace_to_raw/fluorite/deepslate_ore",
                 new ItemReplaceLootModifier(
@@ -139,7 +144,7 @@ public class MekUtGLMProvider extends GlobalLootModifierProvider {
                                         .build()
                         },
                         MekanismItems.FLUORITE_GEM,
-                        MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.FLUORITE)),
+                        MekUtItems.RAW_FLUORITE),
                 new ICondition[] {});
         add("replace_to_raw/fluorite/depthrock_ore",
                 new ItemReplaceLootModifier(
@@ -149,7 +154,7 @@ public class MekUtGLMProvider extends GlobalLootModifierProvider {
                                         .build()
                         },
                         MekanismItems.FLUORITE_GEM,
-                        MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.FLUORITE)),
+                        MekUtItems.RAW_FLUORITE),
                 new ICondition[] {
                         new ModLoadedCondition(EvolvedMekanism.MODID),
                 });
@@ -161,7 +166,7 @@ public class MekUtGLMProvider extends GlobalLootModifierProvider {
                                         .build()
                         },
                         MekanismItems.FLUORITE_GEM,
-                        MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.FLUORITE)),
+                        MekUtItems.RAW_FLUORITE),
                 new ICondition[] {
                         new ModLoadedCondition(EvolvedMekanism.MODID),
                 });
@@ -173,7 +178,7 @@ public class MekUtGLMProvider extends GlobalLootModifierProvider {
                                         .build()
                         },
                         MekanismItems.FLUORITE_GEM,
-                        MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.FLUORITE)),
+                        MekUtItems.RAW_FLUORITE),
                 new ICondition[] {
                         new ModLoadedCondition(EvolvedMekanism.MODID),
                 });
@@ -185,7 +190,7 @@ public class MekUtGLMProvider extends GlobalLootModifierProvider {
                                         .build()
                         },
                         MekanismItems.FLUORITE_GEM,
-                        MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.FLUORITE)),
+                        MekUtItems.RAW_FLUORITE),
                 new ICondition[] {
                         new ModLoadedCondition(EvolvedMekanism.MODID),
                 });
@@ -197,7 +202,7 @@ public class MekUtGLMProvider extends GlobalLootModifierProvider {
                                         .build()
                         },
                         MekanismItems.FLUORITE_GEM,
-                        MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.FLUORITE)),
+                        MekUtItems.RAW_FLUORITE),
                 new ICondition[] {
                         new ModLoadedCondition(EvolvedMekanism.MODID),
                 });
@@ -208,7 +213,7 @@ public class MekUtGLMProvider extends GlobalLootModifierProvider {
                                         .builder(ResourceLocation.withDefaultNamespace("blocks/lapis_ore")).build()
                         },
                         Items.LAPIS_LAZULI.builtInRegistryHolder(),
-                        MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.LAPIS_LAZULI)),
+                        MekUtItems.RAW_LAPIS_LAZULI),
                 new ICondition[] {});
         add("replace_to_raw/lapis_lazuli/deepslate_ore",
                 new ItemReplaceLootModifier(
@@ -218,7 +223,7 @@ public class MekUtGLMProvider extends GlobalLootModifierProvider {
                                         .build()
                         },
                         Items.LAPIS_LAZULI.builtInRegistryHolder(),
-                        MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.LAPIS_LAZULI)),
+                        MekUtItems.RAW_LAPIS_LAZULI),
                 new ICondition[] {});
         add("replace_to_raw/quartz/nether_ore",
                 new ItemReplaceLootModifier(
@@ -228,8 +233,21 @@ public class MekUtGLMProvider extends GlobalLootModifierProvider {
                                         .build()
                         },
                         Items.QUARTZ.builtInRegistryHolder(),
-                        MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.QUARTZ)),
+                        MekUtItems.RAW_QUATRZ),
                 new ICondition[] {});
+        add("replace_to_raw/overload/cluster",
+                new ItemReplaceLootModifier(
+                        new LootItemCondition[] {
+                                LootTableIdCondition
+                                        .builder(ResourceLocation.fromNamespaceAndPath(AE2LightningTech.MODID,
+                                                "blocks/overload_crystal_cluster"))
+                                        .build()
+                        },
+                        ModItems.OVERLOAD_CRYSTAL,
+                        MekUtItems.RAW_OVERLOAD),
+                new ICondition[] {
+                        new ModLoadedCondition(AE2LightningTech.MODID),
+                });
         add("replace_to_raw/redstone/ore",
                 new ItemReplaceLootModifier(
                         new LootItemCondition[] {
@@ -237,7 +255,7 @@ public class MekUtGLMProvider extends GlobalLootModifierProvider {
                                         .builder(ResourceLocation.withDefaultNamespace("blocks/redstone_ore")).build()
                         },
                         Items.REDSTONE.builtInRegistryHolder(),
-                        MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.REDSTONE)),
+                        MekUtItems.RAW_REDSTONE),
                 new ICondition[] {});
         add("replace_to_raw/redstone/deepslate_ore",
                 new ItemReplaceLootModifier(
@@ -247,7 +265,7 @@ public class MekUtGLMProvider extends GlobalLootModifierProvider {
                                         .build()
                         },
                         Items.REDSTONE.builtInRegistryHolder(),
-                        MekUtItems.RAW_MU_MATERIALS.get(MUMaterial.REDSTONE)),
+                        MekUtItems.RAW_REDSTONE),
                 new ICondition[] {});
     }
 

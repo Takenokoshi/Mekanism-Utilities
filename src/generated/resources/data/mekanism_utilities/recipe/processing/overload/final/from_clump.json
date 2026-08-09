@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "ae2lt"
+    }
+  ],
+  "type": "mekanism:enriching",
+  "input": {
+    "count": 1,
+    "tag": "c:clumps/overload"
+  },
+  "output": {
+    "count": 1,
+    "id": "ae2lt:overload_crystal"
+  }
+}

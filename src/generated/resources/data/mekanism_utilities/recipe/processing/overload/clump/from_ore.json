@@ -1,0 +1,25 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ores/overload"
+      }
+    }
+  ],
+  "type": "mekanism:purifying",
+  "chemical_input": {
+    "amount": 1,
+    "chemical": "mekanism:oxygen"
+  },
+  "item_input": {
+    "count": 1,
+    "tag": "c:ores/overload"
+  },
+  "output": {
+    "count": 4,
+    "id": "mekanism_utilities:overload_clump"
+  },
+  "per_tick_usage": true
+}

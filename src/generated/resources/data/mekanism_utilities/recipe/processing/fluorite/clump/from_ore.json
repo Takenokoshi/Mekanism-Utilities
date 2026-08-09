@@ -1,0 +1,25 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ores/fluorite"
+      }
+    }
+  ],
+  "type": "mekanism:purifying",
+  "chemical_input": {
+    "amount": 1,
+    "chemical": "mekanism:oxygen"
+  },
+  "item_input": {
+    "count": 2,
+    "tag": "c:ores/fluorite"
+  },
+  "output": {
+    "count": 9,
+    "id": "mekanism_utilities:fluorite_clump"
+  },
+  "per_tick_usage": true
+}

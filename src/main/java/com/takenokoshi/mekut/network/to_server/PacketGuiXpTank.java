@@ -1,6 +1,6 @@
 package com.takenokoshi.mekut.network.to_server;
 
-import com.takenokoshi.mekut.blockentity.normalmachine.BlockEntityXpTank;
+import com.takenokoshi.mekut.blockentity.machine.BlockEntityXpTank;
 import com.takenokoshi.mekut.core.MekUtConstants;
 
 import io.netty.buffer.ByteBuf;

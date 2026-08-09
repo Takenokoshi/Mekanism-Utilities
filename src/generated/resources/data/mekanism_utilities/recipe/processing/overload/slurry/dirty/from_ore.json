@@ -1,0 +1,25 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ores/overload"
+      }
+    }
+  ],
+  "type": "mekanism:dissolution",
+  "chemical_input": {
+    "amount": 1,
+    "chemical": "mekanism:sulfuric_acid"
+  },
+  "item_input": {
+    "count": 1,
+    "tag": "c:ores/overload"
+  },
+  "output": {
+    "amount": 1000,
+    "id": "mekanism_utilities:dirty_overload_slurry"
+  },
+  "per_tick_usage": true
+}

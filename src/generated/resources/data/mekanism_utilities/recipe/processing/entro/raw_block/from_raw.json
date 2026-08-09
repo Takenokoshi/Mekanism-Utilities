@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "mekanism_utilities:raw_entro"
+    },
+    {
+      "item": "mekanism_utilities:raw_entro"
+    },
+    {
+      "item": "mekanism_utilities:raw_entro"
+    },
+    {
+      "item": "mekanism_utilities:raw_entro"
+    },
+    {
+      "item": "mekanism_utilities:raw_entro"
+    },
+    {
+      "item": "mekanism_utilities:raw_entro"
+    },
+    {
+      "item": "mekanism_utilities:raw_entro"
+    },
+    {
+      "item": "mekanism_utilities:raw_entro"
+    },
+    {
+      "item": "mekanism_utilities:raw_entro"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "mekanism_utilities:raw_entro_block"
+  }
+}

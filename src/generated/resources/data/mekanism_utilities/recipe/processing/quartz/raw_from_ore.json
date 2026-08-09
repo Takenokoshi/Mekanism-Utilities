@@ -1,4 +1,13 @@
 {
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ores/quartz"
+      }
+    }
+  ],
   "type": "mekanism:metallurgic_infusing",
   "chemical_input": {
     "amount": 100,
@@ -9,7 +18,7 @@
     "tag": "c:ores/quartz"
   },
   "output": {
-    "count": 3,
+    "count": 4,
     "id": "mekanism_utilities:raw_quartz"
   },
   "per_tick_usage": false

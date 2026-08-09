@@ -1,6 +1,7 @@
 package com.takenokoshi.mekut.recipe.building;
 
-import com.fxd927.mekanismelements.common.registries.MSGases;
+import fixdol.mekanismelements.common.MekanismElements;
+import fixdol.mekanismelements.common.registries.MSGases;
 import com.takenokoshi.mekut.core.MekUtConstants;
 import com.takenokoshi.mekut.recipe.builder.BiChemicalToItemRecipeBuilder;
 import com.takenokoshi.mekut.registries.MekUtItems;
@@ -10,6 +11,7 @@ import mekanism.api.recipes.ingredients.creator.IngredientCreatorAccess;
 import mekanism.common.registries.MekanismChemicals;
 import mekanism.generators.common.registries.GeneratorsChemicals;
 import net.minecraft.data.recipes.RecipeOutput;
+import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 
 public class StellarGenesisRecipes {
     public static void build(RecipeOutput output) {
@@ -18,6 +20,7 @@ public class StellarGenesisRecipes {
                 creatorC.from(MekanismChemicals.HYDROGEN.asStack(1000000)),
                 creatorC.from(MSGases.HELIUM.asStack(200000)),
                 MekUtItems.ARTIFICIAL_STAR.asStack())
+                .addCondition(new ModLoadedCondition(MekanismElements.MODID))
                 .build(output, MekUtConstants.rl("stellar_genesis/artificial_star"));
         BiChemicalToItemRecipeBuilder.stellarGenesis(
                 creatorC.from(MekanismChemicals.HYDROGEN.asStack(10000000)),

@@ -1,4 +1,13 @@
 {
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:mod_loaded",
+        "modid": "advanced_ae"
+      }
+    }
+  ],
   "type": "minecraft:crafting_shaped",
   "category": "redstone",
   "key": {
@@ -11,16 +20,13 @@
     "C": {
       "item": "mekanism:steel_casing"
     },
-    "D": {
-      "item": "advanced_ae:reaction_chamber"
-    },
     "E": {
       "item": "mekanism:pressurized_reaction_chamber"
     }
   },
   "pattern": [
     "ABA",
-    "DCE",
+    "ECE",
     "ABA"
   ],
   "result": {

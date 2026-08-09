@@ -1,0 +1,11 @@
+{
+  "type": "mekanism:crushing",
+  "input": {
+    "count": 1,
+    "tag": "c:clumps/amethyst"
+  },
+  "output": {
+    "count": 1,
+    "id": "mekanism_utilities:amethyst_dust"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:raw_materials/overload"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "ae2lt:overload_crystal"
+  }
+}

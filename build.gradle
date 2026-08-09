@@ -126,10 +126,10 @@ dependencies {
 
     //Addons of Mekanism
     implementation "curse.maven:mekanism-addon-library-1607060:8527277"
-    implementation "curse.maven:mekanism-empowered-1256390:8064666"
-    implementation "curse.maven:mekanism-empowered-core-1256399:8064667"
-    implementation "curse.maven:kotlin-for-forge-351264:7471280"
-    implementation "curse.maven:mekanism-elements-1103224:7696139"
+
+    implementation "curse.maven:mekanism-extras-1026040:7921191"
+    implementation "curse.maven:evolved-mekanism-1230085:7599592"
+    implementation "curse.maven:iglee-library-541199:7000755"
 
     //AE2 and its addons
     implementation "curse.maven:ae2addonlib-1366135:7222312"
@@ -141,18 +141,16 @@ dependencies {
     implementation "curse.maven:advancedae-1084104:7849217"
     implementation "curse.maven:ex-pattern-provider-892005:8025439"
     implementation "curse.maven:mega-cells-622112:7952621"
+    implementation "curse.maven:ae2-lightning-tech-1527395:8575479"
+    implementation "curse.maven:thunderbolt-core-1631756:8592271"
 
     //JEI
     implementation "curse.maven:jei-238222:7391682"
     implementation "curse.maven:ae2-jei-integration-1074338:7727898"
 
     //Datagen only
+    datagenImplementation "curse.maven:mekanism-elements-1103224:8531162"
     datagenImplementation "curse.maven:applied-flux-965012:8204513"
-    datagenImplementation "curse.maven:mekanism-extras-1026040:7921191"
-    datagenImplementation "curse.maven:evolved-mekanism-1230085:7599592"
-    datagenImplementation "curse.maven:iglee-library-541199:7000755"
-    datagenImplementation "curse.maven:ae2-lightning-tech-1527395:8575479"
-    datagenImplementation "curse.maven:thunderbolt-core-1631756:8592271"
     datagenImplementation "curse.maven:mekanism-more-machine-1275257:7919872"
 
 

@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "mekanism_utilities:raw_netherite"
+    },
+    {
+      "item": "mekanism_utilities:raw_netherite"
+    },
+    {
+      "item": "mekanism_utilities:raw_netherite"
+    },
+    {
+      "item": "mekanism_utilities:raw_netherite"
+    },
+    {
+      "item": "mekanism_utilities:raw_netherite"
+    },
+    {
+      "item": "mekanism_utilities:raw_netherite"
+    },
+    {
+      "item": "mekanism_utilities:raw_netherite"
+    },
+    {
+      "item": "mekanism_utilities:raw_netherite"
+    },
+    {
+      "item": "mekanism_utilities:raw_netherite"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "mekanism_utilities:raw_netherite_block"
+  }
+}

@@ -1,6 +1,7 @@
 package com.takenokoshi.mekut.recipe.building;
 
-import com.fxd927.mekanismelements.common.registries.MSItems;
+import fixdol.mekanismelements.common.MekanismElements;
+import fixdol.mekanismelements.common.registries.MSItems;
 import com.takenokoshi.mekut.core.MekUtConstants;
 
 import mekanism.api.datagen.recipe.builder.ItemStackChemicalToItemStackRecipeBuilder;
@@ -12,6 +13,7 @@ import mekanism.common.registries.MekanismItems;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
+import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 
 public class InjectingRecipes {
 
@@ -38,6 +40,7 @@ public class InjectingRecipes {
                         creatorC.from(MekanismChemicals.SULFURIC_ACID.asStack(1)),
                         MSItems.DUST_BERYLLIUM.asStack(1),
                         true)
+                .addCondition(new ModLoadedCondition(MekanismElements.MODID))
                 .build(output, MekUtConstants.rl("injecting/beryllium_dust"));
     }
 }

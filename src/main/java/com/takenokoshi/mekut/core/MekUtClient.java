@@ -1,5 +1,7 @@
 package com.takenokoshi.mekut.core;
 
+import com.takenokoshi.mekut.registries.MekUtEvolvedScreens;
+import com.takenokoshi.mekut.registries.MekUtExtrasScreens;
 import com.takenokoshi.mekut.registries.MekUtFluids;
 import com.takenokoshi.mekut.registries.MekUtScreens;
 
@@ -12,6 +14,7 @@ import net.minecraft.world.level.material.Fluid;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
@@ -24,6 +27,12 @@ public class MekUtClient extends MekUt {
         super(modEventBus, modContainer);
         modEventBus.addListener(this::clientSetup);
         modEventBus.addListener(MekUtScreens::registerScreens);
+        if (ModList.get().isLoaded("evolvedmekanism")) {
+            modEventBus.addListener(MekUtEvolvedScreens::registerScreens);
+        }
+        if (ModList.get().isLoaded("mekanism_extras")) {
+            modEventBus.addListener(MekUtExtrasScreens::registerScreens);
+        }
         modEventBus.addListener(this::registerItemColorHandlers);
         modEventBus.addListener(this::registerClientExtensions);
     }

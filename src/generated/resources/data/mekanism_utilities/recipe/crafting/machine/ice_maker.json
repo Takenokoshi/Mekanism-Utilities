@@ -1,4 +1,13 @@
 {
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:mod_loaded",
+        "modid": "ae2"
+      }
+    }
+  ],
   "type": "minecraft:crafting_shaped",
   "category": "redstone",
   "key": {
@@ -12,7 +21,7 @@
       "item": "mekanism:steel_casing"
     },
     "D": {
-      "item": "ae2:entropy_manipulator"
+      "item": "minecraft:blue_ice"
     }
   },
   "pattern": [

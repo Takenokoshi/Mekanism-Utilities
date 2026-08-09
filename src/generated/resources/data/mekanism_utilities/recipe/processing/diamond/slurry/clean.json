@@ -1,0 +1,15 @@
+{
+  "type": "mekanism:washing",
+  "chemical_input": {
+    "amount": 1,
+    "chemical": "mekanism_utilities:dirty_diamond_slurry"
+  },
+  "fluid_input": {
+    "amount": 5,
+    "tag": "c:water"
+  },
+  "output": {
+    "amount": 1,
+    "id": "mekanism_utilities:clean_diamond_slurry"
+  }
+}

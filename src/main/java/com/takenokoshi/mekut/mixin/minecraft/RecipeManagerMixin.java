@@ -35,6 +35,7 @@ public class RecipeManagerMixin {
                         "processing/fluorite/to_" + name + "_ore"));
             }
         }
+        result.remove(ResourceLocation.fromNamespaceAndPath("mekanismelements", "dissolution/beryllium"));
         return result;
     }
 }

@@ -1,6 +1,7 @@
 package com.takenokoshi.mekut.model;
 
 import com.takenokoshi.mekut.core.MekUtConstants;
+import com.takenokoshi.mekut.enums.MekUtMaterial;
 import com.takenokoshi.mekut.registries.MekUtItems;
 
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -20,30 +21,15 @@ public class MekUtItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
 
-        MekUtItems.RAW_MU_MATERIALS.forEach((material, registry) -> {
-            simpleItem(registry.get()).texture("layer0", MekUtConstants.rl("item/raw/" + material.name));
-        });
-        MekUtItems.MU_MATERIALS_CLUMP.forEach((material, registry) -> {
-            simpleItem(registry.get()).texture("layer0", MekUtConstants.rl("item/clump/" + material.name));
-        });
-        MekUtItems.MU_MATERIALS_CRYSTAL.forEach((material, registry) -> {
-            simpleItem(registry.get()).texture("layer0", MekUtConstants.rl("item/crystal/" + material.name));
-        });
-        MekUtItems.MU_MATERIALS_DIRTY_DUST.forEach((material, registry) -> {
-            simpleItem(registry.get()).texture("layer0", MekUtConstants.rl("item/dirty_dust/" + material.name));
-        });
-        MekUtItems.MU_MATERIALS_SHARD.forEach((material, registry) -> {
-            simpleItem(registry.get()).texture("layer0", MekUtConstants.rl("item/shard/" + material.name));
-        });
-
         simpleItem(MekUtItems.ARTIFICIAL_STAR.get())
                 .texture("layer0", MekUtConstants.rl("item/artificial_star"));
 
         simpleItem(MekUtItems.XP_CRYSTAL.get()).texture("layer0", MekUtConstants.rl("item/crystal/xp"));
 
-        simpleItem(MekUtItems.AMETHYST_DUST.get()).texture("layer0", MekUtConstants.rl("item/dust/amethyst_dust"));
+        simpleItem(MekUtItems.AMETHYST_DUST.get()).texture("layer0", MekUtConstants.rl("item/dust/amethyst"));
         simpleItem(MekUtItems.GOLDEN_REDSTONE.get()).texture("layer0", MekUtConstants.rl("item/dust/golden_redstone"));
         simpleItem(MekUtItems.IRIDIUM_DUST.get()).texture("layer0", MekUtConstants.rl("item/dust/iridium"));
+        simpleItem(MekUtItems.SILICON_DUST.get()).texture("layer0", MekUtConstants.rl("item/dust/silicon"));
 
         simpleItem(MekUtItems.REFINED_AMETHYST_INGOT.get())
                 .texture("layer0", MekUtConstants.rl("item/ingot/refined_amethyst"));
@@ -76,12 +62,17 @@ public class MekUtItemModelProvider extends ItemModelProvider {
 
         simpleItem(MekUtItems.ME_INFINITY_RAINBOW_CELL.get())
                 .texture("layer0", MekUtConstants.rl("item/cell/infinity_rainbow"));
-        simpleItem(MekUtItems.ME_INFINITY_STONE_CELL.get())
-                .texture("layer0", MekUtConstants.rl("item/cell/infinity_stone"));
-        simpleItem(MekUtItems.MEGA_BULK_FLUID_STORAGE_CELL.get())
-                .texture("layer0", MekUtConstants.rl("item/cell/mega_bulk_fluid"));
-        simpleItem(MekUtItems.MEGA_BULK_CHEMICAL_STORAGE_CELL.get())
-                .texture("layer0", MekUtConstants.rl("item/cell/mega_bulk_chemical"));
+
+        MekUtMaterial.MATERIALS.forEach(material -> {
+            simpleItem(material.raw().get())
+                    .texture("layer0", MekUtConstants.rl("item/raw/" + material.name()));
+            simpleItem(material.crystal().get())
+                    .texture("layer0", MekUtConstants.rl("item/crystal/" + material.name()));
+            simpleItem(material.shard().get())
+                    .texture("layer0", MekUtConstants.rl("item/shard/" + material.name()));
+            simpleItem(material.clump().get())
+                    .texture("layer0", MekUtConstants.rl("item/clump/" + material.name()));
+        });
 
         simpleItem(MekUtItems.SUPPLIER_BASE.get())
                 .texture("layer0", MekUtConstants.rl("item/supplier/base"));

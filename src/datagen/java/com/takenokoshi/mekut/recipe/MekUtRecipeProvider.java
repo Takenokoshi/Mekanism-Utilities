@@ -17,8 +17,6 @@ public class MekUtRecipeProvider extends RecipeProvider {
 
     @Override
     protected void buildRecipes(RecipeOutput output) {
-        AAEReactionRecipes.build(output);
-        AdsorptionRecipes.build(output);
         AntiprotonicNucleoSynthesizeRecipes.build(output);
         ChemicalConvertionRecipes.build(output);
         ChemicalCutRecipes.build(output);
@@ -27,7 +25,6 @@ public class MekUtRecipeProvider extends RecipeProvider {
         CombiningRecipes.build(output);
         CompressingRecipes.build(output);
         CraftingRecipes.build(output, RecipeProvider::has);
-        CrystalAssemblerRecipes.build(output);
         CrystallizingRecipes.build(output);
         EnrichingRecipes.build(output);
         IceMakerRecipes.build(output);
@@ -35,12 +32,12 @@ public class MekUtRecipeProvider extends RecipeProvider {
         LazerCompressNucleoSynthesizeRecipes.build(output);
         MekReactionRecipes.build(output);
         MetallurgicInfusingRecipes.build(output);
-        MUMaterialProcessRecipes.build(output, RecipeProvider::has);
+        MaterialProcessRecipes.build(output, RecipeProvider::has);
         PaintingRecipes.build(output);
         PigmentExtractingRecipes.build(output);
         RotaryRecipes.build(output);
-        SmallDigitalAssemblerRecipes.build(output);
-        SmallDigitalReactionChamberRecipes.build(output);
+        SDARecipes.build(output);
+        SDRCRecipes.build(output);
         StellarGenesisRecipes.build(output);
     }
 

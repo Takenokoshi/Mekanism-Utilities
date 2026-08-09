@@ -44,12 +44,6 @@ public class MekUtEnglishLangProvider extends LanguageProvider {
         MekUtFluids.FLUIDS.getFluidEntries().forEach(holder -> {
             add("fluid.mekanism_utilities." + holder.getId().getPath(), format(holder.getId().getPath()));
         });
-        MekUtChemicals.MU_MATERIALS_CLEAN_SLURRY.forEach((material, registry) -> {
-            add(registry.getTranslationKey(), format(registry.getId().getPath()));
-        });
-        MekUtChemicals.MU_MATERIALS_DIRTY_SLURRY.forEach((material, registry) -> {
-            add(registry.getTranslationKey(), format(registry.getId().getPath()));
-        });
         addChemical(MekUtChemicals.SINGULARITY);
         addChemical(MekUtChemicals.ENRICHED_XP);
         addChemical(MekUtChemicals.XP);
@@ -75,8 +69,6 @@ public class MekUtEnglishLangProvider extends LanguageProvider {
         addLang(MekUtMachines.COMPACT_SUPERCRITICAL_PHASE_SHIFTER.descriptionEntry, "SPS in a single block size");
         addLang(MekUtMachines.COMPACT_THERMAL_EVAPOLATION_PLANT.descriptionEntry,
                 "Thermal Evaporation Plant in a single block size");
-        addLang(MekUtMachines.MEKSTYLED_CHARGER.descriptionEntry,
-                "This is a machine that reconstructs the AE2 Charger in the style of Mekanism.\\nThe reaction chamber of the AdvancedAE is probably more convenient.");
         addLang(MekUtMachines.CHEMICAL_CUTTER.descriptionEntry,
                 "This is a machine that creates AE2 printed processor from Mekanism crystals.");
         addLang(MekUtMachines.ICE_MAKER.descriptionEntry,

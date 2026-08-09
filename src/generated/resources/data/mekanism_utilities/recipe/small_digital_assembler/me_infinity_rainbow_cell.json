@@ -1,0 +1,47 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "appmek"
+    }
+  ],
+  "type": "mekanism_utilities:small_digital_assembler",
+  "chemical_input": {
+    "amount": 10000,
+    "chemical": "mekanism:ethene"
+  },
+  "fluid_input": {
+    "amount": 10000,
+    "tag": "c:lava"
+  },
+  "list_item_input": [
+    {
+      "count": 4,
+      "item": "mekanism:pigment_extractor"
+    },
+    {
+      "count": 2,
+      "item": "ae2:cell_component_4k"
+    },
+    {
+      "count": 16,
+      "item": "mekanism:dynamic_tank"
+    },
+    {
+      "count": 16,
+      "item": "mekanism:dye_base"
+    },
+    {
+      "count": 8,
+      "item": "ae2:quartz_vibrant_glass"
+    },
+    {
+      "count": 32,
+      "tag": "c:ingots/tin"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "mekanism_utilities:me_infinity_rainbow_cell"
+  }
+}

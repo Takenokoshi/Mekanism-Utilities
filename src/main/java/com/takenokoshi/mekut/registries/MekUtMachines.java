@@ -15,25 +15,24 @@ import com.takenokoshi.mekut.blockentity.interfaces.machine.IFluidToObjectMachin
 import com.takenokoshi.mekut.blockentity.interfaces.machine.IItemStackChemicalToItemStackMachine;
 import com.takenokoshi.mekut.blockentity.interfaces.machine.IItemStackListFluidChemicalToItemFluidChemicalRecipeMachine;
 import com.takenokoshi.mekut.blockentity.interfaces.machine.IItemStackListFluidChemicalToItemRecipeMachine;
+import com.takenokoshi.mekut.blockentity.machine.BEChemicalCutter;
+import com.takenokoshi.mekut.blockentity.machine.BECompactBoiler;
+import com.takenokoshi.mekut.blockentity.machine.BECompactFissionReactor;
+import com.takenokoshi.mekut.blockentity.machine.BECompactFusionReactor;
+import com.takenokoshi.mekut.blockentity.machine.BECompactIndustrialTurbine;
+import com.takenokoshi.mekut.blockentity.machine.BECompactSPS;
+import com.takenokoshi.mekut.blockentity.machine.BECompactThermalEvaporationPlant;
+import com.takenokoshi.mekut.blockentity.machine.BEIceMaker;
+import com.takenokoshi.mekut.blockentity.machine.BELazerCompressNucleoSynthesizer;
+import com.takenokoshi.mekut.blockentity.machine.BESmallDigitalAssembler;
+import com.takenokoshi.mekut.blockentity.machine.BESmallDigitalReactionChamber;
+import com.takenokoshi.mekut.blockentity.machine.BEStellarGenesisChamber;
+import com.takenokoshi.mekut.blockentity.machine.BESubMaterialConverter;
+import com.takenokoshi.mekut.blockentity.machine.BETweakedEnergizedSmelter;
+import com.takenokoshi.mekut.blockentity.machine.BlockEntityXpTank;
 import com.takenokoshi.mekut.blockentity.misc.BEChemicalRatioSplitter;
 import com.takenokoshi.mekut.blockentity.misc.BEFluidRatioSplitter;
 import com.takenokoshi.mekut.blockentity.misc.BEItemRatioSplitter;
-import com.takenokoshi.mekut.blockentity.normalmachine.BEChemicalCutter;
-import com.takenokoshi.mekut.blockentity.normalmachine.BECompactThermalEvaporationPlant;
-import com.takenokoshi.mekut.blockentity.normalmachine.BECompactBoiler;
-import com.takenokoshi.mekut.blockentity.normalmachine.BECompactFissionReactor;
-import com.takenokoshi.mekut.blockentity.normalmachine.BECompactFusionReactor;
-import com.takenokoshi.mekut.blockentity.normalmachine.BECompactIndustrialTurbine;
-import com.takenokoshi.mekut.blockentity.normalmachine.BECompactSPS;
-import com.takenokoshi.mekut.blockentity.normalmachine.BEIceMaker;
-import com.takenokoshi.mekut.blockentity.normalmachine.BELazerCompressNucleoSynthesizer;
-import com.takenokoshi.mekut.blockentity.normalmachine.BEMekStyledCharger;
-import com.takenokoshi.mekut.blockentity.normalmachine.BESmallDigitalAssembler;
-import com.takenokoshi.mekut.blockentity.normalmachine.BESmallDigitalReactionChamber;
-import com.takenokoshi.mekut.blockentity.normalmachine.BEStellarGenesisChamber;
-import com.takenokoshi.mekut.blockentity.normalmachine.BESubMaterialConverter;
-import com.takenokoshi.mekut.blockentity.normalmachine.BETweakedEnergizedSmelter;
-import com.takenokoshi.mekut.blockentity.normalmachine.BlockEntityXpTank;
 import com.takenokoshi.mekut.core.MekUtConstants;
 import com.takenokoshi.mekut.core.MekUtMathUtils;
 import mekanism.api.Upgrade;
@@ -170,24 +169,6 @@ public class MekUtMachines {
                                     MekanismConfig.storage.antiprotonicNucleosynthesizer)
                             .withSound(MekanismSounds.ANTIPROTONIC_NUCLEOSYNTHESIZER)
                             .withSupportedUpgrades(Upgrade.SPEED, Upgrade.ENERGY, Upgrade.MUFFLING));
-
-    public static final SimpleMachineRegistryObject<BEMekStyledCharger> MEKSTYLED_CHARGER = MACHINES
-            .registerSimple("mekstyled_charger",
-                    AttachedSideConfig.ELECTRIC_MACHINE,
-                    holder -> holder
-                            .addAttachmentOnlyContainers(ContainerType.ITEM, () -> ItemSlotsBuilder.builder()
-                                    .addInput(1)
-                                    .addOutput()
-                                    .addEnergy()
-                                    .build()),
-                    BEMekStyledCharger::new,
-                    BEMekStyledCharger.class,
-                    builder -> builder
-                            .withSideConfig(TransmissionType.ITEM, TransmissionType.ENERGY)
-                            .withEnergyConfig(MekanismConfig.usage.enrichmentChamber,
-                                    MekanismConfig.storage.enrichmentChamber)
-                            .withSound(MekanismSounds.ENRICHMENT_CHAMBER)
-                            .withSupportedUpgrades(Upgrade.ENERGY, Upgrade.SPEED, Upgrade.MUFFLING));
 
     public static final GuiSizedMachineRegistryObject<BESmallDigitalAssembler> SMALL_DIGITAL_ASSEMBLER = MACHINES
             .registerGuiSized("small_digital_assembler",

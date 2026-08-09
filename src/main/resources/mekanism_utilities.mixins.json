@@ -2,6 +2,7 @@
     "required": true,
     "package": "com.takenokoshi.mekut.mixin",
     "compatibilityLevel": "JAVA_21",
+    "plugin": "com.takenokoshi.mekut.mixin.MekUtMixinConfig",
     "mixins": [
         "mekanism.DataTypeMixin",
         "minecraft.RecipeManagerMixin",

@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
-import com.fxd927.mekanismelements.common.registries.MSItems;
+import fixdol.mekanismelements.common.MekanismElements;
+import fixdol.mekanismelements.common.registries.MSItems;
+import com.glodblock.github.extendedae.ExtendedAE;
 import com.glodblock.github.extendedae.common.EAESingletons;
 import com.jerry.mekaf.common.content.blocktype.AdvancedFactoryType;
 import com.jerry.mekaf.common.registries.AdvancedFactoryBlocks;
@@ -17,7 +19,7 @@ import com.takenokoshi.mekut.core.MekUtConstants;
 import com.takenokoshi.mekut.registries.MekUtItems;
 import com.takenokoshi.mekut.registries.MekUtMachines;
 
-import appeng.core.definitions.AEBlocks;
+import appeng.core.AppEng;
 import appeng.core.definitions.AEItems;
 import fr.iglee42.emgenerators.registries.EMGenBlocks;
 import fr.iglee42.evolvedmekanism.EvolvedMekanism;
@@ -40,7 +42,10 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
+import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
+import net.neoforged.neoforge.common.conditions.NotCondition;
+import net.pedroksl.advanced_ae.AdvancedAE;
 import net.pedroksl.advanced_ae.common.definitions.AAEBlocks;
 import net.pedroksl.advanced_ae.common.definitions.AAEItems;
 
@@ -84,7 +89,22 @@ public class CraftingRecipes {
                 .pattern("DCD")
                 .pattern("ABA")
                 .unlockedBy("unlock", has.apply(EAESingletons.CIRCUIT_CUTTER))
-                .save(output, MekUtConstants.rl("crafting/machine/chemical_cutter"));
+                .save(output.withConditions(new ICondition[] {
+                        new ModLoadedCondition(ExtendedAE.MODID),
+                }), MekUtConstants.rl("crafting/machine/chemical_cutter_eae"));
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.REDSTONE, MekUtMachines.CHEMICAL_CUTTER)
+                .define('C', MekanismBlocks.STEEL_CASING)
+                .define('A', MekanismItems.REINFORCED_ALLOY)
+                .define('B', MekUtItems.STANDARD_CONTROL_CIRCUIT)
+                .define('D', Items.STONECUTTER)
+                .pattern("ABA")
+                .pattern("DCD")
+                .pattern("ABA")
+                .unlockedBy("unlock", has.apply(Items.STONECUTTER))
+                .save(output.withConditions(new ICondition[] {
+                        new NotCondition(new ModLoadedCondition(ExtendedAE.MODID)),
+                }), MekUtConstants.rl("crafting/machine/chemical_cutter"));
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.REDSTONE, MekUtMachines.ICE_MAKER)
                 .define('C', MekanismBlocks.STEEL_CASING)
@@ -95,7 +115,22 @@ public class CraftingRecipes {
                 .pattern("DCD")
                 .pattern("ABA")
                 .unlockedBy("unlock", has.apply(Items.ICE))
-                .save(output, MekUtConstants.rl("crafting/machine/ice_maker"));
+                .save(output.withConditions(new ICondition[] {
+                        new ModLoadedCondition(AppEng.MOD_ID),
+                }), MekUtConstants.rl("crafting/machine/ice_maker_ae2"));
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.REDSTONE, MekUtMachines.ICE_MAKER)
+                .define('C', MekanismBlocks.STEEL_CASING)
+                .define('A', ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "ingots/copper")))
+                .define('B', MekUtItems.DIGITAL_CONTROL_CIRCUIT)
+                .define('D', Items.BLUE_ICE)
+                .pattern("ABA")
+                .pattern("DCD")
+                .pattern("ABA")
+                .unlockedBy("unlock", has.apply(Items.ICE))
+                .save(output.withConditions(new ICondition[] {
+                        new NotCondition(new ModLoadedCondition(AppEng.MOD_ID)),
+                }), MekUtConstants.rl("crafting/machine/ice_maker"));
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.REDSTONE, MekUtMachines.LAZER_COMPRESS_NUCLEO_SYNTHESIZER)
                 .define('C', MekanismBlocks.STEEL_CASING)
@@ -117,7 +152,22 @@ public class CraftingRecipes {
                 .pattern("DCD")
                 .pattern("ABA")
                 .unlockedBy("unlock", has.apply(EAESingletons.CRYSTAL_ASSEMBLER))
-                .save(output, MekUtConstants.rl("crafting/machine/small_digital_assembler"));
+                .save(output.withConditions(new ICondition[] {
+                        new ModLoadedCondition(ExtendedAE.MODID)
+                }), MekUtConstants.rl("crafting/machine/small_digital_assembler_eae"));
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.REDSTONE, MekUtMachines.SMALL_DIGITAL_ASSEMBLER)
+                .define('C', MekanismBlocks.STEEL_CASING)
+                .define('A', ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "ingots/bronze")))
+                .define('B', MekUtItems.DIGITAL_CONTROL_CIRCUIT)
+                .define('D', Items.CRAFTER)
+                .pattern("ABA")
+                .pattern("DCD")
+                .pattern("ABA")
+                .unlockedBy("unlock", has.apply(Items.CRAFTER))
+                .save(output.withConditions(new ICondition[] {
+                        new NotCondition(new ModLoadedCondition(ExtendedAE.MODID))
+                }), MekUtConstants.rl("crafting/machine/small_digital_assembler"));
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.REDSTONE, MekUtMachines.SMALL_DIGITAL_REACTION_CHAMBER)
                 .define('C', MekanismBlocks.STEEL_CASING)
@@ -129,7 +179,22 @@ public class CraftingRecipes {
                 .pattern("DCE")
                 .pattern("ABA")
                 .unlockedBy("unlock", has.apply(AAEBlocks.REACTION_CHAMBER))
-                .save(output, MekUtConstants.rl("crafting/machine/small_digital_reaction_chamber"));
+                .save(output.withConditions(new ICondition[] {
+                        new ModLoadedCondition(AdvancedAE.MOD_ID),
+                }), MekUtConstants.rl("crafting/machine/small_digital_reaction_chamber_aae"));
+        ShapedRecipeBuilder
+                .shaped(RecipeCategory.REDSTONE, MekUtMachines.SMALL_DIGITAL_REACTION_CHAMBER)
+                .define('C', MekanismBlocks.STEEL_CASING)
+                .define('A', ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "ingots/steel")))
+                .define('B', MekUtItems.STANDARD_CONTROL_CIRCUIT)
+                .define('E', MekanismBlocks.PRESSURIZED_REACTION_CHAMBER)
+                .pattern("ABA")
+                .pattern("ECE")
+                .pattern("ABA")
+                .unlockedBy("unlock", has.apply(MekanismBlocks.PRESSURIZED_REACTION_CHAMBER))
+                .save(output.withConditions(new ICondition[] {
+                        new NotCondition(new ModLoadedCondition(AdvancedAE.MOD_ID)),
+                }), MekUtConstants.rl("crafting/machine/small_digital_reaction_chamber"));
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.REDSTONE, MekUtMachines.STELLAR_GENESIS_CHAMBER)
                 .define('C', MekanismBlocks.STEEL_CASING)
@@ -173,19 +238,25 @@ public class CraftingRecipes {
                 .pattern("SBS")
                 .pattern("AFA")
                 .unlockedBy("unlock", has.apply(MekUtItems.COMET_CONTROL_CIRCUIT))
-                .save(output, MekUtConstants.rl("crafting/artificial_star/luck_card"));
+                .save(output.withConditions(new ICondition[] {
+                        new ModLoadedCondition(AdvancedAE.MOD_ID),
+                }), MekUtConstants.rl("crafting/artificial_star/luck_card"));
         ShapelessRecipeBuilder
                 .shapeless(RecipeCategory.DECORATIONS, MSItems.HIGH_QUALITY_CONCRETE_POWDER_AQUA.asStack(8))
                 .requires(MSItems.HIGH_QUALITY_CONCRETE_POWDER, 8)
                 .requires(MekUtItems.AQUA_DYE, 1)
                 .unlockedBy("unlock", has.apply(MekUtItems.AQUA_DYE))
-                .save(output, MekUtConstants.rl("crafting/hq_concreate/aqua_powder"));
+                .save(output.withConditions(new ICondition[] {
+                        new ModLoadedCondition(MekanismElements.MODID),
+                }), MekUtConstants.rl("crafting/hq_concreate/aqua_powder"));
         ShapelessRecipeBuilder
                 .shapeless(RecipeCategory.DECORATIONS, MSItems.HIGH_QUALITY_CONCRETE_POWDER_DARK_RED.asStack(8))
                 .requires(MSItems.HIGH_QUALITY_CONCRETE_POWDER, 8)
                 .requires(MekUtItems.DARK_RED_DYE, 1)
                 .unlockedBy("unlock", has.apply(MekUtItems.DARK_RED_DYE))
-                .save(output, MekUtConstants.rl("crafting/hq_concreate/dark_red_powder"));
+                .save(output.withConditions(new ICondition[] {
+                        new ModLoadedCondition(MekanismElements.MODID),
+                }), MekUtConstants.rl("crafting/hq_concreate/dark_red_powder"));
 
         ShapedRecipeBuilder
                 .shaped(RecipeCategory.REDSTONE, new ItemStack(MekUtMachines.ITEM_RATIO_SPLITTER, 1))
@@ -304,7 +375,6 @@ public class CraftingRecipes {
                 .add(new SimpleMachineRecipeData(MekUtMachines.SUBMATERIAL_CONVERTER, MekanismItems.ENRICHED_GOLD));
         TWEAKED_MACHINES.add(new SimpleMachineRecipeData(MekUtMachines.TWEAKED_ENERGIZED_SMELTER,
                 MekanismBlocks.ENERGIZED_SMELTER));
-        TWEAKED_MACHINES.add(new SimpleMachineRecipeData(MekUtMachines.MEKSTYLED_CHARGER, AEBlocks.CHARGER));
         for (AdvancedFactoryType factoryType : MoreMachineEnumUtils.ADVANCED_FACTORY_TYPES) {
             MEKMM_CREATIVE_FACTORIES.add(SimpleMachineRecipeData.mekAFCreative(factoryType));
         }

@@ -1,17 +1,8 @@
 package com.takenokoshi.mekut.registries;
 
-import java.util.Collections;
-import java.util.EnumMap;
-import java.util.Map;
-import java.util.function.BiFunction;
-import java.util.function.Function;
-import java.util.function.Predicate;
 import com.takenokoshi.mekut.core.MekUtConstants;
-import com.takenokoshi.mekut.enums.MUMaterial;
 import com.takenokoshi.mekut.item.ItemSupplierItem;
 import com.takenokoshi.mekut.item.XpCrystalItem;
-import com.takenokoshi.mekut.item.cell.bulk.MUBulkCellItem;
-
 import mekanism.api.text.EnumColor;
 import mekanism.common.registration.impl.ItemDeferredRegister;
 import mekanism.common.registration.impl.ItemRegistryObject;
@@ -47,6 +38,7 @@ public class MekUtItems {
     public static final ItemRegistryObject<Item> GOLDEN_REDSTONE = ITEMS.register("golden_redstone");
     public static final ItemRegistryObject<Item> AMETHYST_DUST = ITEMS.register("amethyst_dust");
     public static final ItemRegistryObject<Item> IRIDIUM_DUST = ITEMS.register("iridium_dust");
+    public static final ItemRegistryObject<Item> SILICON_DUST = ITEMS.register("silicon_dust");
 
     public static final ItemRegistryObject<Item> REFINED_AMETHYST_INGOT = ITEMS.register("refined_amethyst_ingot");
     public static final ItemRegistryObject<Item> IRIDIUM_INGOT = ITEMS.register("iridium_ingot");
@@ -58,55 +50,67 @@ public class MekUtItems {
     public static final ItemRegistryObject<Item> AQUA_DYE = ITEMS.register("aqua_dye");
 
     public static final ItemRegistryObject<Item> ME_INFINITY_RAINBOW_CELL = ITEMS.register("me_infinity_rainbow_cell");
-    public static final ItemRegistryObject<Item> ME_INFINITY_STONE_CELL = ITEMS.register("me_infinity_stone_cell");
-
-    public static final ItemRegistryObject<MUBulkCellItem<?>> MEGA_BULK_FLUID_STORAGE_CELL = ITEMS
-            .registerItem("mega_bulk_fluid_storage_cell", MUBulkCellItem::fluid);
-    public static final ItemRegistryObject<MUBulkCellItem<?>> MEGA_BULK_CHEMICAL_STORAGE_CELL = ITEMS
-            .registerItem("mega_bulk_chemical_storage_cell", MUBulkCellItem::chemical);
 
     public static final ItemRegistryObject<Item> SUPPLIER_BASE = ITEMS.register("supplier_base");
     public static final ItemRegistryObject<ItemSupplierItem> COBBLESTONE_SUPPLIER = ITEMS.registerItem(
             "cobblestone_supplier",
             ItemSupplierItem.getCreator(Items.COBBLESTONE));
 
-    public static final Map<MUMaterial, ItemRegistryObject<?>> RAW_MU_MATERIALS = registerMaterials(
-            m -> true,
-            m -> "raw_" + m.name,
-            (m, p) -> new Item(p));
+    public static final ItemRegistryObject<Item> RAW_AMETHYST = ITEMS.register("raw_amethyst");
+    public static final ItemRegistryObject<Item> RAW_CERTUS_QUARTZ = ITEMS.register("raw_certus_quartz");
+    public static final ItemRegistryObject<Item> RAW_COAL = ITEMS.register("raw_coal");
+    public static final ItemRegistryObject<Item> RAW_DIAMOND = ITEMS.register("raw_diamond");
+    public static final ItemRegistryObject<Item> RAW_EMERALD = ITEMS.register("raw_emerald");
+    public static final ItemRegistryObject<Item> RAW_ENTRO = ITEMS.register("raw_entro");
+    public static final ItemRegistryObject<Item> RAW_FLUORITE = ITEMS.register("raw_fluorite");
+    public static final ItemRegistryObject<Item> RAW_LAPIS_LAZULI = ITEMS.register("raw_lapis_lazuli");
+    public static final ItemRegistryObject<Item> RAW_NETHERITE = ITEMS.register("raw_netherite");
+    public static final ItemRegistryObject<Item> RAW_OVERLOAD = ITEMS.register("raw_overload");
+    public static final ItemRegistryObject<Item> RAW_QUATRZ = ITEMS.register("raw_quartz");
+    public static final ItemRegistryObject<Item> RAW_REDSTONE = ITEMS.register("raw_redstone");
+    public static final ItemRegistryObject<Item> RAW_SILICON = ITEMS.register("raw_silicon");
 
-    public static final Map<MUMaterial, ItemRegistryObject<?>> MU_MATERIALS_CRYSTAL = registerMaterials(
-            m -> true,
-            m -> m.name + "_crystal",
-            (m, p) -> new Item(p));
+    public static final ItemRegistryObject<Item> AMETHYST_CRYSTAL = ITEMS.register("amethyst_crystal");
+    public static final ItemRegistryObject<Item> CERTUS_QUARTZ_CRYSTAL = ITEMS.register("certus_quartz_crystal");
+    public static final ItemRegistryObject<Item> COAL_CRYSTAL = ITEMS.register("coal_crystal");
+    public static final ItemRegistryObject<Item> DIAMOND_CRYSTAL = ITEMS.register("diamond_crystal");
+    public static final ItemRegistryObject<Item> EMERALD_CRYSTAL = ITEMS.register("emerald_crystal");
+    public static final ItemRegistryObject<Item> ENTRO_CRYSTAL = ITEMS.register("entro_crystal");
+    public static final ItemRegistryObject<Item> FLUORITE_CRYSTAL = ITEMS.register("fluorite_crystal");
+    public static final ItemRegistryObject<Item> LAPIS_LAZULI_CRYSTAL = ITEMS.register("lapis_lazuli_crystal");
+    public static final ItemRegistryObject<Item> NETHERITE_CRYSTAL = ITEMS.register("netherite_crystal");
+    public static final ItemRegistryObject<Item> OVERLOAD_CRYSTAL = ITEMS.register("overload_crystal");
+    public static final ItemRegistryObject<Item> QUATRZ_CRYSTAL = ITEMS.register("quartz_crystal");
+    public static final ItemRegistryObject<Item> REDSTONE_CRYSTAL = ITEMS.register("redstone_crystal");
+    public static final ItemRegistryObject<Item> SILICON_CRYSTAL = ITEMS.register("silicon_crystal");
 
-    public static final Map<MUMaterial, ItemRegistryObject<?>> MU_MATERIALS_SHARD = registerMaterials(
-            m -> true,
-            m -> m.name + "_shard",
-            (m, p) -> new Item(p));
+    public static final ItemRegistryObject<Item> AMETHYST_SHARD = ITEMS.register("amethyst_shard");
+    public static final ItemRegistryObject<Item> CERTUS_QUARTZ_SHARD = ITEMS.register("certus_quartz_shard");
+    public static final ItemRegistryObject<Item> COAL_SHARD = ITEMS.register("coal_shard");
+    public static final ItemRegistryObject<Item> DIAMOND_SHARD = ITEMS.register("diamond_shard");
+    public static final ItemRegistryObject<Item> EMERALD_SHARD = ITEMS.register("emerald_shard");
+    public static final ItemRegistryObject<Item> ENTRO_SHARD = ITEMS.register("entro_shard");
+    public static final ItemRegistryObject<Item> FLUORITE_SHARD = ITEMS.register("fluorite_shard");
+    public static final ItemRegistryObject<Item> LAPIS_LAZULI_SHARD = ITEMS.register("lapis_lazuli_shard");
+    public static final ItemRegistryObject<Item> NETHERITE_SHARD = ITEMS.register("netherite_shard");
+    public static final ItemRegistryObject<Item> OVERLOAD_SHARD = ITEMS.register("overload_shard");
+    public static final ItemRegistryObject<Item> QUATRZ_SHARD = ITEMS.register("quartz_shard");
+    public static final ItemRegistryObject<Item> REDSTONE_SHARD = ITEMS.register("redstone_shard");
+    public static final ItemRegistryObject<Item> SILICON_SHARD = ITEMS.register("silicon_shard");
 
-    public static final Map<MUMaterial, ItemRegistryObject<?>> MU_MATERIALS_CLUMP = registerMaterials(
-            m -> true,
-            m -> m.name + "_clump",
-            (m, p) -> new Item(p));
-
-    public static final Map<MUMaterial, ItemRegistryObject<?>> MU_MATERIALS_DIRTY_DUST = registerMaterials(
-            m -> !m.isGem,
-            m -> "dirty_" + m.name + "_dust",
-            (m, p) -> new Item(p));
-
-    private static Map<MUMaterial, ItemRegistryObject<?>> registerMaterials(
-            Predicate<MUMaterial> shouldRegister,
-            Function<MUMaterial, String> nameBulder,
-            BiFunction<MUMaterial, Item.Properties, Item> creator) {
-        EnumMap<MUMaterial, ItemRegistryObject<?>> result = new EnumMap<>(MUMaterial.class);
-        for (MUMaterial material : MUMaterial.values()) {
-            if (shouldRegister.test(material)) {
-                result.put(material, ITEMS.registerItem(nameBulder.apply(material), p -> creator.apply(material, p)));
-            }
-        }
-        return Collections.unmodifiableMap(result);
-    }
+    public static final ItemRegistryObject<Item> AMETHYST_CLUMP = ITEMS.register("amethyst_clump");
+    public static final ItemRegistryObject<Item> CERTUS_QUARTZ_CLUMP = ITEMS.register("certus_quartz_clump");
+    public static final ItemRegistryObject<Item> COAL_CLUMP = ITEMS.register("coal_clump");
+    public static final ItemRegistryObject<Item> DIAMOND_CLUMP = ITEMS.register("diamond_clump");
+    public static final ItemRegistryObject<Item> EMERALD_CLUMP = ITEMS.register("emerald_clump");
+    public static final ItemRegistryObject<Item> ENTRO_CLUMP = ITEMS.register("entro_clump");
+    public static final ItemRegistryObject<Item> FLUORITE_CLUMP = ITEMS.register("fluorite_clump");
+    public static final ItemRegistryObject<Item> LAPIS_LAZULI_CLUMP = ITEMS.register("lapis_lazuli_clump");
+    public static final ItemRegistryObject<Item> NETHERITE_CLUMP = ITEMS.register("netherite_clump");
+    public static final ItemRegistryObject<Item> OVERLOAD_CLUMP = ITEMS.register("overload_clump");
+    public static final ItemRegistryObject<Item> QUATRZ_CLUMP = ITEMS.register("quartz_clump");
+    public static final ItemRegistryObject<Item> REDSTONE_CLUMP = ITEMS.register("redstone_clump");
+    public static final ItemRegistryObject<Item> SILICON_CLUMP = ITEMS.register("silicon_clump");
 
     private static ItemRegistryObject<Item> registerFoiling(String name) {
         return ITEMS.registerItem(name, props -> new Item(props) {

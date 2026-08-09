@@ -2,7 +2,7 @@ package com.takenokoshi.mekut.gui.machine;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.takenokoshi.mekut.blockentity.normalmachine.BlockEntityXpTank;
+import com.takenokoshi.mekut.blockentity.machine.BlockEntityXpTank;
 import com.takenokoshi.mekut.network.to_server.PacketGuiXpTank;
 
 import mekanism.client.gui.GuiConfigurableTile;

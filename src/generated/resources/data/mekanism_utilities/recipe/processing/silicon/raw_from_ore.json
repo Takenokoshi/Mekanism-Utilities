@@ -1,0 +1,25 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ores/silicon"
+      }
+    }
+  ],
+  "type": "mekanism:metallurgic_infusing",
+  "chemical_input": {
+    "amount": 100,
+    "chemical": "mekanism_utilities:xp"
+  },
+  "item_input": {
+    "count": 1,
+    "tag": "c:ores/silicon"
+  },
+  "output": {
+    "count": 4,
+    "id": "mekanism_utilities:raw_silicon"
+  },
+  "per_tick_usage": false
+}

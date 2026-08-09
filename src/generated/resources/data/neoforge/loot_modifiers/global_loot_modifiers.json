@@ -19,6 +19,7 @@
     "mekanism_utilities:replace_to_raw/lapis_lazuli/ore",
     "mekanism_utilities:replace_to_raw/lapis_lazuli/deepslate_ore",
     "mekanism_utilities:replace_to_raw/quartz/nether_ore",
+    "mekanism_utilities:replace_to_raw/overload/cluster",
     "mekanism_utilities:replace_to_raw/redstone/ore",
     "mekanism_utilities:replace_to_raw/redstone/deepslate_ore"
   ],

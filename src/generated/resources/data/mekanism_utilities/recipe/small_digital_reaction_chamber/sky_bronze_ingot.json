@@ -1,4 +1,10 @@
 {
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "megacells"
+    }
+  ],
   "type": "mekanism_utilities:small_digital_reaction_chamber",
   "chemical_input": {
     "amount": 200,

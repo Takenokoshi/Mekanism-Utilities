@@ -6,10 +6,8 @@ import java.util.List;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.glodblock.github.extendedae.recipe.CrystalAssemblerRecipe;
 import com.takenokoshi.mekaddonlib.recipe.type.MekALRecipeType;
 import com.takenokoshi.mekut.recipe.inputcache.ItemStackListFluidChemicalInputRecipeCache;
-import com.takenokoshi.mekut.recipe.recipe.basic.BasicSmallDigitalAssemblerRecipe;
 import com.takenokoshi.mekut.recipe.recipe.prefab.ItemStackListFluidChemicalToItemRecipe;
 
 import net.minecraft.core.RegistryAccess;
@@ -17,6 +15,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.item.crafting.RecipeManager;
+import net.neoforged.fml.ModList;
 
 public class SmallDigitalAssemblerRecipeType extends
         MekALRecipeType<RecipeInput, ItemStackListFluidChemicalToItemRecipe, ItemStackListFluidChemicalInputRecipeCache<ItemStackListFluidChemicalToItemRecipe>> {
@@ -28,19 +27,13 @@ public class SmallDigitalAssemblerRecipeType extends
     @Override
     protected @NotNull List<RecipeHolder<ItemStackListFluidChemicalToItemRecipe>> getRecipesUncached(
             @NotNull RecipeManager recipeManager, @Nullable RegistryAccess registryAccess) {
-        List<RecipeHolder<ItemStackListFluidChemicalToItemRecipe>> result = new ArrayList<>(
-                super.getRecipesUncached(recipeManager, registryAccess));
-        List<RecipeHolder<CrystalAssemblerRecipe>> crystalAssemblerRecipes = recipeManager
-                .getAllRecipesFor(CrystalAssemblerRecipe.TYPE);
-        for (RecipeHolder<CrystalAssemblerRecipe> holder : crystalAssemblerRecipes) {
-            CrystalAssemblerRecipe assemblerRecipe = holder.value();
-            result.add(new RecipeHolder<>(
-                    ResourceLocation.fromNamespaceAndPath(holder.id().getNamespace(),
-                            "/runtime_generated/small_digital_assembler/from_crystal_assemblers/"
-                                    + holder.id().getPath()),
-                    BasicSmallDigitalAssemblerRecipe.convertCrystalAssembler(assemblerRecipe)));
+        if (ModList.get().isLoaded("extendedae")) {
+            List<RecipeHolder<ItemStackListFluidChemicalToItemRecipe>> result = new ArrayList<>(
+                    super.getRecipesUncached(recipeManager, registryAccess));
+            result.addAll(EAERecipeProvider.getConvertedAssemblerRecipes(recipeManager, registryAccess));
+            return Collections.unmodifiableList(result);
         }
-        return Collections.unmodifiableList(result);
+        return super.getRecipesUncached(recipeManager, registryAccess);
     }
 
 }

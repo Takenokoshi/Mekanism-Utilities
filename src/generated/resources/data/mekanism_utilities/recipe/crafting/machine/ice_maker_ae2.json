@@ -1,0 +1,33 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "ae2"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "A": {
+      "tag": "c:ingots/copper"
+    },
+    "B": {
+      "item": "mekanism_utilities:digital_control_circuit"
+    },
+    "C": {
+      "item": "mekanism:steel_casing"
+    },
+    "D": {
+      "item": "ae2:entropy_manipulator"
+    }
+  },
+  "pattern": [
+    "ABA",
+    "DCD",
+    "ABA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "mekanism_utilities:ice_maker"
+  }
+}

@@ -1,13 +1,6 @@
 package com.takenokoshi.mekut.registries;
 
-import java.util.Collections;
-import java.util.EnumMap;
-import java.util.Map;
-import java.util.function.Function;
-
 import com.takenokoshi.mekut.core.MekUtConstants;
-import com.takenokoshi.mekut.enums.MUMaterial;
-
 import mekanism.api.chemical.Chemical;
 import mekanism.api.chemical.ChemicalBuilder;
 import mekanism.common.registration.impl.ChemicalDeferredRegister;
@@ -24,21 +17,57 @@ public class MekUtChemicals {
     public static final DeferredChemical<?> IRIDIUM = CHEMICALS.register("iridium", 0xC4CCD8);
     public static final DeferredChemical<?> NETHERITE = CHEMICALS.register("netherite", 0x5A4E52);
 
-    public static final Map<MUMaterial, DeferredChemical<?>> MU_MATERIALS_CLEAN_SLURRY = registerMaterials(
-            m -> "clean_" + m.name + "_slurry",
-            m -> new Chemical(ChemicalBuilder.cleanSlurry().tint(0x7f000000 + m.rgbColor)));
+    public static final DeferredChemical<?> CLEAN_AMETHYST_SLURRY = CHEMICALS.register(
+            "clean_amethyst_slurry", () -> new Chemical(ChemicalBuilder.cleanSlurry().tint(0x7FA361FF)));
+    public static final DeferredChemical<?> CLEAN_CERTUS_QUARTZ_SLURRY = CHEMICALS.register(
+            "clean_certus_quartz_slurry", () -> new Chemical(ChemicalBuilder.cleanSlurry().tint(0x7FC9F2FF)));
+    public static final DeferredChemical<?> CLEAN_COAL_SLURRY = CHEMICALS.register(
+            "clean_coal_slurry", () -> new Chemical(ChemicalBuilder.cleanSlurry().tint(0x7FD2D2D)));
+    public static final DeferredChemical<?> CLEAN_DIAMOND_SLURRY = CHEMICALS.register(
+            "clean_diamond_slurry", () -> new Chemical(ChemicalBuilder.cleanSlurry().tint(0x7F5CDBD5)));
+    public static final DeferredChemical<?> CLEAN_EMERALD_SLURRY = CHEMICALS.register(
+            "clean_emerald_slurry", () -> new Chemical(ChemicalBuilder.cleanSlurry().tint(0x7F11C95A)));
+    public static final DeferredChemical<?> CLEAN_ENTRO_SLURRY = CHEMICALS.register(
+            "clean_entro_slurry", () -> new Chemical(ChemicalBuilder.cleanSlurry().tint(0x7F03B99A)));
+    public static final DeferredChemical<?> CLEAN_FLUORITE_SLURRY = CHEMICALS.register(
+            "clean_fluorite_slurry", () -> new Chemical(ChemicalBuilder.cleanSlurry().tint(0x7F78FFBE)));
+    public static final DeferredChemical<?> CLEAN_LAPIS_LAZULI_SLURRY = CHEMICALS.register(
+            "clean_lapis_lazuli_slurry", () -> new Chemical(ChemicalBuilder.cleanSlurry().tint(0x7F2661DB)));
+    public static final DeferredChemical<?> CLEAN_NETHERITE_SLURRY = CHEMICALS.register(
+            "clean_netherite_slurry", () -> new Chemical(ChemicalBuilder.cleanSlurry().tint(0x7F433D47)));
+    public static final DeferredChemical<?> CLEAN_OVERLOAD_SLURRY = CHEMICALS.register(
+            "clean_overload_slurry", () -> new Chemical(ChemicalBuilder.cleanSlurry().tint(0x7FFFA8FD)));
+    public static final DeferredChemical<?> CLEAN_QUARTZ_SLURRY = CHEMICALS.register(
+            "clean_quartz_slurry", () -> new Chemical(ChemicalBuilder.cleanSlurry().tint(0x7FF5E6DC)));
+    public static final DeferredChemical<?> CLEAN_REDSTONE_SLURRY = CHEMICALS.register(
+            "clean_redstone_slurry", () -> new Chemical(ChemicalBuilder.cleanSlurry().tint(0x7FC81E1E)));
+    public static final DeferredChemical<?> CLEAN_SILICON_SLURRY = CHEMICALS.register(
+            "clean_silicon_slurry", () -> new Chemical(ChemicalBuilder.cleanSlurry().tint(0x7F858585)));
 
-    public static final Map<MUMaterial, DeferredChemical<?>> MU_MATERIALS_DIRTY_SLURRY = registerMaterials(
-            m -> "dirty_" + m.name + "_slurry",
-            m -> new Chemical(ChemicalBuilder.dirtySlurry().tint(0x7f000000 + m.rgbColor)));
-
-    private static Map<MUMaterial, DeferredChemical<?>> registerMaterials(
-            Function<MUMaterial, String> nameBulder,
-            Function<MUMaterial, Chemical> creator) {
-        EnumMap<MUMaterial, DeferredChemical<?>> result = new EnumMap<>(MUMaterial.class);
-        for (MUMaterial material : MUMaterial.values()) {
-            result.put(material, CHEMICALS.register(nameBulder.apply(material), () -> creator.apply(material)));
-        }
-        return Collections.unmodifiableMap(result);
-    }
+    public static final DeferredChemical<?> DIRTY_AMETHYST_SLURRY = CHEMICALS.register(
+            "dirty_amethyst_slurry", () -> new Chemical(ChemicalBuilder.dirtySlurry().tint(0x7FA361FF)));
+    public static final DeferredChemical<?> DIRTY_CERTUS_QUARTZ_SLURRY = CHEMICALS.register(
+            "dirty_certus_quartz_slurry", () -> new Chemical(ChemicalBuilder.dirtySlurry().tint(0x7FC9F2FF)));
+    public static final DeferredChemical<?> DIRTY_COAL_SLURRY = CHEMICALS.register(
+            "dirty_coal_slurry", () -> new Chemical(ChemicalBuilder.dirtySlurry().tint(0x7FD2D2D)));
+    public static final DeferredChemical<?> DIRTY_DIAMOND_SLURRY = CHEMICALS.register(
+            "dirty_diamond_slurry", () -> new Chemical(ChemicalBuilder.dirtySlurry().tint(0x7F5CDBD5)));
+    public static final DeferredChemical<?> DIRTY_EMERALD_SLURRY = CHEMICALS.register(
+            "dirty_emerald_slurry", () -> new Chemical(ChemicalBuilder.dirtySlurry().tint(0x7F11C95A)));
+    public static final DeferredChemical<?> DIRTY_ENTRO_SLURRY = CHEMICALS.register(
+            "dirty_entro_slurry", () -> new Chemical(ChemicalBuilder.dirtySlurry().tint(0x7F03B99A)));
+    public static final DeferredChemical<?> DIRTY_FLUORITE_SLURRY = CHEMICALS.register(
+            "dirty_fluorite_slurry", () -> new Chemical(ChemicalBuilder.dirtySlurry().tint(0x7F78FFBE)));
+    public static final DeferredChemical<?> DIRTY_LAPIS_LAZULI_SLURRY = CHEMICALS.register(
+            "dirty_lapis_lazuli_slurry", () -> new Chemical(ChemicalBuilder.dirtySlurry().tint(0x7F2661DB)));
+    public static final DeferredChemical<?> DIRTY_NETHERITE_SLURRY = CHEMICALS.register(
+            "dirty_netherite_slurry", () -> new Chemical(ChemicalBuilder.dirtySlurry().tint(0x7F433D47)));
+    public static final DeferredChemical<?> DIRTY_OVERLOAD_SLURRY = CHEMICALS.register(
+            "dirty_overload_slurry", () -> new Chemical(ChemicalBuilder.dirtySlurry().tint(0x7FFFA8FD)));
+    public static final DeferredChemical<?> DIRTY_QUARTZ_SLURRY = CHEMICALS.register(
+            "dirty_quartz_slurry", () -> new Chemical(ChemicalBuilder.dirtySlurry().tint(0x7FF5E6DC)));
+    public static final DeferredChemical<?> DIRTY_REDSTONE_SLURRY = CHEMICALS.register(
+            "dirty_redstone_slurry", () -> new Chemical(ChemicalBuilder.dirtySlurry().tint(0x7FC81E1E)));
+    public static final DeferredChemical<?> DIRTY_SILICON_SLURRY = CHEMICALS.register(
+            "dirty_silicon_slurry", () -> new Chemical(ChemicalBuilder.dirtySlurry().tint(0x7F858585)));
 }

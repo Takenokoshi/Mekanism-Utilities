@@ -1,7 +1,7 @@
 package com.takenokoshi.mekut.registries;
 
 import com.takenokoshi.mekaddonlib.registration.MachineRegistryObject;
-import com.takenokoshi.mekut.blockentity.normalmachine.*;
+import com.takenokoshi.mekut.blockentity.machine.*;
 import com.takenokoshi.mekut.gui.machine.*;
 import com.takenokoshi.mekut.gui.misc.*;
 
@@ -32,7 +32,6 @@ public class MekUtScreens {
         registerMachineGui(event, MekUtMachines.ICE_MAKER, GuiFluidToObjectMachine<BEIceMaker>::new);
         registerMachineGui(event, MekUtMachines.LAZER_COMPRESS_NUCLEO_SYNTHESIZER,
                 GuiBiChemicalToChemicalMachine<BELazerCompressNucleoSynthesizer>::new);
-        registerMachineGui(event, MekUtMachines.MEKSTYLED_CHARGER, GuiMekStyledCharger<BEMekStyledCharger>::new);
         registerMachineGui(event, MekUtMachines.SMALL_DIGITAL_ASSEMBLER,
                 GuiSmallDigitalAssembler<BESmallDigitalAssembler>::new);
         registerMachineGui(event, MekUtMachines.SMALL_DIGITAL_REACTION_CHAMBER,

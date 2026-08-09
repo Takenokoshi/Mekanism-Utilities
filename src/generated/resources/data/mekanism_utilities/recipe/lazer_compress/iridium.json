@@ -1,4 +1,10 @@
 {
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "mekanismelements"
+    }
+  ],
   "type": "mekanism_utilities:lazer_compress",
   "left_input": {
     "amount": 100,

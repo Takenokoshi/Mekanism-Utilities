@@ -1,0 +1,38 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "extendedae"
+    }
+  ],
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "mekanism_utilities:crafting/machine/small_digital_assembler_eae"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "unlock": {
+      "conditions": {
+        "items": [
+          {
+            "items": "extendedae:crystal_assembler"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "unlock"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "mekanism_utilities:crafting/machine/small_digital_assembler_eae"
+    ]
+  }
+}

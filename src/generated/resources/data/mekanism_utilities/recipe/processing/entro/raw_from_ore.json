@@ -1,4 +1,13 @@
 {
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ores/entro"
+      }
+    }
+  ],
   "type": "mekanism:metallurgic_infusing",
   "chemical_input": {
     "amount": 100,
@@ -9,7 +18,7 @@
     "tag": "c:ores/entro"
   },
   "output": {
-    "count": 12,
+    "count": 4,
     "id": "mekanism_utilities:raw_entro"
   },
   "per_tick_usage": false

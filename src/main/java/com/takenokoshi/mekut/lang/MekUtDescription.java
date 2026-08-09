@@ -11,9 +11,6 @@ public class MekUtDescription extends MekUtLang {
     public static final MekUtDescription ENTRO_ORE = new MekUtDescription("entro_ore");
     public static final MekUtDescription NETHERITE_ORE = new MekUtDescription("netherite_ore");
 
-    public static final MekUtDescription COMPACT_SPS = new MekUtDescription("compact_sps");
-
     public static final MekUtDescription INFINITY_RAINBOW_CELL = new MekUtDescription("infinity_rainbow_cell");
-    public static final MekUtDescription INFINITY_STONE_CELL = new MekUtDescription("infinity_stone_cell");
 
 }

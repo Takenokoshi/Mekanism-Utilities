@@ -18,8 +18,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Items;
 
 public class InfinityRainbowCellStorage implements StorageCell {
-
-    public static final long COUNT = 1l << 42;
     public static final List<AEItemKey> DYES = List.of(
             AEItemKey.of(Items.BLACK_DYE),
             AEItemKey.of(Items.BLUE_DYE),
@@ -101,8 +99,8 @@ public class InfinityRainbowCellStorage implements StorageCell {
 
     @Override
     public void getAvailableStacks(KeyCounter out) {
-        DYES.forEach(k -> out.add(k, COUNT));
-        PIGMENTS.forEach(k -> out.add(k, COUNT));
+        DYES.forEach(k -> out.add(k, Long.MAX_VALUE));
+        PIGMENTS.forEach(k -> out.add(k, Long.MAX_VALUE));
     }
 
 }

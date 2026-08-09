@@ -1,0 +1,25 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ores/lapis_lazuli"
+      }
+    }
+  ],
+  "type": "mekanism:purifying",
+  "chemical_input": {
+    "amount": 1,
+    "chemical": "mekanism:oxygen"
+  },
+  "item_input": {
+    "count": 1,
+    "tag": "c:ores/lapis_lazuli"
+  },
+  "output": {
+    "count": 18,
+    "id": "mekanism_utilities:lapis_lazuli_clump"
+  },
+  "per_tick_usage": true
+}

@@ -1,0 +1,25 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ores/netherite"
+      }
+    }
+  ],
+  "type": "mekanism:purifying",
+  "chemical_input": {
+    "amount": 1,
+    "chemical": "mekanism:oxygen"
+  },
+  "item_input": {
+    "count": 1,
+    "tag": "c:ores/netherite"
+  },
+  "output": {
+    "count": 3,
+    "id": "mekanism_utilities:netherite_clump"
+  },
+  "per_tick_usage": true
+}

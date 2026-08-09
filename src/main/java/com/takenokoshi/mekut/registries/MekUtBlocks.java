@@ -1,13 +1,7 @@
 package com.takenokoshi.mekut.registries;
 
-import java.util.Collections;
-import java.util.EnumMap;
-import java.util.Map;
-import java.util.function.Function;
-
 import com.takenokoshi.mekut.block.BlockSimpleDiscription;
 import com.takenokoshi.mekut.core.MekUtConstants;
-import com.takenokoshi.mekut.enums.MUMaterial;
 import com.takenokoshi.mekut.lang.MekUtDescription;
 
 import mekanism.common.item.block.ItemBlockTooltip;
@@ -58,17 +52,42 @@ public class MekUtBlocks {
                             MekUtDescription.NETHERITE_ORE),
                     ItemBlockTooltip::new);
 
-    public static final Map<MUMaterial, BlockRegistryObject<?, ?>> RAW_MU_MATERIALS_BLOCK = registerMaterials(
-            m -> "raw_" + m.name + "_block",
-            m -> new Block(Block.Properties.of().mapColor(MapColor.COLOR_GRAY)));
+    public static final BlockRegistryObject<?, ?> RAW_AMETHYST_BLOCK = BLOCKS
+            .register("raw_amethyst_block", () -> new Block(Block.Properties.of().mapColor(MapColor.COLOR_GRAY)));
 
-    private static Map<MUMaterial, BlockRegistryObject<?, ?>> registerMaterials(
-            Function<MUMaterial, String> nameBuilder,
-            Function<MUMaterial, Block> blockCreator) {
-        EnumMap<MUMaterial, BlockRegistryObject<?, ?>> result = new EnumMap<>(MUMaterial.class);
-        for (MUMaterial material : MUMaterial.values()) {
-            result.put(material, BLOCKS.register(nameBuilder.apply(material), () -> blockCreator.apply(material)));
-        }
-        return Collections.unmodifiableMap(result);
-    }
+    public static final BlockRegistryObject<?, ?> RAW_CERTUS_QUARTZ_BLOCK = BLOCKS
+            .register("raw_certus_quartz_block", () -> new Block(Block.Properties.of().mapColor(MapColor.COLOR_GRAY)));
+
+    public static final BlockRegistryObject<?, ?> RAW_COAL_BLOCK = BLOCKS
+            .register("raw_coal_block", () -> new Block(Block.Properties.of().mapColor(MapColor.COLOR_GRAY)));
+
+    public static final BlockRegistryObject<?, ?> RAW_DIAMOND_BLOCK = BLOCKS
+            .register("raw_diamond_block", () -> new Block(Block.Properties.of().mapColor(MapColor.COLOR_GRAY)));
+
+    public static final BlockRegistryObject<?, ?> RAW_EMERALD_BLOCK = BLOCKS
+            .register("raw_emerald_block", () -> new Block(Block.Properties.of().mapColor(MapColor.COLOR_GRAY)));
+
+    public static final BlockRegistryObject<?, ?> RAW_ENTRO_BLOCK = BLOCKS
+            .register("raw_entro_block", () -> new Block(Block.Properties.of().mapColor(MapColor.COLOR_GRAY)));
+
+    public static final BlockRegistryObject<?, ?> RAW_FLUORITE_BLOCK = BLOCKS
+            .register("raw_fluorite_block", () -> new Block(Block.Properties.of().mapColor(MapColor.COLOR_GRAY)));
+
+    public static final BlockRegistryObject<?, ?> RAW_LAPIS_LAZULI_BLOCK = BLOCKS
+            .register("raw_lapis_lazuli_block", () -> new Block(Block.Properties.of().mapColor(MapColor.COLOR_GRAY)));
+
+    public static final BlockRegistryObject<?, ?> RAW_NETHERITE_BLOCK = BLOCKS
+            .register("raw_netherite_block", () -> new Block(Block.Properties.of().mapColor(MapColor.COLOR_GRAY)));
+
+    public static final BlockRegistryObject<?, ?> RAW_OVERLOAD_BLOCK = BLOCKS
+            .register("raw_overload_block", () -> new Block(Block.Properties.of().mapColor(MapColor.COLOR_GRAY)));
+
+    public static final BlockRegistryObject<?, ?> RAW_QUARTZ_BLOCK = BLOCKS
+            .register("raw_quartz_block", () -> new Block(Block.Properties.of().mapColor(MapColor.COLOR_GRAY)));
+
+    public static final BlockRegistryObject<?, ?> RAW_REDSTONE_BLOCK = BLOCKS
+            .register("raw_redstone_block", () -> new Block(Block.Properties.of().mapColor(MapColor.COLOR_GRAY)));
+
+    public static final BlockRegistryObject<?, ?> RAW_SILICON_BLOCK = BLOCKS
+            .register("raw_silicon_block", () -> new Block(Block.Properties.of().mapColor(MapColor.COLOR_GRAY)));
 }

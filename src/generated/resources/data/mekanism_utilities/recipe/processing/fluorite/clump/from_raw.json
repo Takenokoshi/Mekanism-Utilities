@@ -5,7 +5,7 @@
     "chemical": "mekanism:oxygen"
   },
   "item_input": {
-    "count": 1,
+    "count": 2,
     "tag": "c:raw_materials/fluorite"
   },
   "output": {

@@ -1,0 +1,25 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ores/redstone"
+      }
+    }
+  ],
+  "type": "mekanism:injecting",
+  "chemical_input": {
+    "amount": 1,
+    "chemical": "mekanism:hydrogen_chloride"
+  },
+  "item_input": {
+    "count": 1,
+    "tag": "c:ores/redstone"
+  },
+  "output": {
+    "count": 24,
+    "id": "mekanism_utilities:redstone_shard"
+  },
+  "per_tick_usage": true
+}

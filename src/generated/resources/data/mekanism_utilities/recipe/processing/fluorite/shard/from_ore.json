@@ -1,0 +1,25 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ores/fluorite"
+      }
+    }
+  ],
+  "type": "mekanism:injecting",
+  "chemical_input": {
+    "amount": 1,
+    "chemical": "mekanism:hydrogen_chloride"
+  },
+  "item_input": {
+    "count": 2,
+    "tag": "c:ores/fluorite"
+  },
+  "output": {
+    "count": 12,
+    "id": "mekanism_utilities:fluorite_shard"
+  },
+  "per_tick_usage": true
+}

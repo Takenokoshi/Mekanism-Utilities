@@ -18,7 +18,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.item.crafting.RecipeManager;
-import net.pedroksl.advanced_ae.recipes.ReactionChamberRecipe;
+import net.neoforged.fml.ModList;
 
 public class SmallDigitalReactionChamberRecipeType extends
         MekALRecipeType<RecipeInput, ItemStackListFluidChemicalToItemFluidChemicalRecipe, ItemStackListFluidChemicalInputRecipeCache<ItemStackListFluidChemicalToItemFluidChemicalRecipe>> {
@@ -39,13 +39,9 @@ public class SmallDigitalReactionChamberRecipeType extends
                                     + holder.id().getPath()),
                     BasicSmallDigitalReactionChamberRecipe.convertPRC(holder.value())));
         });
-        recipeManager.getAllRecipesFor(ReactionChamberRecipe.TYPE).forEach(holder -> {
-            result.add(new RecipeHolder<>(
-                    ResourceLocation.fromNamespaceAndPath(holder.id().getNamespace(),
-                            "/runtime_generated/small_digital_reaction_chamber/from_reaction_chamber/"
-                                    + holder.id().getPath()),
-                    BasicSmallDigitalReactionChamberRecipe.convertAAE(holder.value())));
-        });
+        if (ModList.get().isLoaded("advanced_ae")) {
+            result.addAll(AAERecipeProvider.getConvertedRecipes(recipeManager, registryAccess));
+        }
         return Collections.unmodifiableList(result);
     }
 

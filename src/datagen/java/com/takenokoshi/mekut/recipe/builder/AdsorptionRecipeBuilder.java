@@ -1,7 +1,7 @@
 package com.takenokoshi.mekut.recipe.builder;
 
-import com.fxd927.mekanismelements.api.recipes.AdsorptionRecipe;
-import com.fxd927.mekanismelements.common.recipe.impl.AdsorptionIRecipe;
+import fixdol.mekanismelements.api.recipes.AdsorptionRecipe;
+import fixdol.mekanismelements.common.recipe.impl.AdsorptionIRecipe;
 
 import mekanism.api.chemical.ChemicalStack;
 import mekanism.api.datagen.recipe.MekanismRecipeBuilder;

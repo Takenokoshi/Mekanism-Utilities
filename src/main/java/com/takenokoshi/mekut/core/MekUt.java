@@ -4,17 +4,14 @@ import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
 import com.takenokoshi.mekut.config.MekUtConfig;
-import com.takenokoshi.mekut.item.cell.bulk.MUBulkCellHandler;
-import com.takenokoshi.mekut.item.cell.rainbow.InfinityRainbowCellHandler;
-import com.takenokoshi.mekut.item.cell.stone.InfinityStoneCellHandler;
 import com.takenokoshi.mekut.network.MekUtPacketHandler;
 import com.takenokoshi.mekut.registries.*;
 
-import appeng.api.storage.StorageCells;
 import mekanism.common.lib.Version;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 
@@ -32,7 +29,9 @@ public class MekUt {
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(MekUtConfig::onConfigLoad);
         addRegistrationListeners(modEventBus);
-        modEventBus.addListener(this::registerCellHandler);
+        if (ModList.get().isLoaded("appmek")) {
+            modEventBus.addListener(AppMekModule::registerCellHandler);
+        }
         packetHandler = new MekUtPacketHandler(modEventBus, versionNumber);
     }
 
@@ -43,10 +42,15 @@ public class MekUt {
     private void addRegistrationListeners(IEventBus modEventBus) {
         MekUtBlocks.BLOCKS.register(modEventBus);
         MekUtChemicals.CHEMICALS.register(modEventBus);
-        MekUtDataComponents.DATA_COMPONENTS.register(modEventBus);
         MekUtFluids.FLUIDS.register(modEventBus);
         MekUtItems.ITEMS.register(modEventBus);
         MekUtMachines.MACHINES.register(modEventBus);
+        if (ModList.get().isLoaded("evolvedmekanism")) {
+            MekUtEvolvedMachines.MACHINES.register(modEventBus);
+        }
+        if (ModList.get().isLoaded("mekanism_extras")) {
+            MekUtExtrasMachines.MACHINES.register(modEventBus);
+        }
         MekUtRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
         MekUtRecipeTypes.RECIPE_TYPES.register(modEventBus);
         MekUtCreativeTabs.CREATIVE_TABS.register(modEventBus);
@@ -55,12 +59,5 @@ public class MekUt {
 
     private void commonSetup(FMLCommonSetupEvent event) {
         LOGGER.info("HELLO FROM MekUt SETUP");
-    }
-
-    private void registerCellHandler(final FMLCommonSetupEvent event) {
-        StorageCells.addCellHandler(new InfinityRainbowCellHandler());
-        StorageCells.addCellHandler(new InfinityStoneCellHandler());
-        StorageCells.addCellHandler(MUBulkCellHandler.FLUID_HANDLER);
-        StorageCells.addCellHandler(MUBulkCellHandler.CHEMICAL_HANDLER);
     }
 }

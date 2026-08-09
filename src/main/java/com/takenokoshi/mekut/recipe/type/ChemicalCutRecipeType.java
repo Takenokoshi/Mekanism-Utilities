@@ -6,17 +6,15 @@ import java.util.List;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.glodblock.github.extendedae.recipe.CircuitCutterRecipe;
 import com.takenokoshi.mekaddonlib.recipe.type.MekALRecipeType;
 import com.takenokoshi.mekut.recipe.inputcache.MekUtDoubleInputRecipeCache;
-import com.takenokoshi.mekut.recipe.recipe.basic.BasicChemicalCutRecipe;
-
 import mekanism.api.recipes.ItemStackChemicalToItemStackRecipe;
 import mekanism.api.recipes.vanilla_input.SingleItemChemicalRecipeInput;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
+import net.neoforged.fml.ModList;
 
 public class ChemicalCutRecipeType extends
         MekALRecipeType<SingleItemChemicalRecipeInput, ItemStackChemicalToItemStackRecipe, MekUtDoubleInputRecipeCache.MekUtItemChemical<ItemStackChemicalToItemStackRecipe>> {
@@ -28,14 +26,11 @@ public class ChemicalCutRecipeType extends
     @Override
     protected @NotNull List<RecipeHolder<ItemStackChemicalToItemStackRecipe>> getRecipesUncached(
             @NotNull RecipeManager recipeManager, @Nullable RegistryAccess registryAccess) {
-        var result = new ArrayList<>(super.getRecipesUncached(recipeManager, registryAccess));
-        recipeManager.getAllRecipesFor(CircuitCutterRecipe.TYPE).forEach(recipe -> {
-            result.add(new RecipeHolder<>(
-                    ResourceLocation.fromNamespaceAndPath(recipe.id().getNamespace(),
-                            "/runtime_generated/chemical_cut/from_circuit_cutter/" + recipe.id().getPath()),
-                    BasicChemicalCutRecipe.convertFromCircuitCutter(recipe.value())));
-        });
-        return List.copyOf(result);
+        if (ModList.get().isLoaded("extendedae")) {
+            var result = new ArrayList<>(super.getRecipesUncached(recipeManager, registryAccess));
+            result.addAll(EAERecipeProvider.getConvertedCutterRecipes(recipeManager, registryAccess));
+        }
+        return super.getRecipesUncached(recipeManager, registryAccess);
     }
 
 }

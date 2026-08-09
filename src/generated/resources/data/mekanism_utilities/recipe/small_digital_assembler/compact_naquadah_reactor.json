@@ -1,0 +1,47 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "mekanism_extras"
+    }
+  ],
+  "type": "mekanism_utilities:small_digital_assembler",
+  "chemical_input": {
+    "amount": 8000,
+    "chemical": "mekanism_extras:lead"
+  },
+  "fluid_input": {
+    "amount": 4000,
+    "fluid": "mekanism:ethene"
+  },
+  "list_item_input": [
+    {
+      "count": 1,
+      "item": "mekanism_extras:naquadah_reactor_controller"
+    },
+    {
+      "count": 108,
+      "item": "mekanism_extras:naquadah_reactor_casing"
+    },
+    {
+      "count": 4,
+      "item": "mekanism_extras:naquadah_reactor_port"
+    },
+    {
+      "count": 217,
+      "item": "mekanismgenerators:reactor_glass"
+    },
+    {
+      "count": 4,
+      "item": "mekanism_extras:cosmic_control_circuit"
+    },
+    {
+      "count": 16,
+      "item": "mekanism_extras:alloy_shining"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "mekanism_utilities:compact_naquadah_reactor"
+  }
+}

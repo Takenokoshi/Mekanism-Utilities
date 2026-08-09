@@ -4,12 +4,14 @@ import com.takenokoshi.mekut.core.MekUtConstants;
 import com.takenokoshi.mekut.registries.MekUtChemicals;
 import com.takenokoshi.mekut.registries.MekUtItems;
 
+import appeng.core.AppEng;
 import appeng.core.definitions.AEItems;
 import mekanism.api.datagen.recipe.builder.ItemStackToChemicalRecipeBuilder;
 import mekanism.api.recipes.ingredients.creator.IItemStackIngredientCreator;
 import mekanism.api.recipes.ingredients.creator.IngredientCreatorAccess;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.world.level.ItemLike;
+import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 
 public class ChemicalConvertionRecipes {
     public static void build(RecipeOutput output) {
@@ -18,6 +20,7 @@ public class ChemicalConvertionRecipes {
                 .chemicalConversion(
                         creatorI.from(AEItems.SINGULARITY),
                         MekUtChemicals.SINGULARITY.asStack(10))
+                .addCondition(new ModLoadedCondition(AppEng.MOD_ID))
                 .build(output, MekUtConstants.rl("chemical_conversion/singularity_1"));
         ItemStackToChemicalRecipeBuilder
                 .chemicalConversion(
@@ -28,6 +31,7 @@ public class ChemicalConvertionRecipes {
                 .chemicalConversion(
                         creatorI.from(1, new ItemLike[] { AEItems.FLUIX_CRYSTAL, AEItems.FLUIX_DUST }),
                         MekUtChemicals.FLUIX.asStack(10))
+                .addCondition(new ModLoadedCondition(AppEng.MOD_ID))
                 .build(output, MekUtConstants.rl("chemical_conversion/fluix_1"));
         ItemStackToChemicalRecipeBuilder
                 .chemicalConversion(

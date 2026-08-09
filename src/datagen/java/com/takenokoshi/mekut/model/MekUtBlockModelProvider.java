@@ -2,7 +2,10 @@ package com.takenokoshi.mekut.model;
 
 import com.takenokoshi.mekaddonlib.registration.MachineRegistryObject;
 import com.takenokoshi.mekut.core.MekUtConstants;
+import com.takenokoshi.mekut.enums.MekUtMaterial;
 import com.takenokoshi.mekut.registries.MekUtBlocks;
+import com.takenokoshi.mekut.registries.MekUtEvolvedMachines;
+import com.takenokoshi.mekut.registries.MekUtExtrasMachines;
 import com.takenokoshi.mekut.registries.MekUtFluids;
 import com.takenokoshi.mekut.registries.MekUtMachines;
 
@@ -41,8 +44,8 @@ public class MekUtBlockModelProvider extends BlockStateProvider {
                 models().cubeAll("block/ore/netherite", modLoc("block/ore/netherite")));
 
         var wipModel = models().cubeAll("wip_block", modLoc("block/wip"));
-        MekUtBlocks.RAW_MU_MATERIALS_BLOCK.forEach((material, def) -> {
-            simpleBlockWithItem(def.get(), wipModel);
+        MekUtMaterial.MATERIALS.forEach(material -> {
+            simpleBlockWithItem(material.rawBlock().get(), wipModel);
         });
 
         mekUtSimpleMachine(MekUtMachines.CHEMICAL_CUTTER,
@@ -81,10 +84,6 @@ public class MekUtBlockModelProvider extends BlockStateProvider {
                 true,
                 "augment",
                 "lazer_compress_nucleo_synthesizer");
-        mekUtSimpleMachine(MekUtMachines.MEKSTYLED_CHARGER,
-                true,
-                "digital",
-                "mekstyled_charger");
         mekUtSimpleMachine(MekUtMachines.SMALL_DIGITAL_ASSEMBLER,
                 true,
                 "digital",
@@ -105,8 +104,15 @@ public class MekUtBlockModelProvider extends BlockStateProvider {
                 false,
                 "digital",
                 "xp_tank");
+        mekUtSimpleMachine(MekUtEvolvedMachines.COMPACT_ANTIMATTER_PROTOMOLECULAR_TRANSMUTATOR,
+                true,
+                "quantum",
+                "apt");
+        mekUtSimpleMachine(MekUtExtrasMachines.COMPACT_NAQUADAH_REACTOR,
+                true,
+                "cosmic",
+                "naquadah_reactor");
 
-        
         mekUtSimpleMachine(MekUtMachines.ITEM_RATIO_SPLITTER,
                 false,
                 "digital",

@@ -20,18 +20,6 @@
     {
       "count": 4,
       "item": "mekanism_utilities:stardust_alloy"
-    },
-    {
-      "count": 2,
-      "item": "advanced_ae:quantum_processor"
-    },
-    {
-      "count": 2,
-      "item": "ae2:spatial_cell_component_128"
-    },
-    {
-      "count": 8,
-      "item": "ae2:not_so_mysterious_cube"
     }
   ],
   "output": {

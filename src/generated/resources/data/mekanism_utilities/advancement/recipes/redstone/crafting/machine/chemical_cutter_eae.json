@@ -1,0 +1,38 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "extendedae"
+    }
+  ],
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "mekanism_utilities:crafting/machine/chemical_cutter_eae"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "unlock": {
+      "conditions": {
+        "items": [
+          {
+            "items": "extendedae:circuit_cutter"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "unlock"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "mekanism_utilities:crafting/machine/chemical_cutter_eae"
+    ]
+  }
+}

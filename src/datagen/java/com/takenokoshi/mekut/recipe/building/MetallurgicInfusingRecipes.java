@@ -4,6 +4,7 @@ import com.takenokoshi.mekut.core.MekUtConstants;
 import com.takenokoshi.mekut.registries.MekUtChemicals;
 import com.takenokoshi.mekut.registries.MekUtItems;
 
+import appeng.core.AppEng;
 import appeng.core.definitions.AEItems;
 import mekanism.api.datagen.recipe.builder.ItemStackChemicalToItemStackRecipeBuilder;
 import mekanism.api.recipes.ingredients.creator.IChemicalStackIngredientCreator;
@@ -15,6 +16,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 
 public class MetallurgicInfusingRecipes {
 
@@ -62,6 +64,7 @@ public class MetallurgicInfusingRecipes {
                         creatorC.from(MekUtChemicals.FLUIX.asStack(80)),
                         AEItems.FLUIX_PEARL.stack(1),
                         false)
+                .addCondition(new ModLoadedCondition(AppEng.MOD_ID))
                 .build(output, MekUtConstants.rl("metallurgic_infusing/fluix_pearl"));
         ItemStackChemicalToItemStackRecipeBuilder
                 .metallurgicInfusing(
@@ -69,6 +72,7 @@ public class MetallurgicInfusingRecipes {
                         creatorC.from(MekUtChemicals.XP.asStack(1000)),
                         new ItemStack(Items.ENDER_PEARL,2),
                         false)
+                .addCondition(new ModLoadedCondition(AppEng.MOD_ID))
                 .build(output, MekUtConstants.rl("metallurgic_infusing/ender_pearl"));
     }
 }

@@ -5,7 +5,7 @@ import java.util.concurrent.CompletableFuture;
 import org.jetbrains.annotations.Nullable;
 
 import com.takenokoshi.mekut.core.MekUtConstants;
-import com.takenokoshi.mekut.enums.MUMaterial;
+import com.takenokoshi.mekut.enums.MekUtMaterial;
 import com.takenokoshi.mekut.registries.MekUtBlocks;
 import com.takenokoshi.mekut.registries.MekUtItems;
 
@@ -30,21 +30,15 @@ public class MekUtItemTagProvider extends ItemTagsProvider {
 
     @Override
     protected void addTags(Provider provider) {
-        for (MUMaterial material : MUMaterial.values()) {
-            tag(MekUtItemTags.RAW_MU_MATERIALS_BLOCK.get(material))
-                    .add(MekUtBlocks.RAW_MU_MATERIALS_BLOCK.get(material).asItem());
-            tag(MekUtItemTags.RAW_MU_MATERIALS.get(material)).add(MekUtItems.RAW_MU_MATERIALS.get(material).asItem());
-            tag(MekUtItemTags.MU_MATERIALS_CLUMP.get(material))
-                    .add(MekUtItems.MU_MATERIALS_CLUMP.get(material).asItem());
-            tag(MekUtItemTags.MU_MATERIALS_CRYSTAL.get(material))
-                    .add(MekUtItems.MU_MATERIALS_CRYSTAL.get(material).asItem());
-            tag(MekUtItemTags.MU_MATERIALS_SHARD.get(material))
-                    .add(MekUtItems.MU_MATERIALS_SHARD.get(material).asItem());
-            if (!material.isGem) {
-                tag(MekUtItemTags.MU_MATERIALS_DIRTY_DUST.get(material))
-                        .add(MekUtItems.MU_MATERIALS_DIRTY_DUST.get(material).asItem());
-            }
-        }
+
+        MekUtMaterial.MATERIALS.forEach(material -> {
+            tag(material.rawTag()).add(material.raw().asItem());
+            tag(material.rawBlockTag()).add(material.rawBlock().asItem());
+            tag(material.crystalTag()).add(material.crystal().asItem());
+            tag(material.shardTag()).add(material.shard().asItem());
+            tag(material.clumpTag()).add(material.clump().asItem());
+        });
+
         tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "ores/amethyst")))
                 .add(MekUtBlocks.AMETHYST_ORE.asItem());
         tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "ores/certus_quartz")))

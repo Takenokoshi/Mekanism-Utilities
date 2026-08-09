@@ -1,6 +1,6 @@
 package com.takenokoshi.mekut.recipe.building;
 
-import com.fxd927.mekanismelements.common.registries.MSGases;
+import fixdol.mekanismelements.common.registries.MSGases;
 import com.takenokoshi.mekut.core.MekUtConstants;
 import com.takenokoshi.mekut.registries.MekUtChemicals;
 import com.takenokoshi.mekut.registries.MekUtItems;

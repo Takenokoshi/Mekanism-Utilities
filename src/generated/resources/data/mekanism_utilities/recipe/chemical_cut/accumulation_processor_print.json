@@ -1,0 +1,22 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "megacells"
+    }
+  ],
+  "type": "mekanism_utilities:chemical_cut",
+  "chemical_input": {
+    "amount": 1,
+    "chemical": "mekanism:hydrogen_chloride"
+  },
+  "item_input": {
+    "count": 64,
+    "item": "megacells:sky_steel_ingot"
+  },
+  "output": {
+    "count": 64,
+    "id": "megacells:printed_accumulation_processor"
+  },
+  "per_tick_usage": true
+}

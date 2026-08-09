@@ -1,0 +1,25 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ores/overload"
+      }
+    }
+  ],
+  "type": "mekanism:injecting",
+  "chemical_input": {
+    "amount": 1,
+    "chemical": "mekanism:hydrogen_chloride"
+  },
+  "item_input": {
+    "count": 1,
+    "tag": "c:ores/overload"
+  },
+  "output": {
+    "count": 4,
+    "id": "mekanism_utilities:overload_shard"
+  },
+  "per_tick_usage": true
+}
