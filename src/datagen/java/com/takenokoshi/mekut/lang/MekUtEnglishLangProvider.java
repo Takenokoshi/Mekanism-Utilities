@@ -75,10 +75,10 @@ public class MekUtEnglishLangProvider extends LanguageProvider {
                 MekUtChemicals.DIRTY_REDSTONE_SLURRY,
                 MekUtChemicals.DIRTY_SILICON_SLURRY,
         }).forEach(this::addChemical);
-        addChemical(MekUtChemicals.SINGULARITY);
+        addChemical(MekUtChemicals.REFINED_LAPIS_LAZULI);
         addChemical(MekUtChemicals.ENRICHED_XP);
         addChemical(MekUtChemicals.XP);
-        addChemical(MekUtChemicals.FLUIX);
+        addChemical(MekUtChemicals.AMETHYST);
         addChemical(MekUtChemicals.ASTRAL_ETHER);
         addChemical(MekUtChemicals.IRIDIUM);
         addChemical(MekUtChemicals.NETHERITE);

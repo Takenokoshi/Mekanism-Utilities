@@ -2,10 +2,10 @@
   "type": "mekanism:chemical_conversion",
   "input": {
     "count": 1,
-    "item": "mekanism_utilities:enriched_fluix"
+    "item": "mekanism_utilities:enriched_amethyst"
   },
   "output": {
     "amount": 80,
-    "id": "mekanism_utilities:fluix"
+    "id": "mekanism_utilities:amethyst"
   }
 }

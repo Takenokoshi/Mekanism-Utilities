@@ -50,8 +50,6 @@ public class MekUtItemTagProvider extends ItemTagsProvider {
 
         tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "dusts/amethyst")))
                 .add(MekUtItems.AMETHYST_DUST.asItem());
-        tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "ingots/refined_amethyst")))
-                .add(MekUtItems.REFINED_AMETHYST_INGOT.asItem());
 
         tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "ores/lapis_lazuli")))
                 .addTag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "ores/lapis")));

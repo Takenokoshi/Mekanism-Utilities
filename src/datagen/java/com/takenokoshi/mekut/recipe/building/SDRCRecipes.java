@@ -3,8 +3,6 @@ package com.takenokoshi.mekut.recipe.building;
 import fixdol.mekanismelements.common.MekanismElements;
 import fixdol.mekanismelements.common.registries.MSGases;
 import fixdol.mekanismelements.common.registries.MSItems;
-import com.glodblock.github.appflux.AppFlux;
-import com.glodblock.github.appflux.common.AFSingletons;
 import com.glodblock.github.extendedae.ExtendedAE;
 import com.glodblock.github.extendedae.common.EAESingletons;
 import com.takenokoshi.mekut.core.MekUtConstants;
@@ -76,20 +74,10 @@ public class SDRCRecipes {
                 .addItemInput(MekanismItems.PROCESSED_RESOURCES.get(ResourceType.CRYSTAL, PrimaryResource.COPPER), 64)
                 .addItemInput(AAEItems.SHATTERED_SINGULARITY, 64)
                 .setFluidInput(AAEFluids.QUANTUM_INFUSION.stack(16000))
-                .setChemicalInput(MekUtChemicals.SINGULARITY.asStack(2560))
+                .setChemicalInput(MekUtChemicals.REFINED_LAPIS_LAZULI.asStack(2560))
                 .setEnergyRequired(8000000)
                 .addCondition(new ModLoadedCondition(AdvancedAE.MOD_ID))
                 .build(output, MekUtConstants.rl("small_digital_reaction_chamber/quantum_alloy"));
-        ItemStackListFluidChemicalToItemFluidChemicalRecipeBuilder
-                .smallDigitalReactionChamber(new ItemStack(AFSingletons.REDSTONE_CRYSTAL, 64), FluidStack.EMPTY,
-                        ChemicalStack.EMPTY)
-                .addItemInput(MekUtItems.REDSTONE_CRYSTAL, 144)
-                .addItemInput(Items.GLOWSTONE_DUST, 16)
-                .setFluidInput(Tags.Fluids.WATER, 500)
-                .setChemicalInput(MekUtChemicals.FLUIX.asStack(160))
-                .setEnergyRequired(50000)
-                .addCondition(new ModLoadedCondition(AppFlux.MODID))
-                .build(output, MekUtConstants.rl("small_digital_reaction_chamber/af_redstone_crystal"));
         ItemStackListFluidChemicalToItemFluidChemicalRecipeBuilder
                 .smallDigitalReactionChamber(new ItemStack(EAESingletons.ENTRO_INGOT, 64), FluidStack.EMPTY,
                         MekUtChemicals.XP.asStack(10000))

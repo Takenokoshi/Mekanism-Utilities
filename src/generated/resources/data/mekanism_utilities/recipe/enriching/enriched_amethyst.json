@@ -1,0 +1,19 @@
+{
+  "type": "mekanism:enriching",
+  "input": {
+    "type": "neoforge:compound",
+    "children": [
+      {
+        "item": "minecraft:amethyst_shard"
+      },
+      {
+        "item": "mekanism_utilities:amethyst_dust"
+      }
+    ],
+    "count": 1
+  },
+  "output": {
+    "count": 1,
+    "id": "mekanism_utilities:enriched_amethyst"
+  }
+}

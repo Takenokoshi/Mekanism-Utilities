@@ -23,7 +23,6 @@ public class MekUtRecipeProvider extends RecipeProvider {
         ChemicalDissolutionRecipes.build(output);
         ChemicalWashingRecipes.build(output);
         CombiningRecipes.build(output);
-        CompressingRecipes.build(output);
         CraftingRecipes.build(output, RecipeProvider::has);
         CrystallizingRecipes.build(output);
         EnrichingRecipes.build(output);

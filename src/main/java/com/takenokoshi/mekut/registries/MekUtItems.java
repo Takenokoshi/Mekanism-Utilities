@@ -32,15 +32,15 @@ public class MekUtItems {
     public static final ItemRegistryObject<Item> COMET_CONTROL_CIRCUIT = registerFoiling(
             "comet_control_circuit");
 
-    public static final ItemRegistryObject<Item> ENRICHED_FLUIX = ITEMS.register("enriched_fluix");
-    public static final ItemRegistryObject<Item> ENRICHED_SINGULARITY = ITEMS.register("enriched_singularity");
+    public static final ItemRegistryObject<Item> ENRICHED_AMETHYST = ITEMS.register("enriched_amethyst");
+    public static final ItemRegistryObject<Item> ENRICHED_LAPIS_LAZULI = ITEMS.register("enriched_lapis_lazuli");
 
     public static final ItemRegistryObject<Item> GOLDEN_REDSTONE = ITEMS.register("golden_redstone");
     public static final ItemRegistryObject<Item> AMETHYST_DUST = ITEMS.register("amethyst_dust");
+    public static final ItemRegistryObject<Item> REFINED_LAPIS_LAZULI_DUST = ITEMS.register("refined_lapis_lazuli_dust");
     public static final ItemRegistryObject<Item> IRIDIUM_DUST = ITEMS.register("iridium_dust");
     public static final ItemRegistryObject<Item> SILICON_DUST = ITEMS.register("silicon_dust");
 
-    public static final ItemRegistryObject<Item> REFINED_AMETHYST_INGOT = ITEMS.register("refined_amethyst_ingot");
     public static final ItemRegistryObject<Item> IRIDIUM_INGOT = ITEMS.register("iridium_ingot");
 
     public static final ItemRegistryObject<XpCrystalItem> XP_CRYSTAL = ITEMS.registerItem("xp_crystal",

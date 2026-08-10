@@ -26,15 +26,14 @@ public class LazerCompressNucleoSynthesizeRecipes {
         MUChemicalChemicalToChemicalRecipeBuilder
                 .nuclearSynthesize(
                         creatorC.from(MekanismChemicals.PLUTONIUM.asStack(1)),
-                        creatorC.from(MekUtChemicals.SINGULARITY.asStack(1)),
+                        creatorC.from(MekUtChemicals.REFINED_LAPIS_LAZULI.asStack(1)),
                         MekanismChemicals.POLONIUM.asStack(1))
                 .build(output, MekUtConstants.rl("lazer_compress/polonium"));
         MUChemicalChemicalToChemicalRecipeBuilder
                 .nuclearSynthesize(
-                        creatorC.from(MSGases.AMERICIUM.asStack(100)),
-                        creatorC.from(MekUtChemicals.SINGULARITY.asStack(100)),
+                        creatorC.from(MekanismChemicals.POLONIUM.asStack(100)),
+                        creatorC.from(MekanismChemicals.REFINED_OBSIDIAN.asStack(100)),
                         MekUtChemicals.IRIDIUM.asStack(1))
-                .addCondition(new ModLoadedCondition(MekanismElements.MODID))
                 .build(output, MekUtConstants.rl("lazer_compress/iridium"));
         MUChemicalChemicalToChemicalRecipeBuilder
                 .nuclearSynthesize(

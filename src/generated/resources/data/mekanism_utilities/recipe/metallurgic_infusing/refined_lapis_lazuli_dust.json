@@ -1,16 +1,16 @@
 {
   "type": "mekanism:metallurgic_infusing",
   "chemical_input": {
-    "amount": 20,
-    "chemical": "mekanism_utilities:refined_lapis_lazuli"
+    "amount": 10,
+    "chemical": "mekanism:diamond"
   },
   "item_input": {
     "count": 1,
-    "item": "mekanism_utilities:elastic_alloy"
+    "tag": "c:dusts/lapis"
   },
   "output": {
     "count": 1,
-    "id": "mekanism_utilities:convergent_alloy"
+    "id": "mekanism_utilities:refined_lapis_lazuli_dust"
   },
   "per_tick_usage": false
 }

@@ -4,10 +4,11 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.fluids.FluidStack;
 
-public class FluidSupplierItem extends Item implements IFluidSupplier {
+public class FluidSupplierItem extends Item implements IFluidSupplierItem {
 
     private final Supplier<Fluid> supplier;
 
@@ -20,7 +21,7 @@ public class FluidSupplierItem extends Item implements IFluidSupplier {
         return props -> new FluidSupplierItem(props, supplier);
     }
 
-    public final FluidStack getSupplyingFluidStack() {
+    public final FluidStack getSupplyingFluidStack(ItemStack stack) {
         return new FluidStack(supplier.get(), 0x7fffffff);
     }
 

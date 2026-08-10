@@ -66,7 +66,7 @@ public class ChemicalFillConvertOrSupplyingSlot extends BasicInventorySlot
         return stack -> {
             if (stack.getItem() instanceof ChemicalSupplierItem supplierItem) {
                 return chemicalTank
-                        .insert(supplierItem.getStack().copyWithAmount(1), Action.SIMULATE, AutomationType.INTERNAL)
+                        .insert(supplierItem.getSupplyingChemicalStack(stack).copyWithAmount(1), Action.SIMULATE, AutomationType.INTERNAL)
                         .isEmpty();
             }
             IChemicalHandler handler = Capabilities.CHEMICAL.getCapability(stack);
@@ -126,7 +126,7 @@ public class ChemicalFillConvertOrSupplyingSlot extends BasicInventorySlot
             recipeCacheLookupMonitor.onChange();
             isSupplying = false;
         } else if (getStack().getItem() instanceof ChemicalSupplierItem supplierItem) {
-            supplyingStackSetter.accept(supplierItem.getStack());
+            supplyingStackSetter.accept(supplierItem.getSupplyingChemicalStack(getStack()));
             recipeCacheLookupMonitor.setHasNoRecipe(0);
             isSupplying = true;
         } else {

@@ -4,7 +4,7 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 import org.jetbrains.annotations.NotNull;
-import com.takenokoshi.mekut.item.IFluidSupplier;
+import com.takenokoshi.mekut.item.IFluidSupplierItem;
 
 import mekanism.api.Action;
 import mekanism.api.AutomationType;
@@ -25,9 +25,9 @@ public class FluidFillOrSupplierSlot extends BasicInventorySlot
 
     public static Predicate<ItemStack> getPredicate(IExtendedFluidTank fluidTank) {
         return stack -> {
-            if (stack.getItem() instanceof IFluidSupplier supplierItem) {
+            if (stack.getItem() instanceof IFluidSupplierItem supplierItem) {
                 return fluidTank
-                        .insert(supplierItem.getSupplyingFluidStack().copyWithAmount(1), Action.SIMULATE, AutomationType.INTERNAL)
+                        .insert(supplierItem.getSupplyingFluidStack(stack).copyWithAmount(1), Action.SIMULATE, AutomationType.INTERNAL)
                         .isEmpty();
             }
             IFluidHandlerItem fluidHandlerItem = (IFluidHandlerItem) Capabilities.FLUID.getCapability(stack);
@@ -81,8 +81,8 @@ public class FluidFillOrSupplierSlot extends BasicInventorySlot
         if (isEmpty()) {
             supplyingStackSetter.accept(FluidStack.EMPTY);
             isSupplying = false;
-        } else if (getStack().getItem() instanceof IFluidSupplier supplierItem) {
-            supplyingStackSetter.accept(supplierItem.getSupplyingFluidStack());
+        } else if (getStack().getItem() instanceof IFluidSupplierItem supplierItem) {
+            supplyingStackSetter.accept(supplierItem.getSupplyingFluidStack(getStack()));
             isSupplying = true;
         } else {
             supplyingStackSetter.accept(FluidStack.EMPTY);

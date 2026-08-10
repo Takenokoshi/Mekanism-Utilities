@@ -1,0 +1,19 @@
+{
+  "type": "mekanism:chemical_conversion",
+  "input": {
+    "type": "neoforge:compound",
+    "children": [
+      {
+        "item": "minecraft:amethyst_shard"
+      },
+      {
+        "item": "mekanism_utilities:amethyst_dust"
+      }
+    ],
+    "count": 1
+  },
+  "output": {
+    "amount": 10,
+    "id": "mekanism_utilities:amethyst"
+  }
+}

@@ -8,7 +8,7 @@
   "type": "mekanism_utilities:small_digital_reaction_chamber",
   "chemical_input": {
     "amount": 2560,
-    "chemical": "mekanism_utilities:singularity"
+    "chemical": "mekanism_utilities:refined_lapis_lazuli"
   },
   "duration": 100,
   "energy_required": 8000000,

@@ -18,7 +18,7 @@ public class InputOrSupplyingSlot extends LimitChangedInputInventorySlot {
             if (stack.isEmpty()) {
                 return false;
             } else if (stack.getItem() instanceof ItemSupplierItem supplierItem) {
-                return predicate.test(supplierItem.getSupplyingStack());
+                return predicate.test(supplierItem.getSupplyingStack(stack));
             } else {
                 return predicate.test(stack);
             }
@@ -51,7 +51,7 @@ public class InputOrSupplyingSlot extends LimitChangedInputInventorySlot {
         if (isEmpty()) {
             supplyingStackSetter.accept(ItemStack.EMPTY);
         } else if (getStack().getItem() instanceof ItemSupplierItem supplierItem) {
-            supplyingStackSetter.accept(supplierItem.getSupplyingStack());
+            supplyingStackSetter.accept(supplierItem.getSupplyingStack(getStack()));
         } else {
             supplyingStackSetter.accept(ItemStack.EMPTY);
         }

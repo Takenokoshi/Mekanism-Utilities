@@ -1,15 +1,15 @@
 {
   "type": "mekanism:metallurgic_infusing",
   "chemical_input": {
-    "amount": 200,
+    "amount": 160,
     "chemical": "mekanism_utilities:xp"
   },
   "item_input": {
-    "count": 20,
+    "count": 16,
     "item": "mekanism_utilities:golden_redstone"
   },
   "output": {
-    "count": 20,
+    "count": 16,
     "id": "minecraft:glowstone_dust"
   },
   "per_tick_usage": false

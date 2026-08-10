@@ -79,7 +79,7 @@ public class SDARecipes {
                 .addItemInput(MEGAItems.ACCUMULATION_PROCESSOR_PRINT.stack(64))
                 .addItemInput(AEItems.SILICON_PRINT.stack(64))
                 .setFluidInput(IngredientCreatorAccess.fluid().from(Tags.Fluids.LAVA, 1000))
-                .setChemicalInput(MekUtChemicals.FLUIX.asStack(640))
+                .setChemicalInput(MekUtChemicals.AMETHYST.asStack(640))
                 .addCondition(new ModLoadedCondition(MEGACells.MODID))
                 .build(output, MekUtConstants.rl("small_digital_assembler/accumulation_processor"));
         ItemStackListFluidChemicalToItemRecipeBuilder

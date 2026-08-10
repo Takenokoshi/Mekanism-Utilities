@@ -30,9 +30,9 @@ public class MekUtItemModelProvider extends ItemModelProvider {
         simpleItem(MekUtItems.GOLDEN_REDSTONE.get()).texture("layer0", MekUtConstants.rl("item/dust/golden_redstone"));
         simpleItem(MekUtItems.IRIDIUM_DUST.get()).texture("layer0", MekUtConstants.rl("item/dust/iridium"));
         simpleItem(MekUtItems.SILICON_DUST.get()).texture("layer0", MekUtConstants.rl("item/dust/silicon"));
+        simpleItem(MekUtItems.REFINED_LAPIS_LAZULI_DUST.get()).texture("layer0",
+                MekUtConstants.rl("item/dust/refined_lapis_lazuli"));
 
-        simpleItem(MekUtItems.REFINED_AMETHYST_INGOT.get())
-                .texture("layer0", MekUtConstants.rl("item/ingot/refined_amethyst"));
         simpleItem(MekUtItems.IRIDIUM_INGOT.get())
                 .texture("layer0", MekUtConstants.rl("item/ingot/iridium"));
 
@@ -50,10 +50,10 @@ public class MekUtItemModelProvider extends ItemModelProvider {
         simpleItem(MekUtItems.COMET_CONTROL_CIRCUIT.get())
                 .texture("layer0", MekUtConstants.rl("item/control_circuit/comet"));
 
-        simpleItem(MekUtItems.ENRICHED_SINGULARITY.get())
-                .texture("layer0", MekUtConstants.rl("item/enriched/singularity"));
-        simpleItem(MekUtItems.ENRICHED_FLUIX.get())
-                .texture("layer0", MekUtConstants.rl("item/enriched/fluix"));
+        simpleItem(MekUtItems.ENRICHED_LAPIS_LAZULI.get())
+                .texture("layer0", MekUtConstants.rl("item/enriched/lapis_lazuli"));
+        simpleItem(MekUtItems.ENRICHED_AMETHYST.get())
+                .texture("layer0", MekUtConstants.rl("item/enriched/amethyst"));
 
         simpleItem(MekUtItems.DARK_RED_DYE.get())
                 .texture("layer0", MekUtConstants.rl("item/dye/dark_red"));

@@ -1,15 +1,15 @@
 {
   "type": "mekanism:metallurgic_infusing",
   "chemical_input": {
-    "amount": 800,
+    "amount": 640,
     "chemical": "mekanism:gold"
   },
   "item_input": {
-    "count": 20,
+    "count": 16,
     "item": "minecraft:redstone"
   },
   "output": {
-    "count": 20,
+    "count": 16,
     "id": "mekanism_utilities:golden_redstone"
   },
   "per_tick_usage": false

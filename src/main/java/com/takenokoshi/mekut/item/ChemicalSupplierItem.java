@@ -6,8 +6,9 @@ import mekanism.api.chemical.Chemical;
 import mekanism.api.chemical.ChemicalStack;
 import net.minecraft.core.Holder;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 
-public class ChemicalSupplierItem extends Item {
+public class ChemicalSupplierItem extends Item implements IChemicalSupplierItem {
 
     private final Holder<Chemical> holder;
 
@@ -20,7 +21,7 @@ public class ChemicalSupplierItem extends Item {
         return props -> new ChemicalSupplierItem(props, holder);
     }
 
-    public final ChemicalStack getStack() {
+    public final ChemicalStack getSupplyingChemicalStack(ItemStack stack) {
         return new ChemicalStack(holder, Long.MAX_VALUE);
     }
 

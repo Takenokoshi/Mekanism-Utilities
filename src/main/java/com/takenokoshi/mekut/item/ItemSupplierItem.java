@@ -6,7 +6,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 
-public class ItemSupplierItem extends Item {
+public class ItemSupplierItem extends Item implements IItemSupplierItem {
 
     private final ItemLike itemLike;
 
@@ -19,7 +19,7 @@ public class ItemSupplierItem extends Item {
         return props -> new ItemSupplierItem(props, itemLike);
     }
 
-    public ItemStack getSupplyingStack() {
+    public final ItemStack getSupplyingStack(ItemStack stack) {
         return new ItemStack(itemLike, 0x3fffffff);
     }
 

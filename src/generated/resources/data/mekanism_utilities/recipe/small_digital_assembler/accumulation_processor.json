@@ -8,7 +8,7 @@
   "type": "mekanism_utilities:small_digital_assembler",
   "chemical_input": {
     "amount": 640,
-    "chemical": "mekanism_utilities:fluix"
+    "chemical": "mekanism_utilities:amethyst"
   },
   "fluid_input": {
     "amount": 1000,
