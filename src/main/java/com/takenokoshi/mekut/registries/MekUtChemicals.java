@@ -14,6 +14,7 @@ public class MekUtChemicals {
     public static final DeferredChemical<?> ENRICHED_XP = CHEMICALS.register("enriched_xp", 0x7f29ff00);
     public static final DeferredChemical<?> ASTRAL_ETHER = CHEMICALS.register("astral_ether", 0xD4A1FF);
     public static final DeferredChemical<?> AMETHYST = CHEMICALS.registerInfuse("amethyst", 0x7A73B8);
+    public static final DeferredChemical<?> GLOWSTONE = CHEMICALS.registerInfuse("glowstone", 0xFFBC5E);
     public static final DeferredChemical<?> IRIDIUM = CHEMICALS.register("iridium", 0xC4CCD8);
     public static final DeferredChemical<?> NETHERITE = CHEMICALS.register("netherite", 0x5A4E52);
 

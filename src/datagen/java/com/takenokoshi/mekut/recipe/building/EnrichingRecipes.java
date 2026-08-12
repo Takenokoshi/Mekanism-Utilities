@@ -24,5 +24,10 @@ public class EnrichingRecipes {
                         creatorI.from(1, new ItemLike[] { Items.AMETHYST_SHARD, MekUtItems.AMETHYST_DUST, }),
                         MekUtItems.ENRICHED_AMETHYST.asStack(1))
                 .build(output, MekUtConstants.rl("enriching/enriched_amethyst"));
+        ItemStackToItemStackRecipeBuilder
+                .enriching(
+                        creatorI.from(Items.GLOWSTONE_DUST,1),
+                        MekUtItems.ENRICHED_GLOWSTONE.asStack(1))
+                .build(output, MekUtConstants.rl("enriching/enriched_glowstone"));
     }
 }

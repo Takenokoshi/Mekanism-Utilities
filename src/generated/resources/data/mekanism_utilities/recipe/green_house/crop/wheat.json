@@ -1,0 +1,36 @@
+{
+  "type": "mekanism_utilities:green_house_crop",
+  "crop": {
+    "count": 1,
+    "tag": "c:seeds/wheat"
+  },
+  "duration": 3000,
+  "output": [
+    {
+      "chance": 1.0,
+      "value": {
+        "count": 1,
+        "id": "minecraft:wheat"
+      }
+    },
+    {
+      "chance": 0.2,
+      "value": {
+        "count": 2,
+        "id": "minecraft:wheat_seeds"
+      }
+    }
+  ],
+  "soil": {
+    "type": "neoforge:compound",
+    "children": [
+      {
+        "item": "minecraft:dirt"
+      },
+      {
+        "item": "minecraft:grass_block"
+      }
+    ],
+    "count": 1
+  }
+}

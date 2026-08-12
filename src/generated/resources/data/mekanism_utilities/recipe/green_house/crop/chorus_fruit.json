@@ -1,0 +1,28 @@
+{
+  "type": "mekanism_utilities:green_house_crop",
+  "crop": {
+    "count": 1,
+    "item": "minecraft:chorus_flower"
+  },
+  "duration": 3000,
+  "output": [
+    {
+      "chance": 1.0,
+      "value": {
+        "count": 4,
+        "id": "minecraft:chorus_fruit"
+      }
+    },
+    {
+      "chance": 0.02,
+      "value": {
+        "count": 1,
+        "id": "minecraft:chorus_flower"
+      }
+    }
+  ],
+  "soil": {
+    "count": 1,
+    "item": "minecraft:end_stone"
+  }
+}

@@ -58,6 +58,9 @@ public class MekUtItemTagProvider extends ItemTagsProvider {
                 .add(MekUtItems.DARK_RED_DYE.get());
         tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "dyes/aqua")))
                 .add(MekUtItems.AQUA_DYE.get());
+
+        tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "silicon")))
+                .add(MekUtItems.SILICON.get());
     }
 
 }

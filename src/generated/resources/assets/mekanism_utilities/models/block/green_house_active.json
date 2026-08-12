@@ -1,0 +1,7 @@
+{
+  "parent": "mekanism_utilities:block/base/green_house",
+  "textures": {
+    "decoration": "mekanism_utilities:block/tier_decoration/augment",
+    "front": "mekanism_utilities:block/machine_front_active/green_house"
+  }
+}

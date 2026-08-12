@@ -3,6 +3,9 @@ package com.takenokoshi.mekut.recipe;
 public final class MekUtRecipeConstants {
 
     public static final String CHEMICAL_CUT = "chemical_cut";
+    public static final String GREEN_HOUSE_CROP = "green_house_crop";
+    public static final String GREEN_HOUSE_FERTILIZER = "green_house_fertilizer";
+    public static final String GREEN_HOUSE = "green_house";
     public static final String ICE_MAKING = "ice_making";
     public static final String LAZER_COMPRESS = "lazer_compress";
     public static final String SMALL_DIGITAL_ASSEMBLER = "small_digital_assembler";

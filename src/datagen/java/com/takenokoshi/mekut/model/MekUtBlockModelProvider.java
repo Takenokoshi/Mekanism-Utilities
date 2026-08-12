@@ -129,6 +129,8 @@ public class MekUtBlockModelProvider extends BlockStateProvider {
         mekanismMachine(MekUtMachines.TWEAKED_ENERGIZED_SMELTER.getBlock(),
                 Mekanism.rl("block/energized_smelter"),
                 Mekanism.rl("block/energized_smelter_active"));
+
+        greenHouse(MekUtMachines.GREEN_HOUSE, "augment", "green_house");
     }
 
     protected void mekUtSimpleMachine(
@@ -172,6 +174,39 @@ public class MekUtBlockModelProvider extends BlockStateProvider {
 
         simpleBlockItem(
                 registryObject.get(),
+                inactive);
+
+    }
+
+    private void greenHouse(
+            MachineRegistryObject<?, ?, ?, ?> machine,
+            String tierDecoration,
+            String baseName) {
+
+        ModelFile inactive = models().withExistingParent(baseName, MekUtConstants.rl("block/base/green_house"))
+                .texture("front", MekUtConstants.rl("block/machine_front/" + baseName))
+                .texture("decoration", MekUtConstants.rl("block/tier_decoration/" + tierDecoration));
+
+        ModelFile active = models()
+                .withExistingParent(baseName + "_active", MekUtConstants.rl("block/base/green_house"))
+                .texture("front", MekUtConstants.rl("block/machine_front_active/" + baseName))
+                .texture("decoration", MekUtConstants.rl("block/tier_decoration/" + tierDecoration));
+
+        getVariantBuilder(machine.getBlock().get())
+                .forAllStates(state -> {
+                    Direction facing = state.getValue(
+                            BlockStateProperties.HORIZONTAL_FACING);
+
+                    boolean lit = ((AttributeStateActive) (Attributes.ACTIVE_LIGHT)).isActive(state);
+
+                    return ConfiguredModel.builder()
+                            .modelFile(lit ? active : inactive)
+                            .rotationY(((int) facing.toYRot() + 180) % 360)
+                            .build();
+                });
+
+        simpleBlockItem(
+                machine.getBlock().get(),
                 inactive);
 
     }

@@ -3,6 +3,8 @@ package com.takenokoshi.mekut.registries;
 import com.takenokoshi.mekaddonlib.registration.GuiSizedMachineRegistryObject;
 import com.takenokoshi.mekaddonlib.registration.MachineDeferredRegister;
 import com.takenokoshi.mekaddonlib.registration.SimpleMachineRegistryObject;
+import com.takenokoshi.mekut.block.GreenHouseHandleBoundingBlock;
+import com.takenokoshi.mekut.block.MekUtBlockShapes;
 import com.takenokoshi.mekut.blockentity.abs.BEAbstractCompactBoiler;
 import com.takenokoshi.mekut.blockentity.abs.BEAbstractCompactFissionReactor;
 import com.takenokoshi.mekut.blockentity.abs.BEAbstractCompactFusionReactor;
@@ -10,6 +12,7 @@ import com.takenokoshi.mekut.blockentity.abs.BEAbstractCompactIndustrialTurbine;
 import com.takenokoshi.mekut.blockentity.abs.BEAbstractCompactSPS;
 import com.takenokoshi.mekut.blockentity.abs.BEAbstractCompactThermalEvaporationPlant;
 import com.takenokoshi.mekut.blockentity.abs.BEAbstractEnergizedSmelter;
+import com.takenokoshi.mekut.blockentity.abs.BEAbstractGreenHouse;
 import com.takenokoshi.mekut.blockentity.interfaces.machine.IBiChemicalToObjectRecipeMachine;
 import com.takenokoshi.mekut.blockentity.interfaces.machine.IFluidToObjectMachine;
 import com.takenokoshi.mekut.blockentity.interfaces.machine.IItemStackChemicalToItemStackMachine;
@@ -22,6 +25,7 @@ import com.takenokoshi.mekut.blockentity.machine.BECompactFusionReactor;
 import com.takenokoshi.mekut.blockentity.machine.BECompactIndustrialTurbine;
 import com.takenokoshi.mekut.blockentity.machine.BECompactSPS;
 import com.takenokoshi.mekut.blockentity.machine.BECompactThermalEvaporationPlant;
+import com.takenokoshi.mekut.blockentity.machine.BEGreenHouse;
 import com.takenokoshi.mekut.blockentity.machine.BEIceMaker;
 import com.takenokoshi.mekut.blockentity.machine.BELazerCompressNucleoSynthesizer;
 import com.takenokoshi.mekut.blockentity.machine.BESmallDigitalAssembler;
@@ -40,6 +44,7 @@ import mekanism.common.attachments.component.AttachedSideConfig;
 import mekanism.common.attachments.containers.ContainerType;
 import mekanism.common.attachments.containers.chemical.ChemicalTanksBuilder;
 import mekanism.common.attachments.containers.item.ItemSlotsBuilder;
+import mekanism.common.block.attribute.AttributeCustomSelectionBox;
 import mekanism.common.capabilities.Capabilities;
 import mekanism.common.config.MekanismConfig;
 import mekanism.common.lib.transmitter.TransmissionType;
@@ -142,6 +147,22 @@ public class MekUtMachines {
                     builder -> builder
                             .withSideConfig(TransmissionType.FLUID, TransmissionType.ITEM, TransmissionType.HEAT)
                             .withSupportedUpgrades(Upgrade.MUFFLING));
+
+    public static final GuiSizedMachineRegistryObject<BEGreenHouse> GREEN_HOUSE = MACHINES
+            .registerGuiSized("green_house",
+                    BEAbstractGreenHouse.SIDE_CONFIG,
+                    BEAbstractGreenHouse.getContainerAdder(10_000)::accept,
+                    BEGreenHouse::new,
+                    BEGreenHouse.class,
+                    builder -> builder
+                            .withSideConfig(TransmissionType.ITEM, TransmissionType.FLUID, TransmissionType.ENERGY)
+                            .withEnergyConfig(
+                                    MekanismConfig.usage.chemicalCrystallizer,
+                                    MekanismConfig.storage.chemicalCrystallizer)
+                            .withSupportedUpgrades(Upgrade.MUFFLING)
+                            .with(AttributeCustomSelectionBox.JSON)
+                            .withBounding(new GreenHouseHandleBoundingBlock())
+                            .withCustomShape(MekUtBlockShapes.GREEN_HOUSE));
 
     public static final SimpleMachineRegistryObject<BEIceMaker> ICE_MAKER = MACHINES
             .registerSimple("ice_maker",

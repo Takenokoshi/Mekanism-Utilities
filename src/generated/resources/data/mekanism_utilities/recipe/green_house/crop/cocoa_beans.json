@@ -1,0 +1,21 @@
+{
+  "type": "mekanism_utilities:green_house_crop",
+  "crop": {
+    "count": 1,
+    "item": "minecraft:cocoa_beans"
+  },
+  "duration": 3000,
+  "output": [
+    {
+      "chance": 1.0,
+      "value": {
+        "count": 3,
+        "id": "minecraft:cocoa_beans"
+      }
+    }
+  ],
+  "soil": {
+    "count": 1,
+    "item": "minecraft:jungle_log"
+  }
+}

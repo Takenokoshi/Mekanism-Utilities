@@ -26,6 +26,7 @@ public class MekUtRecipeProvider extends RecipeProvider {
         CraftingRecipes.build(output, RecipeProvider::has);
         CrystallizingRecipes.build(output);
         EnrichingRecipes.build(output);
+        GreenHouseRecipes.build(output);
         IceMakerRecipes.build(output);
         InjectingRecipes.build(output);
         LazerCompressNucleoSynthesizeRecipes.build(output);

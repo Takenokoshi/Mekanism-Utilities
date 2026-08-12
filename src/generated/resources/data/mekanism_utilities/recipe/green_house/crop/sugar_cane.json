@@ -1,0 +1,35 @@
+{
+  "type": "mekanism_utilities:green_house_crop",
+  "crop": {
+    "count": 1,
+    "item": "minecraft:sugar_cane"
+  },
+  "duration": 3000,
+  "output": [
+    {
+      "chance": 1.0,
+      "value": {
+        "count": 3,
+        "id": "minecraft:sugar_cane"
+      }
+    }
+  ],
+  "soil": {
+    "type": "neoforge:compound",
+    "children": [
+      {
+        "item": "minecraft:dirt"
+      },
+      {
+        "item": "minecraft:grass_block"
+      },
+      {
+        "item": "minecraft:sand"
+      },
+      {
+        "item": "minecraft:red_sand"
+      }
+    ],
+    "count": 1
+  }
+}

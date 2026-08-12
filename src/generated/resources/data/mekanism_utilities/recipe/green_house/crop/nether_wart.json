@@ -1,0 +1,29 @@
+{
+  "type": "mekanism_utilities:green_house_crop",
+  "crop": {
+    "count": 1,
+    "item": "minecraft:nether_wart"
+  },
+  "duration": 3000,
+  "output": [
+    {
+      "chance": 1.0,
+      "value": {
+        "count": 2,
+        "id": "minecraft:nether_wart"
+      }
+    }
+  ],
+  "soil": {
+    "type": "neoforge:compound",
+    "children": [
+      {
+        "item": "minecraft:soul_sand"
+      },
+      {
+        "item": "minecraft:soul_soil"
+      }
+    ],
+    "count": 1
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "type": "mekanism_utilities:green_house_crop",
+  "crop": {
+    "count": 1,
+    "tag": "c:seeds/pumpkin"
+  },
+  "duration": 3000,
+  "output": [
+    {
+      "chance": 1.0,
+      "value": {
+        "count": 1,
+        "id": "minecraft:pumpkin"
+      }
+    }
+  ],
+  "soil": {
+    "type": "neoforge:compound",
+    "children": [
+      {
+        "item": "minecraft:dirt"
+      },
+      {
+        "item": "minecraft:grass_block"
+      }
+    ],
+    "count": 1
+  }
+}

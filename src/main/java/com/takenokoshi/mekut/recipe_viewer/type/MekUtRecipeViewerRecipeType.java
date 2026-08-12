@@ -6,6 +6,7 @@ import com.takenokoshi.mekut.recipe.MekUtRecipeConstants;
 import com.takenokoshi.mekut.recipe.recipe.prefab.BiChemicalToItemRecipe;
 import com.takenokoshi.mekut.recipe.recipe.prefab.ChemicalToChemicalHeatRecipe;
 import com.takenokoshi.mekut.recipe.recipe.prefab.FluidToItemRecipe;
+import com.takenokoshi.mekut.recipe.recipe.prefab.GreenHouseRecipe;
 import com.takenokoshi.mekut.recipe.recipe.prefab.ItemStackListFluidChemicalToItemFluidChemicalRecipe;
 import com.takenokoshi.mekut.recipe.recipe.prefab.ItemStackListFluidChemicalToItemRecipe;
 import com.takenokoshi.mekut.recipe.type.WrappedRecipeType;
@@ -24,6 +25,12 @@ public class MekUtRecipeViewerRecipeType {
             ItemStackChemicalToItemStackRecipe.class,
             MekUtRecipeTypes.CHEMICAL_CUT, -28, -16, 144, 54,
             MekUtMachines.CHEMICAL_CUTTER);
+
+    public static final RVMekALRecipeTypeWrapper<?, GreenHouseRecipe, ?> GREEN_HOUSE = new RVMekALRecipeTypeWrapper<>(
+            MekUtConstants.rl(MekUtRecipeConstants.GREEN_HOUSE),
+            GreenHouseRecipe.class,
+            MekUtRecipeTypes.GREEN_HOUSE, -28, -10, 198, 60,
+            MekUtMachines.GREEN_HOUSE);
 
     public static final RVMekALRecipeTypeWrapper<?, FluidToItemRecipe, ?> ICE_MAKING = new RVMekALRecipeTypeWrapper<>(
             MekUtConstants.rl(MekUtRecipeConstants.ICE_MAKING),

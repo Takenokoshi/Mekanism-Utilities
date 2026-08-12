@@ -3,6 +3,9 @@ package com.takenokoshi.mekut.recipe.building;
 import fixdol.mekanismelements.common.MekanismElements;
 import fixdol.mekanismelements.common.registries.MSGases;
 import fixdol.mekanismelements.common.registries.MSItems;
+
+import com.glodblock.github.appflux.AppFlux;
+import com.glodblock.github.appflux.common.AFSingletons;
 import com.glodblock.github.extendedae.ExtendedAE;
 import com.glodblock.github.extendedae.common.EAESingletons;
 import com.takenokoshi.mekut.core.MekUtConstants;
@@ -150,5 +153,16 @@ public class SDRCRecipes {
                 .setChemicalInput(MekanismChemicals.LITHIUM.asStack(200))
                 .setEnergyRequired(200)
                 .build(output, MekUtConstants.rl("small_digital_reaction_chamber/end_stone"));
+        ItemStackListFluidChemicalToItemFluidChemicalRecipeBuilder
+                .smallDigitalReactionChamber(new ItemStack(AFSingletons.REDSTONE_CRYSTAL, 64),
+                        FluidStack.EMPTY,
+                        ChemicalStack.EMPTY)
+                .addItemInput(MekUtItems.REDSTONE_CRYSTAL, 144)
+                .addItemInput(AEItems.FLUIX_CRYSTAL, 16)
+                .setFluidInput(Tags.Fluids.WATER, 100)
+                .setChemicalInput(MekUtChemicals.GLOWSTONE.asStack(160))
+                .setEnergyRequired(200)
+                .addCondition(new ModLoadedCondition(AppFlux.MODID))
+                .build(output, MekUtConstants.rl("small_digital_reaction_chamber/appflux_redstone_crystal"));
     }
 }

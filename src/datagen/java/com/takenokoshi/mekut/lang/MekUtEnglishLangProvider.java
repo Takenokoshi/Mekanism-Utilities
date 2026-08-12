@@ -79,6 +79,7 @@ public class MekUtEnglishLangProvider extends LanguageProvider {
         addChemical(MekUtChemicals.ENRICHED_XP);
         addChemical(MekUtChemicals.XP);
         addChemical(MekUtChemicals.AMETHYST);
+        addChemical(MekUtChemicals.GLOWSTONE);
         addChemical(MekUtChemicals.ASTRAL_ETHER);
         addChemical(MekUtChemicals.IRIDIUM);
         addChemical(MekUtChemicals.NETHERITE);
@@ -102,6 +103,7 @@ public class MekUtEnglishLangProvider extends LanguageProvider {
                 "Thermal Evaporation Plant in a single block size");
         addLang(MekUtMachines.CHEMICAL_CUTTER.descriptionEntry,
                 "This is a machine that creates AE2 printed processor from Mekanism crystals.");
+        addLang(MekUtMachines.GREEN_HOUSE.descriptionEntry, "A machine for automated crop cultivation.");
         addLang(MekUtMachines.ICE_MAKER.descriptionEntry,
                 "A machine that lives up to its name: one that cools water to produce ice.");
         addLang(MekUtMachines.LAZER_COMPRESS_NUCLEO_SYNTHESIZER.descriptionEntry,
@@ -125,9 +127,10 @@ public class MekUtEnglishLangProvider extends LanguageProvider {
         addLang(MekUtMachines.CHEMICAL_RATIO_SPLITTER.descriptionEntry,
                 "Splits input chemical into two outputs according to a configurable ratio.");
 
-        
-        addLang(MekUtEvolvedMachines.COMPACT_ANTIMATTER_PROTOMOLECULAR_TRANSMUTATOR.descriptionEntry, "APT in a single block size");
-        addLang(MekUtExtrasMachines.COMPACT_NAQUADAH_REACTOR.descriptionEntry, "Naquadah reactor in a single block size");
+        addLang(MekUtEvolvedMachines.COMPACT_ANTIMATTER_PROTOMOLECULAR_TRANSMUTATOR.descriptionEntry,
+                "APT in a single block size");
+        addLang(MekUtExtrasMachines.COMPACT_NAQUADAH_REACTOR.descriptionEntry,
+                "Naquadah reactor in a single block size");
 
         addLang(MekUtDataType.INPUT1_OUTPUT1, "Input(1)・Output(1)");
         addLang(MekUtDataType.INPUT2_OUTPUT2, "Input(2)・Output(2)");

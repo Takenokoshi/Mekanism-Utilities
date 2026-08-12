@@ -1,0 +1,29 @@
+{
+  "type": "mekanism_utilities:green_house_crop",
+  "crop": {
+    "count": 1,
+    "item": "minecraft:pink_petals"
+  },
+  "duration": 3000,
+  "output": [
+    {
+      "chance": 1.0,
+      "value": {
+        "count": 2,
+        "id": "minecraft:pink_petals"
+      }
+    }
+  ],
+  "soil": {
+    "type": "neoforge:compound",
+    "children": [
+      {
+        "item": "minecraft:dirt"
+      },
+      {
+        "item": "minecraft:grass_block"
+      }
+    ],
+    "count": 1
+  }
+}

@@ -6,6 +6,9 @@ import com.takenokoshi.mekut.recipe.recipe.basic.BasicStellarGenesisRecipe;
 import com.takenokoshi.mekut.recipe.MekUtRecipeConstants;
 import com.takenokoshi.mekut.recipe.recipe.basic.BasicChemicalCutRecipe;
 import com.takenokoshi.mekut.recipe.recipe.basic.BasicFissionReactorRecipe;
+import com.takenokoshi.mekut.recipe.recipe.basic.BasicGreenHouseCropRecipe;
+import com.takenokoshi.mekut.recipe.recipe.basic.BasicGreenHouseFertilizerRecipe;
+import com.takenokoshi.mekut.recipe.recipe.basic.BasicGreenHouseRecipe;
 import com.takenokoshi.mekut.recipe.recipe.basic.BasicIceMakingRecipe;
 import com.takenokoshi.mekut.recipe.recipe.basic.BasicLazerCompressRecipe;
 import com.takenokoshi.mekut.recipe.recipe.basic.BasicSPSRecipe;
@@ -27,6 +30,18 @@ public class MekUtRecipeSerializers {
     public static final DeferredHolder<RecipeSerializer<?>, MekanismRecipeSerializer<BasicChemicalCutRecipe>> CHEMICAL_CUT = RECIPE_SERIALIZERS
             .register(MekUtRecipeConstants.CHEMICAL_CUT,
                     () -> MekanismRecipeSerializer.itemChemicalToItem(BasicChemicalCutRecipe::new));
+
+    public static final DeferredHolder<RecipeSerializer<?>, MekanismRecipeSerializer<BasicGreenHouseCropRecipe>> GREEN_HOUSE_CROP = RECIPE_SERIALIZERS
+            .register(MekUtRecipeConstants.GREEN_HOUSE_CROP,
+                    () -> MekUtRecipeSerializerBuilder.greenHouseCrop(BasicGreenHouseCropRecipe::new));
+
+    public static final DeferredHolder<RecipeSerializer<?>, MekanismRecipeSerializer<BasicGreenHouseFertilizerRecipe>> GREEN_HOUSE_FERTILIZER = RECIPE_SERIALIZERS
+            .register(MekUtRecipeConstants.GREEN_HOUSE_FERTILIZER,
+                    () -> MekUtRecipeSerializerBuilder.greenHouseFertilizer(BasicGreenHouseFertilizerRecipe::new));
+
+    public static final DeferredHolder<RecipeSerializer<?>, MekanismRecipeSerializer<BasicGreenHouseRecipe>> GREEN_HOUSE = RECIPE_SERIALIZERS
+            .register(MekUtRecipeConstants.GREEN_HOUSE,
+                    () -> MekUtRecipeSerializerBuilder.greenHouse(BasicGreenHouseRecipe::new));
 
     public static final DeferredHolder<RecipeSerializer<?>, MekanismRecipeSerializer<BasicIceMakingRecipe>> ICE_MAKING = RECIPE_SERIALIZERS
             .register(MekUtRecipeConstants.ICE_MAKING,

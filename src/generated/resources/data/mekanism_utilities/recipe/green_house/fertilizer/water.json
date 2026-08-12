@@ -1,0 +1,9 @@
+{
+  "type": "mekanism_utilities:green_house_fertilizer",
+  "duration_multiplier": 1.0,
+  "fertilizer": {
+    "amount": 2000,
+    "tag": "c:water"
+  },
+  "output_multiplier": 1
+}

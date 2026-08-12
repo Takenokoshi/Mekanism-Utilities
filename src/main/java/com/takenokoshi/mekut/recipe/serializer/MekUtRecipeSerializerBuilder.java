@@ -5,13 +5,18 @@ import java.util.Optional;
 import java.util.function.BiFunction;
 
 import com.mojang.datafixers.util.Function3;
+import com.mojang.datafixers.util.Function4;
 import com.mojang.datafixers.util.Function5;
 import com.mojang.datafixers.util.Function8;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.takenokoshi.mekut.recipe.output.MekUtChanceOutput;
 import com.takenokoshi.mekut.recipe.recipe.prefab.BiChemicalToItemRecipe;
 import com.takenokoshi.mekut.recipe.recipe.prefab.ChemicalToChemicalHeatRecipe;
 import com.takenokoshi.mekut.recipe.recipe.prefab.FluidToItemRecipe;
+import com.takenokoshi.mekut.recipe.recipe.prefab.GreenHouseCropRecipe;
+import com.takenokoshi.mekut.recipe.recipe.prefab.GreenHouseFertilizerRecipe;
+import com.takenokoshi.mekut.recipe.recipe.prefab.GreenHouseRecipe;
 import com.takenokoshi.mekut.recipe.recipe.prefab.ItemStackListFluidChemicalToItemFluidChemicalRecipe;
 import com.takenokoshi.mekut.recipe.recipe.prefab.ItemStackListFluidChemicalToItemRecipe;
 
@@ -147,6 +152,78 @@ public final class MekUtRecipeSerializerBuilder {
                         ChemicalToChemicalHeatRecipe::getOutputRaw,
                         ByteBufCodecs.DOUBLE,
                         r -> r.heatGeneration,
+                        factory));
+    }
+
+    public static <RECIPE extends GreenHouseCropRecipe> MekanismRecipeSerializer<RECIPE> greenHouseCrop(
+            Function4<ItemStackIngredient, ItemStackIngredient, List<MekUtChanceOutput>, Integer, RECIPE> factory) {
+        return new MekanismRecipeSerializer<>(RecordCodecBuilder.mapCodec(instance -> instance.group(
+                IngredientCreatorAccess.item().codec().fieldOf("crop")
+                        .forGetter(GreenHouseCropRecipe::getCropIngredient),
+                IngredientCreatorAccess.item().codec().fieldOf("soil")
+                        .forGetter(GreenHouseCropRecipe::getSoilIngredient),
+                MekUtChanceOutput.CODEC.listOf(1, 12).fieldOf(SerializationConstants.OUTPUT)
+                        .forGetter(GreenHouseCropRecipe::getOutputsRaw),
+                Codec.INT.fieldOf(SerializationConstants.DURATION)
+                        .forGetter(GreenHouseCropRecipe::getDuration))
+                .apply(instance, factory)),
+                StreamCodec.composite(
+                        IngredientCreatorAccess.item().streamCodec(),
+                        GreenHouseCropRecipe::getCropIngredient,
+                        IngredientCreatorAccess.item().streamCodec(),
+                        GreenHouseCropRecipe::getSoilIngredient,
+                        MekUtChanceOutput.STREAM_CODEC.apply(ByteBufCodecs.list()),
+                        GreenHouseCropRecipe::getOutputsRaw,
+                        ByteBufCodecs.INT,
+                        GreenHouseCropRecipe::getDuration,
+                        factory));
+    }
+
+    public static <RECIPE extends GreenHouseFertilizerRecipe> MekanismRecipeSerializer<RECIPE> greenHouseFertilizer(
+            Function3<FluidStackIngredient, Integer, Double, RECIPE> factory) {
+        return new MekanismRecipeSerializer<>(RecordCodecBuilder.mapCodec(instance -> instance.group(
+                IngredientCreatorAccess.fluid().codec().fieldOf("fertilizer")
+                        .forGetter(GreenHouseFertilizerRecipe::getFertilizerIngredient),
+                Codec.INT.fieldOf("output_multiplier")
+                        .forGetter(GreenHouseFertilizerRecipe::getOutputMultiplier),
+                Codec.DOUBLE.fieldOf("duration_multiplier")
+                        .forGetter(GreenHouseFertilizerRecipe::getDurationMultiplier))
+                .apply(instance, factory)),
+                StreamCodec.composite(
+                        IngredientCreatorAccess.fluid().streamCodec(),
+                        GreenHouseFertilizerRecipe::getFertilizerIngredient,
+                        ByteBufCodecs.INT,
+                        GreenHouseFertilizerRecipe::getOutputMultiplier,
+                        ByteBufCodecs.DOUBLE,
+                        GreenHouseFertilizerRecipe::getDurationMultiplier,
+                        factory));
+    }
+
+    public static <RECIPE extends GreenHouseRecipe> MekanismRecipeSerializer<RECIPE> greenHouse(
+            Function5<ItemStackIngredient, ItemStackIngredient, FluidStackIngredient, List<MekUtChanceOutput>, Integer, RECIPE> factory) {
+        return new MekanismRecipeSerializer<>(RecordCodecBuilder.mapCodec(instance -> instance.group(
+                IngredientCreatorAccess.item().codec().fieldOf("crop")
+                        .forGetter(GreenHouseRecipe::getCropIngredient),
+                IngredientCreatorAccess.item().codec().fieldOf("soil")
+                        .forGetter(GreenHouseRecipe::getSoilIngredient),
+                IngredientCreatorAccess.fluid().codec().fieldOf("fertilizer")
+                        .forGetter(GreenHouseRecipe::getFertilizerIngredient),
+                MekUtChanceOutput.CODEC.listOf(1, 12).fieldOf(SerializationConstants.OUTPUT)
+                        .forGetter(GreenHouseRecipe::getOutputsRaw),
+                Codec.INT.fieldOf(SerializationConstants.DURATION)
+                        .forGetter(GreenHouseRecipe::getDuration))
+                .apply(instance, factory)),
+                StreamCodec.composite(
+                        IngredientCreatorAccess.item().streamCodec(),
+                        GreenHouseRecipe::getCropIngredient,
+                        IngredientCreatorAccess.item().streamCodec(),
+                        GreenHouseRecipe::getSoilIngredient,
+                        IngredientCreatorAccess.fluid().streamCodec(),
+                        GreenHouseRecipe::getFertilizerIngredient,
+                        MekUtChanceOutput.STREAM_CODEC.apply(ByteBufCodecs.list()),
+                        GreenHouseRecipe::getOutputsRaw,
+                        ByteBufCodecs.INT,
+                        GreenHouseRecipe::getDuration,
                         factory));
     }
 

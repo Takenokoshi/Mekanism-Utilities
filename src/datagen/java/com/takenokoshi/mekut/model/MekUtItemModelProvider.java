@@ -23,6 +23,8 @@ public class MekUtItemModelProvider extends ItemModelProvider {
 
         simpleItem(MekUtItems.ARTIFICIAL_STAR.get())
                 .texture("layer0", MekUtConstants.rl("item/artificial_star"));
+        simpleItem(MekUtItems.SILICON.get())
+                .texture("layer0", MekUtConstants.rl("item/silicon"));
 
         simpleItem(MekUtItems.XP_CRYSTAL.get()).texture("layer0", MekUtConstants.rl("item/crystal/xp"));
 
@@ -54,6 +56,8 @@ public class MekUtItemModelProvider extends ItemModelProvider {
                 .texture("layer0", MekUtConstants.rl("item/enriched/lapis_lazuli"));
         simpleItem(MekUtItems.ENRICHED_AMETHYST.get())
                 .texture("layer0", MekUtConstants.rl("item/enriched/amethyst"));
+        simpleItem(MekUtItems.ENRICHED_GLOWSTONE.get())
+                .texture("layer0", MekUtConstants.rl("item/enriched/glowstone"));
 
         simpleItem(MekUtItems.DARK_RED_DYE.get())
                 .texture("layer0", MekUtConstants.rl("item/dye/dark_red"));

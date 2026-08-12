@@ -215,6 +215,15 @@ public class SDARecipes {
                 .setChemicalInput(MekanismChemicals.ETHENE.asStack(10000L))
                 .addCondition(new ModLoadedCondition(AppliedMekanistics.ID))
                 .build(output, MekUtConstants.rl("small_digital_assembler/me_infinity_rainbow_cell"));
+        ItemStackListFluidChemicalToItemRecipeBuilder
+                .smallDigitalAssembler(new ItemStack(MekUtMachines.GREEN_HOUSE, 1))
+                .addItemInput(MekanismBlocks.STEEL_CASING, 16)
+                .addItemInput(Items.LIME_STAINED_GLASS, 24)
+                .addItemInput(MekUtItems.AUGMENT_CONTROL_CIRCUIT, 8)
+                .addItemInput(MekUtItems.COMPISITE_ALLOY, 16)
+                .setFluidInput(MekanismFluids.NUTRITIONAL_PASTE.asStack(1000))
+                .setChemicalInput(MekanismChemicals.DIAMOND.asStack(320))
+                .build(output, MekUtConstants.rl("small_digital_assembler/green_house"));
 
         ItemStackListFluidChemicalToItemRecipeBuilder
                 .smallDigitalAssembler(

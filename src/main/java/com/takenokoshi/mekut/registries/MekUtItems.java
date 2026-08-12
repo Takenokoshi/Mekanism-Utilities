@@ -2,6 +2,7 @@ package com.takenokoshi.mekut.registries;
 
 import com.takenokoshi.mekut.core.MekUtConstants;
 import com.takenokoshi.mekut.item.ItemSupplierItem;
+import com.takenokoshi.mekut.item.MekUtBasicItem;
 import com.takenokoshi.mekut.item.XpCrystalItem;
 import mekanism.api.text.EnumColor;
 import mekanism.common.registration.impl.ItemDeferredRegister;
@@ -21,7 +22,8 @@ public class MekUtItems {
             .register("convergent_alloy", EnumColor.DARK_BLUE);
     public static final ItemRegistryObject<Item> COMPISITE_ALLOY = ITEMS
             .register("composite_alloy", EnumColor.DARK_GREEN);
-    public static final ItemRegistryObject<Item> STARDUST_ALLOY = registerFoiling("stardust_alloy");
+    public static final ItemRegistryObject<MekUtBasicItem> STARDUST_ALLOY = registerBasic(
+            "stardust_alloy", 0xFFFFFF, true);
 
     public static final ItemRegistryObject<Item> DIGITAL_CONTROL_CIRCUIT = ITEMS
             .register("digital_control_circuit", EnumColor.PINK);
@@ -29,19 +31,22 @@ public class MekUtItems {
             .register("standard_control_circuit", EnumColor.DARK_BLUE);
     public static final ItemRegistryObject<Item> AUGMENT_CONTROL_CIRCUIT = ITEMS
             .register("augment_control_circuit", EnumColor.DARK_GREEN);
-    public static final ItemRegistryObject<Item> COMET_CONTROL_CIRCUIT = registerFoiling(
-            "comet_control_circuit");
+    public static final ItemRegistryObject<MekUtBasicItem> COMET_CONTROL_CIRCUIT = registerBasic(
+            "comet_control_circuit", 0xFFFFFF, true);
 
     public static final ItemRegistryObject<Item> ENRICHED_AMETHYST = ITEMS.register("enriched_amethyst");
+    public static final ItemRegistryObject<Item> ENRICHED_GLOWSTONE = ITEMS.register("enriched_glowstone");
     public static final ItemRegistryObject<Item> ENRICHED_LAPIS_LAZULI = ITEMS.register("enriched_lapis_lazuli");
 
     public static final ItemRegistryObject<Item> GOLDEN_REDSTONE = ITEMS.register("golden_redstone");
     public static final ItemRegistryObject<Item> AMETHYST_DUST = ITEMS.register("amethyst_dust");
-    public static final ItemRegistryObject<Item> REFINED_LAPIS_LAZULI_DUST = ITEMS.register("refined_lapis_lazuli_dust");
+    public static final ItemRegistryObject<Item> REFINED_LAPIS_LAZULI_DUST = ITEMS
+            .register("refined_lapis_lazuli_dust");
     public static final ItemRegistryObject<Item> IRIDIUM_DUST = ITEMS.register("iridium_dust");
     public static final ItemRegistryObject<Item> SILICON_DUST = ITEMS.register("silicon_dust");
-
     public static final ItemRegistryObject<Item> IRIDIUM_INGOT = ITEMS.register("iridium_ingot");
+
+    public static final ItemRegistryObject<Item> SILICON = ITEMS.register("silicon");
 
     public static final ItemRegistryObject<XpCrystalItem> XP_CRYSTAL = ITEMS.registerItem("xp_crystal",
             XpCrystalItem::new);
@@ -118,5 +123,9 @@ public class MekUtItems {
                 return true;
             };
         });
+    }
+
+    private static ItemRegistryObject<MekUtBasicItem> registerBasic(String name, int color, boolean isFoil) {
+        return ITEMS.registerItem(name, MekUtBasicItem.getBuilder(color, isFoil));
     }
 }

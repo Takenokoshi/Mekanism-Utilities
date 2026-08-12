@@ -1,0 +1,63 @@
+{
+  "type": "mekanism_utilities:green_house_crop",
+  "crop": {
+    "count": 1,
+    "item": "minecraft:azalea"
+  },
+  "duration": 3000,
+  "output": [
+    {
+      "chance": 1.0,
+      "value": {
+        "count": 2,
+        "id": "minecraft:oak_log"
+      }
+    },
+    {
+      "chance": 0.2,
+      "value": {
+        "count": 5,
+        "id": "minecraft:azalea_leaves"
+      }
+    },
+    {
+      "chance": 0.4,
+      "value": {
+        "count": 1,
+        "id": "minecraft:azalea"
+      }
+    },
+    {
+      "chance": 0.5,
+      "value": {
+        "count": 4,
+        "id": "minecraft:stick"
+      }
+    },
+    {
+      "chance": 0.2,
+      "value": {
+        "count": 1,
+        "id": "minecraft:hanging_roots"
+      }
+    }
+  ],
+  "soil": {
+    "type": "neoforge:compound",
+    "children": [
+      {
+        "item": "minecraft:dirt"
+      },
+      {
+        "item": "minecraft:grass_block"
+      },
+      {
+        "item": "minecraft:rooted_dirt"
+      },
+      {
+        "item": "minecraft:mud"
+      }
+    ],
+    "count": 1
+  }
+}

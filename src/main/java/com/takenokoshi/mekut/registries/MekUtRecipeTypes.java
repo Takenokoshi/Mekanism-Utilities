@@ -5,18 +5,24 @@ import com.takenokoshi.mekaddonlib.registration.MekALRecipeTypeDeferredRegister;
 import com.takenokoshi.mekaddonlib.registration.MekALRecipeTypeRegistryObject;
 import com.takenokoshi.mekut.core.MekUtConstants;
 import com.takenokoshi.mekut.recipe.MekUtRecipeConstants;
+import com.takenokoshi.mekut.recipe.inputcache.EmptyInputRecipeCache;
 import com.takenokoshi.mekut.recipe.inputcache.ItemStackListFluidChemicalInputRecipeCache;
 import com.takenokoshi.mekut.recipe.inputcache.MUEitherSideInputRecipeCache;
 import com.takenokoshi.mekut.recipe.inputcache.MUSingleInputRecipeCache;
 import com.takenokoshi.mekut.recipe.inputcache.MekUtDoubleInputRecipeCache;
+import com.takenokoshi.mekut.recipe.inputcache.MekUtTripleInputRecipeCache;
 import com.takenokoshi.mekut.recipe.recipe.prefab.BiChemicalToItemRecipe;
 import com.takenokoshi.mekut.recipe.recipe.prefab.ChemicalToChemicalHeatRecipe;
 import com.takenokoshi.mekut.recipe.recipe.prefab.FluidToItemRecipe;
+import com.takenokoshi.mekut.recipe.recipe.prefab.GreenHouseCropRecipe;
+import com.takenokoshi.mekut.recipe.recipe.prefab.GreenHouseFertilizerRecipe;
+import com.takenokoshi.mekut.recipe.recipe.prefab.GreenHouseRecipe;
 import com.takenokoshi.mekut.recipe.recipe.prefab.ItemStackListFluidChemicalToItemFluidChemicalRecipe;
 import com.takenokoshi.mekut.recipe.recipe.prefab.ItemStackListFluidChemicalToItemRecipe;
 import com.takenokoshi.mekut.recipe.type.SmallDigitalReactionChamberRecipeType;
 import com.takenokoshi.mekut.recipe.type.ChemicalCutRecipeType;
 import com.takenokoshi.mekut.recipe.type.FissonReactorRecipeType;
+import com.takenokoshi.mekut.recipe.type.GreenHouseRecipeType;
 import com.takenokoshi.mekut.recipe.type.SPSRecipeType;
 import com.takenokoshi.mekut.recipe.type.SmallDigitalAssemblerRecipeType;
 import mekanism.api.chemical.ChemicalStack;
@@ -37,6 +43,17 @@ public class MekUtRecipeTypes {
 
     public static final MekALRecipeTypeRegistryObject<SingleItemChemicalRecipeInput, ItemStackChemicalToItemStackRecipe, MekUtDoubleInputRecipeCache.MekUtItemChemical<ItemStackChemicalToItemStackRecipe>> CHEMICAL_CUT = RECIPE_TYPES
             .registerMekAL(MekUtRecipeConstants.CHEMICAL_CUT, ChemicalCutRecipeType::new);
+
+    public static final MekALRecipeTypeRegistryObject<RecipeInput, GreenHouseCropRecipe, MekUtDoubleInputRecipeCache.ItemItem<GreenHouseCropRecipe>> GREEN_HOUSE_CROP = RECIPE_TYPES
+            .registerMekAL(MekUtRecipeConstants.GREEN_HOUSE_CROP,
+                    id -> new MekALRecipeType<>(id, MekUtDoubleInputRecipeCache.ItemItem::greenHouseCrop));
+
+    public static final MekALRecipeTypeRegistryObject<SingleFluidRecipeInput, GreenHouseFertilizerRecipe, EmptyInputRecipeCache> GREEN_HOUSE_FERTILIZER = RECIPE_TYPES
+            .registerMekAL(MekUtRecipeConstants.GREEN_HOUSE_FERTILIZER,
+                    id -> new MekALRecipeType<>(id, EmptyInputRecipeCache::new));
+
+    public static final MekALRecipeTypeRegistryObject<RecipeInput, GreenHouseRecipe, MekUtTripleInputRecipeCache.ItemItemFluid<GreenHouseRecipe>> GREEN_HOUSE = RECIPE_TYPES
+            .registerMekAL(MekUtRecipeConstants.GREEN_HOUSE, GreenHouseRecipeType::new);
 
     public static final MekALRecipeTypeRegistryObject<SingleFluidRecipeInput, FluidToItemRecipe, MUSingleInputRecipeCache.MUSingleFluid<FluidToItemRecipe>> ICE_MAKING = RECIPE_TYPES
             .registerMekAL(MekUtRecipeConstants.ICE_MAKING,

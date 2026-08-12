@@ -6,6 +6,6 @@ public class MekUtConstants {
     public static final String MODID = "mekanism_utilities";
 
     public static ResourceLocation rl(String path){
-        return ResourceLocation.fromNamespaceAndPath(MODID, path);
+        return ResourceLocation.fromNamespaceAndPath(MODID, path.toLowerCase());
     }
 }

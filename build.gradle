@@ -121,12 +121,13 @@ dependencies {
     implementation "curse.maven:mekanism-additions-345425:7904060"
     implementation "curse.maven:mekanism-tools-268567:7904062"
 
+    //MekAL
+    implementation "curse.maven:mekanism-addon-library-1607060:8527277"
+
     //MWGR
     implementation "curse.maven:mekanism-water-generator-rebuild-1396471:8492800"
 
     //Addons of Mekanism
-    implementation "curse.maven:mekanism-addon-library-1607060:8527277"
-
     implementation "curse.maven:mekanism-extras-1026040:7921191"
     implementation "curse.maven:evolved-mekanism-1230085:7599592"
     implementation "curse.maven:iglee-library-541199:7000755"
@@ -152,6 +153,9 @@ dependencies {
     datagenImplementation "curse.maven:mekanism-elements-1103224:8531162"
     datagenImplementation "curse.maven:applied-flux-965012:8204513"
     datagenImplementation "curse.maven:mekanism-more-machine-1275257:7919872"
+    
+    datagenImplementation "curse.maven:mystical-agriculture-246640:8344249"
+    datagenImplementation "curse.maven:cucumber-272335:8035802"
 
 
 }

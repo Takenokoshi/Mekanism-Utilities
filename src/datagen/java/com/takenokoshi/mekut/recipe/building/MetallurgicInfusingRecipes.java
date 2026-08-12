@@ -48,7 +48,7 @@ public class MetallurgicInfusingRecipes {
         ItemStackChemicalToItemStackRecipeBuilder
                 .metallurgicInfusing(
                         creatorI.from(MekanismTags.Items.DUSTS_LAPIS, 1),
-                        creatorC.fromHolder(MekanismChemicals.DIAMOND, 10),
+                        creatorC.fromHolder(MekUtChemicals.GLOWSTONE, 10),
                         MekUtItems.REFINED_LAPIS_LAZULI_DUST.asStack(1),
                         false)
                 .build(output, MekUtConstants.rl("metallurgic_infusing/refined_lapis_lazuli_dust"));

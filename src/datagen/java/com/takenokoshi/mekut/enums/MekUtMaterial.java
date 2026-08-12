@@ -2,15 +2,12 @@ package com.takenokoshi.mekut.enums;
 
 import java.util.List;
 
-import com.glodblock.github.extendedae.ExtendedAE;
 import com.glodblock.github.extendedae.common.EAESingletons;
-import com.moakiee.ae2lt.AE2LightningTech;
 import com.moakiee.ae2lt.registry.ModItems;
 import com.takenokoshi.mekut.registries.MekUtBlocks;
 import com.takenokoshi.mekut.registries.MekUtChemicals;
 import com.takenokoshi.mekut.registries.MekUtItems;
 
-import appeng.core.AppEng;
 import appeng.core.definitions.AEItems;
 import mekanism.api.chemical.Chemical;
 import mekanism.common.registration.impl.BlockRegistryObject;
@@ -81,7 +78,7 @@ public record MekUtMaterial(String name, ItemRegistryObject<?> raw, BlockRegistr
             AEItems.CERTUS_QUARTZ_CRYSTAL,
             1,
             12,
-            new String[] { AppEng.MOD_ID, });
+            new String[] { "ae2" });
 
     public static final MekUtMaterial COAL = new MekUtMaterial("coal",
             MekUtItems.RAW_COAL,
@@ -137,7 +134,7 @@ public record MekUtMaterial(String name, ItemRegistryObject<?> raw, BlockRegistr
             EAESingletons.ENTRO_CRYSTAL,
             1,
             4,
-            new String[] { ExtendedAE.MODID });
+            new String[] { "extendedae" });
 
     public static final MekUtMaterial FLUORITE = new MekUtMaterial("fluorite",
             MekUtItems.RAW_FLUORITE,
@@ -193,7 +190,7 @@ public record MekUtMaterial(String name, ItemRegistryObject<?> raw, BlockRegistr
             ModItems.OVERLOAD_CRYSTAL,
             1,
             4,
-            new String[] { AE2LightningTech.MODID });
+            new String[] { "ae2lt" });
 
     public static final MekUtMaterial QUARTZ = new MekUtMaterial("quartz",
             MekUtItems.RAW_QUATRZ,
@@ -232,10 +229,10 @@ public record MekUtMaterial(String name, ItemRegistryObject<?> raw, BlockRegistr
             MekUtItems.SILICON_SHARD,
             MekUtItems.SILICON_CLUMP,
             MekUtItems.SILICON_DUST,
-            AEItems.SILICON,
+            MekUtItems.SILICON,
             1,
             4,
-            new String[] { AppEng.MOD_ID });
+            new String[] { "ae2" });
 
     public static final List<MekUtMaterial> MATERIALS = List.of(new MekUtMaterial[] {
             AMETHYST, CERTUS_QUARTZ, COAL, DIAMOND, EMERALD, ENTRO, FLUORITE, LAPIS_LAZULI, NETHERITE, OVERLOAD, QUARTZ,

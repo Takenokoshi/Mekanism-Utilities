@@ -1,0 +1,21 @@
+{
+  "type": "mekanism_utilities:green_house_crop",
+  "crop": {
+    "count": 1,
+    "item": "minecraft:kelp"
+  },
+  "duration": 3000,
+  "output": [
+    {
+      "chance": 1.0,
+      "value": {
+        "count": 8,
+        "id": "minecraft:kelp"
+      }
+    }
+  ],
+  "soil": {
+    "count": 1,
+    "item": "minecraft:water_bucket"
+  }
+}

@@ -36,6 +36,16 @@ public class ChemicalConvertionRecipes {
                 .build(output, MekUtConstants.rl("chemical_conversion/amethyst_2"));
         ItemStackToChemicalRecipeBuilder
                 .chemicalConversion(
+                        creatorI.from(Items.GLOWSTONE_DUST,1),
+                        MekUtChemicals.GLOWSTONE.asStack(10))
+                .build(output, MekUtConstants.rl("chemical_conversion/glowstone_1"));
+        ItemStackToChemicalRecipeBuilder
+                .chemicalConversion(
+                        creatorI.from(MekUtItems.ENRICHED_GLOWSTONE),
+                        MekUtChemicals.GLOWSTONE.asStack(80))
+                .build(output, MekUtConstants.rl("chemical_conversion/glowstone_2"));
+        ItemStackToChemicalRecipeBuilder
+                .chemicalConversion(
                         creatorI.from(MekUtItems.XP_CRYSTAL),
                         MekUtChemicals.XP.asStack(100000))
                 .build(output, MekUtConstants.rl("chemical_conversion/xp"));

@@ -1,0 +1,33 @@
+{
+  "type": "mekanism_utilities:small_digital_assembler",
+  "chemical_input": {
+    "amount": 320,
+    "chemical": "mekanism:diamond"
+  },
+  "fluid_input": {
+    "amount": 1000,
+    "fluid": "mekanism:nutritional_paste"
+  },
+  "list_item_input": [
+    {
+      "count": 16,
+      "item": "mekanism:steel_casing"
+    },
+    {
+      "count": 24,
+      "item": "minecraft:lime_stained_glass"
+    },
+    {
+      "count": 8,
+      "item": "mekanism_utilities:augment_control_circuit"
+    },
+    {
+      "count": 16,
+      "item": "mekanism_utilities:composite_alloy"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "mekanism_utilities:green_house"
+  }
+}

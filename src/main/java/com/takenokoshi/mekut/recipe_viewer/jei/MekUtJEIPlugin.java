@@ -8,6 +8,7 @@ import com.takenokoshi.mekut.recipe.type.WrappedRecipeType;
 import com.takenokoshi.mekut.recipe_viewer.jei.category.BiChemicalToItemRecipeCategory;
 import com.takenokoshi.mekut.recipe_viewer.jei.category.FissionReactorRecipeCategory;
 import com.takenokoshi.mekut.recipe_viewer.jei.category.FluidToItemRecipeCategory;
+import com.takenokoshi.mekut.recipe_viewer.jei.category.GreenHouseRecipeCategory;
 import com.takenokoshi.mekut.recipe_viewer.jei.category.MekUtEnergizedSmelterRecipeCategory;
 import com.takenokoshi.mekut.recipe_viewer.jei.category.SmallDigitalAssemblerRecipeCategory;
 import com.takenokoshi.mekut.recipe_viewer.jei.category.SmallDigitalReactionChamberRecipeCategory;
@@ -69,6 +70,7 @@ public class MekUtJEIPlugin implements IModPlugin {
         IGuiHelper guiHelper = registry.getJeiHelpers().getGuiHelper();
         registry.addRecipeCategories(new IRecipeCategory[] {
                 new ItemStackChemicalToItemStackRecipeCategory(guiHelper, MekUtRecipeViewerRecipeType.CHEMICAL_CUT),
+                new GreenHouseRecipeCategory(guiHelper, MekUtRecipeViewerRecipeType.GREEN_HOUSE),
                 new FluidToItemRecipeCategory(guiHelper, MekUtRecipeViewerRecipeType.ICE_MAKING),
                 new ChemicalChemicalToChemicalRecipeCategory(guiHelper, MekUtRecipeViewerRecipeType.LAZER_COMPRESS),
                 new SmallDigitalAssemblerRecipeCategory(guiHelper, MekUtRecipeViewerRecipeType.SMALL_DIGITAL_ASSEMBLER),
@@ -88,6 +90,8 @@ public class MekUtJEIPlugin implements IModPlugin {
         }
         MekALRecipeRegistryHelper.register(registry, MekUtRecipeViewerRecipeType.CHEMICAL_CUT,
                 MekUtRecipeTypes.CHEMICAL_CUT);
+        MekALRecipeRegistryHelper.register(registry, MekUtRecipeViewerRecipeType.GREEN_HOUSE,
+                MekUtRecipeTypes.GREEN_HOUSE);
         MekALRecipeRegistryHelper.register(registry, MekUtRecipeViewerRecipeType.ICE_MAKING,
                 MekUtRecipeTypes.ICE_MAKING);
         MekALRecipeRegistryHelper.register(registry, MekUtRecipeViewerRecipeType.LAZER_COMPRESS,
@@ -113,6 +117,7 @@ public class MekUtJEIPlugin implements IModPlugin {
         }
         CatalystRegistryHelper.register(registry, new IRecipeViewerRecipeType[] {
                 MekUtRecipeViewerRecipeType.CHEMICAL_CUT,
+                MekUtRecipeViewerRecipeType.GREEN_HOUSE,
                 MekUtRecipeViewerRecipeType.ICE_MAKING,
                 MekUtRecipeViewerRecipeType.LAZER_COMPRESS,
                 MekUtRecipeViewerRecipeType.SMALL_DIGITAL_ASSEMBLER,

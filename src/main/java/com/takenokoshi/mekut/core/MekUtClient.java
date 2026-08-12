@@ -1,8 +1,10 @@
 package com.takenokoshi.mekut.core;
 
+import com.takenokoshi.mekut.client.model.GreenHouseBakedModel;
 import com.takenokoshi.mekut.registries.MekUtEvolvedScreens;
 import com.takenokoshi.mekut.registries.MekUtExtrasScreens;
 import com.takenokoshi.mekut.registries.MekUtFluids;
+import com.takenokoshi.mekut.registries.MekUtMachines;
 import com.takenokoshi.mekut.registries.MekUtScreens;
 
 import mekanism.client.ClientRegistrationUtil;
@@ -19,6 +21,8 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
+
+import static mekanism.client.ClientRegistration.addCustomModel;
 
 @Mod(value = MekUtConstants.MODID, dist = Dist.CLIENT)
 public class MekUtClient extends MekUt {
@@ -38,6 +42,7 @@ public class MekUtClient extends MekUt {
     }
 
     private void clientSetup(FMLClientSetupEvent event) {
+        addCustomModel(MekUtMachines.GREEN_HOUSE, (orig, evt) -> new GreenHouseBakedModel(orig));
         event.enqueueWork(() -> {
             @SuppressWarnings("unused")
             Minecraft minecraft = Minecraft.getInstance();

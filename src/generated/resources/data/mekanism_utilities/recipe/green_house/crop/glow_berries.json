@@ -1,0 +1,32 @@
+{
+  "type": "mekanism_utilities:green_house_crop",
+  "crop": {
+    "count": 1,
+    "item": "minecraft:glow_berries"
+  },
+  "duration": 3000,
+  "output": [
+    {
+      "chance": 1.0,
+      "value": {
+        "count": 2,
+        "id": "minecraft:glow_berries"
+      }
+    }
+  ],
+  "soil": {
+    "type": "neoforge:compound",
+    "children": [
+      {
+        "item": "minecraft:stone"
+      },
+      {
+        "item": "minecraft:deepslate"
+      },
+      {
+        "item": "minecraft:moss_block"
+      }
+    ],
+    "count": 1
+  }
+}

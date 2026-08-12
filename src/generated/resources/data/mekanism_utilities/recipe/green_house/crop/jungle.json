@@ -1,0 +1,50 @@
+{
+  "type": "mekanism_utilities:green_house_crop",
+  "crop": {
+    "count": 1,
+    "item": "minecraft:jungle_sapling"
+  },
+  "duration": 3000,
+  "output": [
+    {
+      "chance": 1.0,
+      "value": {
+        "count": 2,
+        "id": "minecraft:jungle_log"
+      }
+    },
+    {
+      "chance": 0.2,
+      "value": {
+        "count": 5,
+        "id": "minecraft:jungle_leaves"
+      }
+    },
+    {
+      "chance": 0.4,
+      "value": {
+        "count": 1,
+        "id": "minecraft:jungle_sapling"
+      }
+    },
+    {
+      "chance": 0.5,
+      "value": {
+        "count": 4,
+        "id": "minecraft:stick"
+      }
+    }
+  ],
+  "soil": {
+    "type": "neoforge:compound",
+    "children": [
+      {
+        "item": "minecraft:dirt"
+      },
+      {
+        "item": "minecraft:grass_block"
+      }
+    ],
+    "count": 1
+  }
+}

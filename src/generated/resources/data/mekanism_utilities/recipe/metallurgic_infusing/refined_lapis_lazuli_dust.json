@@ -2,7 +2,7 @@
   "type": "mekanism:metallurgic_infusing",
   "chemical_input": {
     "amount": 10,
-    "chemical": "mekanism:diamond"
+    "chemical": "mekanism_utilities:glowstone"
   },
   "item_input": {
     "count": 1,
