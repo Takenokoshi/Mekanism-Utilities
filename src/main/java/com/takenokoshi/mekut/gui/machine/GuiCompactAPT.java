@@ -12,8 +12,8 @@ import com.takenokoshi.mekut.blockentity.interfaces.IHasInputChemicalTank;
 import com.takenokoshi.mekut.blockentity.interfaces.IHasMachineEnergyContainer;
 import com.takenokoshi.mekut.blockentity.interfaces.IRecipeViewerTypeProvider;
 import com.takenokoshi.mekut.blockentity.interfaces.IScaledProgressProvider;
+import com.takenokoshi.mekut.gui.bar.GuiCustomDynamicHorizontalRateBar;
 
-import fr.iglee42.evolvedmekanism.client.bars.GuiCustomDynamicHorizontalRateBar;
 import mekanism.client.gui.GuiConfigurableTile;
 import mekanism.client.gui.element.GuiInnerScreen;
 import mekanism.client.gui.element.bar.GuiBar.IBarInfoHandler;
