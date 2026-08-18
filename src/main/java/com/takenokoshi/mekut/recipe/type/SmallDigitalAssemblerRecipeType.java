@@ -30,7 +30,7 @@ public class SmallDigitalAssemblerRecipeType extends
         if (ModList.get().isLoaded("extendedae")) {
             List<RecipeHolder<ItemStackListFluidChemicalToItemRecipe>> result = new ArrayList<>(
                     super.getRecipesUncached(recipeManager, registryAccess));
-            result.addAll(EAERecipeProvider.getConvertedAssemblerRecipes(recipeManager, registryAccess));
+            result.addAll(EAERecipeModule.getConvertedAssemblerRecipes(recipeManager, registryAccess));
             return Collections.unmodifiableList(result);
         }
         return super.getRecipesUncached(recipeManager, registryAccess);

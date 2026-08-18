@@ -35,12 +35,36 @@ public class SmallDigitalReactionChamberRecipeType extends
         recipeManager.getAllRecipesFor(MekanismRecipeType.REACTION.get()).forEach(holder -> {
             result.add(new RecipeHolder<>(
                     ResourceLocation.fromNamespaceAndPath(holder.id().getNamespace(),
-                            "/runtime_generated/small_digital_reaction_chamber/from_prc/"
+                            "/runtime_generated/small_digital_reaction_chamber/"
                                     + holder.id().getPath()),
                     BasicSmallDigitalReactionChamberRecipe.convertPRC(holder.value())));
         });
+        recipeManager.getAllRecipesFor(MekanismRecipeType.METALLURGIC_INFUSING.get()).forEach(holder -> {
+            result.add(new RecipeHolder<>(
+                    ResourceLocation.fromNamespaceAndPath(holder.id().getNamespace(),
+                            "/runtime_generated/small_digital_reaction_chamber/"
+                                    + holder.id().getPath()),
+                    BasicSmallDigitalReactionChamberRecipe.convertMetallurgicInfuser(holder.value())));
+        });
+        recipeManager.getAllRecipesFor(MekanismRecipeType.OXIDIZING.get()).forEach(holder -> {
+            result.add(new RecipeHolder<>(
+                    ResourceLocation.fromNamespaceAndPath(holder.id().getNamespace(),
+                            "/runtime_generated/small_digital_reaction_chamber/"
+                                    + holder.id().getPath()),
+                    BasicSmallDigitalReactionChamberRecipe.convertChemicalOxidizer(holder.value())));
+        });
+        recipeManager.getAllRecipesFor(MekanismRecipeType.COMBINING.get()).forEach(holder -> {
+            result.add(new RecipeHolder<>(
+                    ResourceLocation.fromNamespaceAndPath(holder.id().getNamespace(),
+                            "/runtime_generated/small_digital_reaction_chamber/"
+                                    + holder.id().getPath()),
+                    BasicSmallDigitalReactionChamberRecipe.convertCombiner(holder.value())));
+        });
+        if (ModList.get().isLoaded("evolvedmekanism")) {
+            result.addAll(EvolvedRecipeModule.getConvertedRCRecipes(recipeManager, registryAccess));
+        }
         if (ModList.get().isLoaded("advanced_ae")) {
-            result.addAll(AAERecipeProvider.getConvertedRecipes(recipeManager, registryAccess));
+            result.addAll(AAERecipeModule.getConvertedRCRecipes(recipeManager, registryAccess));
         }
         return Collections.unmodifiableList(result);
     }

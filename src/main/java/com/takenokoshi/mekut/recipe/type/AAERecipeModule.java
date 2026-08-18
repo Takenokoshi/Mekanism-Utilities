@@ -20,21 +20,21 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.pedroksl.advanced_ae.recipes.ReactionChamberRecipe;
 
-public class AAERecipeProvider {
-    public static List<RecipeHolder<ItemStackListFluidChemicalToItemFluidChemicalRecipe>> getConvertedRecipes(
+public class AAERecipeModule {
+    public static List<RecipeHolder<ItemStackListFluidChemicalToItemFluidChemicalRecipe>> getConvertedRCRecipes(
             @NotNull RecipeManager recipeManager, @Nullable RegistryAccess registryAccess) {
         List<RecipeHolder<ItemStackListFluidChemicalToItemFluidChemicalRecipe>> result = new ArrayList<>();
         recipeManager.getAllRecipesFor(ReactionChamberRecipe.TYPE).forEach(holder -> {
             result.add(new RecipeHolder<>(
                     ResourceLocation.fromNamespaceAndPath(holder.id().getNamespace(),
-                            "/runtime_generated/small_digital_reaction_chamber/from_reaction_chamber/"
+                            "/runtime_generated/small_digital_reaction_chamber/"
                                     + holder.id().getPath()),
-                    convertAAE(holder.value())));
+                    convertReaction(holder.value())));
         });
         return Collections.unmodifiableList(result);
     }
 
-    public static BasicSmallDigitalReactionChamberRecipe convertAAE(ReactionChamberRecipe recipe) {
+    public static ItemStackListFluidChemicalToItemFluidChemicalRecipe convertReaction(ReactionChamberRecipe recipe) {
         var fluid = recipe.getFluid();
         return new BasicSmallDigitalReactionChamberRecipe(
                 recipe.getInputs().stream()

@@ -28,7 +28,7 @@ public class ChemicalCutRecipeType extends
             @NotNull RecipeManager recipeManager, @Nullable RegistryAccess registryAccess) {
         if (ModList.get().isLoaded("extendedae")) {
             var result = new ArrayList<>(super.getRecipesUncached(recipeManager, registryAccess));
-            result.addAll(EAERecipeProvider.getConvertedCutterRecipes(recipeManager, registryAccess));
+            result.addAll(EAERecipeModule.getConvertedCutterRecipes(recipeManager, registryAccess));
         }
         return super.getRecipesUncached(recipeManager, registryAccess);
     }

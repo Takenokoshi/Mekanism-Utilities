@@ -21,7 +21,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 
-public class EAERecipeProvider {
+public class EAERecipeModule {
     public static List<RecipeHolder<ItemStackListFluidChemicalToItemRecipe>> getConvertedAssemblerRecipes(
             @NotNull RecipeManager recipeManager, @Nullable RegistryAccess registryAccess) {
         List<RecipeHolder<ItemStackListFluidChemicalToItemRecipe>> result = new ArrayList<>();
