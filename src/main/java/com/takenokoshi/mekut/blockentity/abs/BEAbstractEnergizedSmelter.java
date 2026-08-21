@@ -43,10 +43,10 @@ import net.minecraft.world.level.block.state.BlockState;
 public abstract class BEAbstractEnergizedSmelter extends BEMultiScaledProgressMachine<SmeltingRecipe>
         implements ITweakedEnergizedSmelter {
 
-    private InputOrSupplyingSlot inputSlot;
-    private LimitChangedOutputInventorySlot outputSlot;
-    private EnergyInventorySlot energySlot;
-    private MachineEnergyContainer<?> energyContainer;
+    protected InputOrSupplyingSlot inputSlot;
+    protected LimitChangedOutputInventorySlot outputSlot;
+    protected EnergyInventorySlot energySlot;
+    protected MachineEnergyContainer<?> energyContainer;
     private IChemicalTank xpTank;
 
     private final AdvancedIngredientInputHandler inputHandler;

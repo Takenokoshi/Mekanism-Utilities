@@ -2,6 +2,7 @@ package com.takenokoshi.mekut.registries;
 
 import com.takenokoshi.mekaddonlib.registration.MachineRegistryObject;
 import com.takenokoshi.mekut.blockentity.machine.*;
+import com.takenokoshi.mekut.gui.factory.GuiEnergizedSmeltingFactory;
 import com.takenokoshi.mekut.gui.machine.*;
 import com.takenokoshi.mekut.gui.misc.*;
 
@@ -47,6 +48,10 @@ public class MekUtScreens {
         registerMachineGui(event, MekUtMachines.ITEM_RATIO_SPLITTER, GuiItemRatioSplitter::new);
         registerMachineGui(event, MekUtMachines.FLUID_RATIO_SPLITTER, GuiFluidRatioSplitter::new);
         registerMachineGui(event, MekUtMachines.CHEMICAL_RATIO_SPLITTER, GuiChemicalRatioSplitter::new);
+
+        MekUtMachines.ENERGIZED_SMELTING_FACTORIES.values().forEach(registryObject -> {
+            registerMachineGui(event, registryObject, GuiEnergizedSmeltingFactory::new);
+        });
     }
 
     public static <BE extends TileEntityMekanism, CONTAINER extends MekanismTileContainer<BE>, GUI extends Screen & MenuAccess<CONTAINER>> void registerMachineGui(

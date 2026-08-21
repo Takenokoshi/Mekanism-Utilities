@@ -16,6 +16,7 @@ import mekanism.common.registration.impl.BlockRegistryObject;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.PackType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
@@ -25,8 +26,16 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 public class MekUtBlockModelProvider extends BlockStateProvider {
 
-    public MekUtBlockModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
-        super(output, MekUtConstants.MODID, existingFileHelper);
+    public static final ExistingFileHelper.ResourceType TEXTURE = new ExistingFileHelper.ResourceType(
+            PackType.CLIENT_RESOURCES, ".png", "textures");
+    protected static final ExistingFileHelper.ResourceType MODEL = new ExistingFileHelper.ResourceType(
+            PackType.CLIENT_RESOURCES, ".json", "models");
+
+    protected final ExistingFileHelper exFileHelper;
+
+    public MekUtBlockModelProvider(PackOutput output, ExistingFileHelper exFileHelper) {
+        super(output, MekUtConstants.MODID, exFileHelper);
+        this.exFileHelper = exFileHelper;
     }
 
     @Override
@@ -131,6 +140,69 @@ public class MekUtBlockModelProvider extends BlockStateProvider {
                 Mekanism.rl("block/energized_smelter_active"));
 
         greenHouse(MekUtMachines.GREEN_HOUSE, "augment", "green_house");
+
+        MekUtMachines.ENERGIZED_SMELTING_FACTORIES.forEach((tier, registryObject) -> {
+            mekUtSimpleFactory(registryObject, true,
+                    "digital", tier.getBaseTier().getLowerName(),
+                    "factory/energized_smelting/" + tier.getBaseTier().getLowerName(),
+                    Mekanism.rl("block/energized_smelter/front"),
+                    Mekanism.rl("block/energized_smelter/front_active"));
+        });
+    }
+
+    protected void mekUtSimpleFactory(
+            MachineRegistryObject<?, ?, ?, ?> registryObject,
+            boolean energy,
+            String machineTierDecoration,
+            String factoryTierDecoration,
+            String baseName,
+            ResourceLocation frontTexturePathInActive,
+            ResourceLocation frontTexturePathActive) {
+        mekUtSimpleFactory(registryObject.getBlock(), energy, machineTierDecoration, factoryTierDecoration, baseName,
+                frontTexturePathInActive, frontTexturePathActive);
+    }
+
+    protected void mekUtSimpleFactory(
+            BlockRegistryObject<?, ?> registryObject,
+            boolean energy,
+            String machineTierDecoration,
+            String factoryTierDecoration,
+            String baseName,
+            ResourceLocation frontTexturePathInActive,
+            ResourceLocation frontTexturePathActive) {
+        exFileHelper.trackGenerated(frontTexturePathInActive, TEXTURE);
+        exFileHelper.trackGenerated(frontTexturePathActive, TEXTURE);
+        ModelFile inactive = models().withExistingParent(baseName, MekUtConstants.rl(energy
+                ? "block/base/factory_base_energy"
+                : "block/base/factory_base"))
+                .texture("front", frontTexturePathInActive)
+                .texture("machine_tier_decoration", MekUtConstants.rl("block/tier_decoration/" + machineTierDecoration))
+                .texture("factory_tier_decoration",
+                        MekUtConstants.rl("block/tier_decoration/" + factoryTierDecoration));
+        ModelFile active = models().withExistingParent(baseName + "_active", MekUtConstants.rl(energy
+                ? "block/base/factory_base_energy"
+                : "block/base/factory_base"))
+                .texture("front", frontTexturePathActive)
+                .texture("machine_tier_decoration", MekUtConstants.rl("block/tier_decoration/" + machineTierDecoration))
+                .texture("factory_tier_decoration",
+                        MekUtConstants.rl("block/tier_decoration/" + factoryTierDecoration));
+
+        getVariantBuilder(registryObject.get())
+                .forAllStates(state -> {
+                    Direction facing = state.getValue(
+                            BlockStateProperties.HORIZONTAL_FACING);
+
+                    boolean lit = ((AttributeStateActive) (Attributes.ACTIVE_LIGHT)).isActive(state);
+
+                    return ConfiguredModel.builder()
+                            .modelFile(lit ? active : inactive)
+                            .rotationY(((int) facing.toYRot() + 180) % 360)
+                            .build();
+                });
+
+        simpleBlockItem(
+                registryObject.get(),
+                inactive);
     }
 
     protected void mekUtSimpleMachine(

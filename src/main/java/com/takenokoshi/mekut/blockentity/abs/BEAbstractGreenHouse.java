@@ -9,6 +9,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.takenokoshi.mekaddonlib.blockentity.base.BEMultiScaledProgressMachine;
+import com.takenokoshi.mekaddonlib.blockentity.component.EjectorComponentUtils;
+import com.takenokoshi.mekaddonlib.blockentity.component.RelativeEjectionTargetModifier;
 import com.takenokoshi.mekaddonlib.blockentity.interfaces.IHasGuiSizeOffset;
 import com.takenokoshi.mekaddonlib.inventory.slot.LimitChangedInputInventorySlot;
 import com.takenokoshi.mekaddonlib.inventory.slot.LimitChangedOutputInventorySlot;
@@ -25,6 +27,7 @@ import com.takenokoshi.mekut.recipe.recipe.prefab.GreenHouseRecipe;
 import com.takenokoshi.mekut.registries.MekUtRecipeTypes;
 
 import mekanism.api.IContentsListener;
+import mekanism.api.RelativeSide;
 import mekanism.api.fluid.IExtendedFluidTank;
 import mekanism.api.inventory.IInventorySlot;
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
@@ -125,6 +128,16 @@ public abstract class BEAbstractGreenHouse extends BEMultiScaledProgressMachine<
             outputHandlers[i] = initOutputHandler(outputSlots[i], RecipeError.NOT_ENOUGH_OUTPUT_SPACE);
         }
         fertilizerSlot.setSupplyingStackSetter(fertilizerHandler::setSuppliedStack);
+        EjectorComponentUtils.setEjectionTargetModifier(ejectorComponent, TransmissionType.ITEM, RelativeSide.FRONT,
+                new RelativeEjectionTargetModifier(1, 0, 0, RelativeSide.BACK));
+        EjectorComponentUtils.setEjectionTargetModifier(ejectorComponent, TransmissionType.ITEM, RelativeSide.BACK,
+                new RelativeEjectionTargetModifier(-1, 0, 0, RelativeSide.FRONT));
+        EjectorComponentUtils.setEjectionTargetModifier(ejectorComponent, TransmissionType.ITEM, RelativeSide.LEFT,
+                new RelativeEjectionTargetModifier(0, 1, 0, RelativeSide.RIGHT));
+        EjectorComponentUtils.setEjectionTargetModifier(ejectorComponent, TransmissionType.ITEM, RelativeSide.RIGHT,
+                new RelativeEjectionTargetModifier(0, -1, 0, RelativeSide.LEFT));
+        EjectorComponentUtils.setEjectionTargetModifier(ejectorComponent, TransmissionType.ITEM, RelativeSide.TOP,
+                new RelativeEjectionTargetModifier(0, 0, 2, RelativeSide.BOTTOM));
     }
 
     protected abstract BasicChanceOutputHandler initOutputHandler(IInventorySlot slot, RecipeError notEnoughSpaceError);

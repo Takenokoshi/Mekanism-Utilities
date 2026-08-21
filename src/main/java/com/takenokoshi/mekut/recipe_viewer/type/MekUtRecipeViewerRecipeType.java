@@ -17,6 +17,7 @@ import mekanism.api.recipes.ChemicalChemicalToChemicalRecipe;
 import mekanism.api.recipes.ChemicalToChemicalRecipe;
 import mekanism.api.recipes.ItemStackChemicalToItemStackRecipe;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
+import net.minecraft.world.level.ItemLike;
 
 public class MekUtRecipeViewerRecipeType {
 
@@ -78,5 +79,6 @@ public class MekUtRecipeViewerRecipeType {
             MekUtConstants.rl("smelting"),
             SmeltingRecipe.class,
             WrappedRecipeType.VANILLA_SMELTING, -28, -16, 152, 54,
-            MekUtMachines.TWEAKED_ENERGIZED_SMELTER);
+            MekUtMachines.TWEAKED_ENERGIZED_SMELTER,
+            MekUtMachines.ENERGIZED_SMELTING_FACTORIES.values().toArray(ItemLike[]::new));
 }

@@ -122,7 +122,7 @@ dependencies {
     implementation "curse.maven:mekanism-tools-268567:7904062"
 
     //MekAL
-    implementation "curse.maven:mekanism-addon-library-1607060:8527277"
+    implementation "curse.maven:mekanism-addon-library-1607060:8694606"
 
     //MWGR
     implementation "curse.maven:mekanism-water-generator-rebuild-1396471:8492800"

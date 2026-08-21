@@ -1,5 +1,8 @@
 package com.takenokoshi.mekut.registries;
 
+import java.util.EnumMap;
+import java.util.Map;
+
 import com.takenokoshi.mekaddonlib.registration.GuiSizedMachineRegistryObject;
 import com.takenokoshi.mekaddonlib.registration.MachineDeferredRegister;
 import com.takenokoshi.mekaddonlib.registration.SimpleMachineRegistryObject;
@@ -13,6 +16,7 @@ import com.takenokoshi.mekut.blockentity.abs.BEAbstractCompactSPS;
 import com.takenokoshi.mekut.blockentity.abs.BEAbstractCompactThermalEvaporationPlant;
 import com.takenokoshi.mekut.blockentity.abs.BEAbstractEnergizedSmelter;
 import com.takenokoshi.mekut.blockentity.abs.BEAbstractGreenHouse;
+import com.takenokoshi.mekut.blockentity.factory.BEEnergizedSmeltingFactory;
 import com.takenokoshi.mekut.blockentity.interfaces.machine.IBiChemicalToObjectRecipeMachine;
 import com.takenokoshi.mekut.blockentity.interfaces.machine.IFluidToObjectMachine;
 import com.takenokoshi.mekut.blockentity.interfaces.machine.IItemStackChemicalToItemStackMachine;
@@ -45,10 +49,14 @@ import mekanism.common.attachments.containers.ContainerType;
 import mekanism.common.attachments.containers.chemical.ChemicalTanksBuilder;
 import mekanism.common.attachments.containers.item.ItemSlotsBuilder;
 import mekanism.common.block.attribute.AttributeCustomSelectionBox;
+import mekanism.common.block.attribute.AttributeTier;
+import mekanism.common.block.attribute.AttributeUpgradeable;
 import mekanism.common.capabilities.Capabilities;
 import mekanism.common.config.MekanismConfig;
 import mekanism.common.lib.transmitter.TransmissionType;
+import mekanism.common.registration.impl.BlockRegistryObject;
 import mekanism.common.registries.MekanismSounds;
+import mekanism.common.tier.FactoryTier;
 import mekanism.generators.common.registries.GeneratorsSounds;
 
 public class MekUtMachines {
@@ -267,6 +275,7 @@ public class MekUtMachines {
                             .withEnergyConfig(MekanismConfig.usage.energizedSmelter,
                                     MekanismConfig.storage.energizedSmelter)
                             .withSound(MekanismSounds.ENERGIZED_SMELTER)
+                            .with(new AttributeUpgradeable(MekUtMachines::getBasicSmeltingFactory))
                             .withSupportedUpgrades(Upgrade.ENERGY, Upgrade.SPEED, Upgrade.MUFFLING));
 
     public static final SimpleMachineRegistryObject<BlockEntityXpTank> XP_TANK = MACHINES
@@ -300,4 +309,42 @@ public class MekUtMachines {
                     BEChemicalRatioSplitter::new,
                     BEChemicalRatioSplitter.class,
                     builder -> builder.withSideConfig(TransmissionType.CHEMICAL));
+
+    public static final Map<FactoryTier, GuiSizedMachineRegistryObject<BEEnergizedSmeltingFactory>> ENERGIZED_SMELTING_FACTORIES = new EnumMap<>(
+            FactoryTier.class);
+    static {
+        FactoryTier[] tiers = new FactoryTier[] {
+                FactoryTier.BASIC, FactoryTier.ADVANCED, FactoryTier.ELITE, FactoryTier.ULTIMATE,
+        };
+        for (int i = 0; i < tiers.length; i++) {
+            FactoryTier tier = tiers[i];
+            int p = i;
+            ENERGIZED_SMELTING_FACTORIES.put(tier, MACHINES.registerGuiSized(
+                    tier.getBaseTier().getLowerName() + "_smelting_factory",
+                    AttachedSideConfig.CHEMICAL_OUT_MACHINE,
+                    BEEnergizedSmeltingFactory.getContainerAdder(tier.processes)::accept,
+                    BEEnergizedSmeltingFactory::new,
+                    BEEnergizedSmeltingFactory.class,
+                    TWEAKED_ENERGIZED_SMELTER.descriptionEntry,
+                    builder -> {
+                        builder
+                                .withEnergyConfig(
+                                        MekanismConfig.usage.energizedSmelter,
+                                        () -> MekanismConfig.storage.energizedSmelter.getAsLong() * tier.processes)
+                                .withSideConfig(TransmissionType.ITEM, TransmissionType.ENERGY,
+                                        TransmissionType.CHEMICAL)
+                                .with(new AttributeTier<>(tier))
+                                .withSupportedUpgrades(Upgrade.ENERGY, Upgrade.SPEED, Upgrade.MUFFLING);
+                        if (p + 1 < tiers.length) {
+                            builder.with(new AttributeUpgradeable(
+                                    () -> ENERGIZED_SMELTING_FACTORIES.get(tiers[p + 1]).getBlock()));
+                        }
+                        return builder;
+                    }));
+        }
+    }
+
+    private static BlockRegistryObject<?, ?> getBasicSmeltingFactory() {
+        return ENERGIZED_SMELTING_FACTORIES.get(FactoryTier.BASIC).getBlock();
+    }
 }

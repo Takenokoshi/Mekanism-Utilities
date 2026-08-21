@@ -1,0 +1,8 @@
+{
+  "parent": "mekanism_utilities:block/base/factory_base_energy",
+  "textures": {
+    "factory_tier_decoration": "mekanism_utilities:block/tier_decoration/advanced",
+    "front": "mekanism:block/energized_smelter/front",
+    "machine_tier_decoration": "mekanism_utilities:block/tier_decoration/digital"
+  }
+}
