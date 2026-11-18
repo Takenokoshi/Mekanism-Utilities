@@ -65,7 +65,8 @@ public class AbstractCookingRecipeBuilder extends MekanismRecipeBuilder<Abstract
     }
 
     public static AbstractCookingRecipeBuilder campfire(Ingredient ingredient, ItemStack output) {
-        return new AbstractCookingRecipeBuilder(CampfireCookingRecipe::new, CookingBookCategory.FOOD, ingredient, output, 600);
+        return new AbstractCookingRecipeBuilder(CampfireCookingRecipe::new, CookingBookCategory.FOOD, ingredient,
+                output, 600);
     }
 
     public AbstractCookingRecipeBuilder experience(float experience) {
@@ -73,6 +74,11 @@ public class AbstractCookingRecipeBuilder extends MekanismRecipeBuilder<Abstract
             throw new IllegalArgumentException("Experience cannot be negative.");
         }
         this.experience = experience;
+        return this;
+    }
+
+    public AbstractCookingRecipeBuilder group(String group) {
+        this.group = group;
         return this;
     }
 
