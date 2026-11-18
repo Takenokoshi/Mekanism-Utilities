@@ -12,6 +12,13 @@ public class MekUtItems {
 
     public static final ItemRegistryObject<Item> ENRICHED_GLOWSTONE = ITEMS.register("enriched_glowstone");
 
+    public static final ItemRegistryObject<Item> CALCIUM_CARBIDE_DUST = ITEMS.register("calcium_carbide_dust");
+    public static final ItemRegistryObject<Item> CALCIUM_HYDROXIDE_DUST = ITEMS.register("calcium_hydroxide_dust");
+
+    public static final ItemRegistryObject<Item> NONWOVEN_FABRIC = ITEMS.register("nonwoven_fabric");
+
+    public static final ItemRegistryObject<Item> RAW_DIAMOND = ITEMS.register("raw_daimond");
+
     /** 原石は鉱石抽出機での加工拡張の成果物枠 */
     public static final EnumMap<MekUtMetalType, ItemRegistryObject<Item>> METAL_RAW_MATERIALS = new EnumMap<>(
             MekUtMetalType.class);

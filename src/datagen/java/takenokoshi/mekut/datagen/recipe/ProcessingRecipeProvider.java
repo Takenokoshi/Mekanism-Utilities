@@ -5,6 +5,8 @@ import mekanism.api.datagen.recipe.builder.ChemicalDissolutionRecipeBuilder;
 import mekanism.api.datagen.recipe.builder.FluidChemicalToChemicalRecipeBuilder;
 import mekanism.api.datagen.recipe.builder.ItemStackChemicalToItemStackRecipeBuilder;
 import mekanism.api.datagen.recipe.builder.ItemStackToItemStackRecipeBuilder;
+import mekanism.api.datagen.recipe.builder.PressurizedReactionRecipeBuilder;
+import mekanism.api.datagen.recipe.builder.RotaryRecipeBuilder;
 import mekanism.api.recipes.ingredients.creator.IngredientCreatorAccess;
 import mekanism.common.registries.MekanismChemicals;
 import mekanism.common.registries.MekanismItems;
@@ -23,6 +25,7 @@ import net.neoforged.neoforge.common.conditions.TagEmptyCondition;
 import takenokoshi.mekal.datagen.recipe.builder.AbstractCookingRecipeBuilder;
 import takenokoshi.mekut.common.MekUt;
 import takenokoshi.mekut.common.registries.MekUtChemicals;
+import takenokoshi.mekut.common.registries.MekUtFluids;
 import takenokoshi.mekut.common.registries.MekUtItems;
 import takenokoshi.mekut.common.registries.MekUtMetalType;
 import takenokoshi.mekut.datagen.recipe.builder.MekUtItemStackToItemStackRecipeBuilder;
@@ -211,5 +214,30 @@ public class ProcessingRecipeProvider {
                 IngredientCreatorAccess.item().from(MekanismTags.Items.ORES.get(OreType.URANIUM), 1),
                 MekanismItems.PROCESSED_RESOURCES.get(ResourceType.RAW, PrimaryResource.URANIUM).asStack(3))
                 .build(recipeOutput, MekUt.rl("processing/uranium/raw_material/from_ore"));
+
+        PressurizedReactionRecipeBuilder.reaction(
+                IngredientCreatorAccess.item().from(MekanismTags.Items.DUSTS_DIAMOND, 1),
+                IngredientCreatorAccess.fluid().fromHolder(MekUtFluids.GLOWSTONE_SOLVENT, 2000),
+                IngredientCreatorAccess.chemicalStack().fromHolder(MekanismChemicals.CARBON, 5120),
+                400,
+                MekUtItems.RAW_DIAMOND.asStack(2),
+                MekUtChemicals.SPENT_GLOWSTONE_SOLVENT.asStack(2000L))
+                .build(recipeOutput, MekUt.rl("processing/diamond/raw_from_carbon"));
+        MekUtItemStackToItemStackRecipeBuilder.mineralExtracting(
+                IngredientCreatorAccess.item().from(MekUtItems.RAW_DIAMOND, 1),
+                new ItemStack(Items.DIAMOND, 1))
+                .build(recipeOutput, MekUt.rl("processing/diamond/from_raw_ore"));
+        RotaryRecipeBuilder.rotary(
+                IngredientCreatorAccess.fluid().fromHolder(MekUtFluids.GLOWSTONE_SOLVENT, 100),
+                IngredientCreatorAccess.chemicalStack().fromHolder(MekUtChemicals.GLOWSTONE_SOLVENT, 100L),
+                MekUtChemicals.GLOWSTONE_SOLVENT.asStack(100L),
+                MekUtFluids.GLOWSTONE_SOLVENT.asStack(100))
+                .build(recipeOutput, MekUt.rl("processing/diamond/solvent_rotary"));
+        FluidChemicalToChemicalRecipeBuilder.washing(
+                IngredientCreatorAccess.fluid().from(MekanismTags.Fluids.SODIUM, 1),
+                IngredientCreatorAccess.chemicalStack().fromHolder(MekUtChemicals.SPENT_GLOWSTONE_SOLVENT, 1L),
+                MekUtChemicals.GLOWSTONE_SOLVENT.asStack(1L))
+                .build(recipeOutput, MekUt.rl("processing/diamond/solvent_recycle"));
+
     }
 }
