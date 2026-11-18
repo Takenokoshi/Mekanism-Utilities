@@ -10,9 +10,10 @@ import takenokoshi.mekut.datagen.recipe.builder.MekUtItemStackToItemStackRecipeB
 
 public class MineralExtractingRecipeProvider {
     static void buildRecipes(RecipeOutput recipeOutput) {
-        MekUtItemStackToItemStackRecipeBuilder.mineralExtracting(
-                IngredientCreatorAccess.item().from(Tags.Items.GRAVELS, 1),
-                new ItemStack(Items.FLINT, 2))
+        MekUtItemStackToItemStackRecipeBuilder
+                .mineralExtracting(
+                        IngredientCreatorAccess.item().from(Tags.Items.GRAVELS, 1),
+                        new ItemStack(Items.FLINT, 2))
                 .build(recipeOutput, MekUt.rl("mineral_extracting/flint"));
     }
 }

@@ -15,6 +15,7 @@ public class MekUtRecipeProvider extends RecipeProvider {
 
     @Override
     protected void buildRecipes(RecipeOutput recipeOutput) {
+        ControlCircuitRecipeProvider.buildRecipes(recipeOutput);
         MineralExtractingRecipeProvider.buildRecipes(recipeOutput);
         ProcessingRecipeProvider.buildRecipes(recipeOutput);
     }

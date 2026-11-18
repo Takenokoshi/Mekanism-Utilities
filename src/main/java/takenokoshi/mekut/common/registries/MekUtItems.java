@@ -10,6 +10,19 @@ import takenokoshi.mekut.common.MekUt;
 public class MekUtItems {
     public static final ItemDeferredRegister ITEMS = new ItemDeferredRegister(MekUt.MODID);
 
+    // 標準
+    public static final ItemRegistryObject<Item> STANDARD_CONTROL_CIRCUIT = ITEMS
+            .register("standard_control_circuit");
+    // 拡張
+    public static final ItemRegistryObject<Item> EXTENDED_CONTROL_CIRCUIT = ITEMS
+            .register("extended_control_circuit");
+    // 複層
+    public static final ItemRegistryObject<Item> MULTILAYER_CONTROL_CIRCUIT = ITEMS
+            .register("multilayer_control_circuit");
+    // 並行
+    public static final ItemRegistryObject<Item> PARALLEL_CONTROL_CIRCUIT = ITEMS
+            .register("parallel_control_circuit");
+
     public static final ItemRegistryObject<Item> ENRICHED_GLOWSTONE = ITEMS.register("enriched_glowstone");
 
     public static final ItemRegistryObject<Item> CALCIUM_CARBIDE_DUST = ITEMS.register("calcium_carbide_dust");
@@ -50,5 +63,7 @@ public class MekUtItems {
             METAL_INGOTS.put(metalType, ITEMS.register(metalType.name + "_ingot"));
         }
     }
+
+    public static final ItemRegistryObject<Item> NETHERITE_CRYSTAL = ITEMS.register("netherite_crystal");
 
 }
