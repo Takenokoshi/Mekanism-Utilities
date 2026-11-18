@@ -1,0 +1,198 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'net.neoforged.moddev' version '2.0.148'
+    id 'idea'
+}
+
+tasks.named('wrapper', Wrapper).configure {
+    distributionType = Wrapper.DistributionType.BIN
+}
+
+version = mod_version
+group = mod_group_id
+
+sourceSets {
+    // Datagen For MekUt
+    datagen {
+        java.srcDir 'src/datagen/java'
+        compileClasspath += sourceSets.main.compileClasspath
+        runtimeClasspath += sourceSets.main.runtimeClasspath
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+    // Mekanism Addon Library
+    mekal{
+        java.srcDir 'src/mekal/java'
+        resources.srcDir 'src/mekal/resources'
+    }
+    // Mekanism: Utilities
+    main{
+        resources {
+            srcDir('src/generated/resources')
+
+            exclude("**/*.bbmodel")
+            exclude("src/generated/**/.cache")
+        }
+    }
+}
+
+repositories {
+    mavenLocal()
+
+    maven {
+        url = "https://cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+neoForge {
+    version = project.neo_version
+
+    parchment {
+        mappingsVersion = project.parchment_mappings_version
+        minecraftVersion = project.parchment_minecraft_version
+    }
+
+    runs {
+        client {
+            client()
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+
+        server {
+            server()
+            programArgument '--nogui'
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+
+        gameTestServer {
+            type = "gameTestServer"
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+
+        data {
+            data()
+            programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+        }
+
+        configureEach {
+            systemProperty 'forge.logging.markers', 'REGISTRIES'
+
+            logLevel = org.slf4j.event.Level.DEBUG
+        }
+    }
+
+    mods {
+        "${al_mod_id}" {
+            sourceSet(sourceSets.mekal)
+        }
+        "${mod_id}" {
+            sourceSet(sourceSets.main)
+        }
+    }
+}
+
+configurations {
+    runtimeClasspath.extendsFrom localRuntime
+}
+
+dependencies {
+
+    // まだリリースされていないMekanism10.7.20向けに作るので、Forkプロジェクトで手動ビルドしたものを参照
+    mekalImplementation files("libs/Mekanism-1.21.1-10.7.19.homebaked-all.jar")
+    implementation files("libs/Mekanism-1.21.1-10.7.19.homebaked-all.jar")
+    
+    implementation "curse.maven:jei-238222:9393327"
+    implementation "curse.maven:emi-580555:8081408"
+
+    implementation sourceSets.mekal.output
+}
+
+var generateMekALMetadata = tasks.register(
+        "generateMekALMetadata",
+        ProcessResources
+) {
+    var replaceProperties = [
+            minecraft_version      : minecraft_version,
+            minecraft_version_range: minecraft_version_range,
+            neo_version             : neo_version,
+            loader_version_range    : loader_version_range,
+            al_mod_id               : al_mod_id,
+            al_mod_name             : al_mod_name,
+            mod_license             : mod_license,
+            mod_version             : mod_version,
+    ]
+
+    inputs.properties replaceProperties
+    expand replaceProperties
+
+    from "src/mekal/templates"
+    into "build/generated/sources/mekalMetadata"
+}
+
+sourceSets.mekal.resources.srcDir generateMekALMetadata
+
+var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
+    var replaceProperties = [
+            minecraft_version      : minecraft_version,
+            minecraft_version_range: minecraft_version_range,
+            neo_version            : neo_version,
+            loader_version_range   : loader_version_range,
+            mod_id                 : mod_id,
+            al_mod_id              : al_mod_id,
+            mod_name               : mod_name,
+            mod_license            : mod_license,
+            mod_version            : mod_version,
+    ]
+    inputs.properties replaceProperties
+    expand replaceProperties
+    from "src/main/templates"
+    into "build/generated/sources/modMetadata"
+}
+sourceSets.main.resources.srcDir generateModMetadata
+neoForge.ideSyncTask generateMekALMetadata
+neoForge.ideSyncTask generateModMetadata
+
+publishing {
+    publications {
+        register('mavenJava', MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url "file://${project.projectDir}/repo"
+        }
+    }
+}
+tasks.register('mekalJar', Jar) {
+    archiveBaseName = 'MekAL-1.21.1'
+    archiveVersion = project.version
+
+    from sourceSets.mekal.output
+
+    dependsOn generateMekALMetadata
+
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+tasks.named('jar', Jar) {
+    archiveBaseName = 'MekUt-1.21.1'
+}
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8' 
+}
+tasks.named('build') {
+    dependsOn tasks.named('mekalJar')
+}
+
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
+    }
+}
