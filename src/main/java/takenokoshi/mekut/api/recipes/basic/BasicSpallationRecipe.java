@@ -7,39 +7,34 @@ import mekanism.api.chemical.ChemicalStack;
 import mekanism.api.recipes.ingredients.ChemicalStackIngredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
-import takenokoshi.mekal.api.recipes.outputs.TripleChemicalRecipeOutput;
+import takenokoshi.mekut.api.recipes.MekUtRecipeSerializers;
+import takenokoshi.mekut.api.recipes.MekUtRecipeTypes;
 import takenokoshi.mekut.api.recipes.SpallationRecipe;
 
-public class BasicSpallationRecipe extends SpallationRecipe {
+public final class BasicSpallationRecipe extends SpallationRecipe {
 
-    protected final ChemicalStackIngredient input;
-    protected final ChemicalStack mainOutput, secondaryOutput, tertiaryOutput;
-    protected final double requiredProton, producedNeutron;
+    private final ChemicalStackIngredient input;
+    private final List<ChemicalStack> output;
+    private final double requiredProton, producedNeutron;
 
     public BasicSpallationRecipe(ChemicalStackIngredient input,
-            ChemicalStack mainOutput,
-            ChemicalStack secondaryOutput,
-            ChemicalStack tertiaryOutput,
+            List<ChemicalStack> output,
             double requiredProton,
             double producedNeutron) {
         this.input = input;
-        this.mainOutput = mainOutput;
-        this.secondaryOutput = secondaryOutput;
-        this.tertiaryOutput = tertiaryOutput;
+        this.output = output;
         this.requiredProton = requiredProton;
         this.producedNeutron = producedNeutron;
     }
 
     @Override
-    public RecipeSerializer<?> getSerializer() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSerializer'");
+    public RecipeSerializer<BasicSpallationRecipe> getSerializer() {
+        return MekUtRecipeSerializers.SPALLATION.value();
     }
 
     @Override
-    public RecipeType<?> getType() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getType'");
+    public RecipeType<SpallationRecipe> getType() {
+        return MekUtRecipeTypes.TYPE_SPALLATION.value();
     }
 
     @Override
@@ -63,25 +58,17 @@ public class BasicSpallationRecipe extends SpallationRecipe {
     }
 
     @Override
-    public List<TripleChemicalRecipeOutput> getOutputDefinition() {
-        return Collections.singletonList(new TripleChemicalRecipeOutput(mainOutput, secondaryOutput, tertiaryOutput));
+    public List<List<ChemicalStack>> getOutputDefinition() {
+        return Collections.singletonList(output);
     }
 
     @Override
-    public TripleChemicalRecipeOutput getOutput(ChemicalStack input) {
-        return new TripleChemicalRecipeOutput(mainOutput.copy(), secondaryOutput.copy(), tertiaryOutput.copy());
+    public List<ChemicalStack> getOutput(ChemicalStack input) {
+        return output.stream().map(ChemicalStack::copy).toList();
     }
 
-    public ChemicalStack getMainOutputRaw() {
-        return mainOutput;
-    }
-
-    public ChemicalStack getSecondaryOutputRaw() {
-        return secondaryOutput;
-    }
-
-    public ChemicalStack getTertiaryOutputRaw() {
-        return tertiaryOutput;
+    public List<ChemicalStack> getOutputRaw() {
+        return output;
     }
 
     @Override
@@ -94,18 +81,14 @@ public class BasicSpallationRecipe extends SpallationRecipe {
         BasicSpallationRecipe other = (BasicSpallationRecipe) o;
         return requiredProton == other.requiredProton
                 && producedNeutron == other.producedNeutron
-                && mainOutput.equals(other.mainOutput)
-                && secondaryOutput.equals(other.secondaryOutput)
-                && tertiaryOutput.equals(other.tertiaryOutput)
+                && output.equals(other.output)
                 && input.equals(other.input);
     }
 
     @Override
     public int hashCode() {
         int hash = input.hashCode();
-        hash = hash * 31 + mainOutput.hashCode();
-        hash = hash * 31 + secondaryOutput.hashCode();
-        hash = hash * 31 + tertiaryOutput.hashCode();
+        hash = hash * 31 + output.hashCode();
         hash = hash * 31 + Double.hashCode(requiredProton);
         return hash * 31 + Double.hashCode(producedNeutron);
     }

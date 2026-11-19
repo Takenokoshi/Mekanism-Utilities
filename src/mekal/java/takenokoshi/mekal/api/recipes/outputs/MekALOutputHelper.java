@@ -40,40 +40,6 @@ public class MekALOutputHelper {
         };
     }
 
-    public static IOutputHandler<TripleChemicalRecipeOutput> getOutputHandler(
-            IChemicalTank mainTank, RecipeError mainNotEnoughSpaceError,
-            IChemicalTank secondaryTank, RecipeError secondaryNotEnoughSpaceError,
-            IChemicalTank tertiaryTank, RecipeError tertiaryNotEnoughSpaceError) {
-        return new IOutputHandler<TripleChemicalRecipeOutput>() {
-
-            @Override
-            public void handleOutput(TripleChemicalRecipeOutput output, int operations) {
-                MekALOutputHelper.handleOutput(mainTank, output.main(), operations);
-                MekALOutputHelper.handleOutput(secondaryTank, output.secondary(), operations);
-                MekALOutputHelper.handleOutput(tertiaryTank, output.tertiary(), operations);
-            }
-
-            @Override
-            public void calculateOperationsCanSupport(OperationTracker tracker, TripleChemicalRecipeOutput output) {
-                MekALOutputHelper.calculateOperationsCanSupport(tracker, mainNotEnoughSpaceError, mainTank,
-                        output.main());
-                if (!tracker.shouldContinueChecking()) {
-                    return;
-                }
-                MekALOutputHelper.calculateOperationsCanSupport(tracker, secondaryNotEnoughSpaceError,
-                        secondaryTank,
-                        output.secondary());
-                if (!tracker.shouldContinueChecking()) {
-                    return;
-                }
-                MekALOutputHelper.calculateOperationsCanSupport(tracker, secondaryNotEnoughSpaceError,
-                        tertiaryTank,
-                        output.tertiary());
-            }
-
-        };
-    }
-
     /**
      * Mathods under this memo were copied from
      * https://github.com/mekanism/Mekanism/blob/1.21.x/src/api/java/mekanism/api/recipes/outputs/OutputHelper.java

@@ -16,6 +16,7 @@ public class MekUtItems {
     // 拡張
     public static final ItemRegistryObject<Item> EXTENDED_CONTROL_CIRCUIT = ITEMS
             .register("extended_control_circuit");
+    // Idea 精密
     // 複層
     public static final ItemRegistryObject<Item> MULTILAYER_CONTROL_CIRCUIT = ITEMS
             .register("multilayer_control_circuit");

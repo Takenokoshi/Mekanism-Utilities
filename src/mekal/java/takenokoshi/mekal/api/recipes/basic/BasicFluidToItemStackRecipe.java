@@ -47,6 +47,10 @@ public abstract class BasicFluidToItemStackRecipe extends FluidToItemStackRecipe
         return output.copy();
     }
 
+    public ItemStack getOutputRaw() {
+        return output;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == this) {
