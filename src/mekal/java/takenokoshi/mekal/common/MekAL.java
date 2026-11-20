@@ -5,6 +5,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import takenokoshi.mekal.common.network.MekALPacketHandler;
+import takenokoshi.mekal.common.registries.MekALRecipeSerializersInternal;
 
 @Mod(value = MekAL.MODID)
 public class MekAL {
@@ -16,6 +17,7 @@ public class MekAL {
 
     public MekAL(IEventBus modEventBus, ModContainer modContainer) {
         versionNumber = new Version(modContainer);
+        MekALRecipeSerializersInternal.RECIPE_SERIALIZERS.register(modEventBus);
         this.packetHandler = new MekALPacketHandler(modEventBus, versionNumber);
         instance = this;
     }

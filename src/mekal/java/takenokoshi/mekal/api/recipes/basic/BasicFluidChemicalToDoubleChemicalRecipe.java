@@ -12,13 +12,14 @@ import takenokoshi.mekal.api.recipes.FluidChemicalToDoubleChemicalRecipe;
 import takenokoshi.mekal.api.recipes.outputs.DoubleChemicalRecipeOutput;
 
 public abstract class BasicFluidChemicalToDoubleChemicalRecipe extends FluidChemicalToDoubleChemicalRecipe {
-    private final RecipeType<FluidChemicalToDoubleChemicalRecipe> recipeType;
 
-    protected final FluidStackIngredient fluidInput;
-    protected final ChemicalStackIngredient chemicalInput;
+    private final RecipeType<? extends FluidChemicalToDoubleChemicalRecipe> recipeType;
+    private final FluidStackIngredient fluidInput;
+    private final ChemicalStackIngredient chemicalInput;
     protected final ChemicalStack mainOutput, secondaryOutput;
 
-    public BasicFluidChemicalToDoubleChemicalRecipe(RecipeType<FluidChemicalToDoubleChemicalRecipe> recipeType,
+    public BasicFluidChemicalToDoubleChemicalRecipe(
+            RecipeType<? extends FluidChemicalToDoubleChemicalRecipe> recipeType,
             FluidStackIngredient fluidInput,
             ChemicalStackIngredient chemicalInput, ChemicalStack mainOutput, ChemicalStack secondaryOutput) {
         this.recipeType = recipeType;
@@ -29,7 +30,7 @@ public abstract class BasicFluidChemicalToDoubleChemicalRecipe extends FluidChem
     }
 
     @Override
-    public final RecipeType<FluidChemicalToDoubleChemicalRecipe> getType() {
+    public final RecipeType<? extends FluidChemicalToDoubleChemicalRecipe> getType() {
         return recipeType;
     }
 

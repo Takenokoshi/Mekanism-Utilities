@@ -15,6 +15,7 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.fluids.FluidStack;
 import takenokoshi.mekal.api.recipes.basic.BasicFluidToItemStackRecipe;
+import takenokoshi.mekal.api.recipes.basic.BasicItemStackToItemStackIngredientRecipe;
 
 public class MekALRecipeSerializer {
     public static <RECIPE extends BasicFluidToItemStackRecipe> MekanismRecipeSerializer<RECIPE> fluidToItem(
@@ -44,10 +45,27 @@ public class MekALRecipeSerializer {
                                 .forGetter(outputExtractor))
                         .apply(instance, factory)),
                 StreamCodec.composite(
-                    IngredientCreatorAccess.item().streamCodec(), 
-                    BasicItemStackToFluidRecipe::getInput, 
-                    FluidStack.STREAM_CODEC, 
-                    outputExtractor, 
-                    factory));
+                        IngredientCreatorAccess.item().streamCodec(),
+                        BasicItemStackToFluidRecipe::getInput,
+                        FluidStack.STREAM_CODEC,
+                        outputExtractor,
+                        factory));
+    }
+
+    public static <RECIPE extends BasicItemStackToItemStackIngredientRecipe> MekanismRecipeSerializer<RECIPE> itemToItemIngredient(
+            BiFunction<ItemStackIngredient, ItemStackIngredient, RECIPE> factory) {
+        return new MekanismRecipeSerializer<>(
+                RecordCodecBuilder.mapCodec(instance -> instance.group(
+                        IngredientCreatorAccess.item().codec().fieldOf(SerializationConstants.INPUT)
+                                .forGetter(BasicItemStackToItemStackIngredientRecipe::getInput),
+                        IngredientCreatorAccess.item().codec().fieldOf(SerializationConstants.OUTPUT)
+                                .forGetter(BasicItemStackToItemStackIngredientRecipe::getOutputRaw))
+                        .apply(instance, factory)),
+                StreamCodec.composite(
+                        IngredientCreatorAccess.item().streamCodec(),
+                        BasicItemStackToItemStackIngredientRecipe::getInput,
+                        IngredientCreatorAccess.item().streamCodec(),
+                        BasicItemStackToItemStackIngredientRecipe::getOutputRaw,
+                        factory));
     }
 }

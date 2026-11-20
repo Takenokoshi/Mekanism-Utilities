@@ -1,13 +1,23 @@
 package takenokoshi.mekal.api.recipes;
 
-import java.util.function.BiPredicate;
+import org.jetbrains.annotations.NotNull;
 
-import mekanism.api.recipes.MekanismRecipe;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.world.item.ItemStack;
-import net.neoforged.neoforge.fluids.FluidStack;
-import takenokoshi.mekal.api.recipes.vanilla_input.ItemFluidRecipeInput;
+import takenokoshi.mekal.api.recipes.vanilla_input.SingleItemFluidRecipeInput;
 
-public abstract class ItemStackFluidToItemStackRecipe extends MekanismRecipe<ItemFluidRecipeInput>
-        implements BiPredicate<ItemStack, FluidStack> {
+public abstract class ItemStackFluidToItemStackRecipe extends ItemStackFluidToObjectRecipe<ItemStack> {
 
+    @NotNull
+    @Override
+    public abstract ItemStack getResultItem(@NotNull HolderLookup.Provider provider);
+
+    @NotNull
+    @Override
+    public ItemStack assemble(SingleItemFluidRecipeInput input, HolderLookup.Provider provider) {
+        if (!isIncomplete() && test(input.item(), input.fluid())) {
+            return getOutput(input.item(), input.fluid());
+        }
+        return ItemStack.EMPTY;
+    }
 }

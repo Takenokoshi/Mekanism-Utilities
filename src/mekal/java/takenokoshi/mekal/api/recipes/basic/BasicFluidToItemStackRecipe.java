@@ -11,11 +11,11 @@ import takenokoshi.mekal.api.recipes.FluidToItemStackRecipe;
 
 public abstract class BasicFluidToItemStackRecipe extends FluidToItemStackRecipe {
 
-    private final RecipeType<FluidToItemStackRecipe> recipeType;
+    private final RecipeType<? extends FluidToItemStackRecipe> recipeType;
     protected final ItemStack output;
     private final FluidStackIngredient input;
 
-    public BasicFluidToItemStackRecipe(RecipeType<FluidToItemStackRecipe> recipeType, ItemStack output,
+    public BasicFluidToItemStackRecipe(RecipeType<? extends FluidToItemStackRecipe> recipeType, ItemStack output,
             FluidStackIngredient input) {
         this.recipeType = recipeType;
         this.output = output;
@@ -23,7 +23,7 @@ public abstract class BasicFluidToItemStackRecipe extends FluidToItemStackRecipe
     }
 
     @Override
-    public final RecipeType<FluidToItemStackRecipe> getType() {
+    public final RecipeType<? extends FluidToItemStackRecipe> getType() {
         return recipeType;
     }
 

@@ -11,11 +11,11 @@ import takenokoshi.mekal.api.recipes.outputs.DoubleChemicalRecipeOutput;
 
 public abstract class BasicChemicalToDoubleChemicalRecipe extends ChemicalToDoubleChemicalRecipe {
 
-    private final RecipeType<ChemicalToDoubleChemicalRecipe> recipeType;
+    private final RecipeType<? extends ChemicalToDoubleChemicalRecipe> recipeType;
     protected final ChemicalStack mainOutput, secondaryOutput;
     private final ChemicalStackIngredient input;
 
-    public BasicChemicalToDoubleChemicalRecipe(RecipeType<ChemicalToDoubleChemicalRecipe> recipeType,
+    public BasicChemicalToDoubleChemicalRecipe(RecipeType<? extends ChemicalToDoubleChemicalRecipe> recipeType,
             ChemicalStack mainOutput, ChemicalStack secondaryOutput,
             ChemicalStackIngredient input) {
         this.recipeType = recipeType;
@@ -25,7 +25,7 @@ public abstract class BasicChemicalToDoubleChemicalRecipe extends ChemicalToDoub
     }
 
     @Override
-    public final RecipeType<ChemicalToDoubleChemicalRecipe> getType() {
+    public final RecipeType<? extends ChemicalToDoubleChemicalRecipe> getType() {
         return recipeType;
     }
 
