@@ -43,7 +43,7 @@ public abstract class SpallationRecipe extends MekanismRecipe<SingleChemicalReci
 
 
 
-    public abstract double getProducedNeutron();
+    public abstract double getNeutronProduction();
 
-    public abstract double getRequiredProton();
+    public abstract double getProtonRequired();
 }

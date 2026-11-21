@@ -16,13 +16,12 @@ public class MekUtItems {
     // 拡張
     public static final ItemRegistryObject<Item> EXTENDED_CONTROL_CIRCUIT = ITEMS
             .register("extended_control_circuit");
-    // Idea 精密
+    // 精密
+    public static final ItemRegistryObject<Item> PRECISION_CONTROL_CIRCUIT = ITEMS
+            .register("precision_control_circuit");
     // 複層
     public static final ItemRegistryObject<Item> MULTILAYER_CONTROL_CIRCUIT = ITEMS
             .register("multilayer_control_circuit");
-    // 並行
-    public static final ItemRegistryObject<Item> PARALLEL_CONTROL_CIRCUIT = ITEMS
-            .register("parallel_control_circuit");
 
     public static final ItemRegistryObject<Item> ENRICHED_GLOWSTONE = ITEMS.register("enriched_glowstone");
 
@@ -44,10 +43,6 @@ public class MekUtItems {
             MekUtMetalType.class);
     public static final EnumMap<MekUtMetalType, ItemRegistryObject<Item>> METAL_DIRTY_DUSTS = new EnumMap<>(
             MekUtMetalType.class);
-    public static final EnumMap<MekUtMetalType, ItemRegistryObject<Item>> METAL_DUSTS = new EnumMap<>(
-            MekUtMetalType.class);
-    public static final EnumMap<MekUtMetalType, ItemRegistryObject<Item>> METAL_INGOTS = new EnumMap<>(
-            MekUtMetalType.class);
 
     static {
         for (final MekUtMetalType metalType : MekUtMetalType.values()) {
@@ -56,12 +51,6 @@ public class MekUtItems {
             METAL_SHARDS.put(metalType, ITEMS.register(metalType.name + "_shard"));
             METAL_CLUMPS.put(metalType, ITEMS.register(metalType.name + "_clump"));
             METAL_DIRTY_DUSTS.put(metalType, ITEMS.register("dirty_" + metalType.name + "_dust"));
-            // レッドストーンは粉とインゴットの登録をスキップする
-            if (metalType == MekUtMetalType.REDSTONE) {
-                continue;
-            }
-            METAL_DUSTS.put(metalType, ITEMS.register(metalType.name + "_dust"));
-            METAL_INGOTS.put(metalType, ITEMS.register(metalType.name + "_ingot"));
         }
     }
 

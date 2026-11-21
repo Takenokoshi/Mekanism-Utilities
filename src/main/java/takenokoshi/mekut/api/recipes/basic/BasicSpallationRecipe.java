@@ -15,16 +15,16 @@ public final class BasicSpallationRecipe extends SpallationRecipe {
 
     private final ChemicalStackIngredient input;
     private final List<ChemicalStack> output;
-    private final double requiredProton, producedNeutron;
+    private final double protonRequired, neutronProduction;
 
     public BasicSpallationRecipe(ChemicalStackIngredient input,
             List<ChemicalStack> output,
-            double requiredProton,
-            double producedNeutron) {
+            double protonRequired,
+            double neutronProduction) {
         this.input = input;
         this.output = output;
-        this.requiredProton = requiredProton;
-        this.producedNeutron = producedNeutron;
+        this.protonRequired = protonRequired;
+        this.neutronProduction = neutronProduction;
     }
 
     @Override
@@ -38,13 +38,13 @@ public final class BasicSpallationRecipe extends SpallationRecipe {
     }
 
     @Override
-    public double getProducedNeutron() {
-        return producedNeutron;
+    public double getNeutronProduction() {
+        return neutronProduction;
     }
 
     @Override
-    public double getRequiredProton() {
-        return requiredProton;
+    public double getProtonRequired() {
+        return protonRequired;
     }
 
     @Override
@@ -79,8 +79,8 @@ public final class BasicSpallationRecipe extends SpallationRecipe {
             return false;
         }
         BasicSpallationRecipe other = (BasicSpallationRecipe) o;
-        return requiredProton == other.requiredProton
-                && producedNeutron == other.producedNeutron
+        return protonRequired == other.protonRequired
+                && neutronProduction == other.neutronProduction
                 && output.equals(other.output)
                 && input.equals(other.input);
     }
@@ -89,7 +89,7 @@ public final class BasicSpallationRecipe extends SpallationRecipe {
     public int hashCode() {
         int hash = input.hashCode();
         hash = hash * 31 + output.hashCode();
-        hash = hash * 31 + Double.hashCode(requiredProton);
-        return hash * 31 + Double.hashCode(producedNeutron);
+        hash = hash * 31 + Double.hashCode(protonRequired);
+        return hash * 31 + Double.hashCode(neutronProduction);
     }
 }

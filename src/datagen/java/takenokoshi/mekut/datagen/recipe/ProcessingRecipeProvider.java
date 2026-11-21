@@ -17,12 +17,11 @@ import mekanism.common.tags.MekanismTags;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.common.conditions.NotCondition;
 import net.neoforged.neoforge.common.conditions.TagEmptyCondition;
-import takenokoshi.mekal.datagen.recipe.builder.AbstractCookingRecipeBuilder;
+import takenokoshi.mekal.datagen.recipe.builder.ItemStackToItemStackIngredientRecipeBuilder;
 import takenokoshi.mekut.common.MekUt;
 import takenokoshi.mekut.common.registries.MekUtChemicals;
 import takenokoshi.mekut.common.registries.MekUtFluids;
@@ -158,47 +157,40 @@ public class ProcessingRecipeProvider {
                 continue;
             }
 
-            ItemStackToItemStackRecipeBuilder
+            ItemStackToItemStackIngredientRecipeBuilder
                     .enriching(
                             IngredientCreatorAccess.item().from(metalType.oreTag, 1),
-                            MekUtItems.METAL_DUSTS.get(metalType).asStack(2 * metalType.multiplier))
-                    .build(recipeOutput.withConditions(new ICondition[] {
-                            new NotCondition(new TagEmptyCondition(metalType.oreTag))
-                    }), MekUt.rl("processing/" + metalType.name + "/dust/from_ore"));
-            ItemStackToItemStackRecipeBuilder
+                            IngredientCreatorAccess.item().from(metalType.dustTag, 2))
+                    .addCondition(new NotCondition(new TagEmptyCondition(metalType.oreTag)))
+                    .addCondition(new NotCondition(new TagEmptyCondition(metalType.dustTag)))
+                    .build(recipeOutput, MekUt.rl("processing/" + metalType.name + "/dust/from_ore"));
+            ItemStackToItemStackIngredientRecipeBuilder
                     .enriching(
                             IngredientCreatorAccess.item().from(metalType.rawTag, 3),
-                            MekUtItems.METAL_DUSTS.get(metalType).asStack(4 * metalType.multiplier))
+                            IngredientCreatorAccess.item().from(metalType.dustTag, 4))
+                    .addCondition(new NotCondition(new TagEmptyCondition(metalType.rawTag)))
+                    .addCondition(new NotCondition(new TagEmptyCondition(metalType.dustTag)))
                     .build(recipeOutput, MekUt.rl("processing/" + metalType.name + "/dust/from_raw_ore"));
-            ItemStackToItemStackRecipeBuilder
+            ItemStackToItemStackIngredientRecipeBuilder
                     .enriching(
                             IngredientCreatorAccess.item().from(metalType.rawBlockTag, 1),
-                            MekUtItems.METAL_DUSTS.get(metalType).asStack(12 * metalType.multiplier))
-                    .build(recipeOutput.withConditions(new ICondition[] {
-                            new NotCondition(new TagEmptyCondition(metalType.rawBlockTag))
-                    }), MekUt.rl("processing/" + metalType.name + "/dust/from_raw_block"));
-            ItemStackToItemStackRecipeBuilder
+                            IngredientCreatorAccess.item().from(metalType.dustTag, 12))
+                    .addCondition(new NotCondition(new TagEmptyCondition(metalType.rawBlockTag)))
+                    .addCondition(new NotCondition(new TagEmptyCondition(metalType.dustTag)))
+                    .build(recipeOutput, MekUt.rl("processing/" + metalType.name + "/dust/from_raw_block"));
+            ItemStackToItemStackIngredientRecipeBuilder
                     .enriching(
                             IngredientCreatorAccess.item().from(metalType.dirtyDustTag, 1),
-                            MekUtItems.METAL_DUSTS.get(metalType).asStack(1))
+                            IngredientCreatorAccess.item().from(metalType.dustTag, 1))
+                    .addCondition(new NotCondition(new TagEmptyCondition(metalType.dustTag)))
                     .build(recipeOutput, MekUt.rl("processing/" + metalType.name + "/dust/from_dirty_dust"));
-            ItemStackToItemStackRecipeBuilder
+            ItemStackToItemStackIngredientRecipeBuilder
                     .crushing(
                             IngredientCreatorAccess.item().from(metalType.ingotTag, 1),
-                            MekUtItems.METAL_DUSTS.get(metalType).asStack(1))
+                            IngredientCreatorAccess.item().from(metalType.dustTag, 1))
+                    .addCondition(new NotCondition(new TagEmptyCondition(metalType.ingotTag)))
+                    .addCondition(new NotCondition(new TagEmptyCondition(metalType.dustTag)))
                     .build(recipeOutput, MekUt.rl("processing/" + metalType.name + "/dust/from_ingot"));
-
-            // 鉱石や原石からの精錬は書かない。こちらで鉱石の入手手段を用意するつもりはない為
-            AbstractCookingRecipeBuilder
-                    .smelting(
-                            Ingredient.of(metalType.dustTag),
-                            MekUtItems.METAL_INGOTS.get(metalType).asStack(1))
-                    .build(recipeOutput, MekUt.rl("processing/" + metalType.name + "/ingot/from_dust_smelting"));
-            AbstractCookingRecipeBuilder
-                    .blasting(
-                            Ingredient.of(metalType.dustTag),
-                            MekUtItems.METAL_INGOTS.get(metalType).asStack(1))
-                    .build(recipeOutput, MekUt.rl("processing/" + metalType.name + "/ingot/from_dust_blasting"));
 
         }
 
