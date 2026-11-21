@@ -66,6 +66,11 @@ public abstract class BasicItemStackToItemStackIngredientRecipe extends ItemStac
     }
 
     @Override
+    public int hashCode() {
+        return input.hashCode() * 31 + output.hashCode();
+    }
+
+    @Override
     public boolean isIncomplete() {
         return super.isIncomplete() || output.hasNoMatchingInstances();
     }
