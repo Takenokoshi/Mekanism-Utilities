@@ -44,13 +44,15 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.fluids.FluidStack;
 import takenokoshi.mekal.api.recipes.ItemStackFluidToItemStackRecipe;
 import takenokoshi.mekal.api.recipes.cache.ItemStackConstantFluidToObjectCachedRecipe;
 import takenokoshi.mekal.api.recipes.cache.MekALTwoInputCachedRecipe;
+import takenokoshi.mekal.api.recipes.inputs.AdvancedFluidInputHandler;
+import takenokoshi.mekal.common.inventory.slot.AdvancedFluidInputSlot;
 import takenokoshi.mekal.common.recipe.lookup.ItemFluidRecipeLookupHandler;
 import takenokoshi.mekal.common.recipe.lookup.monitor.ItemStackConstantFluidRecipeLookupMonitor;
 import takenokoshi.mekal.common.upgrade.ItemStackFluidToItemStackMachineUpgradeData;
+import takenokoshi.mekal.common.util.MekALUpgradeUtils;
 
 public abstract class TileEntityItemStackFluidToItemStackMachine
         extends TileEntityProgressMachine<ItemStackFluidToItemStackRecipe>
@@ -75,7 +77,7 @@ public abstract class TileEntityItemStackFluidToItemStackMachine
 
     protected final IOutputHandler<@NotNull ItemStack> outputHandler;
     protected final IInputHandler<@NotNull ItemStack> itemInputHandler;
-    protected final IInputHandler<@NotNull FluidStack> fluidInputHandler;
+    protected final AdvancedFluidInputHandler fluidInputHandler;
 
     protected MachineEnergyContainer<TileEntityItemStackFluidToItemStackMachine> energyContainer;
 
@@ -95,7 +97,7 @@ public abstract class TileEntityItemStackFluidToItemStackMachine
         ejectorComponent.setOutputData(configComponent, TransmissionType.ITEM);
 
         itemInputHandler = InputHelper.getInputHandler(inputSlot, RecipeError.NOT_ENOUGH_INPUT);
-        fluidInputHandler = InputHelper.getInputHandler(fluidTank, RecipeError.NOT_ENOUGH_SECONDARY_INPUT);
+        fluidInputHandler = AdvancedFluidInputHandler.create(fluidTank, RecipeError.NOT_ENOUGH_SECONDARY_INPUT);
         outputHandler = OutputHelper.getOutputHandler(outputSlot, RecipeError.NOT_ENOUGH_OUTPUT_SPACE);
         baseTotalUsage = this.baseTicksRequired;
         if (useStatisticalMechanics()) {
@@ -152,7 +154,10 @@ public abstract class TileEntityItemStackFluidToItemStackMachine
                 64, 17))
                 .tracksWarnings(slot -> slot.warning(WarningType.NO_MATCHING_RECIPE,
                         getWarningCheck(RecipeError.NOT_ENOUGH_INPUT)));
-        builder.addSlot(fluidSlot = FluidInventorySlot.fill(fluidTank, listener, 64, 53));
+        builder.addSlot(fluidSlot = AdvancedFluidInputSlot.create(fluidTank, () -> {
+            listener.onContentsChanged();
+            this.onFluidSlotChanged();
+        }, 64, 53));
         builder.addSlot(outputSlot = OutputInventorySlot.at(recipeCacheUnpauseListener, 116, 35))
                 .tracksWarnings(slot -> slot.warning(WarningType.NO_SPACE_IN_OUTPUT,
                         getWarningCheck(RecipeError.NOT_ENOUGH_OUTPUT_SPACE)));
@@ -161,6 +166,10 @@ public abstract class TileEntityItemStackFluidToItemStackMachine
                 energySlot = EnergyInventorySlot.fillOrConvert(energyContainer, this::getLevel, listener, 39, 35));
         fluidSlot.setSlotOverlay(SlotOverlay.MINUS);
         return builder.build();
+    }
+
+    private void onFluidSlotChanged() {
+        fluidInputHandler.setSuppliedByItem(fluidSlot.getStack());
     }
 
     @Override
@@ -198,7 +207,8 @@ public abstract class TileEntityItemStackFluidToItemStackMachine
     @Override
     public void recalculateUpgrades(Upgrade upgrade) {
         super.recalculateUpgrades(upgrade);
-        if (upgrade == Upgrade.SPEED || (upgrade == Upgrade.CHEMICAL && supportsUpgrade(Upgrade.CHEMICAL))) {
+        if (MekALUpgradeUtils.isSpeedModifier(upgrade)
+                || (upgrade == Upgrade.CHEMICAL && supportsUpgrade(Upgrade.CHEMICAL))) {
             if (useStatisticalMechanics()) {
                 fluidPerTickMeanMultiplier = MekanismUtils.getGasPerTickMeanMultiplier(this);
             } else {

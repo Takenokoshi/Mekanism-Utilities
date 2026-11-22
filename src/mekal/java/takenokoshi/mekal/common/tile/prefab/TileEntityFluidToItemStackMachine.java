@@ -9,8 +9,6 @@ import mekanism.api.IContentsListener;
 import mekanism.api.fluid.IExtendedFluidTank;
 import mekanism.api.recipes.cache.CachedRecipe;
 import mekanism.api.recipes.cache.CachedRecipe.OperationTracker.RecipeError;
-import mekanism.api.recipes.inputs.IInputHandler;
-import mekanism.api.recipes.inputs.InputHelper;
 import mekanism.api.recipes.outputs.IOutputHandler;
 import mekanism.api.recipes.outputs.OutputHelper;
 import mekanism.common.capabilities.energy.MachineEnergyContainer;
@@ -35,10 +33,11 @@ import net.minecraft.core.Holder;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.FluidType;
 import takenokoshi.mekal.api.recipes.FluidToItemStackRecipe;
 import takenokoshi.mekal.api.recipes.cache.MekALOneInputCachedRecipe;
+import takenokoshi.mekal.api.recipes.inputs.AdvancedFluidInputHandler;
+import takenokoshi.mekal.common.inventory.slot.AdvancedFluidInputSlot;
 
 public abstract class TileEntityFluidToItemStackMachine extends TileEntityProgressMachine<FluidToItemStackRecipe>
         implements
@@ -55,7 +54,7 @@ public abstract class TileEntityFluidToItemStackMachine extends TileEntityProgre
 
     public IExtendedFluidTank fluidTank;
     private final IOutputHandler<ItemStack> outputHandler;
-    private final IInputHandler<FluidStack> inputHandler;
+    private final AdvancedFluidInputHandler inputHandler;
 
     private MachineEnergyContainer<TileEntityFluidToItemStackMachine> energyContainer;
     private FluidInventorySlot inputSlot;
@@ -71,7 +70,7 @@ public abstract class TileEntityFluidToItemStackMachine extends TileEntityProgre
         ejectorComponent = new TileComponentEjector(this);
         ejectorComponent.setOutputData(configComponent, TransmissionType.ITEM);
 
-        inputHandler = InputHelper.getInputHandler(fluidTank, RecipeError.NOT_ENOUGH_INPUT);
+        inputHandler = AdvancedFluidInputHandler.create(fluidTank, RecipeError.NOT_ENOUGH_INPUT);
         outputHandler = OutputHelper.getOutputHandler(outputSlot, RecipeError.NOT_ENOUGH_OUTPUT_SPACE);
     }
 
@@ -101,13 +100,20 @@ public abstract class TileEntityFluidToItemStackMachine extends TileEntityProgre
     protected @Nullable IInventorySlotHolder getInitialInventory(IContentsListener listener,
             IContentsListener recipeCacheListener, IContentsListener recipeCacheUnpauseListener) {
         InventorySlotHelper builder = InventorySlotHelper.forSideWithConfig(this);
-        builder.addSlot(inputSlot = FluidInventorySlot.fill(fluidTank, listener, 8, 34));
+        builder.addSlot(inputSlot = AdvancedFluidInputSlot.create(fluidTank, () -> {
+            listener.onContentsChanged();
+            this.onInputSlotChanged();
+        }, 8, 34));
         builder.addSlot(outputSlot = OutputInventorySlot.at(recipeCacheUnpauseListener, 129, 57));
         builder.addSlot(bucketSlot = OutputInventorySlot.at(listener, 8, 65));
         builder.addSlot(
                 energySlot = EnergyInventorySlot.fillOrConvert(energyContainer, this::getLevel, listener, 152, 5));
         inputSlot.setSlotOverlay(SlotOverlay.PLUS);
         return builder.build();
+    }
+
+    private void onInputSlotChanged() {
+        inputHandler.setSuppliedByItem(inputSlot.getStack());
     }
 
     @Override

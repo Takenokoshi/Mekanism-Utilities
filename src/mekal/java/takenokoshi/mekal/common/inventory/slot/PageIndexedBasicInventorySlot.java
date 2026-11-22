@@ -1,4 +1,4 @@
-package takenokoshi.mekal.common.inventory.container.slot;
+package takenokoshi.mekal.common.inventory.slot;
 
 import java.util.function.BiPredicate;
 import java.util.function.Consumer;
@@ -12,6 +12,7 @@ import mekanism.api.IContentsListener;
 import mekanism.common.inventory.slot.BasicInventorySlot;
 import mekanism.common.inventory.warning.ISupportsWarning;
 import net.minecraft.world.item.ItemStack;
+import takenokoshi.mekal.common.inventory.container.slot.PageIndexedInventorySlot;
 
 public class PageIndexedBasicInventorySlot extends BasicInventorySlot {
     private final int page;

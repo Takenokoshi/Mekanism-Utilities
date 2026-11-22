@@ -40,7 +40,7 @@ public class MachineRegistryHelper {
         itemHolder
                 .addAttachmentOnlyContainers(ContainerType.ITEM, () -> ItemSlotsBuilder.builder()
                         .addInput(recipeType, DoubleInputRecipeCache::containsInputA)
-                        .addFluidFillSlot(0)
+                        .addBasic(1)
                         .addOutput(2)
                         .addEnergy()
                         .build())
@@ -70,7 +70,7 @@ public class MachineRegistryHelper {
             IMekanismRecipeTypeProvider<SingleFluidRecipeInput, FluidToItemStackRecipe, SingleFluid<FluidToItemStackRecipe>> recipeType) {
         itemHolder
                 .addAttachmentOnlyContainers(ContainerType.ITEM, () -> ItemSlotsBuilder.builder()
-                        .addFluidFillSlot(0)
+                        .addBasic(1)
                         .addOutput(2)
                         .addEnergy()
                         .build())

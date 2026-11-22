@@ -1,4 +1,4 @@
-package takenokoshi.mekal.common.inventory.container.slot;
+package takenokoshi.mekal.common.inventory.slot;
 
 import java.util.function.Predicate;
 
