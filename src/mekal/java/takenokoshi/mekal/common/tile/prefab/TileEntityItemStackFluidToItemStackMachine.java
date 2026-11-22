@@ -24,6 +24,7 @@ import mekanism.common.capabilities.holder.fluid.FluidTankHelper;
 import mekanism.common.capabilities.holder.fluid.IFluidTankHolder;
 import mekanism.common.capabilities.holder.slot.IInventorySlotHolder;
 import mekanism.common.capabilities.holder.slot.InventorySlotHelper;
+import mekanism.common.inventory.container.slot.SlotOverlay;
 import mekanism.common.inventory.slot.EnergyInventorySlot;
 import mekanism.common.inventory.slot.FluidInventorySlot;
 import mekanism.common.inventory.slot.InputInventorySlot;
@@ -33,7 +34,6 @@ import mekanism.common.lib.transmitter.TransmissionType;
 import mekanism.common.recipe.lookup.monitor.RecipeCacheLookupMonitor;
 import mekanism.common.tile.component.TileComponentEjector;
 import mekanism.common.tile.prefab.TileEntityProgressMachine;
-import mekanism.common.upgrade.IUpgradeData;
 import mekanism.common.util.MekanismUtils;
 import mekanism.common.util.StatUtils;
 import net.minecraft.SharedConstants;
@@ -50,6 +50,7 @@ import takenokoshi.mekal.api.recipes.cache.ItemStackConstantFluidToObjectCachedR
 import takenokoshi.mekal.api.recipes.cache.MekALTwoInputCachedRecipe;
 import takenokoshi.mekal.common.recipe.lookup.ItemFluidRecipeLookupHandler;
 import takenokoshi.mekal.common.recipe.lookup.monitor.ItemStackConstantFluidRecipeLookupMonitor;
+import takenokoshi.mekal.common.upgrade.ItemStackFluidToItemStackMachineUpgradeData;
 
 public abstract class TileEntityItemStackFluidToItemStackMachine
         extends TileEntityProgressMachine<ItemStackFluidToItemStackRecipe>
@@ -61,8 +62,9 @@ public abstract class TileEntityItemStackFluidToItemStackMachine
             RecipeError.NOT_ENOUGH_SECONDARY_INPUT,
             RecipeError.NOT_ENOUGH_OUTPUT_SPACE,
             RecipeError.INPUT_DOESNT_PRODUCE_OUTPUT);
+
     public static final int BASE_TICKS_REQUIRED = 10 * SharedConstants.TICKS_PER_SECOND;
-    public static final int MAX_FLUID = 210;
+    public static final int MAX_FLUID = 1050;
 
     protected final ItemStackConstantFluidToObjectCachedRecipe.FluidUsageMultiplier fluidUsageMultiplier;
     protected double fluidPerTickMeanMultiplier = 1.0D;
@@ -127,11 +129,15 @@ public abstract class TileEntityItemStackFluidToItemStackMachine
     protected IFluidTankHolder getInitialFluidTanks(IContentsListener listener,
             IContentsListener recipeCacheListener, IContentsListener recipeCacheUnpauseListener) {
         FluidTankHelper builder = FluidTankHelper.forSideWithConfig(this);
-        builder.addTank(fluidTank = BasicFluidTank.input(MAX_FLUID,
+        builder.addTank(fluidTank = BasicFluidTank.input(getInitialFluidTankCapacity(),
                 stack -> containsRecipeBA(inputSlot.getStack(), stack),
                 this::containsRecipeB,
                 recipeCacheListener));
         return builder.build();
+    }
+
+    protected int getInitialFluidTankCapacity() {
+        return MAX_FLUID;
     }
 
     @NotNull
@@ -153,6 +159,7 @@ public abstract class TileEntityItemStackFluidToItemStackMachine
         builder.addSlot(bucketSlot = OutputInventorySlot.at(listener, 90, 53));
         builder.addSlot(
                 energySlot = EnergyInventorySlot.fillOrConvert(energyContainer, this::getLevel, listener, 39, 35));
+        fluidSlot.setSlotOverlay(SlotOverlay.MINUS);
         return builder.build();
     }
 
@@ -201,9 +208,12 @@ public abstract class TileEntityItemStackFluidToItemStackMachine
     }
 
     @Override
-    public @Nullable IUpgradeData getUpgradeData(HolderLookup.Provider provider) {
-        //TODO
-        return super.getUpgradeData(provider);
+    public ItemStackFluidToItemStackMachineUpgradeData getUpgradeData(HolderLookup.Provider provider) {
+        return new ItemStackFluidToItemStackMachineUpgradeData(provider,
+                redstone, getControlType(), energyContainer,
+                getOperatingTicks(), usedSoFar,
+                fluidTank, fluidSlot, bucketSlot,
+                energySlot, inputSlot, outputSlot, getComponents());
     }
 
     public MachineEnergyContainer<TileEntityItemStackFluidToItemStackMachine> getEnergyContainer() {
@@ -228,6 +238,10 @@ public abstract class TileEntityItemStackFluidToItemStackMachine
     public void saveAdditional(@NotNull CompoundTag nbtTags, @NotNull HolderLookup.Provider provider) {
         super.saveAdditional(nbtTags, provider);
         nbtTags.putInt(SerializationConstants.USED_SO_FAR, usedSoFar);
+    }
+
+    public long getEnergyUsage() {
+        return getActive() ? energyContainer.getEnergyPerTick() : 0L;
     }
 
 }
