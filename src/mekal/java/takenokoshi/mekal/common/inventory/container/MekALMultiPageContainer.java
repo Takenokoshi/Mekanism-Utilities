@@ -38,6 +38,12 @@ public class MekALMultiPageContainer<BE extends TileEntityMekanism & IHasGuiSize
     }
 
     @Override
+    protected void addSlots() {
+        // TODO Auto-generated method stub
+        super.addSlots();
+    }
+
+    @Override
     public boolean canTakeItemForPickAll(@NotNull ItemStack stack, @NotNull Slot slot) {
         if (slot instanceof PageIndexedInventorySlot pageIndexedInventorySlot) {
             return pageIndexedInventorySlot.isPageActive()

@@ -1,6 +1,5 @@
 package takenokoshi.mekal.common.registration;
 
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.UnaryOperator;
 
@@ -13,7 +12,6 @@ import mekanism.common.content.blocktype.Machine.MachineBuilder;
 import mekanism.common.item.block.ItemBlockTooltip;
 import mekanism.common.registration.impl.BlockDeferredRegister;
 import mekanism.common.registration.impl.ContainerTypeDeferredRegister;
-import mekanism.common.registration.impl.ItemRegistryObject;
 import mekanism.common.registration.impl.TileEntityTypeDeferredRegister;
 import mekanism.common.registration.impl.TileEntityTypeDeferredRegister.BlockEntityTypeBuilder;
 import mekanism.common.registries.MekanismDataComponents;
@@ -30,7 +28,6 @@ public class MultiPageMachineRegistryObject<BE extends TileEntityMekanism & IHas
             TileEntityTypeDeferredRegister tileRegister, ContainerTypeDeferredRegister containerRegister,
             Function<Machine<BE>, BlockTileModel<BE, Machine<BE>>> blockCreator,
             AttachedSideConfig attachedSideConfig,
-            Consumer<ItemRegistryObject<ItemBlockTooltip<BlockTileModel<BE, Machine<BE>>>>> holder,
             BlockEntityConstructor<BE, Machine<BE>, BlockTileModel<BE, Machine<BE>>> beConstructor,
             UnaryOperator<BlockEntityTypeBuilder<BE>> beOperator, Class<BE> beClass,
             ILangEntry entry,
@@ -39,7 +36,7 @@ public class MultiPageMachineRegistryObject<BE extends TileEntityMekanism & IHas
                 (block, properties) -> new ItemBlockTooltip<>(block, true, properties
                         .component(MekanismDataComponents.EJECTOR, AttachedEjector.DEFAULT)
                         .component(MekanismDataComponents.SIDE_CONFIG, attachedSideConfig)),
-                holder, beConstructor, beOperator,
+                beConstructor, beOperator,
                 beClass,
                 MekALMultiPageContainer::new, entry, operator);
     }
@@ -48,7 +45,6 @@ public class MultiPageMachineRegistryObject<BE extends TileEntityMekanism & IHas
             TileEntityTypeDeferredRegister tileRegister, ContainerTypeDeferredRegister containerRegister,
             Function<Machine<BE>, BlockTileModel<BE, Machine<BE>>> blockCreator,
             AttachedSideConfig attachedSideConfig,
-            Consumer<ItemRegistryObject<ItemBlockTooltip<BlockTileModel<BE, Machine<BE>>>>> holder,
             BlockEntityConstructor<BE, Machine<BE>, BlockTileModel<BE, Machine<BE>>> beConstructor,
             UnaryOperator<BlockEntityTypeBuilder<BE>> beOperator, Class<BE> beClass,
             UnaryOperator<MachineBuilder<Machine<BE>, BE, ?>> operator) {
@@ -56,7 +52,7 @@ public class MultiPageMachineRegistryObject<BE extends TileEntityMekanism & IHas
                 (block, properties) -> new ItemBlockTooltip<>(block, true, properties
                         .component(MekanismDataComponents.EJECTOR, AttachedEjector.DEFAULT)
                         .component(MekanismDataComponents.SIDE_CONFIG, attachedSideConfig)),
-                holder, beConstructor, beOperator,
+                beConstructor, beOperator,
                 beClass,
                 MekALMultiPageContainer::new, operator);
     }
@@ -65,7 +61,6 @@ public class MultiPageMachineRegistryObject<BE extends TileEntityMekanism & IHas
             TileEntityTypeDeferredRegister tileRegister, ContainerTypeDeferredRegister containerRegister,
             Function<Machine<BE>, BlockTileModel<BE, Machine<BE>>> blockCreator,
             AttachedSideConfig attachedSideConfig,
-            Consumer<ItemRegistryObject<ItemBlockTooltip<BlockTileModel<BE, Machine<BE>>>>> holder,
             BlockEntityConstructor<BE, Machine<BE>, BlockTileModel<BE, Machine<BE>>> beConstructor, Class<BE> beClass,
             ILangEntry entry,
             UnaryOperator<MachineBuilder<Machine<BE>, BE, ?>> operator) {
@@ -73,7 +68,7 @@ public class MultiPageMachineRegistryObject<BE extends TileEntityMekanism & IHas
                 (block, properties) -> new ItemBlockTooltip<>(block, true, properties
                         .component(MekanismDataComponents.EJECTOR, AttachedEjector.DEFAULT)
                         .component(MekanismDataComponents.SIDE_CONFIG, attachedSideConfig)),
-                holder, beConstructor,
+                beConstructor,
                 beClass,
                 MekALMultiPageContainer::new, entry, operator);
     }
@@ -82,14 +77,13 @@ public class MultiPageMachineRegistryObject<BE extends TileEntityMekanism & IHas
             TileEntityTypeDeferredRegister tileRegister, ContainerTypeDeferredRegister containerRegister,
             Function<Machine<BE>, BlockTileModel<BE, Machine<BE>>> blockCreator,
             AttachedSideConfig attachedSideConfig,
-            Consumer<ItemRegistryObject<ItemBlockTooltip<BlockTileModel<BE, Machine<BE>>>>> holder,
             BlockEntityConstructor<BE, Machine<BE>, BlockTileModel<BE, Machine<BE>>> beConstructor, Class<BE> beClass,
             UnaryOperator<MachineBuilder<Machine<BE>, BE, ?>> operator) {
         super(modid, name, blockRegister, tileRegister, containerRegister, blockCreator,
                 (block, properties) -> new ItemBlockTooltip<>(block, true, properties
                         .component(MekanismDataComponents.EJECTOR, AttachedEjector.DEFAULT)
                         .component(MekanismDataComponents.SIDE_CONFIG, attachedSideConfig)),
-                holder, beConstructor,
+                beConstructor,
                 beClass,
                 MekALMultiPageContainer::new, operator);
     }

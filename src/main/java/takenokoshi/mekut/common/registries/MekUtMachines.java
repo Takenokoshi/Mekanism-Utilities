@@ -22,8 +22,6 @@ public class MekUtMachines {
     public static final SimpleMachineRegistryObject<TileEntityFreezingMachine> FREEZING_MACHINE = MACHINES
             .registerSimple("freezing_machine",
                     MekALAttachedSideConfig.FLUID_TO_ITEM_MACHINE,
-                    holder -> MachineRegistryHelper.addAttachmentOnlyContainersFluidToItemMachine(
-                            holder, MekUtRecipeType.FREEZING),
                     TileEntityFreezingMachine::new,
                     TileEntityFreezingMachine.class,
                     builder -> builder
@@ -32,13 +30,13 @@ public class MekUtMachines {
                                     MekanismConfig.storage.chemicalOxidizer)
                             .withSideConfig(new TransmissionType[] {
                                     TransmissionType.ITEM, TransmissionType.FLUID, TransmissionType.ENERGY,
-                            }));
+                            }))
+            .forItemHolder(holder -> MachineRegistryHelper.addAttachmentOnlyContainersFluidToItemMachine(
+                    holder, MekUtRecipeType.FREEZING));
 
     public static final SimpleMachineRegistryObject<TileEntityHydraulicExtractor> HYDRAULIC_EXTRACTOR = MACHINES
             .registerSimple("hydraulic_extractor",
                     MekALAttachedSideConfig.ITEM_FLUID_TO_ITEM_MACHINE,
-                    holder -> MachineRegistryHelper.addAttachmentOnlyContainersItemFluidToItemMachine(
-                            holder, MekUtRecipeType.HYDRAULIC_EXTRACTING),
                     TileEntityHydraulicExtractor::new,
                     TileEntityHydraulicExtractor.class,
                     builder -> builder
@@ -47,26 +45,26 @@ public class MekUtMachines {
                                     MekanismConfig.storage.purificationChamber)
                             .withSideConfig(new TransmissionType[] {
                                     TransmissionType.ITEM, TransmissionType.FLUID, TransmissionType.ENERGY,
-                            }));
+                            }))
+            .forItemHolder(holder -> MachineRegistryHelper.addAttachmentOnlyContainersItemFluidToItemMachine(
+                    holder, MekUtRecipeType.HYDRAULIC_EXTRACTING));
 
     public static final SimpleMachineRegistryObject<TileEntityMineralExtractor> MINERAL_EXTRACTOR = MACHINES
             .registerSimple("mineral_extractor",
                     AttachedSideConfig.ELECTRIC_MACHINE,
-                    holder -> MachineRegistryHelper.addAttachmentOnlyContainersElectricMachine(
-                            holder, MekUtRecipeType.MINERAL_EXTRACTING),
                     TileEntityMineralExtractor::new,
                     TileEntityMineralExtractor.class,
                     builder -> builder
                             .withSound(MekanismSounds.ENRICHMENT_CHAMBER)
                             .withEnergyConfig(MekanismConfig.usage.enrichmentChamber,
                                     MekanismConfig.storage.enrichmentChamber)
-                            .with(AttributeSideConfig.ELECTRIC_MACHINE));
+                            .with(AttributeSideConfig.ELECTRIC_MACHINE))
+            .forItemHolder(holder -> MachineRegistryHelper.addAttachmentOnlyContainersElectricMachine(
+                    holder, MekUtRecipeType.MINERAL_EXTRACTING));
 
     public static final SimpleMachineRegistryObject<TileEntitySqueezer> SQUEEZER = MACHINES
             .registerSimple("squeezer",
                     MekALAttachedSideConfig.ITEM_TO_FLUID_MACHINE,
-                    holder -> MachineRegistryHelper.addAttachmentOnlyContainersItemToFluidMachine(holder,
-                            MekUtRecipeType.SQUEEZING),
                     TileEntitySqueezer::new,
                     TileEntitySqueezer.class,
                     builder -> builder
@@ -75,5 +73,7 @@ public class MekUtMachines {
                                     MekanismConfig.storage.chemicalOxidizer)
                             .withSideConfig(new TransmissionType[] {
                                     TransmissionType.ITEM, TransmissionType.FLUID, TransmissionType.ENERGY,
-                            }));
+                            }))
+            .forItemHolder(holder -> MachineRegistryHelper.addAttachmentOnlyContainersItemToFluidMachine(holder,
+                    MekUtRecipeType.SQUEEZING));
 }

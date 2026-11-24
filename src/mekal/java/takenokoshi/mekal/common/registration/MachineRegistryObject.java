@@ -46,7 +46,6 @@ public class MachineRegistryObject<BE extends TileEntityMekanism, BLOCK extends 
             ContainerTypeDeferredRegister containerRegister,
             Function<Machine<BE>, BLOCK> blockCreator,
             BiFunction<BLOCK, Item.Properties, ITEM> itemCreator,
-            Consumer<ItemRegistryObject<ITEM>> holder,
             BlockEntityConstructor<BE, Machine<BE>, BLOCK> beConstructor,
             UnaryOperator<BlockEntityTypeBuilder<BE>> beOperator,
             Class<BE> beClass,
@@ -57,8 +56,7 @@ public class MachineRegistryObject<BE extends TileEntityMekanism, BLOCK extends 
         blockType = operator.apply(MachineBuilder.createMachine(this::getTile, entry))
                 .withGui(this::getContainer)
                 .build();
-        blockRegistryObject = blockRegister.register(name, () -> blockCreator.apply(blockType), itemCreator)
-                .forItemHolder(holder);
+        blockRegistryObject = blockRegister.register(name, () -> blockCreator.apply(blockType), itemCreator);
         tileRegistryObject = beOperator.apply(tileRegister
                 .mekBuilder(blockRegistryObject,
                         (p, s) -> beConstructor.create(blockRegistryObject, p, s))
@@ -78,13 +76,12 @@ public class MachineRegistryObject<BE extends TileEntityMekanism, BLOCK extends 
             ContainerTypeDeferredRegister containerRegister,
             Function<Machine<BE>, BLOCK> blockCreator,
             BiFunction<BLOCK, Item.Properties, ITEM> itemCreator,
-            Consumer<ItemRegistryObject<ITEM>> holder,
             BlockEntityConstructor<BE, Machine<BE>, BLOCK> beConstructor,
             Class<BE> beClass,
             ContainerConstructor<BE, CONTAINER> contConstructor,
             ILangEntry entry,
             UnaryOperator<MachineBuilder<Machine<BE>, BE, ?>> operator) {
-        this(name, blockRegister, tileRegister, containerRegister, blockCreator, itemCreator, holder, beConstructor,
+        this(name, blockRegister, tileRegister, containerRegister, blockCreator, itemCreator, beConstructor,
                 builder -> builder, beClass, contConstructor, entry, operator);
     }
 
@@ -96,13 +93,12 @@ public class MachineRegistryObject<BE extends TileEntityMekanism, BLOCK extends 
             ContainerTypeDeferredRegister containerRegister,
             Function<Machine<BE>, BLOCK> blockCreator,
             BiFunction<BLOCK, Item.Properties, ITEM> itemCreator,
-            Consumer<ItemRegistryObject<ITEM>> holder,
             BlockEntityConstructor<BE, Machine<BE>, BLOCK> beConstructor,
             UnaryOperator<BlockEntityTypeBuilder<BE>> beOperator,
             Class<BE> beClass,
             ContainerConstructor<BE, CONTAINER> contConstructor,
             UnaryOperator<MachineBuilder<Machine<BE>, BE, ?>> operator) {
-        this(name, blockRegister, tileRegister, containerRegister, blockCreator, itemCreator, holder, beConstructor,
+        this(name, blockRegister, tileRegister, containerRegister, blockCreator, itemCreator, beConstructor,
                 beOperator, beClass, contConstructor, new MachineDescription(modid, name), operator);
     }
 
@@ -114,12 +110,11 @@ public class MachineRegistryObject<BE extends TileEntityMekanism, BLOCK extends 
             ContainerTypeDeferredRegister containerRegister,
             Function<Machine<BE>, BLOCK> blockCreator,
             BiFunction<BLOCK, Item.Properties, ITEM> itemCreator,
-            Consumer<ItemRegistryObject<ITEM>> holder,
             BlockEntityConstructor<BE, Machine<BE>, BLOCK> beConstructor,
             Class<BE> beClass,
             ContainerConstructor<BE, CONTAINER> contConstructor,
             UnaryOperator<MachineBuilder<Machine<BE>, BE, ?>> operator) {
-        this(name, blockRegister, tileRegister, containerRegister, blockCreator, itemCreator, holder, beConstructor,
+        this(name, blockRegister, tileRegister, containerRegister, blockCreator, itemCreator, beConstructor,
                 beClass, contConstructor, new MachineDescription(modid, name), operator);
     }
 
@@ -157,6 +152,12 @@ public class MachineRegistryObject<BE extends TileEntityMekanism, BLOCK extends 
     @Override
     public String getTranslationKey() {
         return blockRegistryObject.getTranslationKey();
+    }
+
+    public MachineRegistryObject<BE, BLOCK, CONTAINER, ITEM> forItemHolder(
+            Consumer<ItemRegistryObject<ITEM>> consumer) {
+        this.blockRegistryObject.forItemHolder(consumer);
+        return this;
     }
 
     private static class MachineDescription implements ILangEntry {
